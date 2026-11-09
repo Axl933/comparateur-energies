@@ -19,42 +19,44 @@
             background-color: var(--bg-slate);
             color: var(--text-main);
             margin: 0;
-            padding: 20px;
+            padding: 15px;
+            font-size: 0.85rem; /* Taille globale réduite de 20% */
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 800px; /* Réduit de 1000px à 800px (-20%) */
             margin: 0 auto;
         }
 
         h1 {
             text-align: center;
             color: #0f172a;
-            margin-bottom: 25px;
+            margin-bottom: 18px;
+            font-size: 1.5rem;
         }
 
         .filter-card {
             background-color: var(--primary-yellow);
             border: 2px solid var(--border-yellow);
-            border-radius: 10px;
-            padding: 15px 20px;
-            margin-bottom: 25px;
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin-bottom: 18px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
         .filter-card label {
             font-weight: bold;
-            font-size: 1.05rem;
+            font-size: 0.9rem;
         }
 
         .filter-card select {
-            padding: 8px 12px;
-            border-radius: 6px;
+            padding: 6px 10px;
+            border-radius: 5px;
             border: 1px solid #cbd5e1;
-            font-size: 1rem;
+            font-size: 0.85rem;
             background-color: white;
             cursor: pointer;
         }
@@ -62,466 +64,24 @@
         .section-title {
             color: var(--blue-header);
             border-bottom: 2px solid var(--blue-header);
-            padding-bottom: 5px;
-            margin-top: 30px;
-            margin-bottom: 15px;
+            padding-bottom: 4px;
+            margin-top: 22px;
+            margin-bottom: 12px;
+            font-size: 1.15rem;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             background-color: white;
-            border-radius: 8px;
+            border-radius: 6px;
             overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            margin-bottom: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            font-size: 0.85rem;
         }
 
         th, td {
-            padding: 12px 15px;
+            padding: 9px 12px;
             text-align: left;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        th {
-            background-color: #f1f5f9;
-            font-weight: 600;
-        }
-
-        tr.provider-row {
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        tr.provider-row:hover {
-            background-color: #f8fafc;
-        }
-
-        tr.provider-row.active {
-            background-color: var(--blue-light) !important;
-            font-weight: 600;
-        }
-
-        .details-card {
-            background-color: white;
-            border: 1px solid #cbd5e1;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 25px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-
-        .details-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-        }
-
-        .details-badge {
-            background-color: var(--blue-light);
-            color: var(--blue-header);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: bold;
-        }
-
-        .info-box {
-            background-color: #f8fafc;
-            border-left: 4px solid var(--blue-header);
-            padding: 12px 15px;
-            margin-bottom: 15px;
-            border-radius: 0 6px 6px 0;
-        }
-
-        .info-box h4 {
-            margin: 0 0 8px 0;
-            color: #334155;
-        }
-
-        .info-box ul {
-            margin: 0;
-            padding-left: 20px;
-        }
-
-        .info-box li {
-            margin-bottom: 4px;
-        }
-
-        .no-gas {
-            color: #94a3b8;
-            font-style: italic;
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <h1>Comparateur d'Offres d'Énergie</h1>
-
-    <!-- SECTION ÉLECTRICITÉ -->
-    <h2 class="section-title">⚡ Électricité</h2>
-    <div class="filter-card">
-        <label for="select-elec">Puissance souscrite :</label>
-        <select id="select-elec">
-            <option value="3kVA">3 kVA</option>
-            <option value="6kVA" selected>6 kVA</option>
-            <option value="9kVA">9 kVA</option>
-            <option value="12kVA">12 kVA</option>
-            <option value="15kVA">15 kVA</option>
-            <option value="18kVA">18 kVA</option>
-        </select>
-    </div>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Fournisseur</th>
-                <th>Abonnement (€/mois)</th>
-                <th>Prix kWh Heures Pleines (€)</th>
-                <th>Prix kWh Heures Creuses (€)</th>
-                <th>Prix kWh Base (€)</th>
-            </tr>
-        </thead>
-        <tbody id="tbody-elec"></tbody>
-    </table>
-
-    <!-- SECTION GAZ -->
-    <h2 class="section-title">🔥 Gaz Naturel</h2>
-    <div class="filter-card">
-        <label for="select-gaz">Classe de consommation :</label>
-        <select id="select-gaz">
-            <option value="Base" selected>Base / B0 (Cuisine & Eau chaude)</option>
-            <option value="B1">B1 / B2I (Chauffage)</option>
-        </select>
-    </div>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Fournisseur</th>
-                <th>Abonnement (€/mois)</th>
-                <th>Prix kWh Gaz (€)</th>
-            </tr>
-        </thead>
-        <tbody id="tbody-gaz"></tbody>
-    </table>
-
-    <!-- CARTE DÉTAILS -->
-    <div class="details-card">
-        <div class="details-header">
-            <h3 style="margin:0;" id="details-name">ℹ️ Détails : EDF</h3>
-            <span class="details-badge">Fournisseur actif</span>
-        </div>
-
-        <div class="info-box">
-            <h4>Présentation fournisseur</h4>
-            <ul id="details-entreprise"></ul>
-        </div>
-
-        <div class="info-box">
-            <h4>Présentation Offre</h4>
-            <ul id="details-offre"></ul>
-        </div>
-    </div>
-</div>
-
-<script>
-    const dataFournisseurs = {
-        "EDF": {
-            entreprise: [
-                "Fournisseur Français créé en 1946 et leader sur le marché Français.",
-                "Fournisseur engagé dans la transition énergétique avec service client 100% basé en France.",
-                "Excellente satisfaction client : 9/10 sur +700 000 clients en 2025 et 4,6/5 sur Trustpilot."
-            ],
-            offre: [
-                "Électricité Zen Fixe : +5% HT/TRV avec prix fixe du kWh HT pendant 2 ans (abonnement non fixe).",
-                "Avantage Gaz 2 ans : -9,0% HT/PRV avec prix fixe du kWh HT pendant 2 ans (abonnement non fixe).",
-                "Offres stables assurant une visibilité tarifaire sur 24 mois."
-            ],
-            elec: {
-                "3kVA": { abonnement: 11.50, hp: 0.2516, hc: 0.2068, base: 0.2516 },
-                "6kVA": { abonnement: 15.12, hp: 0.2516, hc: 0.2068, base: 0.2516 },
-                "9kVA": { abonnement: 19.30, hp: 0.2516, hc: 0.2068, base: 0.2516 },
-                "12kVA": { abonnement: 23.10, hp: 0.2516, hc: 0.2068, base: 0.2516 },
-                "15kVA": { abonnement: 27.00, hp: 0.2516, hc: 0.2068, base: 0.2516 },
-                "18kVA": { abonnement: 31.20, hp: 0.2516, hc: 0.2068, base: 0.2516 }
-            },
-            gaz: {
-                "Base": { abonnement: 8.50, kwh: 0.1120 },
-                "B1": { abonnement: 21.00, kwh: 0.0890 }
-            }
-        },
-        "Engie": {
-            entreprise: [
-                "Acteur historique du gaz en France et 1er fournisseur d'électricité verte.",
-                "Service client basé en France et engagé dans le développement des énergies renouvelables.",
-                "Note globale de satisfaction client supérieure à 4/5."
-            ],
-            offre: [
-                "Elec Référence 3 ans : +24% / TRV avec prix fixe sur 3 ans.",
-                "Gaz Référence 3 ans : -10% / PRV avec prix fixe sur 3 ans.",
-                "Sérénité tarifaire à très long terme."
-            ],
-            elec: {
-                "3kVA": { abonnement: 11.20, hp: 0.2980, hc: 0.2450, base: 0.2980 },
-                "6kVA": { abonnement: 14.80, hp: 0.2980, hc: 0.2450, base: 0.2980 },
-                "9kVA": { abonnement: 18.90, hp: 0.2980, hc: 0.2450, base: 0.2980 },
-                "12kVA": { abonnement: 22.80, hp: 0.2980, hc: 0.2450, base: 0.2980 },
-                "15kVA": { abonnement: 26.50, hp: 0.2980, hc: 0.2450, base: 0.2980 },
-                "18kVA": { abonnement: 30.50, hp: 0.2980, hc: 0.2450, base: 0.2980 }
-            },
-            gaz: {
-                "Base": { abonnement: 9.30, kwh: 0.1115 },
-                "B1": { abonnement: 22.50, kwh: 0.0880 }
-            }
-        },
-        "Plenitude": {
-            entreprise: [
-                "Filiale du groupe Eni, l'un des leaders européens de l'énergie.",
-                "Marque orientée vers la transition énergétique et les solutions durables.",
-                "Présence internationale soutenue avec un service client disponible."
-            ],
-            offre: [
-                "Plenifix Elec 1 an : Tarifs ISO TRV avec prix fixe 1 an.",
-                "Plenifix Gaz 1 an : Tarifs ISO PRV avec prix fixe 1 an.",
-                "Abonnement légèrement supérieur avec prix fixe sur 12 mois."
-            ],
-            elec: {
-                "3kVA": { abonnement: 12.00, hp: 0.2516, hc: 0.2068, base: 0.2516 },
-                "6kVA": { abonnement: 16.00, hp: 0.2516, hc: 0.2068, base: 0.2516 },
-                "9kVA": { abonnement: 20.20, hp: 0.2516, hc: 0.2068, base: 0.2516 },
-                "12kVA": { abonnement: 24.10, hp: 0.2516, hc: 0.2068, base: 0.2516 },
-                "15kVA": { abonnement: 28.00, hp: 0.2516, hc: 0.2068, base: 0.2516 },
-                "18kVA": { abonnement: 32.50, hp: 0.2516, hc: 0.2068, base: 0.2516 }
-            },
-            gaz: {
-                "Base": { abonnement: 9.00, kwh: 0.1130 },
-                "B1": { abonnement: 22.00, kwh: 0.0910 }
-            }
-        },
-        "Alterna": {
-            entreprise: [
-                "Regroupement d'entreprises locales de distribution (ELD) indépendantes.",
-                "Fournisseur français engagé dans la proximité et la production locale.",
-                "Expertise reconnue dans la fourniture d'énergie verte."
-            ],
-            offre: [
-                "Mon Électricité Française : -5% / TRV avec prix fixe 1 an.",
-                "Mon Gaz Naturel : -5% / PRV avec prix fixe 1 an.",
-                "Offres locales et vertueuses pour le marché français."
-            ],
-            elec: {
-                "3kVA": { abonnement: 11.00, hp: 0.2390, hc: 0.1960, base: 0.2390 },
-                "6kVA": { abonnement: 14.50, hp: 0.2390, hc: 0.1960, base: 0.2390 },
-                "9kVA": { abonnement: 18.50, hp: 0.2390, hc: 0.1960, base: 0.2390 },
-                "12kVA": { abonnement: 22.20, hp: 0.2390, hc: 0.1960, base: 0.2390 },
-                "15kVA": { abonnement: 26.00, hp: 0.2390, hc: 0.1960, base: 0.2390 },
-                "18kVA": { abonnement: 29.80, hp: 0.2390, hc: 0.1960, base: 0.2390 }
-            },
-            gaz: {
-                "Base": { abonnement: 9.20, kwh: 0.1105 },
-                "B1": { abonnement: 21.80, kwh: 0.0875 }
-            }
-        },
-        "Octopus": {
-            entreprise: [
-                "Fournisseur britannique innovant, pionnier des technologies éco-responsables.",
-                "Élu meilleur fournisseur selon les avis clients (Trustpilot 4,8/5).",
-                "Système de cagnotte et de récompenses pour les économies d'énergie."
-            ],
-            offre: [
-                "OctoEco Fixe : +6% HT/TRV avec prix fixe 2 ans.",
-                "Eco Conso Gaz : -1% HT/PRV avec prix fixe 2 ans.",
-                "Accompagnement dynamique pour consommer moins et mieux."
-            ],
-            elec: {
-                "3kVA": { abonnement: 11.10, hp: 0.2540, hc: 0.2090, base: 0.2540 },
-                "6kVA": { abonnement: 14.70, hp: 0.2540, hc: 0.2090, base: 0.2540 },
-                "9kVA": { abonnement: 18.80, hp: 0.2540, hc: 0.2090, base: 0.2540 },
-                "12kVA": { abonnement: 22.60, hp: 0.2540, hc: 0.2090, base: 0.2540 },
-                "15kVA": { abonnement: 26.40, hp: 0.2540, hc: 0.2090, base: 0.2540 },
-                "18kVA": { abonnement: 30.20, hp: 0.2540, hc: 0.2090, base: 0.2540 }
-            },
-            gaz: {
-                "Base": { abonnement: 8.90, kwh: 0.1098 },
-                "B1": { abonnement: 21.50, kwh: 0.0870 }
-            }
-        },
-        "TotalEnergies": {
-            entreprise: [
-                "Premier alternatif privé en France avec plus de 5 millions de clients.",
-                "Service client reconnu 'Élu Service Client de l'Année' à plusieurs reprises.",
-                "Large éventail d'offres adaptées aux particuliers et professionnels."
-            ],
-            offre: [
-                "Offre Fixe 3 ans Elec : +16% HT/TRV avec prix fixe pendant 3 ans.",
-                "Offre Fixe 3 ans Gaz : -4% / PRV avec prix fixe pendant 3 ans.",
-                "Stabilité garantie sur une longue durée."
-            ],
-            elec: {
-                "3kVA": { abonnement: 11.30, hp: 0.2790, hc: 0.2300, base: 0.2790 },
-                "6kVA": { abonnement: 15.00, hp: 0.2790, hc: 0.2300, base: 0.2790 },
-                "9kVA": { abonnement: 19.10, hp: 0.2790, hc: 0.2300, base: 0.2790 },
-                "12kVA": { abonnement: 23.00, hp: 0.2790, hc: 0.2300, base: 0.2790 },
-                "15kVA": { abonnement: 26.80, hp: 0.2790, hc: 0.2300, base: 0.2790 },
-                "18kVA": { abonnement: 30.90, hp: 0.2790, hc: 0.2300, base: 0.2790 }
-            },
-            gaz: {
-                "Base": { abonnement: 8.85, kwh: 0.1090 },
-                "B1": { abonnement: 21.60, kwh: 0.0865 }
-            }
-        },
-        "Primeo Energie": {
-            entreprise: [
-                "Fournisseur et producteur d'énergie suisse implanté en France.",
-                "Spécialiste de la fourniture auprès des collectivités et des consommateurs avertis.",
-                "Focus sur la transparence et l'énergie renouvelable."
-            ],
-            offre: [
-                "Offre Fixe Électricité : +29% HT/TRV avec prix fixe.",
-                "Pas d'offre Gaz commercialisée.",
-                "Transparence tarifaire avec contrats clairs."
-            ],
-            elec: {
-                "3kVA": { abonnement: 11.80, hp: 0.3100, hc: 0.2580, base: 0.3100 },
-                "6kVA": { abonnement: 15.60, hp: 0.3100, hc: 0.2580, base: 0.3100 },
-                "9kVA": { abonnement: 19.80, hp: 0.3100, hc: 0.2580, base: 0.3100 },
-                "12kVA": { abonnement: 23.80, hp: 0.3100, hc: 0.2580, base: 0.3100 },
-                "15kVA": { abonnement: 27.50, hp: 0.3100, hc: 0.2580, base: 0.3100 },
-                "18kVA": { abonnement: 31.90, hp: 0.3100, hc: 0.2580, base: 0.3100 }
-            },
-            gaz: null
-        },
-        "Gaz de Bordeaux": {
-            entreprise: [
-                "Fournisseur historique basé en Gironde depuis 1875.",
-                "Service client 100% basé à Bordeaux, reconnu pour sa grande réactivité.",
-                "Spécialiste reconnu pour les offres à prix fixe."
-            ],
-            offre: [
-                "Novafixe Elec : -5% / TRV avec prix fixe 1 an.",
-                "Pas d'offre Gaz disponible actuellement dans cette sélection.",
-                "Expertise historique et proximité locale."
-            ],
-            elec: {
-                "3kVA": { abonnement: 10.90, hp: 0.2390, hc: 0.1960, base: 0.2390 },
-                "6kVA": { abonnement: 14.40, hp: 0.2390, hc: 0.1960, base: 0.2390 },
-                "9kVA": { abonnement: 18.40, hp: 0.2390, hc: 0.1960, base: 0.2390 },
-                "12kVA": { abonnement: 22.00, hp: 0.2390, hc: 0.1960, base: 0.2390 },
-                "15kVA": { abonnement: 25.80, hp: 0.2390, hc: 0.1960, base: 0.2390 },
-                "18kVA": { abonnement: 29.50, hp: 0.2390, hc: 0.1960, base: 0.2390 }
-            },
-            gaz: null
-        }
-    };
-
-    let fournisseurSelectionne = "EDF";
-
-    document.addEventListener("DOMContentLoaded", function () {
-        document.getElementById('select-elec').addEventListener('change', afficherTableauElec);
-        document.getElementById('select-gaz').addEventListener('change', afficherTableauGaz);
-
-        afficherTableauElec();
-        afficherTableauGaz();
-        afficherDetails(fournisseurSelectionne);
-    });
-
-    function selectionnerFournisseur(nom) {
-        fournisseurSelectionne = nom;
-        
-        document.querySelectorAll('tr.provider-row').forEach(row => {
-            if (row.dataset.fournisseur === nom) {
-                row.classList.add('active');
-            } else {
-                row.classList.remove('active');
-            }
-        });
-
-        afficherDetails(nom);
-    }
-
-    function afficherTableauElec() {
-        const puissance = document.getElementById('select-elec').value;
-        const tbody = document.getElementById('tbody-elec');
-        tbody.innerHTML = '';
-
-        for (const [nom, data] of Object.entries(dataFournisseurs)) {
-            const elecData = data.elec ? data.elec[puissance] : null;
-            const tr = document.createElement('tr');
-            tr.className = `provider-row ${nom === fournisseurSelectionne ? 'active' : ''}`;
-            tr.dataset.fournisseur = nom;
-            tr.onclick = function() { selectionnerFournisseur(nom); };
-
-            if (elecData) {
-                tr.innerHTML = `
-                    <td><strong>${nom}</strong></td>
-                    <td>${elecData.abonnement.toFixed(2)} €</td>
-                    <td>${elecData.hp.toFixed(4)} €</td>
-                    <td>${elecData.hc.toFixed(4)} €</td>
-                    <td>${elecData.base.toFixed(4)} €</td>
-                `;
-            } else {
-                tr.innerHTML = `<td><strong>${nom}</strong></td><td colspan="4" class="no-gas">Non disponible</td>`;
-            }
-            tbody.appendChild(tr);
-        }
-    }
-
-    function afficherTableauGaz() {
-        const classeGaz = document.getElementById('select-gaz').value;
-        const tbody = document.getElementById('tbody-gaz');
-        tbody.innerHTML = '';
-
-        for (const [nom, data] of Object.entries(dataFournisseurs)) {
-            const gazData = data.gaz ? data.gaz[classeGaz] : null;
-            const tr = document.createElement('tr');
-            tr.className = `provider-row ${nom === fournisseurSelectionne ? 'active' : ''}`;
-            tr.dataset.fournisseur = nom;
-            tr.onclick = function() { selectionnerFournisseur(nom); };
-
-            if (gazData) {
-                tr.innerHTML = `
-                    <td><strong>${nom}</strong></td>
-                    <td>${gazData.abonnement.toFixed(2)} €</td>
-                    <td>${gazData.kwh.toFixed(4)} €</td>
-                `;
-            } else {
-                tr.innerHTML = `
-                    <td><strong>${nom}</strong></td>
-                    <td colspan="2" class="no-gas">Pas d'offre gaz</td>
-                `;
-            }
-            tbody.appendChild(tr);
-        }
-    }
-
-    function afficherDetails(nom) {
-        const item = dataFournisseurs[nom];
-        if (!item) return;
-
-        document.getElementById('details-name').textContent = `ℹ️ Détails : ${nom}`;
-
-        const ulEntreprise = document.getElementById('details-entreprise');
-        ulEntreprise.innerHTML = '';
-        item.entreprise.forEach(txt => {
-            const li = document.createElement('li');
-            li.textContent = txt;
-            ulEntreprise.appendChild(li);
-        });
-
-        const ulOffre = document.getElementById('details-offre');
-        ulOffre.innerHTML = '';
-        item.offre.forEach(txt => {
-            const li = document.createElement('li');
-            li.textContent = txt;
-            ulOffre.appendChild(li);
-        });
-    }
-</script>
-
-</body>
-</html>
+            border-bottom: 1px solid
