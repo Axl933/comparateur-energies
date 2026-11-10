@@ -113,13 +113,13 @@
             font-weight: 600;
         }
 
-        /* STYLE REMISE : Italique et taille réduite de moitié */
+        /* STYLE REMISE : Taille augmentée (+50%) et texte en Gras / Italique */
         .remise-tag {
-            font-size: 0.55em;
+            font-size: 0.85em;
             font-style: italic;
-            font-weight: normal;
-            color: #475569;
-            margin-left: 4px;
+            font-weight: bold;
+            color: #0369a1;
+            margin-left: 5px;
         }
 
         .details-card {
@@ -449,7 +449,6 @@
                 const kvaBrut = cols[1];
 
                 if (nom && dataFournisseurs[nom]) {
-                    // Extraction des remises ELEC (colonne L - index 11) et GAZ (colonne M - index 12)
                     if (cols[11] && cols[11].trim() !== '') {
                         dataFournisseurs[nom].remiseElec = cols[11].trim();
                     }
