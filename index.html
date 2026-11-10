@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comparateur d'Offres d'Énergie</title>
+    <title>Comparateur d'Offres d'Énergie & Script Conseiller</title>
     <style>
         :root {
             --primary-yellow: #fef08a;
@@ -12,6 +12,10 @@
             --blue-light: #e0f2fe;
             --bg-slate: #f8fafc;
             --text-main: #1e293b;
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
@@ -23,18 +27,83 @@
             font-size: 0.85rem;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        h1 {
+        .main-title {
             text-align: center;
             color: #0f172a;
             margin-bottom: 18px;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
         }
 
+        /* DISPOSITION DEUX COLONNES */
+        .page-layout {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .left-col {
+            flex: 1.2;
+            min-width: 0;
+        }
+
+        .right-col {
+            flex: 0.8;
+            min-width: 320px;
+            position: sticky;
+            top: 15px;
+            max-height: calc(100vh - 30px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* CARTE SCRIPT CONSEILLER */
+        .script-card {
+            background-color: white;
+            border: 2px solid var(--blue-header);
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            max-height: 100%;
+        }
+
+        .script-card h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.15rem;
+            color: var(--blue-header);
+            border-bottom: 2px solid var(--blue-light);
+            padding-bottom: 6px;
+        }
+
+        .script-content {
+            overflow-y: auto;
+            padding-right: 8px;
+            font-size: 0.85rem;
+            line-height: 1.45;
+        }
+
+        .script-section-title {
+            color: #dc2626;
+            font-weight: bold;
+            font-size: 0.95rem;
+            margin-top: 14px;
+            margin-bottom: 6px;
+            border-left: 3px solid #dc2626;
+            padding-left: 6px;
+        }
+
+        .script-paragraph {
+            margin-bottom: 8px;
+            background-color: #f8fafc;
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* CARTE FILTRES & DÉTAILS */
         .filter-card {
             background-color: var(--primary-yellow);
             border: 2px solid var(--border-yellow);
@@ -129,8 +198,8 @@
             margin-bottom: 20px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.08);
             position: sticky;
-            top: 10px;
-            z-index: 100;
+            top: 15px;
+            z-index: 90;
         }
 
         .details-header {
@@ -178,94 +247,120 @@
             color: #94a3b8;
             font-style: italic;
         }
+
+        /* ADAPTATION MOBILE ET PETITS ÉCRANS */
+        @media (max-width: 900px) {
+            .page-layout {
+                flex-direction: column;
+            }
+            .right-col {
+                width: 100%;
+                position: static;
+                max-height: 500px;
+            }
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Comparateur d'Offres d'Énergie</h1>
+<h1 class="main-title">Comparateur d'Offres d'Énergie</h1>
 
-    <!-- CARTE DÉTAILS FIGÉE -->
-    <div class="details-card">
-        <div class="details-header">
-            <h3 style="margin:0; font-size: 1.1rem;" id="details-name">ℹ️ Détails : EDF</h3>
-            <span class="details-badge">Fournisseur actif</span>
+<div class="page-layout">
+    <!-- COLONNE GAUCHE : COMPARATEUR ET DÉTAILS -->
+    <div class="left-col">
+        <!-- CARTE DÉTAILS FIGÉE -->
+        <div class="details-card">
+            <div class="details-header">
+                <h3 style="margin:0; font-size: 1.1rem;" id="details-name">ℹ️ Détails : EDF</h3>
+                <span class="details-badge">Fournisseur actif</span>
+            </div>
+
+            <div class="info-box">
+                <h4>Présentation fournisseur</h4>
+                <ul id="details-entreprise"></ul>
+            </div>
+
+            <div class="info-box">
+                <h4>Présentation Offre</h4>
+                <ul id="details-offre"></ul>
+            </div>
         </div>
 
-        <div class="info-box">
-            <h4>Présentation fournisseur</h4>
-            <ul id="details-entreprise"></ul>
+        <!-- SECTION ÉLECTRICITÉ -->
+        <h2 class="section-title">⚡ Électricité</h2>
+        <div class="filter-card">
+            <div class="filter-group">
+                <label for="select-elec">Puissance :</label>
+                <select id="select-elec">
+                    <option value="3kVA">3 kVA</option>
+                    <option value="6kVA" selected>6 kVA</option>
+                    <option value="9kVA">9 kVA</option>
+                    <option value="12kVA">12 kVA</option>
+                    <option value="15kVA">15 kVA</option>
+                    <option value="18kVA">18 kVA</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="select-option">Option tarifaire :</label>
+                <select id="select-option">
+                    <option value="Base" selected>Base</option>
+                    <option value="HPHC">Heures Pleines / Heures Creuses (HP/HC)</option>
+                </select>
+            </div>
         </div>
 
-        <div class="info-box">
-            <h4>Présentation Offre</h4>
-            <ul id="details-offre"></ul>
+        <table>
+            <thead>
+                <tr>
+                    <th>Fournisseur</th>
+                    <th>Abonnement (€/mois)</th>
+                    <th>Prix kWh HP (€) <span id="th-hp-sort"></span></th>
+                    <th>Prix kWh HC (€)</th>
+                    <th>Prix kWh Base (€) <span id="th-base-sort">🔽</span></th>
+                </tr>
+            </thead>
+            <tbody id="tbody-elec"></tbody>
+        </table>
+
+        <!-- SECTION GAZ -->
+        <h2 class="section-title">🔥 Gaz Naturel</h2>
+        <div class="filter-card">
+            <div class="filter-group">
+                <label for="select-gaz">Classe de consommation :</label>
+                <select id="select-gaz">
+                    <option value="Base" selected>Base / B0 (Cuisine & Eau chaude)</option>
+                    <option value="B1">B1 / B2I (Chauffage)</option>
+                </select>
+            </div>
         </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Fournisseur</th>
+                    <th>Abonnement (€/mois)</th>
+                    <th>Prix kWh Gaz (€) 🔽</th>
+                </tr>
+            </thead>
+            <tbody id="tbody-gaz"></tbody>
+        </table>
     </div>
 
-    <!-- SECTION ÉLECTRICITÉ -->
-    <h2 class="section-title">⚡ Électricité</h2>
-    <div class="filter-card">
-        <div class="filter-group">
-            <label for="select-elec">Puissance :</label>
-            <select id="select-elec">
-                <option value="3kVA">3 kVA</option>
-                <option value="6kVA" selected>6 kVA</option>
-                <option value="9kVA">9 kVA</option>
-                <option value="12kVA">12 kVA</option>
-                <option value="15kVA">15 kVA</option>
-                <option value="18kVA">18 kVA</option>
-            </select>
-        </div>
-
-        <div class="filter-group">
-            <label for="select-option">Option tarifaire :</label>
-            <select id="select-option">
-                <option value="Base" selected>Base</option>
-                <option value="HPHC">Heures Pleines / Heures Creuses (HP/HC)</option>
-            </select>
+    <!-- COLONNE DROITE : SCRIPT CONSEILLER -->
+    <div class="right-col">
+        <div class="script-card">
+            <h2>📞 Script Conseiller</h2>
+            <div class="script-content" id="script-container">
+                <em>Chargement du script...</em>
+            </div>
         </div>
     </div>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Fournisseur</th>
-                <th>Abonnement (€/mois)</th>
-                <th>Prix kWh HP (€) <span id="th-hp-sort"></span></th>
-                <th>Prix kWh HC (€)</th>
-                <th>Prix kWh Base (€) <span id="th-base-sort">🔽</span></th>
-            </tr>
-        </thead>
-        <tbody id="tbody-elec"></tbody>
-    </table>
-
-    <!-- SECTION GAZ -->
-    <h2 class="section-title">🔥 Gaz Naturel</h2>
-    <div class="filter-card">
-        <div class="filter-group">
-            <label for="select-gaz">Classe de consommation :</label>
-            <select id="select-gaz">
-                <option value="Base" selected>Base / B0 (Cuisine & Eau chaude)</option>
-                <option value="B1">B1 / B2I (Chauffage)</option>
-            </select>
-        </div>
-    </div>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Fournisseur</th>
-                <th>Abonnement (€/mois)</th>
-                <th>Prix kWh Gaz (€) 🔽</th>
-            </tr>
-        </thead>
-        <tbody id="tbody-gaz"></tbody>
-    </table>
 </div>
 
 <script>
-    const GOOGLE_SHEETS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?output=csv";
+    const GOOGLE_SHEETS_PRICES_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?output=csv";
+    const GOOGLE_SHEETS_SCRIPT_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=2146359891&single=true&output=csv";
 
     let dataFournisseurs = {
         "EDF": { entreprise: ["Fournisseur Français créé en 1946 et leader sur le marché Français.", "Fournisseur engagé dans la transition énergétique avec service client 100% basé en France.", "Excellente satisfaction client : 9/10 sur +700 000 clients en 2025 et 4,6/5 sur Trustpilot."], offre: ["Électricité Zen Fixe : +5% HT/TRV avec prix fixe du kWh HT pendant 2 ans (abonnement non fixe).", "Avantage Gaz 2 ans : -9,0% HT/PRV avec prix fixe du kWh HT pendant 2 ans (abonnement non fixe).", "Offres stables assurant une visibilité tarifaire sur 24 mois."], remiseElec: "", remiseGaz: "", elec: {}, gaz: {} },
@@ -286,6 +381,7 @@
         document.getElementById('select-gaz').addEventListener('change', afficherTableauGaz);
 
         chargerDonneesGoogleSheets();
+        chargerScriptConseiller();
     });
 
     function cleanNum(val) {
@@ -329,7 +425,7 @@
 
     async function chargerDonneesGoogleSheets() {
         try {
-            const response = await fetch(GOOGLE_SHEETS_CSV_URL);
+            const response = await fetch(GOOGLE_SHEETS_PRICES_URL);
             const csvText = await response.text();
             
             const lines = csvText.split(/\r?\n/);
@@ -344,7 +440,6 @@
                 const kvaBrut = cols[1] ? cols[1].trim() : '';
 
                 if (nom && dataFournisseurs[nom]) {
-                    // Extraction des remises ELEC (colonne L - index 11) et GAZ (colonne M - index 12)
                     if (cols[11] && cols[11].trim() !== '') {
                         dataFournisseurs[nom].remiseElec = cols[11].trim();
                     }
@@ -352,7 +447,6 @@
                         dataFournisseurs[nom].remiseGaz = cols[12].trim();
                     }
 
-                    // Lecture Électricité (si une puissance est indiquée)
                     if (kvaBrut !== '') {
                         const kva = kvaBrut.replace(/[^0-9]/g, '') + 'kVA';
 
@@ -375,7 +469,6 @@
                         }
                     }
 
-                    // Lecture Gaz (indépendant de la colonne puissance)
                     const aboGazBase = cleanNum(cols[7]);
                     const prixGazBase = cleanNum(cols[8]);
                     if (aboGazBase > 0 || prixGazBase > 0) {
@@ -398,6 +491,39 @@
         afficherTableauElec();
         afficherTableauGaz();
         afficherDetails(fournisseurSelectionne);
+    }
+
+    async function chargerScriptConseiller() {
+        try {
+            const response = await fetch(GOOGLE_SHEETS_SCRIPT_URL);
+            const csvText = await response.text();
+            
+            const lines = csvText.split(/\r?\n/);
+            const container = document.getElementById('script-container');
+            container.innerHTML = '';
+
+            lines.forEach(line => {
+                const cols = parseCSVLine(line);
+                const text = cols.join(' ').trim();
+                if (!text) return;
+
+                // Si le texte est un titre de section ou en rouge/important
+                if (text.includes("Accueil client") || text.includes("Découverte") || text.includes("Mise en place") || text.includes("Avant d'aller plus loin")) {
+                    const h = document.createElement('div');
+                    h.className = 'script-section-title';
+                    h.textContent = text;
+                    container.appendChild(h);
+                } else {
+                    const p = document.createElement('div');
+                    p.className = 'script-paragraph';
+                    p.textContent = text;
+                    container.appendChild(p);
+                }
+            });
+        } catch (e) {
+            console.warn("Erreur chargement script", e);
+            document.getElementById('script-container').innerHTML = "<em>Impossible de charger le script.</em>";
+        }
     }
 
     function selectionnerFournisseur(nom) {
