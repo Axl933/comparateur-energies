@@ -359,6 +359,25 @@
         return parseFloat(cleaned) || 0;
     }
 
+    function parseCSVLine(text) {
+        let result = [];
+        let cur = '';
+        let inQuotes = false;
+        for (let i = 0; i < text.length; i++) {
+            let c = text[i];
+            if (c === '"') {
+                inQuotes = !inQuotes;
+            } else if (c === ',' && !inQuotes) {
+                result.push(cur.trim().replace(/^"|"$/g, ''));
+                cur = '';
+            } else {
+                cur += c;
+            }
+        }
+        result.push(cur.trim().replace(/^"|"$/g, ''));
+        return result;
+    }
+
     function normaliserNom(nom) {
         if (!nom) return '';
         const n = nom.trim();
@@ -382,8 +401,8 @@
 
             lines.forEach(line => {
                 if (!line.trim()) return;
-                const cols = line.split(',').map(c => c.replace(/^"|"$/g, '').trim());
-                if (cols.length < 4) return;
+                const cols = parseCSVLine(line);
+                if (cols.length < 3) return;
 
                 const nomBrut = cols[0];
                 const nom = normaliserNom(nomBrut);
