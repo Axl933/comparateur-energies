@@ -406,6 +406,8 @@
                 <button class="script-btn" onclick="filtrerScript('decouverte', this)">Découverte</button>
                 <button class="script-btn" onclick="filtrerScript('argumentaire', this)">Argumentaire</button>
                 <button class="script-btn" onclick="filtrerScript('contrat', this)">Contrat</button>
+                <button class="script-btn" onclick="filtrerScript('plenitude', this)">Script Plénitude</button>
+                <button class="script-btn" onclick="filtrerScript('engie', this)">Script Engie</button>
             </div>
 
             <div class="script-content" id="script-container">
@@ -604,7 +606,8 @@
                     text: text,
                     isTitle: isTitle,
                     isAlertRed: isAlertRed,
-                    category: currentCategory
+                    category: currentCategory,
+                    textLower: textLower
                 });
             });
 
@@ -620,7 +623,14 @@
         container.innerHTML = '';
 
         scriptSectionsData.forEach(item => {
-            if (catFilter !== 'all' && item.category !== catFilter) return;
+            // Filtre selon la rubrique standard ou les nouveaux filtres par fournisseur
+            if (catFilter === 'plenitude') {
+                if (!item.textLower.includes("plénitude") && !item.textLower.includes("plenitude") && !item.textLower.includes("eni")) return;
+            } else if (catFilter === 'engie') {
+                if (!item.textLower.includes("engie")) return;
+            } else if (catFilter !== 'all' && item.category !== catFilter) {
+                return;
+            }
 
             if (item.isTitle) {
                 const h = document.createElement('div');
