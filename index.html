@@ -85,7 +85,19 @@
             display: flex;
             gap: 6px;
             flex-wrap: wrap;
+            margin-bottom: 8px;
+            flex-shrink: 0;
+        }
+
+        .script-subnav {
+            display: none;
+            gap: 6px;
+            flex-wrap: wrap;
             margin-bottom: 12px;
+            padding: 8px;
+            background-color: #f1f5f9;
+            border-radius: 8px;
+            border-left: 3px solid var(--blue-header);
             flex-shrink: 0;
         }
 
@@ -110,6 +122,17 @@
             background-color: var(--blue-header);
             color: white;
             border-color: var(--blue-header);
+        }
+
+        .sub-btn {
+            background-color: white;
+            border: 1px solid #0284c7;
+            color: #0284c7;
+        }
+
+        .sub-btn.active {
+            background-color: #0284c7;
+            color: white;
         }
 
         .script-content {
@@ -143,7 +166,6 @@
             font-weight: bold;
         }
 
-        /* STYLE ROUGE POUR LES PHRASES IMPORTANTES / ALERTES */
         .text-alert-red {
             color: #dc2626;
             font-weight: bold;
@@ -406,8 +428,15 @@
                 <button class="script-btn" onclick="filtrerScript('decouverte', this)">Découverte</button>
                 <button class="script-btn" onclick="filtrerScript('argumentaire', this)">Argumentaire</button>
                 <button class="script-btn" onclick="filtrerScript('contrat', this)">Contrat</button>
-                <button class="script-btn" onclick="filtrerScript('plenitude', this)">Script Plénitude</button>
-                <button class="script-btn" onclick="filtrerScript('engie', this)">Script Engie</button>
+                <button class="script-btn" onclick="chargerEtAfficherScript(URL_SCRIPT_PLENITUDE, this)">Script Plénitude</button>
+                <button class="script-btn" onclick="ouvrirMenuEngie(this)">Script Engie</button>
+            </div>
+
+            <!-- SOUS-BOUTONS ENGIE -->
+            <div class="script-subnav" id="engie-subnav">
+                <button class="script-btn sub-btn" onclick="chargerEtAfficherScript(URL_SCRIPT_ENGIE_ELEC, this)">Script Engie ELEC</button>
+                <button class="script-btn sub-btn" onclick="chargerEtAfficherScript(URL_SCRIPT_ENGIE_GAZ, this)">Script Engie Gaz</button>
+                <button class="script-btn sub-btn" onclick="chargerEtAfficherScript(URL_SCRIPT_ENGIE_DUAL, this)">Script Engie Dual</button>
             </div>
 
             <div class="script-content" id="script-container">
@@ -419,9 +448,16 @@
 
 <script>
     const GOOGLE_SHEETS_PRICES_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?output=csv";
-    const GOOGLE_SHEETS_SCRIPT_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=2146359891&single=true&output=csv";
+    const URL_SCRIPT_GENERAL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=2146359891&single=true&output=csv";
+
+    // LIENS CSV SPECIFIQUES DE VOS FEUILLES SCRIPT GOOGLE SHEETS
+    const URL_SCRIPT_PLENITUDE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=1661582761&single=true&output=csv";
+    const URL_SCRIPT_ENGIE_ELEC = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=1214012203&single=true&output=csv";
+    const URL_SCRIPT_ENGIE_GAZ = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=887654579&single=true&output=csv";
+    const URL_SCRIPT_ENGIE_DUAL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?output=csv";
 
     let scriptSectionsData = [];
+    let scriptActuelUrl = URL_SCRIPT_GENERAL;
 
     let dataFournisseurs = {
         "EDF": { entreprise: ["Fournisseur Français créé en 1946 et leader sur le marché Français.", "Fournisseur engagé dans la transition énergétique avec service client 100% basé en France.", "Excellente satisfaction client : 9/10 sur +700 000 clients en 2025 et 4,6/5 sur Trustpilot."], offre: ["Électricité Zen Fixe : +5% HT/TRV avec prix fixe du kWh HT pendant 2 ans (abonnement non fixe).", "Avantage Gaz 2 ans : -9,0% HT/PRV avec prix fixe du kWh HT pendant 2 ans (abonnement non fixe).", "Offres stables assurant une visibilité tarifaire sur 24 mois."], remiseElec: "", remiseGaz: "", elec: {}, gaz: {} },
@@ -442,7 +478,7 @@
         document.getElementById('select-gaz').addEventListener('change', afficherTableauGaz);
 
         chargerDonneesGoogleSheets();
-        chargerScriptConseiller();
+        chargerScriptConseiller(URL_SCRIPT_GENERAL);
     });
 
     function cleanNum(val) {
@@ -554,9 +590,12 @@
         afficherDetails(fournisseurSelectionne);
     }
 
-    async function chargerScriptConseiller() {
+    async function chargerScriptConseiller(urlToFetch) {
         try {
-            const response = await fetch(GOOGLE_SHEETS_SCRIPT_URL);
+            document.getElementById('script-container').innerHTML = "<em>Chargement du script...</em>";
+            scriptActuelUrl = urlToFetch;
+            
+            const response = await fetch(urlToFetch);
             const csvText = await response.text();
             
             const lines = csvText.split(/\r?\n/);
@@ -573,7 +612,6 @@
                 let isTitle = false;
                 let isAlertRed = false;
 
-                // Titres de rubriques principaux
                 if (textLower.includes("accueil client")) {
                     currentCategory = 'accueil';
                     isTitle = true;
@@ -588,7 +626,6 @@
                     isTitle = true;
                 }
 
-                // Inscription en rouge pour les phrases d'alerte / consentement
                 if (
                     textLower.includes("enregistré") || 
                     textLower.includes("qualité et de formation") ||
@@ -599,7 +636,6 @@
                     isAlertRed = true;
                 }
 
-                // Formatage des balises entre crochets en BLEU et GRAS
                 text = text.replace(/\[(Validated|Recall at|New prospect\/User|Obtenir le [^\]]+|Si oui du client)\]/gi, '<span class="tag-blue">[$1]</span>');
 
                 scriptSectionsData.push({
@@ -614,7 +650,7 @@
             afficherScript('all');
         } catch (e) {
             console.warn("Erreur chargement script", e);
-            document.getElementById('script-container').innerHTML = "<em>Impossible de charger le script.</em>";
+            document.getElementById('script-container').innerHTML = "<em>Impossible de charger le script. Veuillez vérifier l'accès au document.</em>";
         }
     }
 
@@ -623,14 +659,7 @@
         container.innerHTML = '';
 
         scriptSectionsData.forEach(item => {
-            // Filtre selon la rubrique standard ou les nouveaux filtres par fournisseur
-            if (catFilter === 'plenitude') {
-                if (!item.textLower.includes("plénitude") && !item.textLower.includes("plenitude") && !item.textLower.includes("eni")) return;
-            } else if (catFilter === 'engie') {
-                if (!item.textLower.includes("engie")) return;
-            } else if (catFilter !== 'all' && item.category !== catFilter) {
-                return;
-            }
+            if (catFilter !== 'all' && item.category !== catFilter) return;
 
             if (item.isTitle) {
                 const h = document.createElement('div');
@@ -649,9 +678,44 @@
     }
 
     function filtrerScript(cat, btn) {
+        document.getElementById('engie-subnav').style.display = 'none';
         document.querySelectorAll('.script-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        afficherScript(cat);
+
+        // Si nous sommes sur un script spécifique, nous rechargeons le script général pour naviguer dans les rubriques
+        if (scriptActuelUrl !== URL_SCRIPT_GENERAL) {
+            chargerScriptConseiller(URL_SCRIPT_GENERAL).then(() => {
+                afficherScript(cat);
+            });
+        } else {
+            afficherScript(cat);
+        }
+    }
+
+    function ouvrirMenuEngie(btn) {
+        document.querySelectorAll('.script-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const subnav = document.getElementById('engie-subnav');
+        subnav.style.display = 'flex';
+
+        // Sélectionne le premier sous-bouton (Engie Elec) par défaut lors de l'ouverture
+        const firstSubBtn = subnav.querySelector('.sub-btn');
+        if (firstSubBtn) {
+            document.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active'));
+            firstSubBtn.classList.add('active');
+            chargerScriptConseiller(URL_SCRIPT_ENGIE_ELEC);
+        }
+    }
+
+    function chargerEtAfficherScript(url, btn) {
+        if (btn.classList.contains('sub-btn')) {
+            document.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active'));
+        } else {
+            document.getElementById('engie-subnav').style.display = 'none';
+            document.querySelectorAll('.script-btn').forEach(b => b.classList.remove('active'));
+        }
+        btn.classList.add('active');
+        chargerScriptConseiller(url);
     }
 
     function selectionnerFournisseur(nom) {
