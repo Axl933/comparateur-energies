@@ -153,6 +153,33 @@
             padding-left: 6px;
         }
 
+        /* NOUVEAUX STYLES DE BLOCS POUR ENGIE */
+        .script-section-blue-title {
+            background-color: #e0f2fe;
+            border: 2px solid #0284c7;
+            color: #0f172a;
+            font-weight: bold;
+            font-size: 0.95rem;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-top: 12px;
+            margin-bottom: 8px;
+        }
+
+        .script-box-green {
+            background-color: #dcfce7 !important;
+            border: 1.5px solid #16a34a !important;
+            border-radius: 6px !important;
+            color: #14532d !important;
+        }
+
+        .script-box-yellow {
+            background-color: #fef9c3 !important;
+            border: 1.5px solid #ca8a04 !important;
+            border-radius: 6px !important;
+            color: #713f12 !important;
+        }
+
         .script-paragraph {
             margin-bottom: 8px;
             background-color: #f8fafc;
@@ -612,6 +639,11 @@
                 let isTitle = false;
                 let isAlertRed = false;
 
+                let isBlueTitle = false;
+                let isGreenBox = false;
+                let isYellowBox = false;
+
+                // Titres principaux des sections
                 if (textLower.includes("accueil client")) {
                     currentCategory = 'accueil';
                     isTitle = true;
@@ -626,6 +658,30 @@
                     isTitle = true;
                 }
 
+                // REGLES SPECIALES SCRIPT ENGIE
+                if (
+                    textLower.startsWith("annonce de l’offre") || textLower.startsWith("annonce de l'offre") ||
+                    textLower.startsWith("annonce du prix") ||
+                    textLower.startsWith("option elec vert") ||
+                    textLower.startsWith("annonce réversibilité") || textLower.startsWith("annonce reversibilite") ||
+                    textLower === "annonce facturation" || textLower === "annonce facturation :"
+                ) {
+                    isBlueTitle = true;
+                } else if (
+                    textLower.includes("annonce facturation chf") ||
+                    textLower.includes("annonce droit de rétractation chf") || textLower.includes("annonce droit de retractation chf") ||
+                    textLower.includes("changement de fournisseur")
+                ) {
+                    isGreenBox = true;
+                } else if (
+                    textLower.includes("emménagement") || textLower.includes("emmenagement") ||
+                    textLower.includes("annonce facturation et frais de mes") ||
+                    textLower.includes("annonce droit de rétractation mes") || textLower.includes("annonce droit de retractation mes")
+                ) {
+                    isYellowBox = true;
+                }
+
+                // Inscription en rouge pour les phrases d'alerte / consentement
                 if (
                     textLower.includes("enregistré") || 
                     textLower.includes("qualité et de formation") ||
@@ -641,6 +697,9 @@
                 scriptSectionsData.push({
                     text: text,
                     isTitle: isTitle,
+                    isBlueTitle: isBlueTitle,
+                    isGreenBox: isGreenBox,
+                    isYellowBox: isYellowBox,
                     isAlertRed: isAlertRed,
                     category: currentCategory,
                     textLower: textLower
@@ -661,14 +720,24 @@
         scriptSectionsData.forEach(item => {
             if (catFilter !== 'all' && item.category !== catFilter) return;
 
-            if (item.isTitle) {
+            if (item.isBlueTitle) {
+                const h = document.createElement('div');
+                h.className = 'script-section-blue-title';
+                h.innerHTML = item.text;
+                container.appendChild(h);
+            } else if (item.isTitle) {
                 const h = document.createElement('div');
                 h.className = 'script-section-title';
                 h.innerHTML = item.text;
                 container.appendChild(h);
             } else {
                 const p = document.createElement('div');
-                p.className = `script-paragraph ${item.isAlertRed ? 'text-alert-red' : ''}`;
+                let extraClass = '';
+                if (item.isGreenBox) extraClass = 'script-box-green';
+                else if (item.isYellowBox) extraClass = 'script-box-yellow';
+                else if (item.isAlertRed) extraClass = 'text-alert-red';
+
+                p.className = `script-paragraph ${extraClass}`;
                 p.innerHTML = item.text;
                 container.appendChild(p);
             }
