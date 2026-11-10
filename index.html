@@ -113,7 +113,6 @@
             font-weight: 600;
         }
 
-        /* STYLE REMISE : Taille augmentée (+50%) et texte en Gras / Italique */
         .remise-tag {
             font-size: 0.85em;
             font-style: italic;
@@ -469,7 +468,8 @@
 
                         if (aboBase > 0 || aboHPHC > 0 || tarifBase > 0 || tarifHP > 0) {
                             dataFournisseurs[nom].elec[kva] = {
-                                abonnement: aboHPHC > 0 ? aboHPHC : aboBase,
+                                aboBase: aboBase,
+                                aboHPHC: aboHPHC,
                                 hp: tarifHP,
                                 hc: tarifHC,
                                 base: tarifBase
@@ -549,10 +549,18 @@
             tr.dataset.fournisseur = nom;
             tr.onclick = function() { selectionnerFournisseur(nom); };
 
-            if (elecData && (elecData.abonnement > 0 || elecData.base > 0 || elecData.hp > 0)) {
+            if (elecData && (elecData.aboBase > 0 || elecData.aboHPHC > 0 || elecData.base > 0 || elecData.hp > 0)) {
+                // Sélection dynamique du montant d'abonnement selon l'option choisie
+                let montantAbo = 0;
+                if (optionTarifaire === 'HPHC') {
+                    montantAbo = elecData.aboHPHC > 0 ? elecData.aboHPHC : elecData.aboBase;
+                } else {
+                    montantAbo = elecData.aboBase > 0 ? elecData.aboBase : elecData.aboHPHC;
+                }
+
                 tr.innerHTML = `
                     <td><strong>${nom}</strong> ${remiseText}</td>
-                    <td>${elecData.abonnement ? elecData.abonnement.toFixed(2) + ' €' : '-'}</td>
+                    <td>${montantAbo ? montantAbo.toFixed(2) + ' €' : '-'}</td>
                     <td>${elecData.hp ? elecData.hp.toFixed(4) + ' €' : '-'}</td>
                     <td>${elecData.hc ? elecData.hc.toFixed(4) + ' €' : '-'}</td>
                     <td>${elecData.base ? elecData.base.toFixed(4) + ' €' : '-'}</td>
