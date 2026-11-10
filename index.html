@@ -113,6 +113,15 @@
             font-weight: 600;
         }
 
+        /* STYLE REMISE : Italique et taille réduite de moitié */
+        .remise-tag {
+            font-size: 0.55em;
+            font-style: italic;
+            font-weight: normal;
+            color: #475569;
+            margin-left: 4px;
+        }
+
         .details-card {
             background-color: white;
             border: 1px solid #cbd5e1;
@@ -271,6 +280,7 @@
                 "Avantage Gaz 2 ans : -9,0% HT/PRV avec prix fixe du kWh HT pendant 2 ans (abonnement non fixe).",
                 "Offres stables assurant une visibilité tarifaire sur 24 mois."
             ],
+            remiseElec: "", remiseGaz: "",
             elec: {}, gaz: {}
         },
         "Engie": {
@@ -284,6 +294,7 @@
                 "Gaz Référence 3 ans : -10% / PRV avec prix fixe sur 3 ans.",
                 "Sérénité tarifaire à très long terme."
             ],
+            remiseElec: "", remiseGaz: "",
             elec: {}, gaz: {}
         },
         "Plenitude": {
@@ -297,6 +308,7 @@
                 "Plenifix Gaz 1 an : Tarifs ISO PRV avec prix fixe 1 an.",
                 "Abonnement légèrement supérieur avec prix fixe sur 12 mois."
             ],
+            remiseElec: "", remiseGaz: "",
             elec: {}, gaz: {}
         },
         "Alterna": {
@@ -310,6 +322,7 @@
                 "Mon Gaz Naturel : -5% / PRV avec prix fixe 1 an.",
                 "Offres locales et vertueuses pour le marché français."
             ],
+            remiseElec: "", remiseGaz: "",
             elec: {}, gaz: {}
         },
         "Octopus": {
@@ -323,6 +336,7 @@
                 "Eco Conso Gaz : -1% HT/PRV avec prix fixe 2 ans.",
                 "Accompagnement dynamique pour consommer moins et mieux."
             ],
+            remiseElec: "", remiseGaz: "",
             elec: {}, gaz: {}
         },
         "TotalEnergies": {
@@ -336,6 +350,7 @@
                 "Offre Fixe 3 ans Gaz : -4% / PRV avec prix fixe pendant 3 ans.",
                 "Stabilité garantie sur une longue durée."
             ],
+            remiseElec: "", remiseGaz: "",
             elec: {}, gaz: {}
         },
         "Primeo Energie": {
@@ -349,6 +364,7 @@
                 "Pas d'offre Gaz commercialisée.",
                 "Transparence tarifaire avec contrats clairs."
             ],
+            remiseElec: "", remiseGaz: "",
             elec: {}, gaz: null
         },
         "Gaz de Bordeaux": {
@@ -358,10 +374,11 @@
                 "Spécialiste reconnu pour les offres à prix fixe."
             ],
             offre: [
-                "Novafixe Elec : -5% / TRV avec prix fixe 3 an.",
-                "Protection contre les augmentations des prix",
-                "preserver son budget énegrie tout en faisant des economies."
+                "Novafixe Elec : -5% / TRV avec prix fixe 1 an.",
+                "Pas d'offre Gaz disponible actuellement dans cette sélection.",
+                "Expertise historique et proximité locale."
             ],
+            remiseElec: "", remiseGaz: "",
             elec: {}, gaz: null
         }
     };
@@ -431,38 +448,48 @@
                 const nom = normaliserNom(nomBrut);
                 const kvaBrut = cols[1];
 
-                if (nom && dataFournisseurs[nom] && kvaBrut) {
-                    const kva = kvaBrut.replace(/[^0-9]/g, '') + 'kVA';
-
-                    if (!dataFournisseurs[nom].elec) dataFournisseurs[nom].elec = {};
-                    
-                    const aboBase = cleanNum(cols[2]);
-                    const tarifBase = cleanNum(cols[3]);
-                    const aboHPHC = cleanNum(cols[4]);
-                    const tarifHP = cleanNum(cols[5]);
-                    const tarifHC = cleanNum(cols[6]);
-
-                    if (aboBase > 0 || aboHPHC > 0 || tarifBase > 0 || tarifHP > 0) {
-                        dataFournisseurs[nom].elec[kva] = {
-                            abonnement: aboHPHC > 0 ? aboHPHC : aboBase,
-                            hp: tarifHP,
-                            hc: tarifHC,
-                            base: tarifBase
-                        };
+                if (nom && dataFournisseurs[nom]) {
+                    // Extraction des remises ELEC (colonne L - index 11) et GAZ (colonne M - index 12)
+                    if (cols[11] && cols[11].trim() !== '') {
+                        dataFournisseurs[nom].remiseElec = cols[11].trim();
+                    }
+                    if (cols[12] && cols[12].trim() !== '') {
+                        dataFournisseurs[nom].remiseGaz = cols[12].trim();
                     }
 
-                    const aboGazBase = cleanNum(cols[7]);
-                    const prixGazBase = cleanNum(cols[8]);
-                    if (aboGazBase > 0 || prixGazBase > 0) {
-                        dataFournisseurs[nom].gaz = dataFournisseurs[nom].gaz || {};
-                        dataFournisseurs[nom].gaz["Base"] = { abonnement: aboGazBase, kwh: prixGazBase };
-                    }
+                    if (kvaBrut) {
+                        const kva = kvaBrut.replace(/[^0-9]/g, '') + 'kVA';
 
-                    const aboGazB1 = cleanNum(cols[9]);
-                    const prixGazB1 = cleanNum(cols[10]);
-                    if (aboGazB1 > 0 || prixGazB1 > 0) {
-                        dataFournisseurs[nom].gaz = dataFournisseurs[nom].gaz || {};
-                        dataFournisseurs[nom].gaz["B1"] = { abonnement: aboGazB1, kwh: prixGazB1 };
+                        if (!dataFournisseurs[nom].elec) dataFournisseurs[nom].elec = {};
+                        
+                        const aboBase = cleanNum(cols[2]);
+                        const tarifBase = cleanNum(cols[3]);
+                        const aboHPHC = cleanNum(cols[4]);
+                        const tarifHP = cleanNum(cols[5]);
+                        const tarifHC = cleanNum(cols[6]);
+
+                        if (aboBase > 0 || aboHPHC > 0 || tarifBase > 0 || tarifHP > 0) {
+                            dataFournisseurs[nom].elec[kva] = {
+                                abonnement: aboHPHC > 0 ? aboHPHC : aboBase,
+                                hp: tarifHP,
+                                hc: tarifHC,
+                                base: tarifBase
+                            };
+                        }
+
+                        const aboGazBase = cleanNum(cols[7]);
+                        const prixGazBase = cleanNum(cols[8]);
+                        if (aboGazBase > 0 || prixGazBase > 0) {
+                            dataFournisseurs[nom].gaz = dataFournisseurs[nom].gaz || {};
+                            dataFournisseurs[nom].gaz["Base"] = { abonnement: aboGazBase, kwh: prixGazBase };
+                        }
+
+                        const aboGazB1 = cleanNum(cols[9]);
+                        const prixGazB1 = cleanNum(cols[10]);
+                        if (aboGazB1 > 0 || prixGazB1 > 0) {
+                            dataFournisseurs[nom].gaz = dataFournisseurs[nom].gaz || {};
+                            dataFournisseurs[nom].gaz["B1"] = { abonnement: aboGazB1, kwh: prixGazB1 };
+                        }
                     }
                 }
             });
@@ -489,18 +516,15 @@
         const tbody = document.getElementById('tbody-elec');
         tbody.innerHTML = '';
 
-        // Mise à jour de l'indicateur visuel de tri sur les colonnes
         document.getElementById('th-base-sort').textContent = optionTarifaire === 'Base' ? '🔽' : '';
         document.getElementById('th-hp-sort').textContent = optionTarifaire === 'HPHC' ? '🔽' : '';
 
-        // Préparation de la liste des fournisseurs
         let listeElec = [];
         for (const [nom, data] of Object.entries(dataFournisseurs)) {
             const elecData = data.elec ? data.elec[puissance] : null;
             listeElec.push({ nom: nom, data: elecData });
         }
 
-        // Tri dynamique selon l'option sélectionnée (Base ou HP/HC)
         listeElec.sort((a, b) => {
             let priceA = 999;
             let priceB = 999;
@@ -509,7 +533,6 @@
                 priceA = (a.data && a.data.base > 0) ? a.data.base : 999;
                 priceB = (b.data && b.data.base > 0) ? b.data.base : 999;
             } else {
-                // Option HP/HC : Tri sur le prix Heures Pleines (HP)
                 priceA = (a.data && a.data.hp > 0) ? a.data.hp : 999;
                 priceB = (b.data && b.data.hp > 0) ? b.data.hp : 999;
             }
@@ -520,6 +543,8 @@
         listeElec.forEach(item => {
             const nom = item.nom;
             const elecData = item.data;
+            const remiseText = dataFournisseurs[nom].remiseElec ? `<span class="remise-tag">(${dataFournisseurs[nom].remiseElec})</span>` : '';
+            
             const tr = document.createElement('tr');
             tr.className = `provider-row ${nom === fournisseurSelectionne ? 'active' : ''}`;
             tr.dataset.fournisseur = nom;
@@ -527,14 +552,14 @@
 
             if (elecData && (elecData.abonnement > 0 || elecData.base > 0 || elecData.hp > 0)) {
                 tr.innerHTML = `
-                    <td><strong>${nom}</strong></td>
+                    <td><strong>${nom}</strong> ${remiseText}</td>
                     <td>${elecData.abonnement ? elecData.abonnement.toFixed(2) + ' €' : '-'}</td>
                     <td>${elecData.hp ? elecData.hp.toFixed(4) + ' €' : '-'}</td>
                     <td>${elecData.hc ? elecData.hc.toFixed(4) + ' €' : '-'}</td>
                     <td>${elecData.base ? elecData.base.toFixed(4) + ' €' : '-'}</td>
                 `;
             } else {
-                tr.innerHTML = `<td><strong>${nom}</strong></td><td colspan="4" class="no-gas">Non disponible</td>`;
+                tr.innerHTML = `<td><strong>${nom}</strong> ${remiseText}</td><td colspan="4" class="no-gas">Non disponible</td>`;
             }
             tbody.appendChild(tr);
         });
@@ -560,6 +585,8 @@
         listeGaz.forEach(item => {
             const nom = item.nom;
             const gazData = item.data;
+            const remiseText = dataFournisseurs[nom].remiseGaz ? `<span class="remise-tag">(${dataFournisseurs[nom].remiseGaz})</span>` : '';
+
             const tr = document.createElement('tr');
             tr.className = `provider-row ${nom === fournisseurSelectionne ? 'active' : ''}`;
             tr.dataset.fournisseur = nom;
@@ -567,12 +594,12 @@
 
             if (gazData && (gazData.abonnement > 0 || gazData.kwh > 0)) {
                 tr.innerHTML = `
-                    <td><strong>${nom}</strong></td>
+                    <td><strong>${nom}</strong> ${remiseText}</td>
                     <td>${gazData.abonnement.toFixed(2)} €</td>
                     <td>${gazData.kwh.toFixed(4)} €</td>
                 `;
             } else {
-                tr.innerHTML = `<td><strong>${nom}</strong></td><td colspan="2" class="no-gas">Pas d'offre gaz</td>`;
+                tr.innerHTML = `<td><strong>${nom}</strong> ${remiseText}</td><td colspan="2" class="no-gas">Pas d'offre gaz</td>`;
             }
             tbody.appendChild(tr);
         });
