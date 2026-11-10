@@ -166,7 +166,6 @@
             margin-bottom: 8px;
         }
 
-        /* TITRE VERT AGRANDI POUR PLÉNITUDE */
         .script-title-green {
             background-color: #dcfce7;
             border: 2px solid #16a34a;
@@ -179,7 +178,6 @@
             margin-bottom: 8px;
         }
 
-        /* TITRE JAUNE POUR PLÉNITUDE */
         .script-title-yellow {
             background-color: #fef9c3;
             border: 2px solid #ca8a04;
@@ -513,14 +511,123 @@
     let scriptActuelUrl = URL_SCRIPT_GENERAL;
 
     let dataFournisseurs = {
-        "EDF": { entreprise: ["Fournisseur Français créé en 1946 et leader sur le marché Français.", "Fournisseur engagé dans la transition énergétique avec service client 100% basé en France.", "Excellente satisfaction client : 9/10 sur +700 000 clients en 2025 et 4,6/5 sur Trustpilot."], offre: ["Électricité Zen Fixe : +5% HT/TRV avec prix fixe du kWh HT pendant 2 ans (abonnement non fixe).", "Avantage Gaz 2 ans : -9,0% HT/PRV avec prix fixe du kWh HT pendant 2 ans (abonnement non fixe).", "Offres stables assurant une visibilité tarifaire sur 24 mois."], remiseElec: "", remiseGaz: "", elec: {}, gaz: {} },
-        "Engie": { entreprise: ["Acteur historique du gaz en France et 1er fournisseur d'électricité verte.", "Service client basé en France et engagé dans le développement des énergies renouvelables.", "Note globale de satisfaction client supérieure à 4/5."], offre: ["Elec Référence 3 ans : +24% / TRV avec prix fixe sur 3 ans.", "Gaz Référence 3 ans : -10% / PRV avec prix fixe sur 3 ans.", "Sérénité tarifaire à très long terme."], remiseElec: "", remiseGaz: "", elec: {}, gaz: {} },
-        "Plenitude": { entreprise: ["Filiale du groupe Eni, l'un des leaders européens de l'énergie.", "Marque orientée vers la transition énergétique et les solutions durables.", "Présence internationale soutenue avec un service client disponible."], offre: ["Plenifix Elec 1 an : Tarifs ISO TRV avec prix fixe 1 an.", "Plenifix Gaz 1 an : Tarifs ISO PRV avec prix fixe 1 an.", "Abonnement légèrement supérieur avec prix fixe sur 12 mois."], remiseElec: "", remiseGaz: "", elec: {}, gaz: {} },
-        "Alterna": { entreprise: ["Regroupement d'entreprises locales de distribution (ELD) indépendantes.", "Fournisseur français engagé dans la proximité et la production locale.", "Expertise reconnue dans la fourniture d'énergie verte."], offre: ["Mon Électricité Française : -5% / TRV avec prix fixe 1 an.", "Mon Gaz Naturel : -5% / PRV avec prix fixe 1 an.", "Offres locales et vertueuses pour le marché français."], remiseElec: "", remiseGaz: "", elec: {}, gaz: {} },
-        "Octopus": { entreprise: ["Fournisseur britannique innovant, pionnier des technologies éco-responsables.", "Élu meilleur fournisseur selon les avis clients (Trustpilot 4,8/5).", "Système de cagnotte et de récompenses pour les économies d'énergie."], offre: ["OctoEco Fixe : +6% HT/TRV avec prix fixe 2 ans.", "Eco Conso Gaz : -1% HT/PRV avec prix fixe 2 ans.", "Accompagnement dynamique pour consommer moins et mieux."], remiseElec: "", remiseGaz: "", elec: {}, gaz: {} },
-        "TotalEnergies": { entreprise: ["Premier alternatif privé en France avec plus de 5 millions de clients.", "Service client reconnu 'Élu Service Client de l'Année' à plusieurs reprises.", "Large éventail d'offres adaptées aux particuliers et professionnels."], offre: ["Offre Fixe 3 ans Elec : +16% HT/TRV avec prix fixe pendant 3 ans.", "Offre Fixe 3 ans Gaz : -4% / PRV avec prix fixe pendant 3 ans.", "Stabilité garantie sur une longue durée."], remiseElec: "", remiseGaz: "", elec: {}, gaz: {} },
-        "Primeo Energie": { entreprise: ["Fournisseur et producteur d'énergie suisse implanté en France.", "Spécialiste de la fourniture auprès des collectivités et des consommateurs avertis.", "Focus sur la transparence et l'énergie renouvelable."], offre: ["Offre Fixe Électricité : +29% HT/TRV avec prix fixe.", "Pas d'offre Gaz commercialisée.", "Transparence tarifaire avec contrats clairs."], remiseElec: "", remiseGaz: "", elec: {}, gaz: null },
-        "Gaz de Bordeaux": { entreprise: ["Fournisseur historique basé en Gironde depuis 1875.", "Service client 100% basé à Bordeaux, reconnu pour sa grande réactivité.", "Spécialiste reconnu pour les offres à prix fixe."], offre: ["Novafixe Elec : -5% / TRV avec prix fixe 1 an.", "Pas d'offre Gaz disponible actuellement dans cette sélection.", "Expertise historique et proximité locale."], remiseElec: "", remiseGaz: "", elec: {}, gaz: null }
+        "EDF": { 
+            entreprise: [
+                "Fournisseur Français créé en 1946",
+                "Leader sur le marché Français",
+                "Fournisseur engagé dans la transition énergétique",
+                "Service client 100% basé en France",
+                "Excellente satisfaction client : 9/10 sur +700 000 clients en 2025",
+                "4,6/5 sur +50 000 avis sur Trustpilot en 2026"
+            ], 
+            offre: [
+                "Électricité Zen Fixe : +5% HT/TRV",
+                "Prix fixe du kWh HT pendant 2 ans",
+                "Protection contre les augmentations des prix de l'énergie",
+                "Avantage Gaz 2 ans : -9,0% HT/PRV",
+                "Prix fixe du kWh HT pendant 2 ans",
+                "Protection contre les augmentations et faire des économies"
+            ], 
+            remiseElec: "", remiseGaz: "", elec: {}, gaz: {} 
+        },
+        "Engie": { 
+            entreprise: [
+                "2ème fournisseur français et fournisseur historique de gaz",
+                "Service client basé en France (Rouen)",
+                "1er producteur mondial d'électricité verte",
+                "Fournisseur rassurant et rapide dans les délais",
+                "Élu meilleur service client de l'année 2026"
+            ], 
+            offre: [
+                "Offre Elec Référence 3 ans : Prix Fixe 3 ans sur la partie fourniture (prix du kWh et abonnement), Abonnement au TRV, Protection & sérénité durable dans le temps",
+                "Offre Gaz Référence 3 ans : -10%/PRV, Fixe 3 ans sur la partie fourniture (prix du kWh et abonnement), Protection & sérénité durable dans le temps"
+            ], 
+            remiseElec: "", remiseGaz: "", elec: {}, gaz: {} 
+        },
+        "Plenitude": { 
+            entreprise: [
+                "Fournisseur historique en Italie",
+                "4ème fournisseur français",
+                "Expert énergie à la disposition du client qui l'aide dans toute la vie de son contrat",
+                "10 M de clients en Europe dont 1 million de clients en France",
+                "Très développé à l'international notamment en France, Italie, Espagne et en Grèce"
+            ], 
+            offre: [
+                "Plenifix Elec 1 an : ISO TRV fixe 1 an, Prix de l'abonnement fixe, Seule offre du marché avec prix de kWh et abonnement fixe, Protection contre les augmentations",
+                "Plenifix Gaz 1 an : Prix du kWh ISO PRV fixe 1 an, Prix de l'abonnement fixe, Seule offre du marché avec prix de kWh et abonnement fixe, Protection contre les augmentations"
+            ], 
+            remiseElec: "", remiseGaz: "", elec: {}, gaz: {} 
+        },
+        "Alterna": { 
+            entreprise: [
+                "Présent depuis plus de 20 ans en France",
+                "4ème fournisseur français d'électricité",
+                "Regroupement d'entreprises locales d'énergie Françaises",
+                "Électricité verte issue d'un réseau de plus de 1000 producteurs d'énergie renouvelable en France"
+            ], 
+            offre: [
+                "Mon électricité française : Indexée à -5% /TRV",
+                "Mon gaz naturel : Indexée 1 an à -5% /PRV"
+            ], 
+            remiseElec: "", remiseGaz: "", elec: {}, gaz: {} 
+        },
+        "Octopus": { 
+            entreprise: [
+                "Fournisseur d'énergie verte n°1 en Angleterre",
+                "Présent dans 13 pays dans le monde (UK, USA, Japon, Allemagne, France, Espagne, Italie...)",
+                "Plus de 25 millions de clients à travers le monde",
+                "Environ 250 000 clients sur le marché français résidentiel",
+                "Reconnu comme fournisseur 'très engagé' en faveur de l'énergie verte par l'ADEME et Greenpeace"
+            ], 
+            offre: [
+                "OctoEco Fixe : Fixe 2 ans à compter de la date d’activation du contrat, Protection contre les augmentations, Système de cagnotte qui récompense les économies d'énergies",
+                "EcoConso Gaz : Prix du kWh HT -1% du PRV fixe 2 ans, Abonnement égal au PRV, 100% de gaz naturel, Système de cagnotte qui récompense les économies d'énergies"
+            ], 
+            remiseElec: "", remiseGaz: "", elec: {}, gaz: {} 
+        },
+        "TotalEnergies": { 
+            entreprise: [
+                "Fournisseur créé en 1924",
+                "Présent dans 130 pays",
+                "Service client multicanal",
+                "1er fournisseur alternatif en France",
+                "Le groupe fournit pétrole, gaz, électricité et énergies renouvelables à des millions de clients",
+                "Élu meilleur fournisseur d'énergie 2026 selon le rapport de l'INMA"
+            ], 
+            offre: [
+                "Offre fixe 3 ans Elec : Prix kWh HT +16%/TRV, Protection durable contre les augmentations, Avantage carburant jusqu'au 31/12/2026",
+                "Offre fixe 3 ans Gaz : Prix kWh -4%/PRV (chauffage), Protection durable contre les augmentations, Avantage carburant jusqu'au 31/12/2026"
+            ], 
+            remiseElec: "", remiseGaz: "", elec: {}, gaz: {} 
+        },
+        "Primeo Energie": { 
+            entreprise: [
+                "Historique Suisse créé en 1897",
+                "Depuis 2023 pour les particuliers en France",
+                "7ème producteur d'électricité en France",
+                "Groupe énergéticien"
+            ], 
+            offre: [
+                "Offre fixe sur le TRV, sans engagement de durée",
+                "+29 % sur le prix du kWh HT par rapport au TRV",
+                "Énergie verte payante",
+                "Abonnement identique au TRV"
+            ], 
+            remiseElec: "", remiseGaz: "", elec: {}, gaz: null 
+        },
+        "Gaz de Bordeaux": { 
+            entreprise: [
+                "Fournisseur créé en 1875, énergéticien historique",
+                "330 000 clients particuliers dont 250 000 clients gaz",
+                "Forte croissance en électricité & Service client basé à Bordeaux"
+            ], 
+            offre: [
+                "Novafixe Elec : Prix du kWh - 5% / TRV fixe 3 ans",
+                "Prix de l'abonnement identique au TRV",
+                "Électricité 100% verte garantie d'origine"
+            ], 
+            remiseElec: "", remiseGaz: "", elec: {}, gaz: null 
+        }
     };
 
     let fournisseurSelectionne = "EDF";
