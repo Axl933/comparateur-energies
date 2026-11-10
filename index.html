@@ -78,6 +78,37 @@
             padding-bottom: 6px;
         }
 
+        /* BOUTONS NAVIGATION SCRIPT */
+        .script-nav {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .script-btn {
+            background-color: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #334155;
+        }
+
+        .script-btn:hover {
+            background-color: var(--blue-light);
+            color: var(--blue-header);
+        }
+
+        .script-btn.active {
+            background-color: var(--blue-header);
+            color: white;
+            border-color: var(--blue-header);
+        }
+
         .script-content {
             overflow-y: auto;
             padding-right: 8px;
@@ -101,6 +132,11 @@
             padding: 6px 10px;
             border-radius: 4px;
             border: 1px solid #e2e8f0;
+        }
+
+        .tag-blue {
+            color: #0284c7;
+            font-weight: bold;
         }
 
         /* CARTE FILTRES & DÉTAILS */
@@ -248,7 +284,6 @@
             font-style: italic;
         }
 
-        /* ADAPTATION MOBILE ET PETITS ÉCRANS */
         @media (max-width: 900px) {
             .page-layout {
                 flex-direction: column;
@@ -351,6 +386,16 @@
     <div class="right-col">
         <div class="script-card">
             <h2>📞 Script Conseiller</h2>
+            
+            <!-- BOUTONS FILTRES SCRIPT -->
+            <div class="script-nav">
+                <button class="script-btn active" onclick="filtrerScript('all', this)">Tout</button>
+                <button class="script-btn" onclick="filtrerScript('accueil', this)">Accueil</button>
+                <button class="script-btn" onclick="filtrerScript('decouverte', this)">Découverte</button>
+                <button class="script-btn" onclick="filtrerScript('argumentaire', this)">Argumentaire</button>
+                <button class="script-btn" onclick="filtrerScript('contrat', this)">Contrat</button>
+            </div>
+
             <div class="script-content" id="script-container">
                 <em>Chargement du script...</em>
             </div>
@@ -361,6 +406,8 @@
 <script>
     const GOOGLE_SHEETS_PRICES_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?output=csv";
     const GOOGLE_SHEETS_SCRIPT_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=2146359891&single=true&output=csv";
+
+    let scriptSectionsData = [];
 
     let dataFournisseurs = {
         "EDF": { entreprise: ["Fournisseur Français créé en 1946 et leader sur le marché Français.", "Fournisseur engagé dans la transition énergétique avec service client 100% basé en France.", "Excellente satisfaction client : 9/10 sur +700 000 clients en 2025 et 4,6/5 sur Trustpilot."], offre: ["Électricité Zen Fixe : +5% HT/TRV avec prix fixe du kWh HT pendant 2 ans (abonnement non fixe).", "Avantage Gaz 2 ans : -9,0% HT/PRV avec prix fixe du kWh HT pendant 2 ans (abonnement non fixe).", "Offres stables assurant une visibilité tarifaire sur 24 mois."], remiseElec: "", remiseGaz: "", elec: {}, gaz: {} },
@@ -499,31 +546,75 @@
             const csvText = await response.text();
             
             const lines = csvText.split(/\r?\n/);
-            const container = document.getElementById('script-container');
-            container.innerHTML = '';
+            scriptSectionsData = [];
+
+            let currentCategory = 'accueil';
 
             lines.forEach(line => {
                 const cols = parseCSVLine(line);
-                const text = cols.join(' ').trim();
+                let text = cols.join(' ').trim();
                 if (!text) return;
 
-                // Si le texte est un titre de section ou en rouge/important
-                if (text.includes("Accueil client") || text.includes("Découverte") || text.includes("Mise en place") || text.includes("Avant d'aller plus loin")) {
-                    const h = document.createElement('div');
-                    h.className = 'script-section-title';
-                    h.textContent = text;
-                    container.appendChild(h);
-                } else {
-                    const p = document.createElement('div');
-                    p.className = 'script-paragraph';
-                    p.textContent = text;
-                    container.appendChild(p);
+                const textLower = text.toLowerCase();
+                let isTitle = false;
+
+                // Identification des grands titres (en ROUGE)
+                if (textLower.includes("accueil client") || textLower.includes("avant d'aller plus loin")) {
+                    currentCategory = 'accueil';
+                    isTitle = true;
+                } else if (textLower.includes("découverte") || textLower.includes("reformulation")) {
+                    currentCategory = 'decouverte';
+                    isTitle = true;
+                } else if (textLower.includes("argumentaire")) {
+                    currentCategory = 'argumentaire';
+                    isTitle = true;
+                } else if (textLower.includes("mise en place") || textLower.includes("contrat")) {
+                    currentCategory = 'contrat';
+                    isTitle = true;
                 }
+
+                // Formatage des balises [Validated], [Recall at], [New prospect/User] en BLEU et GRAS
+                text = text.replace(/\[(Validated|Recall at|New prospect\/User)\]/gi, '<span class="tag-blue">[$1]</span>');
+
+                scriptSectionsData.push({
+                    text: text,
+                    isTitle: isTitle,
+                    category: currentCategory
+                });
             });
+
+            afficherScript('all');
         } catch (e) {
             console.warn("Erreur chargement script", e);
             document.getElementById('script-container').innerHTML = "<em>Impossible de charger le script.</em>";
         }
+    }
+
+    function afficherScript(catFilter) {
+        const container = document.getElementById('script-container');
+        container.innerHTML = '';
+
+        scriptSectionsData.forEach(item => {
+            if (catFilter !== 'all' && item.category !== catFilter) return;
+
+            if (item.isTitle) {
+                const h = document.createElement('div');
+                h.className = 'script-section-title';
+                h.innerHTML = item.text;
+                container.appendChild(h);
+            } else {
+                const p = document.createElement('div');
+                p.className = 'script-paragraph';
+                p.innerHTML = item.text;
+                container.appendChild(p);
+            }
+        });
+    }
+
+    function filtrerScript(cat, btn) {
+        document.querySelectorAll('.script-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        afficherScript(cat);
     }
 
     function selectionnerFournisseur(nom) {
