@@ -153,11 +153,37 @@
             padding-left: 6px;
         }
 
-        /* NOUVEAUX STYLES DE BLOCS POUR ENGIE */
+        /* STYLES ENGIE & PLÉNITUDE */
         .script-section-blue-title {
             background-color: #e0f2fe;
             border: 2px solid #0284c7;
             color: #0f172a;
+            font-weight: bold;
+            font-size: 0.95rem;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-top: 12px;
+            margin-bottom: 8px;
+        }
+
+        /* TITRE VERT AGRANDI POUR PLÉNITUDE */
+        .script-title-green {
+            background-color: #dcfce7;
+            border: 2px solid #16a34a;
+            color: #14532d;
+            font-weight: bold;
+            font-size: 1.05rem;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-top: 14px;
+            margin-bottom: 8px;
+        }
+
+        /* TITRE JAUNE POUR PLÉNITUDE */
+        .script-title-yellow {
+            background-color: #fef9c3;
+            border: 2px solid #ca8a04;
+            color: #713f12;
             font-weight: bold;
             font-size: 0.95rem;
             padding: 8px 12px;
@@ -642,8 +668,10 @@
                 let isBlueTitle = false;
                 let isGreenBox = false;
                 let isYellowBox = false;
+                let isGreenTitlePlenitude = false;
+                let isYellowTitlePlenitude = false;
 
-                // Titres principaux des sections
+                // TITRES NATIONAUX
                 if (textLower.includes("accueil client")) {
                     currentCategory = 'accueil';
                     isTitle = true;
@@ -656,6 +684,24 @@
                 } else if (textLower.includes("mise en place") || textLower.includes("contrat")) {
                     currentCategory = 'contrat';
                     isTitle = true;
+                }
+
+                // REGLES SPECIALES SCRIPT PLENITUDE
+                if (
+                    textLower.includes("consentement accès aux données") || textLower.includes("consentement acces aux donnees") ||
+                    textLower.includes("vente de l’offre") || textLower.includes("vente de l'offre") ||
+                    textLower.includes("délai de rétractation") || textLower.includes("delai de retractation") ||
+                    textLower.includes("closing souscription") ||
+                    textLower.includes("accompagnement du client à la souscription") || textLower.includes("accompagnement du client a la souscription")
+                ) {
+                    isGreenTitlePlenitude = true;
+                } else if (
+                    textLower.includes("electricité - elec/gaz") || textLower.includes("electricite - elec/gaz") ||
+                    textLower === "gaz" || textLower === "gaz :" ||
+                    textLower.includes("paiement en mensualisation") ||
+                    textLower.includes("paiement en réel bimestriel") || textLower.includes("paiement en reel bimestriel")
+                ) {
+                    isYellowTitlePlenitude = true;
                 }
 
                 // REGLES SPECIALES SCRIPT ENGIE
@@ -698,6 +744,8 @@
                     text: text,
                     isTitle: isTitle,
                     isBlueTitle: isBlueTitle,
+                    isGreenTitlePlenitude: isGreenTitlePlenitude,
+                    isYellowTitlePlenitude: isYellowTitlePlenitude,
                     isGreenBox: isGreenBox,
                     isYellowBox: isYellowBox,
                     isAlertRed: isAlertRed,
@@ -720,7 +768,17 @@
         scriptSectionsData.forEach(item => {
             if (catFilter !== 'all' && item.category !== catFilter) return;
 
-            if (item.isBlueTitle) {
+            if (item.isGreenTitlePlenitude) {
+                const h = document.createElement('div');
+                h.className = 'script-title-green';
+                h.innerHTML = item.text;
+                container.appendChild(h);
+            } else if (item.isYellowTitlePlenitude) {
+                const h = document.createElement('div');
+                h.className = 'script-title-yellow';
+                h.innerHTML = item.text;
+                container.appendChild(h);
+            } else if (item.isBlueTitle) {
                 const h = document.createElement('div');
                 h.className = 'script-section-blue-title';
                 h.innerHTML = item.text;
