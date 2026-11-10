@@ -112,7 +112,11 @@
             border-radius: 8px;
             padding: 15px;
             margin-bottom: 20px;
-            box-shadow: 0 3px 5px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+            /* FIGÉ EN HAUT DE PAGE AU DÉFILEMENT */
+            position: sticky;
+            top: 10px;
+            z-index: 100;
         }
 
         .details-header {
@@ -167,7 +171,7 @@
 <div class="container">
     <h1>Comparateur d'Offres d'Énergie</h1>
 
-    <!-- CARTE DÉTAILS -->
+    <!-- CARTE DÉTAILS FIGÉE -->
     <div class="details-card">
         <div class="details-header">
             <h3 style="margin:0; font-size: 1.1rem;" id="details-name">ℹ️ Détails : EDF</h3>
