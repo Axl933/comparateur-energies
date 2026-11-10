@@ -113,7 +113,6 @@
             padding: 15px;
             margin-bottom: 20px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.08);
-            /* FIGÉ EN HAUT DE PAGE AU DÉFILEMENT */
             position: sticky;
             top: 10px;
             z-index: 100;
@@ -190,7 +189,7 @@
     </div>
 
     <!-- SECTION ÉLECTRICITÉ -->
-    <h2 class="section-title">⚡ Électricité</h2>
+    <h2 class="section-title">⚡ Électricité (Trié du moins cher au plus cher selon le Tarif Base)</h2>
     <div class="filter-card">
         <label for="select-elec">Puissance souscrite :</label>
         <select id="select-elec">
@@ -210,14 +209,14 @@
                 <th>Abonnement (€/mois)</th>
                 <th>Prix kWh Heures Pleines (€)</th>
                 <th>Prix kWh Heures Creuses (€)</th>
-                <th>Prix kWh Base (€)</th>
+                <th>Prix kWh Base (€) 🔽</th>
             </tr>
         </thead>
         <tbody id="tbody-elec"></tbody>
     </table>
 
     <!-- SECTION GAZ -->
-    <h2 class="section-title">🔥 Gaz Naturel</h2>
+    <h2 class="section-title">🔥 Gaz Naturel (Trié du moins cher au plus cher selon le Prix kWh Gaz)</h2>
     <div class="filter-card">
         <label for="select-gaz">Classe de consommation :</label>
         <select id="select-gaz">
@@ -231,7 +230,7 @@
             <tr>
                 <th>Fournisseur</th>
                 <th>Abonnement (€/mois)</th>
-                <th>Prix kWh Gaz (€)</th>
+                <th>Prix kWh Gaz (€) 🔽</th>
             </tr>
         </thead>
         <tbody id="tbody-gaz"></tbody>
@@ -469,8 +468,23 @@
         const tbody = document.getElementById('tbody-elec');
         tbody.innerHTML = '';
 
+        // Préparation de la liste avec tri du Tarif Base du moins cher au plus cher
+        let listeElec = [];
         for (const [nom, data] of Object.entries(dataFournisseurs)) {
             const elecData = data.elec ? data.elec[puissance] : null;
+            listeElec.push({ nom: nom, data: elecData });
+        }
+
+        // Tri par Tarif Base croissant (les offres non disponibles vont en bas)
+        listeElec.sort((a, b) => {
+            const priceA = (a.data && a.data.base > 0) ? a.data.base : 999;
+            const priceB = (b.data && b.data.base > 0) ? b.data.base : 999;
+            return priceA - priceB;
+        });
+
+        listeElec.forEach(item => {
+            const nom = item.nom;
+            const elecData = item.data;
             const tr = document.createElement('tr');
             tr.className = `provider-row ${nom === fournisseurSelectionne ? 'active' : ''}`;
             tr.dataset.fournisseur = nom;
@@ -488,7 +502,7 @@
                 tr.innerHTML = `<td><strong>${nom}</strong></td><td colspan="4" class="no-gas">Non disponible</td>`;
             }
             tbody.appendChild(tr);
-        }
+        });
     }
 
     function afficherTableauGaz() {
@@ -496,8 +510,23 @@
         const tbody = document.getElementById('tbody-gaz');
         tbody.innerHTML = '';
 
+        // Préparation de la liste avec tri du Prix kWh Gaz du moins cher au plus cher
+        let listeGaz = [];
         for (const [nom, data] of Object.entries(dataFournisseurs)) {
             const gazData = data.gaz ? data.gaz[classeGaz] : null;
+            listeGaz.push({ nom: nom, data: gazData });
+        }
+
+        // Tri par Prix kWh Gaz croissant (les offres non disponibles vont en bas)
+        listeGaz.sort((a, b) => {
+            const priceA = (a.data && a.data.kwh > 0) ? a.data.kwh : 999;
+            const priceB = (b.data && b.data.kwh > 0) ? b.data.kwh : 999;
+            return priceA - priceB;
+        });
+
+        listeGaz.forEach(item => {
+            const nom = item.nom;
+            const gazData = item.data;
             const tr = document.createElement('tr');
             tr.className = `provider-row ${nom === fournisseurSelectionne ? 'active' : ''}`;
             tr.dataset.fournisseur = nom;
@@ -513,7 +542,7 @@
                 tr.innerHTML = `<td><strong>${nom}</strong></td><td colspan="2" class="no-gas">Pas d'offre gaz</td>`;
             }
             tbody.appendChild(tr);
-        }
+        });
     }
 
     function afficherDetails(nom) {
