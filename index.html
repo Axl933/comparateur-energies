@@ -268,118 +268,14 @@
     const GOOGLE_SHEETS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?output=csv";
 
     let dataFournisseurs = {
-        "EDF": {
-            entreprise: [
-                "Fournisseur Français créé en 1946 et leader sur le marché Français.",
-                "Fournisseur engagé dans la transition énergétique avec service client 100% basé en France.",
-                "Excellente satisfaction client : 9/10 sur +700 000 clients en 2025 et 4,6/5 sur Trustpilot."
-            ],
-            offre: [
-                "Électricité Zen Fixe : +5% HT/TRV avec prix fixe du kWh HT pendant 2 ans (abonnement non fixe).",
-                "Avantage Gaz 2 ans : -9,0% HT/PRV avec prix fixe du kWh HT pendant 2 ans (abonnement non fixe).",
-                "Offres stables assurant une visibilité tarifaire sur 24 mois."
-            ],
-            remiseElec: "", remiseGaz: "",
-            elec: {}, gaz: {}
-        },
-        "Engie": {
-            entreprise: [
-                "Acteur historique du gaz en France et 1er fournisseur d'électricité verte.",
-                "Service client basé en France et engagé dans le développement des énergies renouvelables.",
-                "Note globale de satisfaction client supérieure à 4/5."
-            ],
-            offre: [
-                "Elec Référence 3 ans : +24% / TRV avec prix fixe sur 3 ans.",
-                "Gaz Référence 3 ans : -10% / PRV avec prix fixe sur 3 ans.",
-                "Sérénité tarifaire à très long terme."
-            ],
-            remiseElec: "", remiseGaz: "",
-            elec: {}, gaz: {}
-        },
-        "Plenitude": {
-            entreprise: [
-                "Filiale du groupe Eni, l'un des leaders européens de l'énergie.",
-                "Marque orientée vers la transition énergétique et les solutions durables.",
-                "Présence internationale soutenue avec un service client disponible."
-            ],
-            offre: [
-                "Plenifix Elec 1 an : Tarifs ISO TRV avec prix fixe 1 an.",
-                "Plenifix Gaz 1 an : Tarifs ISO PRV avec prix fixe 1 an.",
-                "Abonnement légèrement supérieur avec prix fixe sur 12 mois."
-            ],
-            remiseElec: "", remiseGaz: "",
-            elec: {}, gaz: {}
-        },
-        "Alterna": {
-            entreprise: [
-                "Regroupement d'entreprises locales de distribution (ELD) indépendantes.",
-                "Fournisseur français engagé dans la proximité et la production locale.",
-                "Expertise reconnue dans la fourniture d'énergie verte."
-            ],
-            offre: [
-                "Mon Électricité Française : -5% / TRV avec prix fixe 1 an.",
-                "Mon Gaz Naturel : -5% / PRV avec prix fixe 1 an.",
-                "Offres locales et vertueuses pour le marché français."
-            ],
-            remiseElec: "", remiseGaz: "",
-            elec: {}, gaz: {}
-        },
-        "Octopus": {
-            entreprise: [
-                "Fournisseur britannique innovant, pionnier des technologies éco-responsables.",
-                "Élu meilleur fournisseur selon les avis clients (Trustpilot 4,8/5).",
-                "Système de cagnotte et de récompenses pour les économies d'énergie."
-            ],
-            offre: [
-                "OctoEco Fixe : +6% HT/TRV avec prix fixe 2 ans.",
-                "Eco Conso Gaz : -1% HT/PRV avec prix fixe 2 ans.",
-                "Accompagnement dynamique pour consommer moins et mieux."
-            ],
-            remiseElec: "", remiseGaz: "",
-            elec: {}, gaz: {}
-        },
-        "TotalEnergies": {
-            entreprise: [
-                "Premier alternatif privé en France avec plus de 5 millions de clients.",
-                "Service client reconnu 'Élu Service Client de l'Année' à plusieurs reprises.",
-                "Large éventail d'offres adaptées aux particuliers et professionnels."
-            ],
-            offre: [
-                "Offre Fixe 3 ans Elec : +16% HT/TRV avec prix fixe pendant 3 ans.",
-                "Offre Fixe 3 ans Gaz : -4% / PRV avec prix fixe pendant 3 ans.",
-                "Stabilité garantie sur une longue durée."
-            ],
-            remiseElec: "", remiseGaz: "",
-            elec: {}, gaz: {}
-        },
-        "Primeo Energie": {
-            entreprise: [
-                "Fournisseur et producteur d'énergie suisse implanté en France.",
-                "Spécialiste de la fourniture auprès des collectivités et des consommateurs avertis.",
-                "Focus sur la transparence et l'énergie renouvelable."
-            ],
-            offre: [
-                "Offre Fixe Électricité : +29% HT/TRV avec prix fixe.",
-                "Pas d'offre Gaz commercialisée.",
-                "Transparence tarifaire avec contrats clairs."
-            ],
-            remiseElec: "", remiseGaz: "",
-            elec: {}, gaz: null
-        },
-        "Gaz de Bordeaux": {
-            entreprise: [
-                "Fournisseur historique basé en Gironde depuis 1875.",
-                "Service client 100% basé à Bordeaux, reconnu pour sa grande réactivité.",
-                "Spécialiste reconnu pour les offres à prix fixe."
-            ],
-            offre: [
-                "Novafixe Elec : -5% / TRV avec prix fixe 3 ans.",
-                "Pas d'offre Gaz disponible actuellement dans cette sélection.",
-                "Expertise historique et proximité locale."
-            ],
-            remiseElec: "", remiseGaz: "",
-            elec: {}, gaz: null
-        }
+        "EDF": { entreprise: ["Fournisseur Français créé en 1946 et leader sur le marché Français.", "Fournisseur engagé dans la transition énergétique avec service client 100% basé en France.", "Excellente satisfaction client : 9/10 sur +700 000 clients en 2025 et 4,6/5 sur Trustpilot."], offre: ["Électricité Zen Fixe : +5% HT/TRV avec prix fixe du kWh HT pendant 2 ans (abonnement non fixe).", "Avantage Gaz 2 ans : -9,0% HT/PRV avec prix fixe du kWh HT pendant 2 ans (abonnement non fixe).", "Offres stables assurant une visibilité tarifaire sur 24 mois."], remiseElec: "", remiseGaz: "", elec: {}, gaz: {} },
+        "Engie": { entreprise: ["Acteur historique du gaz en France et 1er fournisseur d'électricité verte.", "Service client basé en France et engagé dans le développement des énergies renouvelables.", "Note globale de satisfaction client supérieure à 4/5."], offre: ["Elec Référence 3 ans : +24% / TRV avec prix fixe sur 3 ans.", "Gaz Référence 3 ans : -10% / PRV avec prix fixe sur 3 ans.", "Sérénité tarifaire à très long terme."], remiseElec: "", remiseGaz: "", elec: {}, gaz: {} },
+        "Plenitude": { entreprise: ["Filiale du groupe Eni, l'un des leaders européens de l'énergie.", "Marque orientée vers la transition énergétique et les solutions durables.", "Présence internationale soutenue avec un service client disponible."], offre: ["Plenifix Elec 1 an : Tarifs ISO TRV avec prix fixe 1 an.", "Plenifix Gaz 1 an : Tarifs ISO PRV avec prix fixe 1 an.", "Abonnement légèrement supérieur avec prix fixe sur 12 mois."], remiseElec: "", remiseGaz: "", elec: {}, gaz: {} },
+        "Alterna": { entreprise: ["Regroupement d'entreprises locales de distribution (ELD) indépendantes.", "Fournisseur français engagé dans la proximité et la production locale.", "Expertise reconnue dans la fourniture d'énergie verte."], offre: ["Mon Électricité Française : -5% / TRV avec prix fixe 1 an.", "Mon Gaz Naturel : -5% / PRV avec prix fixe 1 an.", "Offres locales et vertueuses pour le marché français."], remiseElec: "", remiseGaz: "", elec: {}, gaz: {} },
+        "Octopus": { entreprise: ["Fournisseur britannique innovant, pionnier des technologies éco-responsables.", "Élu meilleur fournisseur selon les avis clients (Trustpilot 4,8/5).", "Système de cagnotte et de récompenses pour les économies d'énergie."], offre: ["OctoEco Fixe : +6% HT/TRV avec prix fixe 2 ans.", "Eco Conso Gaz : -1% HT/PRV avec prix fixe 2 ans.", "Accompagnement dynamique pour consommer moins et mieux."], remiseElec: "", remiseGaz: "", elec: {}, gaz: {} },
+        "TotalEnergies": { entreprise: ["Premier alternatif privé en France avec plus de 5 millions de clients.", "Service client reconnu 'Élu Service Client de l'Année' à plusieurs reprises.", "Large éventail d'offres adaptées aux particuliers et professionnels."], offre: ["Offre Fixe 3 ans Elec : +16% HT/TRV avec prix fixe pendant 3 ans.", "Offre Fixe 3 ans Gaz : -4% / PRV avec prix fixe pendant 3 ans.", "Stabilité garantie sur une longue durée."], remiseElec: "", remiseGaz: "", elec: {}, gaz: {} },
+        "Primeo Energie": { entreprise: ["Fournisseur et producteur d'énergie suisse implanté en France.", "Spécialiste de la fourniture auprès des collectivités et des consommateurs avertis.", "Focus sur la transparence et l'énergie renouvelable."], offre: ["Offre Fixe Électricité : +29% HT/TRV avec prix fixe.", "Pas d'offre Gaz commercialisée.", "Transparence tarifaire avec contrats clairs."], remiseElec: "", remiseGaz: "", elec: {}, gaz: null },
+        "Gaz de Bordeaux": { entreprise: ["Fournisseur historique basé en Gironde depuis 1875.", "Service client 100% basé à Bordeaux, reconnu pour sa grande réactivité.", "Spécialiste reconnu pour les offres à prix fixe."], offre: ["Novafixe Elec : -5% / TRV avec prix fixe 1 an.", "Pas d'offre Gaz disponible actuellement dans cette sélection.", "Expertise historique et proximité locale."], remiseElec: "", remiseGaz: "", elec: {}, gaz: null }
     };
 
     let fournisseurSelectionne = "EDF";
@@ -445,9 +341,10 @@
 
                 const nomBrut = cols[0];
                 const nom = normaliserNom(nomBrut);
-                const kvaBrut = cols[1];
+                const kvaBrut = cols[1] ? cols[1].trim() : '';
 
                 if (nom && dataFournisseurs[nom]) {
+                    // Extraction des remises ELEC (colonne L - index 11) et GAZ (colonne M - index 12)
                     if (cols[11] && cols[11].trim() !== '') {
                         dataFournisseurs[nom].remiseElec = cols[11].trim();
                     }
@@ -455,7 +352,8 @@
                         dataFournisseurs[nom].remiseGaz = cols[12].trim();
                     }
 
-                    if (kvaBrut) {
+                    // Lecture Électricité (si une puissance est indiquée)
+                    if (kvaBrut !== '') {
                         const kva = kvaBrut.replace(/[^0-9]/g, '') + 'kVA';
 
                         if (!dataFournisseurs[nom].elec) dataFournisseurs[nom].elec = {};
@@ -475,20 +373,21 @@
                                 base: tarifBase
                             };
                         }
+                    }
 
-                        const aboGazBase = cleanNum(cols[7]);
-                        const prixGazBase = cleanNum(cols[8]);
-                        if (aboGazBase > 0 || prixGazBase > 0) {
-                            dataFournisseurs[nom].gaz = dataFournisseurs[nom].gaz || {};
-                            dataFournisseurs[nom].gaz["Base"] = { abonnement: aboGazBase, kwh: prixGazBase };
-                        }
+                    // Lecture Gaz (indépendant de la colonne puissance)
+                    const aboGazBase = cleanNum(cols[7]);
+                    const prixGazBase = cleanNum(cols[8]);
+                    if (aboGazBase > 0 || prixGazBase > 0) {
+                        dataFournisseurs[nom].gaz = dataFournisseurs[nom].gaz || {};
+                        dataFournisseurs[nom].gaz["Base"] = { abonnement: aboGazBase, kwh: prixGazBase };
+                    }
 
-                        const aboGazB1 = cleanNum(cols[9]);
-                        const prixGazB1 = cleanNum(cols[10]);
-                        if (aboGazB1 > 0 || prixGazB1 > 0) {
-                            dataFournisseurs[nom].gaz = dataFournisseurs[nom].gaz || {};
-                            dataFournisseurs[nom].gaz["B1"] = { abonnement: aboGazB1, kwh: prixGazB1 };
-                        }
+                    const aboGazB1 = cleanNum(cols[9]);
+                    const prixGazB1 = cleanNum(cols[10]);
+                    if (aboGazB1 > 0 || prixGazB1 > 0) {
+                        dataFournisseurs[nom].gaz = dataFournisseurs[nom].gaz || {};
+                        dataFournisseurs[nom].gaz["B1"] = { abonnement: aboGazB1, kwh: prixGazB1 };
                     }
                 }
             });
@@ -550,7 +449,6 @@
             tr.onclick = function() { selectionnerFournisseur(nom); };
 
             if (elecData && (elecData.aboBase > 0 || elecData.aboHPHC > 0 || elecData.base > 0 || elecData.hp > 0)) {
-                // Sélection dynamique du montant d'abonnement selon l'option choisie
                 let montantAbo = 0;
                 if (optionTarifaire === 'HPHC') {
                     montantAbo = elecData.aboHPHC > 0 ? elecData.aboHPHC : elecData.aboBase;
