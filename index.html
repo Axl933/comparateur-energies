@@ -451,7 +451,7 @@
     const URL_SCRIPT_GENERAL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=2146359891&single=true&output=csv";
 
     // LIENS CSV SPECIFIQUES DE VOS FEUILLES SCRIPT GOOGLE SHEETS
-    const URL_SCRIPT_PLENITUDE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=1661582761&single=true&output=csv";
+    const URL_SCRIPT_PLENITUDE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=50074924&single=true&output=csv";
     const URL_SCRIPT_ENGIE_ELEC = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=1214012203&single=true&output=csv";
     const URL_SCRIPT_ENGIE_GAZ = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=887654579&single=true&output=csv";
     const URL_SCRIPT_ENGIE_DUAL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?output=csv";
@@ -682,7 +682,6 @@
         document.querySelectorAll('.script-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
-        // Si nous sommes sur un script spécifique, nous rechargeons le script général pour naviguer dans les rubriques
         if (scriptActuelUrl !== URL_SCRIPT_GENERAL) {
             chargerScriptConseiller(URL_SCRIPT_GENERAL).then(() => {
                 afficherScript(cat);
@@ -698,7 +697,6 @@
         const subnav = document.getElementById('engie-subnav');
         subnav.style.display = 'flex';
 
-        // Sélectionne le premier sous-bouton (Engie Elec) par défaut lors de l'ouverture
         const firstSubBtn = subnav.querySelector('.sub-btn');
         if (firstSubBtn) {
             document.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active'));
