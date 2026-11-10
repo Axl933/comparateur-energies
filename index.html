@@ -398,7 +398,7 @@
         <!-- CARTE DÉTAILS FIGÉE -->
         <div class="details-card">
             <div class="details-header">
-                <h3 style="margin:0; font-size: 1.1rem;" id="details-name">ℹ️ Détails : EDF</h3>
+                <h3 style="margin:0; font-size: 1.1rem;" id="details-name">ℹ️ Détails (veuillez sélectionner un fournisseur) : EDF</h3>
                 <span class="details-badge">Fournisseur actif</span>
             </div>
 
@@ -1070,7 +1070,7 @@
         const item = dataFournisseurs[nom];
         if (!item) return;
 
-        document.getElementById('details-name').textContent = `ℹ️ Détails : ${nom}`;
+        document.getElementById('details-name').textContent = `ℹ️ Détails (veuillez sélectionner un fournisseur) : ${nom}`;
 
         const ulEntreprise = document.getElementById('details-entreprise');
         ulEntreprise.innerHTML = '';
