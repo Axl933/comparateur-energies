@@ -25,6 +25,10 @@
             margin: 0;
             padding: 15px;
             font-size: 0.85rem;
+            /* REDUCTION DE TAILLE DE 15% (ZOOM OUT DE 15%) */
+            zoom: 85%;
+            transform: scale(0.85);
+            transform-origin: top center;
         }
 
         .main-title {
@@ -53,7 +57,7 @@
             min-width: 350px;
             position: sticky;
             top: 15px;
-            height: calc(100vh - 40px);
+            height: calc(100vh / 0.85 - 30px);
             display: flex;
             flex-direction: column;
         }
@@ -224,13 +228,13 @@
             border-left: 3px solid #dc2626;
         }
 
-        /* CARTE FILTRES & DÉTAILS */
+        /* CARTE FILTRES & DÉTAILS - ÉPAISSEUR RÉDUITE AU MINIMUM */
         .filter-card {
             background-color: var(--primary-yellow);
-            border: 2px solid var(--border-yellow);
-            border-radius: 8px;
-            padding: 10px 15px;
-            margin-bottom: 18px;
+            border: 1.5px solid var(--border-yellow);
+            border-radius: 6px;
+            padding: 3px 10px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 15px;
@@ -246,12 +250,12 @@
 
         .filter-card label {
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .filter-card select {
-            padding: 6px 10px;
-            border-radius: 5px;
+            padding: 3px 8px;
+            border-radius: 4px;
             border: 1px solid #cbd5e1;
             font-size: 0.85rem;
             background-color: white;
@@ -262,8 +266,8 @@
             color: var(--blue-header);
             border-bottom: 2px solid var(--blue-header);
             padding-bottom: 4px;
-            margin-top: 22px;
-            margin-bottom: 12px;
+            margin-top: 18px;
+            margin-bottom: 10px;
             font-size: 1.15rem;
         }
 
