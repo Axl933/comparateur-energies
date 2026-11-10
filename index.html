@@ -205,3 +205,317 @@
                 <th>Fournisseur</th>
                 <th>Abonnement (€/mois)</th>
                 <th>Prix kWh Heures Pleines (€)</th>
+                <th>Prix kWh Heures Creuses (€)</th>
+                <th>Prix kWh Base (€)</th>
+            </tr>
+        </thead>
+        <tbody id="tbody-elec"></tbody>
+    </table>
+
+    <!-- SECTION GAZ -->
+    <h2 class="section-title">🔥 Gaz Naturel</h2>
+    <div class="filter-card">
+        <label for="select-gaz">Classe de consommation :</label>
+        <select id="select-gaz">
+            <option value="Base" selected>Base / B0 (Cuisine & Eau chaude)</option>
+            <option value="B1">B1 / B2I (Chauffage)</option>
+        </select>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Fournisseur</th>
+                <th>Abonnement (€/mois)</th>
+                <th>Prix kWh Gaz (€)</th>
+            </tr>
+        </thead>
+        <tbody id="tbody-gaz"></tbody>
+    </table>
+</div>
+
+<script>
+    const GOOGLE_SHEETS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?output=csv";
+
+    let dataFournisseurs = {
+        "EDF": {
+            entreprise: [
+                "Fournisseur Français créé en 1946 et leader sur le marché Français.",
+                "Fournisseur engagé dans la transition énergétique avec service client 100% basé en France.",
+                "Excellente satisfaction client : 9/10 sur +700 000 clients en 2025 et 4,6/5 sur Trustpilot."
+            ],
+            offre: [
+                "Électricité Zen Fixe : +5% HT/TRV avec prix fixe du kWh HT pendant 2 ans (abonnement non fixe).",
+                "Avantage Gaz 2 ans : -9,0% HT/PRV avec prix fixe du kWh HT pendant 2 ans (abonnement non fixe).",
+                "Offres stables assurant une visibilité tarifaire sur 24 mois."
+            ],
+            elec: {}, gaz: {}
+        },
+        "Engie": {
+            entreprise: [
+                "Acteur historique du gaz en France et 1er fournisseur d'électricité verte.",
+                "Service client basé en France et engagé dans le développement des énergies renouvelables.",
+                "Note globale de satisfaction client supérieure à 4/5."
+            ],
+            offre: [
+                "Elec Référence 3 ans : +24% / TRV avec prix fixe sur 3 ans.",
+                "Gaz Référence 3 ans : -10% / PRV avec prix fixe sur 3 ans.",
+                "Sérénité tarifaire à très long terme."
+            ],
+            elec: {}, gaz: {}
+        },
+        "Plenitude": {
+            entreprise: [
+                "Filiale du groupe Eni, l'un des leaders européens de l'énergie.",
+                "Marque orientée vers la transition énergétique et les solutions durables.",
+                "Présence internationale soutenue avec un service client disponible."
+            ],
+            offre: [
+                "Plenifix Elec 1 an : Tarifs ISO TRV avec prix fixe 1 an.",
+                "Plenifix Gaz 1 an : Tarifs ISO PRV avec prix fixe 1 an.",
+                "Abonnement légèrement supérieur avec prix fixe sur 12 mois."
+            ],
+            elec: {}, gaz: {}
+        },
+        "Alterna": {
+            entreprise: [
+                "Regroupement d'entreprises locales de distribution (ELD) indépendantes.",
+                "Fournisseur français engagé dans la proximité et la production locale.",
+                "Expertise reconnue dans la fourniture d'énergie verte."
+            ],
+            offre: [
+                "Mon Électricité Française : -5% / TRV avec prix fixe 1 an.",
+                "Mon Gaz Naturel : -5% / PRV avec prix fixe 1 an.",
+                "Offres locales et vertueuses pour le marché français."
+            ],
+            elec: {}, gaz: {}
+        },
+        "Octopus": {
+            entreprise: [
+                "Fournisseur britannique innovant, pionnier des technologies éco-responsables.",
+                "Élu meilleur fournisseur selon les avis clients (Trustpilot 4,8/5).",
+                "Système de cagnotte et de récompenses pour les économies d'énergie."
+            ],
+            offre: [
+                "OctoEco Fixe : +6% HT/TRV avec prix fixe 2 ans.",
+                "Eco Conso Gaz : -1% HT/PRV avec prix fixe 2 ans.",
+                "Accompagnement dynamique pour consommer moins et mieux."
+            ],
+            elec: {}, gaz: {}
+        },
+        "TotalEnergies": {
+            entreprise: [
+                "Premier alternatif privé en France avec plus de 5 millions de clients.",
+                "Service client reconnu 'Élu Service Client de l'Année' à plusieurs reprises.",
+                "Large éventail d'offres adaptées aux particuliers et professionnels."
+            ],
+            offre: [
+                "Offre Fixe 3 ans Elec : +16% HT/TRV avec prix fixe pendant 3 ans.",
+                "Offre Fixe 3 ans Gaz : -4% / PRV avec prix fixe pendant 3 ans.",
+                "Stabilité garantie sur une longue durée."
+            ],
+            elec: {}, gaz: {}
+        },
+        "Primeo Energie": {
+            entreprise: [
+                "Fournisseur et producteur d'énergie suisse implanté en France.",
+                "Spécialiste de la fourniture auprès des collectivités et des consommateurs avertis.",
+                "Focus sur la transparence et l'énergie renouvelable."
+            ],
+            offre: [
+                "Offre Fixe Électricité : +29% HT/TRV avec prix fixe.",
+                "Pas d'offre Gaz commercialisée.",
+                "Transparence tarifaire avec contrats clairs."
+            ],
+            elec: {}, gaz: null
+        },
+        "Gaz de Bordeaux": {
+            entreprise: [
+                "Fournisseur historique basé en Gironde depuis 1875.",
+                "Service client 100% basé à Bordeaux, reconnu pour sa grande réactivité.",
+                "Spécialiste reconnu pour les offres à prix fixe."
+            ],
+            offre: [
+                "Novafixe Elec : -5% / TRV avec prix fixe 1 an.",
+                "Pas d'offre Gaz disponible actuellement dans cette sélection.",
+                "Expertise historique et proximité locale."
+            ],
+            elec: {}, gaz: null
+        }
+    };
+
+    let fournisseurSelectionne = "EDF";
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById('select-elec').addEventListener('change', afficherTableauElec);
+        document.getElementById('select-gaz').addEventListener('change', afficherTableauGaz);
+
+        chargerDonneesGoogleSheets();
+    });
+
+    function cleanNum(val) {
+        if (!val) return 0;
+        const cleaned = val.replace(/[^0-9.,]/g, '').replace(',', '.');
+        return parseFloat(cleaned) || 0;
+    }
+
+    function normaliserNom(nom) {
+        if (!nom) return '';
+        const n = nom.trim();
+        if (n.toLowerCase().includes("edf")) return "EDF";
+        if (n.toLowerCase().includes("engie")) return "Engie";
+        if (n.toLowerCase().includes("plenitude")) return "Plenitude";
+        if (n.toLowerCase().includes("alterna")) return "Alterna";
+        if (n.toLowerCase().includes("octopus")) return "Octopus";
+        if (n.toLowerCase().includes("total")) return "TotalEnergies";
+        if (n.toLowerCase().includes("primeo")) return "Primeo Energie";
+        if (n.toLowerCase().includes("bordeaux")) return "Gaz de Bordeaux";
+        return n;
+    }
+
+    async function chargerDonneesGoogleSheets() {
+        try {
+            const response = await fetch(GOOGLE_SHEETS_CSV_URL);
+            const csvText = await response.text();
+            
+            const lines = csvText.split(/\r?\n/);
+
+            lines.forEach(line => {
+                if (!line.trim()) return;
+                const cols = line.split(',').map(c => c.replace(/^"|"$/g, '').trim());
+                if (cols.length < 4) return;
+
+                const nomBrut = cols[0];
+                const nom = normaliserNom(nomBrut);
+                const kvaBrut = cols[1];
+
+                if (nom && dataFournisseurs[nom] && kvaBrut) {
+                    const kva = kvaBrut.replace(/[^0-9]/g, '') + 'kVA';
+
+                    if (!dataFournisseurs[nom].elec) dataFournisseurs[nom].elec = {};
+                    
+                    const aboBase = cleanNum(cols[2]);
+                    const tarifBase = cleanNum(cols[3]);
+                    const aboHPHC = cleanNum(cols[4]);
+                    const tarifHP = cleanNum(cols[5]);
+                    const tarifHC = cleanNum(cols[6]);
+
+                    if (aboBase > 0 || aboHPHC > 0 || tarifBase > 0 || tarifHP > 0) {
+                        dataFournisseurs[nom].elec[kva] = {
+                            abonnement: aboHPHC > 0 ? aboHPHC : aboBase,
+                            hp: tarifHP,
+                            hc: tarifHC,
+                            base: tarifBase
+                        };
+                    }
+
+                    const aboGazBase = cleanNum(cols[7]);
+                    const prixGazBase = cleanNum(cols[8]);
+                    if (aboGazBase > 0 || prixGazBase > 0) {
+                        dataFournisseurs[nom].gaz = dataFournisseurs[nom].gaz || {};
+                        dataFournisseurs[nom].gaz["Base"] = { abonnement: aboGazBase, kwh: prixGazBase };
+                    }
+
+                    const aboGazB1 = cleanNum(cols[9]);
+                    const prixGazB1 = cleanNum(cols[10]);
+                    if (aboGazB1 > 0 || prixGazB1 > 0) {
+                        dataFournisseurs[nom].gaz = dataFournisseurs[nom].gaz || {};
+                        dataFournisseurs[nom].gaz["B1"] = { abonnement: aboGazB1, kwh: prixGazB1 };
+                    }
+                }
+            });
+        } catch (e) {
+            console.warn("Erreur lors du chargement des données CSV Google Sheets.", e);
+        }
+
+        afficherTableauElec();
+        afficherTableauGaz();
+        afficherDetails(fournisseurSelectionne);
+    }
+
+    function selectionnerFournisseur(nom) {
+        fournisseurSelectionne = nom;
+        document.querySelectorAll('tr.provider-row').forEach(row => {
+            row.classList.toggle('active', row.dataset.fournisseur === nom);
+        });
+        afficherDetails(nom);
+    }
+
+    function afficherTableauElec() {
+        const puissance = document.getElementById('select-elec').value;
+        const tbody = document.getElementById('tbody-elec');
+        tbody.innerHTML = '';
+
+        for (const [nom, data] of Object.entries(dataFournisseurs)) {
+            const elecData = data.elec ? data.elec[puissance] : null;
+            const tr = document.createElement('tr');
+            tr.className = `provider-row ${nom === fournisseurSelectionne ? 'active' : ''}`;
+            tr.dataset.fournisseur = nom;
+            tr.onclick = function() { selectionnerFournisseur(nom); };
+
+            if (elecData && (elecData.abonnement > 0 || elecData.base > 0 || elecData.hp > 0)) {
+                tr.innerHTML = `
+                    <td><strong>${nom}</strong></td>
+                    <td>${elecData.abonnement ? elecData.abonnement.toFixed(2) + ' €' : '-'}</td>
+                    <td>${elecData.hp ? elecData.hp.toFixed(4) + ' €' : '-'}</td>
+                    <td>${elecData.hc ? elecData.hc.toFixed(4) + ' €' : '-'}</td>
+                    <td>${elecData.base ? elecData.base.toFixed(4) + ' €' : '-'}</td>
+                `;
+            } else {
+                tr.innerHTML = `<td><strong>${nom}</strong></td><td colspan="4" class="no-gas">Non disponible</td>`;
+            }
+            tbody.appendChild(tr);
+        }
+    }
+
+    function afficherTableauGaz() {
+        const classeGaz = document.getElementById('select-gaz').value;
+        const tbody = document.getElementById('tbody-gaz');
+        tbody.innerHTML = '';
+
+        for (const [nom, data] of Object.entries(dataFournisseurs)) {
+            const gazData = data.gaz ? data.gaz[classeGaz] : null;
+            const tr = document.createElement('tr');
+            tr.className = `provider-row ${nom === fournisseurSelectionne ? 'active' : ''}`;
+            tr.dataset.fournisseur = nom;
+            tr.onclick = function() { selectionnerFournisseur(nom); };
+
+            if (gazData && (gazData.abonnement > 0 || gazData.kwh > 0)) {
+                tr.innerHTML = `
+                    <td><strong>${nom}</strong></td>
+                    <td>${gazData.abonnement.toFixed(2)} €</td>
+                    <td>${gazData.kwh.toFixed(4)} €</td>
+                `;
+            } else {
+                tr.innerHTML = `<td><strong>${nom}</strong></td><td colspan="2" class="no-gas">Pas d'offre gaz</td>`;
+            }
+            tbody.appendChild(tr);
+        }
+    }
+
+    function afficherDetails(nom) {
+        const item = dataFournisseurs[nom];
+        if (!item) return;
+
+        document.getElementById('details-name').textContent = `ℹ️ Détails : ${nom}`;
+
+        const ulEntreprise = document.getElementById('details-entreprise');
+        ulEntreprise.innerHTML = '';
+        (item.entreprise || []).forEach(txt => {
+            const li = document.createElement('li');
+            li.textContent = txt;
+            ulEntreprise.appendChild(li);
+        });
+
+        const ulOffre = document.getElementById('details-offre');
+        ulOffre.innerHTML = '';
+        (item.offre || []).forEach(txt => {
+            const li = document.createElement('li');
+            li.textContent = txt;
+            ulOffre.appendChild(li);
+        });
+    }
+</script>
+
+</body>
+</html>
