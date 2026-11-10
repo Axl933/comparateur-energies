@@ -39,18 +39,18 @@
             display: flex;
             gap: 20px;
             align-items: flex-start;
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
         }
 
         .left-col {
-            flex: 1.2;
+            flex: 1;
             min-width: 0;
         }
 
         .right-col {
-            flex: 0.8;
-            min-width: 320px;
+            flex: 1;
+            min-width: 350px;
             position: sticky;
             top: 15px;
             height: calc(100vh - 40px);
@@ -83,7 +83,7 @@
         /* BOUTONS NAVIGATION SCRIPT */
         .script-nav {
             display: flex;
-            gap: 5px;
+            gap: 6px;
             flex-wrap: wrap;
             margin-bottom: 12px;
             flex-shrink: 0;
@@ -92,9 +92,9 @@
         .script-btn {
             background-color: #f1f5f9;
             border: 1px solid #cbd5e1;
-            padding: 5px 10px;
+            padding: 6px 12px;
             border-radius: 15px;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
@@ -133,7 +133,7 @@
         .script-paragraph {
             margin-bottom: 8px;
             background-color: #f8fafc;
-            padding: 8px 10px;
+            padding: 8px 12px;
             border-radius: 4px;
             border: 1px solid #e2e8f0;
         }
@@ -141,6 +141,14 @@
         .tag-blue {
             color: #0284c7;
             font-weight: bold;
+        }
+
+        /* STYLE ROUGE POUR LES PHRASES IMPORTANTES / ALERTES */
+        .text-alert-red {
+            color: #dc2626;
+            font-weight: bold;
+            background-color: #fef2f2;
+            border-left: 3px solid #dc2626;
         }
 
         /* CARTE FILTRES & DÉTAILS */
@@ -288,7 +296,7 @@
             font-style: italic;
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 1024px) {
             .page-layout {
                 flex-direction: column;
             }
@@ -561,8 +569,10 @@
 
                 const textLower = text.toLowerCase();
                 let isTitle = false;
+                let isAlertRed = false;
 
-                if (textLower.includes("accueil client") || textLower.includes("avant d'aller plus loin")) {
+                // Titres de rubriques principaux
+                if (textLower.includes("accueil client")) {
                     currentCategory = 'accueil';
                     isTitle = true;
                 } else if (textLower.includes("découverte") || textLower.includes("reformulation")) {
@@ -576,11 +586,24 @@
                     isTitle = true;
                 }
 
-                text = text.replace(/\[(Validated|Recall at|New prospect\/User)\]/gi, '<span class="tag-blue">[$1]</span>');
+                // Inscription en rouge pour les phrases d'alerte / consentement
+                if (
+                    textLower.includes("enregistré") || 
+                    textLower.includes("qualité et de formation") ||
+                    textLower.includes("afin de réaliser le devis le plus précis") ||
+                    textLower.includes("hello watt vous propose également une application gratuite") ||
+                    textLower.includes("pour avoir accès à cette application")
+                ) {
+                    isAlertRed = true;
+                }
+
+                // Formatage des balises entre crochets en BLEU et GRAS
+                text = text.replace(/\[(Validated|Recall at|New prospect\/User|Obtenir le [^\]]+|Si oui du client)\]/gi, '<span class="tag-blue">[$1]</span>');
 
                 scriptSectionsData.push({
                     text: text,
                     isTitle: isTitle,
+                    isAlertRed: isAlertRed,
                     category: currentCategory
                 });
             });
@@ -606,13 +629,12 @@
                 container.appendChild(h);
             } else {
                 const p = document.createElement('div');
-                p.className = 'script-paragraph';
+                p.className = `script-paragraph ${item.isAlertRed ? 'text-alert-red' : ''}`;
                 p.innerHTML = item.text;
                 container.appendChild(p);
             }
         });
 
-        // Remontée automatique en haut de la liste lors d'un changement d'onglet
         container.scrollTop = 0;
     }
 
