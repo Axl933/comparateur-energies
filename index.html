@@ -43,8 +43,15 @@
             margin-bottom: 18px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
+            flex-wrap: wrap;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .filter-card label {
@@ -189,17 +196,27 @@
     </div>
 
     <!-- SECTION ÉLECTRICITÉ -->
-    <h2 class="section-title">⚡ Électricité (Trié du moins cher au plus cher selon le Tarif Base)</h2>
+    <h2 class="section-title">⚡ Électricité</h2>
     <div class="filter-card">
-        <label for="select-elec">Puissance souscrite :</label>
-        <select id="select-elec">
-            <option value="3kVA">3 kVA</option>
-            <option value="6kVA" selected>6 kVA</option>
-            <option value="9kVA">9 kVA</option>
-            <option value="12kVA">12 kVA</option>
-            <option value="15kVA">15 kVA</option>
-            <option value="18kVA">18 kVA</option>
-        </select>
+        <div class="filter-group">
+            <label for="select-elec">Puissance :</label>
+            <select id="select-elec">
+                <option value="3kVA">3 kVA</option>
+                <option value="6kVA" selected>6 kVA</option>
+                <option value="9kVA">9 kVA</option>
+                <option value="12kVA">12 kVA</option>
+                <option value="15kVA">15 kVA</option>
+                <option value="18kVA">18 kVA</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label for="select-option">Option tarifaire :</label>
+            <select id="select-option">
+                <option value="Base" selected>Base</option>
+                <option value="HPHC">Heures Pleines / Heures Creuses (HP/HC)</option>
+            </select>
+        </div>
     </div>
 
     <table>
@@ -207,22 +224,24 @@
             <tr>
                 <th>Fournisseur</th>
                 <th>Abonnement (€/mois)</th>
-                <th>Prix kWh Heures Pleines (€)</th>
-                <th>Prix kWh Heures Creuses (€)</th>
-                <th>Prix kWh Base (€) 🔽</th>
+                <th>Prix kWh HP (€) <span id="th-hp-sort"></span></th>
+                <th>Prix kWh HC (€)</th>
+                <th>Prix kWh Base (€) <span id="th-base-sort">🔽</span></th>
             </tr>
         </thead>
         <tbody id="tbody-elec"></tbody>
     </table>
 
     <!-- SECTION GAZ -->
-    <h2 class="section-title">🔥 Gaz Naturel (Trié du moins cher au plus cher selon le Prix kWh Gaz)</h2>
+    <h2 class="section-title">🔥 Gaz Naturel</h2>
     <div class="filter-card">
-        <label for="select-gaz">Classe de consommation :</label>
-        <select id="select-gaz">
-            <option value="Base" selected>Base / B0 (Cuisine & Eau chaude)</option>
-            <option value="B1">B1 / B2I (Chauffage)</option>
-        </select>
+        <div class="filter-group">
+            <label for="select-gaz">Classe de consommation :</label>
+            <select id="select-gaz">
+                <option value="Base" selected>Base / B0 (Cuisine & Eau chaude)</option>
+                <option value="B1">B1 / B2I (Chauffage)</option>
+            </select>
+        </div>
     </div>
 
     <table>
@@ -351,6 +370,7 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('select-elec').addEventListener('change', afficherTableauElec);
+        document.getElementById('select-option').addEventListener('change', afficherTableauElec);
         document.getElementById('select-gaz').addEventListener('change', afficherTableauGaz);
 
         chargerDonneesGoogleSheets();
@@ -465,20 +485,35 @@
 
     function afficherTableauElec() {
         const puissance = document.getElementById('select-elec').value;
+        const optionTarifaire = document.getElementById('select-option').value;
         const tbody = document.getElementById('tbody-elec');
         tbody.innerHTML = '';
 
-        // Préparation de la liste avec tri du Tarif Base du moins cher au plus cher
+        // Mise à jour de l'indicateur visuel de tri sur les colonnes
+        document.getElementById('th-base-sort').textContent = optionTarifaire === 'Base' ? '🔽' : '';
+        document.getElementById('th-hp-sort').textContent = optionTarifaire === 'HPHC' ? '🔽' : '';
+
+        // Préparation de la liste des fournisseurs
         let listeElec = [];
         for (const [nom, data] of Object.entries(dataFournisseurs)) {
             const elecData = data.elec ? data.elec[puissance] : null;
             listeElec.push({ nom: nom, data: elecData });
         }
 
-        // Tri par Tarif Base croissant (les offres non disponibles vont en bas)
+        // Tri dynamique selon l'option sélectionnée (Base ou HP/HC)
         listeElec.sort((a, b) => {
-            const priceA = (a.data && a.data.base > 0) ? a.data.base : 999;
-            const priceB = (b.data && b.data.base > 0) ? b.data.base : 999;
+            let priceA = 999;
+            let priceB = 999;
+
+            if (optionTarifaire === 'Base') {
+                priceA = (a.data && a.data.base > 0) ? a.data.base : 999;
+                priceB = (b.data && b.data.base > 0) ? b.data.base : 999;
+            } else {
+                // Option HP/HC : Tri sur le prix Heures Pleines (HP)
+                priceA = (a.data && a.data.hp > 0) ? a.data.hp : 999;
+                priceB = (b.data && b.data.hp > 0) ? b.data.hp : 999;
+            }
+
             return priceA - priceB;
         });
 
@@ -510,14 +545,12 @@
         const tbody = document.getElementById('tbody-gaz');
         tbody.innerHTML = '';
 
-        // Préparation de la liste avec tri du Prix kWh Gaz du moins cher au plus cher
         let listeGaz = [];
         for (const [nom, data] of Object.entries(dataFournisseurs)) {
             const gazData = data.gaz ? data.gaz[classeGaz] : null;
             listeGaz.push({ nom: nom, data: gazData });
         }
 
-        // Tri par Prix kWh Gaz croissant (les offres non disponibles vont en bas)
         listeGaz.sort((a, b) => {
             const priceA = (a.data && a.data.kwh > 0) ? a.data.kwh : 999;
             const priceB = (b.data && b.data.kwh > 0) ? b.data.kwh : 999;
