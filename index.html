@@ -478,8 +478,8 @@
         }
 
         .logo-cell {
-            width: 155px;
-            min-width: 155px;
+            width: 160px;
+            min-width: 160px;
             text-align: center !important;
             background-color: #ffffff;
             border-right: 1px solid #e2e8f0;
@@ -487,7 +487,7 @@
         }
 
         .provider-logo-box {
-            width: 120px;
+            width: 126px;
             height: 44px;
             margin: 0 auto;
             display: flex;
@@ -495,24 +495,16 @@
             justify-content: center;
             background-color: #ffffff;
             border-radius: 6px;
-            padding: 4px;
-            border: 1px solid #e2e8f0;
+            padding: 3px;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+            overflow: hidden;
         }
 
-        .provider-logo-box img {
-            max-width: 100%;
-            max-height: 100%;
-            width: auto;
-            height: auto;
-            object-fit: contain;
+        .provider-logo-box svg {
+            width: 100%;
+            height: 100%;
             display: block;
-        }
-
-        .logo-fallback {
-            font-weight: 800;
-            font-size: 0.85rem;
-            text-align: center;
-            line-height: 1.1;
         }
 
         .chips-container {
@@ -538,7 +530,8 @@
         .theme-alterna { background-color: #d1fae5; color: #064e3b; border-color: #6ee7b7; }
         .theme-octopus { background-color: #f3e8ff; color: #581c87; border-color: #d8b4fe; }
         .theme-total { background-color: #fee2e2; color: #7f1d1d; border-color: #fca5a5; }
-        .theme-primeo { background-color: #fef3c7; color: #78350f; border-color: #fcd34d; }
+        .theme-alpiq { background-color: #fef3c7; color: #78350f; border-color: #fcd34d; }
+        .theme-primeo { background-color: #ffedd5; color: #9a3412; border-color: #fdba74; }
         .theme-bordeaux { background-color: #ffe4e6; color: #881337; border-color: #fda4af; }
         .theme-default { background-color: #f1f5f9; color: #1e293b; border-color: #cbd5e1; }
 
@@ -726,18 +719,71 @@
     const URL_CARACTERISTIQUES = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=1949724626&single=true&output=csv";
     const URL_PRESTATIONS = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=1158477169&single=true&output=csv";
 
-    // LOGOS OFFICIELS DES FOURNISSEURS ET PRESTATAIRES (MÊME TAILLE UNIFORME)
-    const LOGOS_MAP = {
-        "edf": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/%C3%89lectricit%C3%A9_de_France_logo.svg/320px-%C3%89lectricit%C3%A9_de_France_logo.svg.png",
-        "engie": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Engie_logo.svg/320px-Engie_logo.svg.png",
-        "plenitude": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Plenitude_logo.svg/320px-Plenitude_logo.svg.png",
-        "alterna": "https://www.alterna-energie.fr/themes/custom/alterna/logo.svg",
-        "octopus": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Octopus_Energy_logo.svg/320px-Octopus_Energy_logo.svg.png",
-        "total": "https://upload.wikimedia.org/wikipedia/fr/thumb/f/f7/Logo_TotalEnergies.svg/320px-Logo_TotalEnergies.svg.png",
-        "primeo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Primeo_Energie_Logo.svg/320px-Primeo_Energie_Logo.svg.png",
-        "bordeaux": "https://upload.wikimedia.org/wikipedia/fr/thumb/4/49/Logo_Gaz_de_Bordeaux.svg/320px-Logo_Gaz_de_Bordeaux.svg.png",
-        "enedis": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Enedis_logo.svg/320px-Enedis_logo.svg.png",
-        "grdf": "https://upload.wikimedia.org/wikipedia/fr/thumb/0/07/Logo_GRDF.svg/320px-Logo_GRDF.svg.png"
+    // LOGOS SVG INTÉGRÉS (100% HORS-LIGNE, AFFICHAGE INSTANTANÉ ET TAILLE IDENTIQUE)
+    const SVG_LOGOS = {
+        "edf": `<svg viewBox="0 0 180 60" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(18, 12)">
+                <circle cx="18" cy="18" r="5" fill="#fe5815"/>
+                <ellipse cx="18" cy="6" rx="3.2" ry="5.5" fill="#fe5815"/>
+                <ellipse cx="18" cy="30" rx="3.2" ry="5.5" fill="#fe5815"/>
+                <ellipse cx="6" cy="18" rx="5.5" ry="3.2" fill="#fe5815"/>
+                <ellipse cx="30" cy="18" rx="5.5" ry="3.2" fill="#fe5815"/>
+                <text x="44" y="29" font-family="Arial, sans-serif" font-weight="900" font-size="33" fill="#001a70" letter-spacing="-1">edf</text>
+            </g>
+        </svg>`,
+        "engie": `<svg viewBox="0 0 180 60" xmlns="http://www.w3.org/2000/svg">
+            <path d="M25,17 Q90,3 155,17" fill="none" stroke="#00aaff" stroke-width="4" stroke-linecap="round"/>
+            <text x="90" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-weight="800" font-size="29" fill="#00aaff" letter-spacing="2">ENGIE</text>
+        </svg>`,
+        "plenitude": `<svg viewBox="0 0 180 60" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="26" cy="30" r="14" fill="#00a651"/>
+            <path d="M20,30 L26,22 L32,30 L26,38 Z" fill="#ffffff"/>
+            <text x="46" y="36" font-family="Arial, sans-serif" font-weight="800" font-size="22" fill="#007a3d">Plenitude</text>
+        </svg>`,
+        "alterna": `<svg viewBox="0 0 180 60" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18,40 L28,16 L38,40 Z" fill="#10b981"/>
+            <circle cx="28" cy="13" r="4" fill="#f59e0b"/>
+            <text x="45" y="37" font-family="Arial, sans-serif" font-weight="800" font-size="23" fill="#065f46">alterna</text>
+        </svg>`,
+        "octopus": `<svg viewBox="0 0 180 60" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="26" r="11" fill="#f050f8"/>
+            <circle cx="20" cy="24" r="2" fill="#ffffff"/>
+            <circle cx="28" cy="24" r="2" fill="#ffffff"/>
+            <path d="M15,36 Q18,44 21,36 Q24,44 27,36 Q30,44 33,36" fill="none" stroke="#f050f8" stroke-width="2.5"/>
+            <text x="42" y="29" font-family="Arial, sans-serif" font-weight="800" font-size="20" fill="#180048">octopus</text>
+            <text x="43" y="44" font-family="Arial, sans-serif" font-weight="600" font-size="14" fill="#f050f8">energy</text>
+        </svg>`,
+        "total": `<svg viewBox="0 0 180 60" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14,35 C14,15 40,12 42,28 C44,42 22,45 18,34" fill="none" stroke="#ed1c24" stroke-width="4.5" stroke-linecap="round"/>
+            <path d="M22,20 C35,14 48,25 40,38" fill="none" stroke="#0055a5" stroke-width="3.5" stroke-linecap="round"/>
+            <text x="52" y="28" font-family="Arial, sans-serif" font-weight="900" font-size="18" fill="#ed1c24">Total</text>
+            <text x="52" y="44" font-family="Arial, sans-serif" font-weight="800" font-size="17" fill="#0055a5">Energies</text>
+        </svg>`,
+        "alpiq": `<svg viewBox="0 0 180 60" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="16,42 29,16 42,42" fill="#e11d48"/>
+            <polygon points="27,42 36,24 46,42" fill="#f59e0b"/>
+            <text x="54" y="38" font-family="Arial, sans-serif" font-weight="900" font-size="27" fill="#1e293b" letter-spacing="1">ALPIQ</text>
+        </svg>`,
+        "primeo": `<svg viewBox="0 0 180 60" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="30" r="12" fill="#ea580c"/>
+            <text x="44" y="31" font-family="Arial, sans-serif" font-weight="800" font-size="21" fill="#1e293b">Primeo</text>
+            <text x="44" y="45" font-family="Arial, sans-serif" font-weight="600" font-size="13" fill="#ea580c">Energie</text>
+        </svg>`,
+        "bordeaux": `<svg viewBox="0 0 180 60" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24,14 C32,24 34,36 24,44 C14,36 16,24 24,14 Z" fill="#be123c"/>
+            <text x="42" y="28" font-family="Arial, sans-serif" font-weight="800" font-size="16" fill="#be123c">Gaz de</text>
+            <text x="42" y="44" font-family="Arial, sans-serif" font-weight="800" font-size="16" fill="#1e293b">Bordeaux</text>
+        </svg>`,
+        "enedis": `<svg viewBox="0 0 180 60" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="8" width="164" height="44" rx="8" fill="#1423dc"/>
+            <text x="90" y="37" text-anchor="middle" font-family="Arial, sans-serif" font-weight="800" font-size="25" fill="#ffffff" letter-spacing="0.5">Enedis</text>
+            <line x1="42" y1="43" x2="138" y2="43" stroke="#93c500" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>`,
+        "grdf": `<svg viewBox="0 0 180 60" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="8" width="164" height="44" rx="8" fill="#003366"/>
+            <path d="M28,39 C23,32 27,23 33,18 C32,25 38,27 36,35 C35,38 31,40 28,39 Z" fill="#f97316"/>
+            <text x="102" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-weight="900" font-size="25" fill="#ffffff" letter-spacing="1.5">GRDF</text>
+        </svg>`
     };
 
     let scriptSectionsData = [];
@@ -903,7 +949,7 @@
         return result;
     }
 
-    // PARSEUR MULTILIGNE (POUR ENEDIS / GRDF QUI ONT DES RETOURS À LA LIGNE DANS LES CELLULES)
+    // PARSEUR MULTILIGNE (POUR ENEDIS / GRDF ET CARACTÉRISTIQUES)
     function parseCSVMultiline(text) {
         const rows = [];
         let curRow = [];
@@ -948,9 +994,9 @@
         const n = nom.trim();
         if (n.toLowerCase().includes("edf")) return "EDF";
         if (n.toLowerCase().includes("engie")) return "Engie";
-        if (n.toLowerCase().includes("plenitude") || n.toLowerCase().includes("plénitude")) return "Plenitude";
+        if (n.toLowerCase().includes("plenitude") || n.toLowerCase().includes("plénitude") || n.toLowerCase().includes("pleniude")) return "Plenitude";
         if (n.toLowerCase().includes("alterna")) return "Alterna";
-        if (n.toLowerCase().includes("octopus")) return "Octopus";
+        if (n.toLowerCase().includes("octopus") || n.toLowerCase().includes("ocopus")) return "Octopus";
         if (n.toLowerCase().includes("total")) return "TotalEnergies";
         if (n.toLowerCase().includes("primeo")) return "Primeo Energie";
         if (n.toLowerCase().includes("bordeaux")) return "Gaz de Bordeaux";
@@ -961,10 +1007,11 @@
         const n = nom.toLowerCase();
         if (n.includes("edf")) return "theme-edf";
         if (n.includes("engie")) return "theme-engie";
-        if (n.includes("plenitude") || n.includes("plénitude")) return "theme-plenitude";
+        if (n.includes("plenitude") || n.includes("plénitude") || n.includes("pleniude")) return "theme-plenitude";
         if (n.includes("alterna")) return "theme-alterna";
-        if (n.includes("octopus")) return "theme-octopus";
+        if (n.includes("octopus") || n.includes("ocopus")) return "theme-octopus";
         if (n.includes("total")) return "theme-total";
+        if (n.includes("alpiq")) return "theme-alpiq";
         if (n.includes("primeo")) return "theme-primeo";
         if (n.includes("bordeaux")) return "theme-bordeaux";
         return "theme-default";
@@ -972,27 +1019,23 @@
 
     function getLogoHTML(nom) {
         const n = nom.toLowerCase();
-        let url = "";
-        if (n.includes("edf")) url = LOGOS_MAP.edf;
-        else if (n.includes("engie")) url = LOGOS_MAP.engie;
-        else if (n.includes("plenitude") || n.includes("plénitude")) url = LOGOS_MAP.plenitude;
-        else if (n.includes("alterna")) url = LOGOS_MAP.alterna;
-        else if (n.includes("octopus")) url = LOGOS_MAP.octopus;
-        else if (n.includes("total")) url = LOGOS_MAP.total;
-        else if (n.includes("primeo")) url = LOGOS_MAP.primeo;
-        else if (n.includes("bordeaux")) url = LOGOS_MAP.bordeaux;
-        else if (n.includes("enedis")) url = LOGOS_MAP.enedis;
-        else if (n.includes("grdf")) url = LOGOS_MAP.grdf;
+        let svgCode = "";
+        if (n.includes("edf")) svgCode = SVG_LOGOS.edf;
+        else if (n.includes("engie")) svgCode = SVG_LOGOS.engie;
+        else if (n.includes("plenitude") || n.includes("plénitude") || n.includes("pleniude")) svgCode = SVG_LOGOS.plenitude;
+        else if (n.includes("alterna")) svgCode = SVG_LOGOS.alterna;
+        else if (n.includes("octopus") || n.includes("ocopus")) svgCode = SVG_LOGOS.octopus;
+        else if (n.includes("total")) svgCode = SVG_LOGOS.total;
+        else if (n.includes("alpiq")) svgCode = SVG_LOGOS.alpiq;
+        else if (n.includes("primeo")) svgCode = SVG_LOGOS.primeo;
+        else if (n.includes("bordeaux")) svgCode = SVG_LOGOS.bordeaux;
+        else if (n.includes("enedis")) svgCode = SVG_LOGOS.enedis;
+        else if (n.includes("grdf")) svgCode = SVG_LOGOS.grdf;
 
-        if (url) {
-            return `
-                <div class="provider-logo-box" title="${nom}">
-                    <img src="${url}" alt="${nom}" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span class="logo-fallback" style="display:none;">${nom}</span>
-                </div>
-            `;
+        if (svgCode) {
+            return `<div class="provider-logo-box" title="${nom}">${svgCode}</div>`;
         }
-        return `<div class="provider-logo-box"><span class="logo-fallback">${nom}</span></div>`;
+        return `<div class="provider-logo-box"><strong style="font-size:0.85rem;">${nom}</strong></div>`;
     }
 
     async function chargerDonneesGoogleSheets() {
