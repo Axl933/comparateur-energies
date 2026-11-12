@@ -30,6 +30,11 @@
             transform-origin: top center;
         }
 
+        .main-container {
+            max-width: 1650px;
+            margin: 0 auto;
+        }
+
         .main-title {
             text-align: center;
             color: #0f172a;
@@ -39,13 +44,11 @@
             letter-spacing: 0.5px;
         }
 
-        /* DISPOSITION DEUX COLONNES */
+        /* DISPOSITION DEUX COLONNES (PARTIE HAUTE) */
         .page-layout {
             display: flex;
             gap: 20px;
             align-items: flex-start;
-            max-width: 1650px;
-            margin: 0 auto;
         }
 
         .left-col {
@@ -61,6 +64,12 @@
             height: calc(100vh / 0.88 - 30px);
             display: flex;
             flex-direction: column;
+        }
+
+        /* PARTIE BASSE PLEINE LARGEUR */
+        .full-width-bottom {
+            width: 100%;
+            margin-top: 15px;
         }
 
         /* CARTE SCRIPT COMPARATEUR */
@@ -293,7 +302,7 @@
         }
 
         .rank-sidebar {
-            width: 68px;
+            width: 78px;
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
@@ -301,7 +310,6 @@
         }
 
         .rank-header-spacer {
-            /* Hauteur alignée sur l'en-tête du tableau */
             border-bottom: 1px solid transparent;
         }
 
@@ -311,11 +319,11 @@
             justify-content: flex-end;
         }
 
-        .expensive-badge {
+        .cheapest-badge {
             display: inline-flex;
             align-items: center;
             gap: 3px;
-            padding: 2px 6px;
+            padding: 2px 7px;
             border-radius: 12px;
             font-size: 0.72rem;
             font-weight: 800;
@@ -323,22 +331,22 @@
             box-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
 
-        .exp-1 {
-            background-color: #fee2e2;
-            color: #b91c1c;
-            border: 1px solid #f87171;
+        .cheap-1 {
+            background-color: #dcfce7;
+            color: #15803d;
+            border: 1px solid #4ade80;
         }
 
-        .exp-2 {
-            background-color: #ffedd5;
-            color: #c2410c;
-            border: 1px solid #fb923c;
+        .cheap-2 {
+            background-color: #e0f2fe;
+            color: #0369a1;
+            border: 1px solid #38bdf8;
         }
 
-        .exp-3 {
-            background-color: #fef3c7;
-            color: #b45309;
-            border: 1px solid #fbbf24;
+        .cheap-3 {
+            background-color: #fef9c3;
+            color: #a16207;
+            border: 1px solid #facc15;
         }
 
         table {
@@ -452,7 +460,7 @@
             font-style: italic;
         }
 
-        /* TABLEAUX DU BAS (CARACTÉRISTIQUES & PRESTATIONS) */
+        /* TABLEAUX DU BAS PLEINE LARGEUR (CARACTÉRISTIQUES & PRESTATIONS) */
         .bottom-table {
             width: 100%;
             border-collapse: collapse;
@@ -466,35 +474,38 @@
         .bottom-table th {
             background-color: #e2e8f0;
             color: #0f172a;
-            padding: 10px 12px;
+            padding: 10px 14px;
+            font-size: 0.9rem;
         }
 
         .bottom-table td {
-            padding: 10px 12px;
+            padding: 10px 14px;
             vertical-align: middle;
             border-bottom: 1px solid #e2e8f0;
         }
 
         .provider-name-cell {
             font-weight: 700;
-            font-size: 0.9rem;
-            width: 160px;
+            font-size: 0.95rem;
+            width: 180px;
             white-space: nowrap;
+            background-color: #f8fafc;
+            border-right: 1px solid #e2e8f0;
         }
 
         .chips-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 7px;
+            gap: 8px;
         }
 
         .feature-chip {
-            padding: 5px 11px;
+            padding: 6px 12px;
             border-radius: 10px;
-            font-size: 0.8rem;
+            font-size: 0.82rem;
             font-weight: 500;
-            border: 1px solid rgba(0,0,0,0.1);
-            line-height: 1.3;
+            border: 1px solid rgba(0,0,0,0.12);
+            line-height: 1.35;
         }
 
         /* COULEURS LÉGÈRES ET LISIBLES PAR FOURNISSEUR */
@@ -526,107 +537,142 @@
 </head>
 <body>
 
-<h1 class="main-title">🛡️ Team Viking - all in ONE</h1>
+<div class="main-container">
+    <h1 class="main-title">🛡️ Team Viking - all in ONE</h1>
 
-<div class="page-layout">
-    <!-- COLONNE GAUCHE : COMPARATEUR, DÉTAILS ET TABLEAUX SUPPLÉMENTAIRES -->
-    <div class="left-col">
-        <!-- CARTE DÉTAILS FIGÉE -->
-        <div class="details-card">
-            <div class="details-header-dark">
-                <h3 style="margin:0; font-size: 1.05rem;" id="details-name">
-                    📋 Détails <span class="details-hint">(veuillez sélectionner un fournisseur)</span> : EDF
-                </h3>
-                <span class="details-badge">Fournisseur actif</span>
+    <!-- PARTIE HAUTE : COMPARATEUR A GAUCHE + SCRIPT COMPARATEUR A DROITE -->
+    <div class="page-layout">
+        <!-- COLONNE GAUCHE : COMPARATEUR ET DÉTAILS -->
+        <div class="left-col">
+            <!-- CARTE DÉTAILS FIGÉE -->
+            <div class="details-card">
+                <div class="details-header-dark">
+                    <h3 style="margin:0; font-size: 1.05rem;" id="details-name">
+                        📋 Détails <span class="details-hint">(veuillez sélectionner un fournisseur)</span> : EDF
+                    </h3>
+                    <span class="details-badge">Fournisseur actif</span>
+                </div>
+
+                <div class="info-box">
+                    <h4>Présentation fournisseur</h4>
+                    <ul id="details-entreprise"></ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Présentation Offre</h4>
+                    <ul id="details-offre"></ul>
+                </div>
             </div>
 
-            <div class="info-box">
-                <h4>Présentation fournisseur</h4>
-                <ul id="details-entreprise"></ul>
+            <!-- SECTION ÉLECTRICITÉ -->
+            <div class="dark-section-banner">
+                ⚡ Électricité <span class="section-subtitle-light">(veuillez sélectionner une puissance souscrite et une option tarifaire)</span>
+            </div>
+            <div class="filter-card">
+                <div class="filter-group">
+                    <label for="select-elec">Puissance :</label>
+                    <select id="select-elec">
+                        <option value="3kVA">3 kVA</option>
+                        <option value="6kVA" selected>6 kVA</option>
+                        <option value="9kVA">9 kVA</option>
+                        <option value="12kVA">12 kVA</option>
+                        <option value="15kVA">15 kVA</option>
+                        <option value="18kVA">18 kVA</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="select-option">Option tarifaire :</label>
+                    <select id="select-option">
+                        <option value="Base" selected>Base</option>
+                        <option value="HPHC">Heures Pleines / Heures Creuses (HP/HC)</option>
+                    </select>
+                </div>
             </div>
 
-            <div class="info-box">
-                <h4>Présentation Offre</h4>
-                <ul id="details-offre"></ul>
+            <div class="ranked-table-wrapper">
+                <div class="rank-sidebar" id="rank-sidebar-elec"></div>
+                <table id="table-elec">
+                    <thead>
+                        <tr>
+                            <th>Fournisseur</th>
+                            <th>Abonnement (€/mois)</th>
+                            <th>Prix kWh HP (€) <span id="th-hp-sort"></span></th>
+                            <th>Prix kWh HC (€)</th>
+                            <th>Prix kWh Base (€) <span id="th-base-sort">🔽</span></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-elec"></tbody>
+                </table>
+            </div>
+
+            <!-- SECTION GAZ -->
+            <div class="dark-section-banner">
+                🔥 Gaz Naturel <span class="section-subtitle-light">(veuillez sélectionner la classe de consommation)</span>
+            </div>
+            <div class="filter-card">
+                <div class="filter-group">
+                    <label for="select-gaz">Classe de consommation :</label>
+                    <select id="select-gaz">
+                        <option value="Base" selected>Base / B0 (Cuisine & Eau chaude)</option>
+                        <option value="B1">B1 / B2I (Chauffage)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="ranked-table-wrapper">
+                <div class="rank-sidebar" id="rank-sidebar-gaz"></div>
+                <table id="table-gaz">
+                    <thead>
+                        <tr>
+                            <th>Fournisseur</th>
+                            <th>Abonnement (€/mois)</th>
+                            <th>Prix kWh Gaz (€) 🔽</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-gaz"></tbody>
+                </table>
             </div>
         </div>
 
-        <!-- SECTION ÉLECTRICITÉ -->
-        <div class="dark-section-banner">
-            ⚡ Électricité <span class="section-subtitle-light">(veuillez sélectionner une puissance souscrite et une option tarifaire)</span>
-        </div>
-        <div class="filter-card">
-            <div class="filter-group">
-                <label for="select-elec">Puissance :</label>
-                <select id="select-elec">
-                    <option value="3kVA">3 kVA</option>
-                    <option value="6kVA" selected>6 kVA</option>
-                    <option value="9kVA">9 kVA</option>
-                    <option value="12kVA">12 kVA</option>
-                    <option value="15kVA">15 kVA</option>
-                    <option value="18kVA">18 kVA</option>
-                </select>
-            </div>
+        <!-- COLONNE DROITE : SCRIPT COMPARATEUR -->
+        <div class="right-col">
+            <div class="script-card">
+                <h2>📞 Script Comparateur</h2>
+                
+                <!-- BOUTONS FILTRES SCRIPT -->
+                <div class="script-nav">
+                    <button class="script-btn active" onclick="filtrerScript('all', this)">Tout</button>
+                    <button class="script-btn" onclick="filtrerScript('accueil', this)">Accueil</button>
+                    <button class="script-btn" onclick="filtrerScript('decouverte', this)">Découverte</button>
+                    <button class="script-btn" onclick="filtrerScript('argumentaire', this)">Argumentaire</button>
+                    <button class="script-btn" onclick="filtrerScript('contrat', this)">Contrat</button>
+                    <button class="script-btn" onclick="chargerEtAfficherScript(URL_SCRIPT_PLENITUDE, this)">Script Plénitude</button>
+                    <button class="script-btn" onclick="ouvrirMenuEngie(this)">Script Engie</button>
+                </div>
 
-            <div class="filter-group">
-                <label for="select-option">Option tarifaire :</label>
-                <select id="select-option">
-                    <option value="Base" selected>Base</option>
-                    <option value="HPHC">Heures Pleines / Heures Creuses (HP/HC)</option>
-                </select>
-            </div>
-        </div>
+                <!-- SOUS-BOUTONS ENGIE -->
+                <div class="script-subnav" id="engie-subnav">
+                    <button class="script-btn sub-btn" onclick="chargerEtAfficherScript(URL_SCRIPT_ENGIE_ELEC, this)">Script Engie ELEC</button>
+                    <button class="script-btn sub-btn" onclick="chargerEtAfficherScript(URL_SCRIPT_ENGIE_GAZ, this)">Script Engie Gaz</button>
+                    <button class="script-btn sub-btn" onclick="chargerEtAfficherScript(URL_SCRIPT_ENGIE_DUAL, this)">Script Engie Dual</button>
+                </div>
 
-        <div class="ranked-table-wrapper">
-            <div class="rank-sidebar" id="rank-sidebar-elec"></div>
-            <table id="table-elec">
-                <thead>
-                    <tr>
-                        <th>Fournisseur</th>
-                        <th>Abonnement (€/mois)</th>
-                        <th>Prix kWh HP (€) <span id="th-hp-sort"></span></th>
-                        <th>Prix kWh HC (€)</th>
-                        <th>Prix kWh Base (€) <span id="th-base-sort">🔽</span></th>
-                    </tr>
-                </thead>
-                <tbody id="tbody-elec"></tbody>
-            </table>
-        </div>
-
-        <!-- SECTION GAZ -->
-        <div class="dark-section-banner">
-            🔥 Gaz Naturel <span class="section-subtitle-light">(veuillez sélectionner la classe de consommation)</span>
-        </div>
-        <div class="filter-card">
-            <div class="filter-group">
-                <label for="select-gaz">Classe de consommation :</label>
-                <select id="select-gaz">
-                    <option value="Base" selected>Base / B0 (Cuisine & Eau chaude)</option>
-                    <option value="B1">B1 / B2I (Chauffage)</option>
-                </select>
+                <div class="script-content" id="script-container">
+                    <em>Chargement du script...</em>
+                </div>
             </div>
         </div>
+    </div>
 
-        <div class="ranked-table-wrapper">
-            <div class="rank-sidebar" id="rank-sidebar-gaz"></div>
-            <table id="table-gaz">
-                <thead>
-                    <tr>
-                        <th>Fournisseur</th>
-                        <th>Abonnement (€/mois)</th>
-                        <th>Prix kWh Gaz (€) 🔽</th>
-                    </tr>
-                </thead>
-                <tbody id="tbody-gaz"></tbody>
-            </table>
-        </div>
-
+    <!-- PARTIE BASSE PLEINE LARGEUR : EN DESSOUS DU COMPARATEUR ET DU SCRIPT -->
+    <div class="full-width-bottom">
         <!-- NOUVEAU TABLEAU 1 : CARACTÉRISTIQUES DES FOURNISSEURS -->
-        <div class="dark-section-banner">
+        <div class="dark-section-banner" id="banner-caracteristiques">
             📊 Caractéristiques des Fournisseurs
         </div>
         <table class="bottom-table">
-            <thead>
+            <thead id="thead-caracteristiques">
                 <tr>
                     <th>Fournisseur</th>
                     <th>Caractéristiques & Avantages</th>
@@ -638,11 +684,11 @@
         </table>
 
         <!-- NOUVEAU TABLEAU 2 : PRESTATION ENEDIS ET GRDF -->
-        <div class="dark-section-banner">
+        <div class="dark-section-banner" id="banner-prestations">
             🛠️ Prestation Enedis et GRDF
         </div>
         <table class="bottom-table">
-            <thead>
+            <thead id="thead-prestations">
                 <tr>
                     <th>Prestataire</th>
                     <th>Prestations & Tarifs</th>
@@ -652,35 +698,6 @@
                 <tr><td colspan="2"><em>Chargement des prestations Enedis et GRDF...</em></td></tr>
             </tbody>
         </table>
-    </div>
-
-    <!-- COLONNE DROITE : SCRIPT COMPARATEUR -->
-    <div class="right-col">
-        <div class="script-card">
-            <h2>📞 Script Comparateur</h2>
-            
-            <!-- BOUTONS FILTRES SCRIPT -->
-            <div class="script-nav">
-                <button class="script-btn active" onclick="filtrerScript('all', this)">Tout</button>
-                <button class="script-btn" onclick="filtrerScript('accueil', this)">Accueil</button>
-                <button class="script-btn" onclick="filtrerScript('decouverte', this)">Découverte</button>
-                <button class="script-btn" onclick="filtrerScript('argumentaire', this)">Argumentaire</button>
-                <button class="script-btn" onclick="filtrerScript('contrat', this)">Contrat</button>
-                <button class="script-btn" onclick="chargerEtAfficherScript(URL_SCRIPT_PLENITUDE, this)">Script Plénitude</button>
-                <button class="script-btn" onclick="ouvrirMenuEngie(this)">Script Engie</button>
-            </div>
-
-            <!-- SOUS-BOUTONS ENGIE -->
-            <div class="script-subnav" id="engie-subnav">
-                <button class="script-btn sub-btn" onclick="chargerEtAfficherScript(URL_SCRIPT_ENGIE_ELEC, this)">Script Engie ELEC</button>
-                <button class="script-btn sub-btn" onclick="chargerEtAfficherScript(URL_SCRIPT_ENGIE_GAZ, this)">Script Engie Gaz</button>
-                <button class="script-btn sub-btn" onclick="chargerEtAfficherScript(URL_SCRIPT_ENGIE_DUAL, this)">Script Engie Dual</button>
-            </div>
-
-            <div class="script-content" id="script-container">
-                <em>Chargement du script...</em>
-            </div>
-        </div>
     </div>
 </div>
 
@@ -963,13 +980,30 @@
             const csvText = await response.text();
             const lines = csvText.split(/\r?\n/).filter(l => l.trim() !== '');
             const tbody = document.getElementById('tbody-caracteristiques');
+            const thead = document.getElementById('thead-caracteristiques');
             tbody.innerHTML = '';
 
             if (lines.length === 0) return;
 
-            const headers = parseCSVLine(lines[0]);
+            // Extraction des en-têtes du CSV
+            let headerIndex = 0;
+            let headers = parseCSVLine(lines[0]);
+            // Si la première ligne ne contient qu'un titre global sur 1 seule colonne, l'en-tête réel est en ligne 2
+            if (headers.filter(h => h !== '').length <= 1 && lines.length > 1) {
+                headerIndex = 1;
+                headers = parseCSVLine(lines[1]);
+            }
 
-            for (let i = 1; i < lines.length; i++) {
+            const firstColTitle = headers[0] && headers[0].trim() !== '' ? headers[0].trim() : 'Fournisseur';
+            const otherHeaders = headers.slice(1).filter(h => h && h.trim() !== '');
+            thead.innerHTML = `
+                <tr>
+                    <th>${firstColTitle}</th>
+                    <th>${otherHeaders.length > 0 ? otherHeaders.join(' • ') : 'Caractéristiques'}</th>
+                </tr>
+            `;
+
+            for (let i = headerIndex + 1; i < lines.length; i++) {
                 const cols = parseCSVLine(lines[i]);
                 const fournisseur = cols[0] ? cols[0].trim() : '';
                 if (!fournisseur) continue;
@@ -981,9 +1015,7 @@
                     const val = cols[j] ? cols[j].trim() : '';
                     if (val !== '') {
                         const headerName = headers[j] ? headers[j].trim() : '';
-                        const labelText = (headerName && headerName.toLowerCase() !== 'caractéristiques' && headerName.toLowerCase() !== 'caracteristiques') 
-                            ? `<strong>${headerName} :</strong> ${val}` 
-                            : val;
+                        const labelText = headerName ? `<strong>${headerName} :</strong> ${val}` : val;
                         chipsHTML += `<div class="feature-chip ${themeClass}">${labelText}</div>`;
                     }
                 }
@@ -1007,14 +1039,32 @@
             const csvText = await response.text();
             const lines = csvText.split(/\r?\n/).filter(l => l.trim() !== '');
             const tbody = document.getElementById('tbody-prestations');
+            const thead = document.getElementById('thead-prestations');
             tbody.innerHTML = '';
 
             if (lines.length === 0) return;
 
+            // Extraction des en-têtes du CSV
+            let headerIndex = 0;
+            let headers = parseCSVLine(lines[0]);
+            if (headers.filter(h => h !== '').length <= 1 && lines.length > 1) {
+                headerIndex = 1;
+                headers = parseCSVLine(lines[1]);
+            }
+
+            const firstColTitle = headers[0] && headers[0].trim() !== '' ? headers[0].trim() : 'Prestataire';
+            const otherHeaders = headers.slice(1).filter(h => h && h.trim() !== '');
+            thead.innerHTML = `
+                <tr>
+                    <th>${firstColTitle}</th>
+                    <th>${otherHeaders.length > 0 ? otherHeaders.join(' • ') : 'Prestations & Tarifs'}</th>
+                </tr>
+            `;
+
             // Regroupement par prestataire (Enedis / GRDF)
             let grouped = {};
 
-            for (let i = 1; i < lines.length; i++) {
+            for (let i = headerIndex + 1; i < lines.length; i++) {
                 const cols = parseCSVLine(lines[i]);
                 if (cols.length < 2) continue;
 
@@ -1026,13 +1076,22 @@
 
                 if (!grouped[prestataire]) grouped[prestataire] = [];
 
-                // Si la feuille est formatée en colonnes (Prestataire | Prestation | Prix)
+                // Si format en lignes (Prestataire | Prestation | Tarif / Délai)
                 if (cols.length >= 3 && cols[2].trim() !== '') {
-                    grouped[prestataire].push(`<strong>${cols[1].trim()}</strong> : ${cols[2].trim()}`);
+                    let details = [];
+                    for (let j = 2; j < cols.length; j++) {
+                        if (cols[j] && cols[j].trim() !== '') {
+                            const hName = headers[j] ? headers[j].trim() : '';
+                            details.push(hName ? `${hName} : <strong>${cols[j].trim()}</strong>` : `<strong>${cols[j].trim()}</strong>`);
+                        }
+                    }
+                    grouped[prestataire].push(`<strong>${cols[1].trim()}</strong> (${details.join(' | ')})`);
                 } else {
+                    // Si format en colonnes par prestation avec l'en-tête comme nom de prestation
                     for (let j = 1; j < cols.length; j++) {
                         if (cols[j] && cols[j].trim() !== '') {
-                            grouped[prestataire].push(cols[j].trim());
+                            const hName = headers[j] ? headers[j].trim() : '';
+                            grouped[prestataire].push(hName ? `<strong>${hName} :</strong> ${cols[j].trim()}` : cols[j].trim());
                         }
                     }
                 }
@@ -1288,15 +1347,15 @@
             listeElec.push({ nom: nom, data: elecData, sortPrice: price });
         }
 
-        // Tri croissant (moins cher en haut, plus cher en bas)
+        // Tri croissant (moins cher en haut)
         listeElec.sort((a, b) => a.sortPrice - b.sortPrice);
 
-        // Identification des 3 plus chers parmi ceux ayant un tarif valide
+        // Identification des 3 MOINS chers parmi ceux ayant un tarif valide
         const valides = listeElec.filter(x => x.sortPrice < 999);
-        const top3Expensive = {};
-        if (valides.length >= 1) top3Expensive[valides[valides.length - 1].nom] = 1;
-        if (valides.length >= 2) top3Expensive[valides[valides.length - 2].nom] = 2;
-        if (valides.length >= 3) top3Expensive[valides[valides.length - 3].nom] = 3;
+        const top3Cheapest = {};
+        if (valides.length >= 1) top3Cheapest[valides[0].nom] = 1;
+        if (valides.length >= 2) top3Cheapest[valides[1].nom] = 2;
+        if (valides.length >= 3) top3Cheapest[valides[2].nom] = 3;
 
         listeElec.forEach(item => {
             const nom = item.nom;
@@ -1306,7 +1365,7 @@
             const tr = document.createElement('tr');
             tr.className = `provider-row ${nom === fournisseurSelectionne ? 'active' : ''}`;
             tr.dataset.fournisseur = nom;
-            if (top3Expensive[nom]) tr.dataset.expensiveRank = top3Expensive[nom];
+            if (top3Cheapest[nom]) tr.dataset.cheapestRank = top3Cheapest[nom];
             tr.onclick = function() { selectionnerFournisseur(nom); };
 
             if (elecData && (elecData.aboBase > 0 || elecData.aboHPHC > 0 || elecData.base > 0 || elecData.hp > 0)) {
@@ -1347,11 +1406,12 @@
 
         listeGaz.sort((a, b) => a.sortPrice - b.sortPrice);
 
+        // Identification des 3 MOINS chers pour le gaz
         const valides = listeGaz.filter(x => x.sortPrice < 999);
-        const top3Expensive = {};
-        if (valides.length >= 1) top3Expensive[valides[valides.length - 1].nom] = 1;
-        if (valides.length >= 2) top3Expensive[valides[valides.length - 2].nom] = 2;
-        if (valides.length >= 3) top3Expensive[valides[valides.length - 3].nom] = 3;
+        const top3Cheapest = {};
+        if (valides.length >= 1) top3Cheapest[valides[0].nom] = 1;
+        if (valides.length >= 2) top3Cheapest[valides[1].nom] = 2;
+        if (valides.length >= 3) top3Cheapest[valides[2].nom] = 3;
 
         listeGaz.forEach(item => {
             const nom = item.nom;
@@ -1361,7 +1421,7 @@
             const tr = document.createElement('tr');
             tr.className = `provider-row ${nom === fournisseurSelectionne ? 'active' : ''}`;
             tr.dataset.fournisseur = nom;
-            if (top3Expensive[nom]) tr.dataset.expensiveRank = top3Expensive[nom];
+            if (top3Cheapest[nom]) tr.dataset.cheapestRank = top3Cheapest[nom];
             tr.onclick = function() { selectionnerFournisseur(nom); };
 
             if (gazData && (gazData.abonnement > 0 || gazData.kwh > 0)) {
@@ -1379,7 +1439,7 @@
         setTimeout(alignerBadgesClassement, 0);
     }
 
-    // Génère les icônes fixes en dehors à gauche du tableau alignées exactement avec chaque ligne
+    // Génère les icônes fixes en dehors à gauche du tableau pour les 3 MOINS chers
     function syncSidebar(tableId, sidebarId) {
         const table = document.getElementById(tableId);
         const sidebar = document.getElementById(sidebarId);
@@ -1398,13 +1458,13 @@
             slot.className = 'rank-slot';
             slot.style.height = tr.offsetHeight + 'px';
 
-            const rank = tr.dataset.expensiveRank;
+            const rank = tr.dataset.cheapestRank;
             if (rank) {
                 const badge = document.createElement('span');
-                badge.className = `expensive-badge exp-${rank}`;
-                if (rank === '1') badge.innerHTML = '🔺 1er +cher';
-                else if (rank === '2') badge.innerHTML = '🔸 2e +cher';
-                else if (rank === '3') badge.innerHTML = '▫️ 3e +cher';
+                badge.className = `cheapest-badge cheap-${rank}`;
+                if (rank === '1') badge.innerHTML = '🥇 1er -cher';
+                else if (rank === '2') badge.innerHTML = '🥈 2e -cher';
+                else if (rank === '3') badge.innerHTML = '🥉 3e -cher';
                 slot.appendChild(badge);
             }
             sidebar.appendChild(slot);
