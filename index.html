@@ -471,32 +471,55 @@
             margin-bottom: 22px;
         }
 
-        .bottom-table th {
-            background-color: #e2e8f0;
-            color: #0f172a;
-            padding: 10px 14px;
-            font-size: 0.9rem;
-        }
-
         .bottom-table td {
-            padding: 10px 14px;
+            padding: 12px 14px;
             vertical-align: middle;
             border-bottom: 1px solid #e2e8f0;
         }
 
-        .provider-name-cell {
-            font-weight: 700;
-            font-size: 0.95rem;
-            width: 180px;
-            white-space: nowrap;
-            background-color: #f8fafc;
+        .logo-cell {
+            width: 155px;
+            min-width: 155px;
+            text-align: center !important;
+            background-color: #ffffff;
             border-right: 1px solid #e2e8f0;
+            padding: 10px !important;
+        }
+
+        .provider-logo-box {
+            width: 120px;
+            height: 44px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+            border-radius: 6px;
+            padding: 4px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .provider-logo-box img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .logo-fallback {
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-align: center;
+            line-height: 1.1;
         }
 
         .chips-container {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
+            width: 100%;
         }
 
         .feature-chip {
@@ -668,32 +691,20 @@
     <!-- PARTIE BASSE PLEINE LARGEUR : EN DESSOUS DU COMPARATEUR ET DU SCRIPT -->
     <div class="full-width-bottom">
         <!-- NOUVEAU TABLEAU 1 : CARACTÉRISTIQUES DES FOURNISSEURS -->
-        <div class="dark-section-banner" id="banner-caracteristiques">
+        <div class="dark-section-banner">
             📊 Caractéristiques des Fournisseurs
         </div>
         <table class="bottom-table">
-            <thead id="thead-caracteristiques">
-                <tr>
-                    <th>Fournisseur</th>
-                    <th>Caractéristiques & Avantages</th>
-                </tr>
-            </thead>
             <tbody id="tbody-caracteristiques">
                 <tr><td colspan="2"><em>Chargement des caractéristiques...</em></td></tr>
             </tbody>
         </table>
 
         <!-- NOUVEAU TABLEAU 2 : PRESTATION ENEDIS ET GRDF -->
-        <div class="dark-section-banner" id="banner-prestations">
+        <div class="dark-section-banner">
             🛠️ Prestation Enedis et GRDF
         </div>
         <table class="bottom-table">
-            <thead id="thead-prestations">
-                <tr>
-                    <th>Prestataire</th>
-                    <th>Prestations & Tarifs</th>
-                </tr>
-            </thead>
             <tbody id="tbody-prestations">
                 <tr><td colspan="2"><em>Chargement des prestations Enedis et GRDF...</em></td></tr>
             </tbody>
@@ -714,6 +725,20 @@
     // NOUVEAUX LIENS CSV POUR LES TABLEAUX DU BAS
     const URL_CARACTERISTIQUES = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=1949724626&single=true&output=csv";
     const URL_PRESTATIONS = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=1158477169&single=true&output=csv";
+
+    // LOGOS OFFICIELS DES FOURNISSEURS ET PRESTATAIRES (MÊME TAILLE UNIFORME)
+    const LOGOS_MAP = {
+        "edf": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/%C3%89lectricit%C3%A9_de_France_logo.svg/320px-%C3%89lectricit%C3%A9_de_France_logo.svg.png",
+        "engie": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Engie_logo.svg/320px-Engie_logo.svg.png",
+        "plenitude": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Plenitude_logo.svg/320px-Plenitude_logo.svg.png",
+        "alterna": "https://www.alterna-energie.fr/themes/custom/alterna/logo.svg",
+        "octopus": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Octopus_Energy_logo.svg/320px-Octopus_Energy_logo.svg.png",
+        "total": "https://upload.wikimedia.org/wikipedia/fr/thumb/f/f7/Logo_TotalEnergies.svg/320px-Logo_TotalEnergies.svg.png",
+        "primeo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Primeo_Energie_Logo.svg/320px-Primeo_Energie_Logo.svg.png",
+        "bordeaux": "https://upload.wikimedia.org/wikipedia/fr/thumb/4/49/Logo_Gaz_de_Bordeaux.svg/320px-Logo_Gaz_de_Bordeaux.svg.png",
+        "enedis": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Enedis_logo.svg/320px-Enedis_logo.svg.png",
+        "grdf": "https://upload.wikimedia.org/wikipedia/fr/thumb/0/07/Logo_GRDF.svg/320px-Logo_GRDF.svg.png"
+    };
 
     let scriptSectionsData = [];
     let scriptActuelUrl = URL_SCRIPT_GENERAL;
@@ -858,23 +883,44 @@
         return parseFloat(cleaned) || 0;
     }
 
-    function parseCSVLine(text) {
-        let result = [];
-        let cur = '';
+    // PARSEUR CSV COMPLET QUI GÈRE LES SAUTS DE LIGNE À L'INTÉRIEUR DES CELLULES ENTRE GUILLEMETS
+    function parseCSVFull(text) {
+        const rows = [];
+        let curRow = [];
+        let curCell = '';
         let inQuotes = false;
+
         for (let i = 0; i < text.length; i++) {
-            let c = text[i];
+            const c = text[i];
+            const next = text[i + 1];
+
             if (c === '"') {
-                inQuotes = !inQuotes;
+                if (inQuotes && next === '"') {
+                    curCell += '"';
+                    i++;
+                } else {
+                    inQuotes = !inQuotes;
+                }
             } else if (c === ',' && !inQuotes) {
-                result.push(cur.trim().replace(/^"|"$/g, ''));
-                cur = '';
+                curRow.push(curCell.trim());
+                curCell = '';
+            } else if ((c === '\n' || (c === '\r' && next === '\n')) && !inQuotes) {
+                if (c === '\r') i++;
+                curRow.push(curCell.trim());
+                if (curRow.some(cell => cell !== '')) {
+                    rows.push(curRow);
+                }
+                curRow = [];
+                curCell = '';
             } else {
-                cur += c;
+                curCell += c;
             }
         }
-        result.push(cur.trim().replace(/^"|"$/g, ''));
-        return result;
+        curRow.push(curCell.trim());
+        if (curRow.some(cell => cell !== '')) {
+            rows.push(curRow);
+        }
+        return rows;
     }
 
     function normaliserNom(nom) {
@@ -904,16 +950,38 @@
         return "theme-default";
     }
 
+    function getLogoHTML(nom) {
+        const n = nom.toLowerCase();
+        let url = "";
+        if (n.includes("edf")) url = LOGOS_MAP.edf;
+        else if (n.includes("engie")) url = LOGOS_MAP.engie;
+        else if (n.includes("plenitude") || n.includes("plénitude")) url = LOGOS_MAP.plenitude;
+        else if (n.includes("alterna")) url = LOGOS_MAP.alterna;
+        else if (n.includes("octopus")) url = LOGOS_MAP.octopus;
+        else if (n.includes("total")) url = LOGOS_MAP.total;
+        else if (n.includes("primeo")) url = LOGOS_MAP.primeo;
+        else if (n.includes("bordeaux")) url = LOGOS_MAP.bordeaux;
+        else if (n.includes("enedis")) url = LOGOS_MAP.enedis;
+        else if (n.includes("grdf")) url = LOGOS_MAP.grdf;
+
+        if (url) {
+            return `
+                <div class="provider-logo-box" title="${nom}">
+                    <img src="${url}" alt="${nom}" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="logo-fallback" style="display:none;">${nom}</span>
+                </div>
+            `;
+        }
+        return `<div class="provider-logo-box"><span class="logo-fallback">${nom}</span></div>`;
+    }
+
     async function chargerDonneesGoogleSheets() {
         try {
             const response = await fetch(GOOGLE_SHEETS_PRICES_URL);
             const csvText = await response.text();
-            
-            const lines = csvText.split(/\r?\n/);
+            const rows = parseCSVFull(csvText);
 
-            lines.forEach(line => {
-                if (!line.trim()) return;
-                const cols = parseCSVLine(line);
+            rows.forEach(cols => {
                 if (cols.length < 3) return;
 
                 const nomBrut = cols[0];
@@ -978,33 +1046,22 @@
         try {
             const response = await fetch(URL_CARACTERISTIQUES);
             const csvText = await response.text();
-            const lines = csvText.split(/\r?\n/).filter(l => l.trim() !== '');
+            const rows = parseCSVFull(csvText);
             const tbody = document.getElementById('tbody-caracteristiques');
-            const thead = document.getElementById('thead-caracteristiques');
             tbody.innerHTML = '';
 
-            if (lines.length === 0) return;
+            if (rows.length === 0) return;
 
-            // Extraction des en-têtes du CSV
             let headerIndex = 0;
-            let headers = parseCSVLine(lines[0]);
-            // Si la première ligne ne contient qu'un titre global sur 1 seule colonne, l'en-tête réel est en ligne 2
-            if (headers.filter(h => h !== '').length <= 1 && lines.length > 1) {
+            let headers = rows[0];
+            if (headers.filter(h => h !== '').length <= 1 && rows.length > 1) {
                 headerIndex = 1;
-                headers = parseCSVLine(lines[1]);
+                headers = rows[1];
             }
 
-            const firstColTitle = headers[0] && headers[0].trim() !== '' ? headers[0].trim() : 'Fournisseur';
-            const otherHeaders = headers.slice(1).filter(h => h && h.trim() !== '');
-            thead.innerHTML = `
-                <tr>
-                    <th>${firstColTitle}</th>
-                    <th>${otherHeaders.length > 0 ? otherHeaders.join(' • ') : 'Caractéristiques'}</th>
-                </tr>
-            `;
-
-            for (let i = headerIndex + 1; i < lines.length; i++) {
-                const cols = parseCSVLine(lines[i]);
+            // On affiche uniquement les données des fournisseurs (sans la ligne d'en-tête globale)
+            for (let i = headerIndex + 1; i < rows.length; i++) {
+                const cols = rows[i];
                 const fournisseur = cols[0] ? cols[0].trim() : '';
                 if (!fournisseur) continue;
 
@@ -1012,7 +1069,7 @@
                 let chipsHTML = '<div class="chips-container">';
 
                 for (let j = 1; j < cols.length; j++) {
-                    const val = cols[j] ? cols[j].trim() : '';
+                    const val = cols[j] ? cols[j].replace(/\n/g, ' ').trim() : '';
                     if (val !== '') {
                         const headerName = headers[j] ? headers[j].trim() : '';
                         const labelText = headerName ? `<strong>${headerName} :</strong> ${val}` : val;
@@ -1023,7 +1080,7 @@
 
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td class="provider-name-cell">${fournisseur}</td>
+                    <td class="logo-cell">${getLogoHTML(fournisseur)}</td>
                     <td>${chipsHTML}</td>
                 `;
                 tbody.appendChild(tr);
@@ -1037,79 +1094,54 @@
         try {
             const response = await fetch(URL_PRESTATIONS);
             const csvText = await response.text();
-            const lines = csvText.split(/\r?\n/).filter(l => l.trim() !== '');
+            const rows = parseCSVFull(csvText);
             const tbody = document.getElementById('tbody-prestations');
-            const thead = document.getElementById('thead-prestations');
             tbody.innerHTML = '';
 
-            if (lines.length === 0) return;
+            if (rows.length === 0) return;
 
-            // Extraction des en-têtes du CSV
             let headerIndex = 0;
-            let headers = parseCSVLine(lines[0]);
-            if (headers.filter(h => h !== '').length <= 1 && lines.length > 1) {
+            let headers = rows[0];
+            if (headers.filter(h => h !== '').length <= 1 && rows.length > 1) {
                 headerIndex = 1;
-                headers = parseCSVLine(lines[1]);
+                headers = rows[1];
             }
 
-            const firstColTitle = headers[0] && headers[0].trim() !== '' ? headers[0].trim() : 'Prestataire';
-            const otherHeaders = headers.slice(1).filter(h => h && h.trim() !== '');
-            thead.innerHTML = `
-                <tr>
-                    <th>${firstColTitle}</th>
-                    <th>${otherHeaders.length > 0 ? otherHeaders.join(' • ') : 'Prestations & Tarifs'}</th>
-                </tr>
-            `;
-
-            // Regroupement par prestataire (Enedis / GRDF)
-            let grouped = {};
-
-            for (let i = headerIndex + 1; i < lines.length; i++) {
-                const cols = parseCSVLine(lines[i]);
-                if (cols.length < 2) continue;
-
+            // Lecture exacte des 2 prestataires (ENEDIS et GRDF) sur une seule ligne pleine largeur chacun
+            for (let i = headerIndex + 1; i < rows.length; i++) {
+                const cols = rows[i];
                 const prestataireRaw = cols[0] ? cols[0].trim() : '';
                 if (!prestataireRaw) continue;
 
-                const prestataire = prestataireRaw.toUpperCase().includes("ENEDIS") ? "ENEDIS" :
-                                    prestataireRaw.toUpperCase().includes("GRDF") ? "GRDF" : prestataireRaw;
+                const isEnedis = prestataireRaw.toUpperCase().includes("ENEDIS");
+                const isGrdf = prestataireRaw.toUpperCase().includes("GRDF");
+                if (!isEnedis && !isGrdf) continue;
 
-                if (!grouped[prestataire]) grouped[prestataire] = [];
-
-                // Si format en lignes (Prestataire | Prestation | Tarif / Délai)
-                if (cols.length >= 3 && cols[2].trim() !== '') {
-                    let details = [];
-                    for (let j = 2; j < cols.length; j++) {
-                        if (cols[j] && cols[j].trim() !== '') {
-                            const hName = headers[j] ? headers[j].trim() : '';
-                            details.push(hName ? `${hName} : <strong>${cols[j].trim()}</strong>` : `<strong>${cols[j].trim()}</strong>`);
-                        }
-                    }
-                    grouped[prestataire].push(`<strong>${cols[1].trim()}</strong> (${details.join(' | ')})`);
-                } else {
-                    // Si format en colonnes par prestation avec l'en-tête comme nom de prestation
-                    for (let j = 1; j < cols.length; j++) {
-                        if (cols[j] && cols[j].trim() !== '') {
-                            const hName = headers[j] ? headers[j].trim() : '';
-                            grouped[prestataire].push(hName ? `<strong>${hName} :</strong> ${cols[j].trim()}` : cols[j].trim());
-                        }
-                    }
-                }
-            }
-
-            for (const [prestataire, items] of Object.entries(grouped)) {
-                const isEnedis = prestataire.toUpperCase().includes("ENEDIS");
+                const prestataire = isEnedis ? "ENEDIS" : "GRDF";
                 const themeClass = isEnedis ? "theme-enedis" : "theme-grdf";
 
                 let chipsHTML = '<div class="chips-container">';
-                items.forEach(item => {
-                    chipsHTML += `<div class="feature-chip ${themeClass}">${item}</div>`;
-                });
+
+                for (let j = 1; j < cols.length; j++) {
+                    const headerName = headers[j] ? headers[j].trim() : '';
+                    const hLower = headerName.toLowerCase();
+
+                    // Pour GRDF, ignorer changement de puissance et changement d'option tarifaire
+                    if (isGrdf && (hLower.includes("puissance") || hLower.includes("option"))) {
+                        continue;
+                    }
+
+                    const val = cols[j] ? cols[j].replace(/\n/g, ' | ').trim() : '';
+                    if (val !== '' && val !== '-' && val.toLowerCase() !== 'non concerné' && val.toLowerCase() !== 'n/a') {
+                        const labelText = headerName ? `<strong>${headerName} :</strong> ${val}` : val;
+                        chipsHTML += `<div class="feature-chip ${themeClass}">${labelText}</div>`;
+                    }
+                }
                 chipsHTML += '</div>';
 
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td class="provider-name-cell">${prestataire}</td>
+                    <td class="logo-cell">${getLogoHTML(prestataire)}</td>
                     <td>${chipsHTML}</td>
                 `;
                 tbody.appendChild(tr);
@@ -1127,13 +1159,12 @@
             const response = await fetch(urlToFetch);
             const csvText = await response.text();
             
-            const lines = csvText.split(/\r?\n/);
+            const rows = parseCSVFull(csvText);
             scriptSectionsData = [];
 
             let currentCategory = 'accueil';
 
-            lines.forEach(line => {
-                const cols = parseCSVLine(line);
+            rows.forEach(cols => {
                 let text = cols.join(' ').trim();
                 if (!text) return;
 
