@@ -883,8 +883,28 @@
         return parseFloat(cleaned) || 0;
     }
 
-    // PARSEUR CSV COMPLET QUI GÈRE LES SAUTS DE LIGNE À L'INTÉRIEUR DES CELLULES ENTRE GUILLEMETS
-    function parseCSVFull(text) {
+    // PARSEUR LIGNE PAR LIGNE D'ORIGINE (POUR LE SCRIPT ET LES TARIFS)
+    function parseCSVLine(text) {
+        let result = [];
+        let cur = '';
+        let inQuotes = false;
+        for (let i = 0; i < text.length; i++) {
+            let c = text[i];
+            if (c === '"') {
+                inQuotes = !inQuotes;
+            } else if (c === ',' && !inQuotes) {
+                result.push(cur.trim().replace(/^"|"$/g, ''));
+                cur = '';
+            } else {
+                cur += c;
+            }
+        }
+        result.push(cur.trim().replace(/^"|"$/g, ''));
+        return result;
+    }
+
+    // PARSEUR MULTILIGNE (POUR ENEDIS / GRDF QUI ONT DES RETOURS À LA LIGNE DANS LES CELLULES)
+    function parseCSVMultiline(text) {
         const rows = [];
         let curRow = [];
         let curCell = '';
@@ -979,9 +999,12 @@
         try {
             const response = await fetch(GOOGLE_SHEETS_PRICES_URL);
             const csvText = await response.text();
-            const rows = parseCSVFull(csvText);
+            
+            const lines = csvText.split(/\r?\n/);
 
-            rows.forEach(cols => {
+            lines.forEach(line => {
+                if (!line.trim()) return;
+                const cols = parseCSVLine(line);
                 if (cols.length < 3) return;
 
                 const nomBrut = cols[0];
@@ -1046,7 +1069,7 @@
         try {
             const response = await fetch(URL_CARACTERISTIQUES);
             const csvText = await response.text();
-            const rows = parseCSVFull(csvText);
+            const rows = parseCSVMultiline(csvText);
             const tbody = document.getElementById('tbody-caracteristiques');
             tbody.innerHTML = '';
 
@@ -1059,7 +1082,6 @@
                 headers = rows[1];
             }
 
-            // On affiche uniquement les données des fournisseurs (sans la ligne d'en-tête globale)
             for (let i = headerIndex + 1; i < rows.length; i++) {
                 const cols = rows[i];
                 const fournisseur = cols[0] ? cols[0].trim() : '';
@@ -1094,7 +1116,7 @@
         try {
             const response = await fetch(URL_PRESTATIONS);
             const csvText = await response.text();
-            const rows = parseCSVFull(csvText);
+            const rows = parseCSVMultiline(csvText);
             const tbody = document.getElementById('tbody-prestations');
             tbody.innerHTML = '';
 
@@ -1107,7 +1129,6 @@
                 headers = rows[1];
             }
 
-            // Lecture exacte des 2 prestataires (ENEDIS et GRDF) sur une seule ligne pleine largeur chacun
             for (let i = headerIndex + 1; i < rows.length; i++) {
                 const cols = rows[i];
                 const prestataireRaw = cols[0] ? cols[0].trim() : '';
@@ -1126,7 +1147,6 @@
                     const headerName = headers[j] ? headers[j].trim() : '';
                     const hLower = headerName.toLowerCase();
 
-                    // Pour GRDF, ignorer changement de puissance et changement d'option tarifaire
                     if (isGrdf && (hLower.includes("puissance") || hLower.includes("option"))) {
                         continue;
                     }
@@ -1159,12 +1179,13 @@
             const response = await fetch(urlToFetch);
             const csvText = await response.text();
             
-            const rows = parseCSVFull(csvText);
+            const lines = csvText.split(/\r?\n/);
             scriptSectionsData = [];
 
             let currentCategory = 'accueil';
 
-            rows.forEach(cols => {
+            lines.forEach(line => {
+                const cols = parseCSVLine(line);
                 let text = cols.join(' ').trim();
                 if (!text) return;
 
@@ -1470,7 +1491,6 @@
         setTimeout(alignerBadgesClassement, 0);
     }
 
-    // Génère les icônes fixes en dehors à gauche du tableau pour les 3 MOINS chers
     function syncSidebar(tableId, sidebarId) {
         const table = document.getElementById(tableId);
         const sidebar = document.getElementById(sidebarId);
