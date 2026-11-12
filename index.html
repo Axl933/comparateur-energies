@@ -221,6 +221,28 @@
             font-size: 0.85rem !important;
         }
 
+        /* SURBRILLANCES LÉGÈRES ACCUEIL CLIENT (NEW PROSPECT = VERT, VALIDATED = VIOLET, RECALL AT = BLEU) */
+        .highlight-new-prospect {
+            background-color: #dcfce7 !important;
+            border: 1px solid #86efac !important;
+            border-left: 3px solid #16a34a !important;
+            color: #14532d !important;
+        }
+
+        .highlight-validated {
+            background-color: #f3e8ff !important;
+            border: 1px solid #d8b4fe !important;
+            border-left: 3px solid #9333ea !important;
+            color: #3b0764 !important;
+        }
+
+        .highlight-recall-at {
+            background-color: #e0f2fe !important;
+            border: 1px solid #7dd3fc !important;
+            border-left: 3px solid #0284c7 !important;
+            color: #0c4a6e !important;
+        }
+
         .script-paragraph {
             margin-bottom: 8px;
             background-color: #f8fafc;
@@ -233,6 +255,18 @@
         .tag-blue {
             color: #0284c7;
             font-weight: bold;
+        }
+
+        .highlight-new-prospect .tag-blue {
+            color: #15803d !important;
+        }
+
+        .highlight-validated .tag-blue {
+            color: #7e22ce !important;
+        }
+
+        .highlight-recall-at .tag-blue {
+            color: #0369a1 !important;
         }
 
         .text-alert-red {
@@ -497,7 +531,7 @@
             font-style: italic;
         }
 
-        /* TABLEAUX DU BAS PLEINE LARGEUR (CARACTÉRISTIQUES & PRESTATIONS) */
+        /* TABLEAUX DU BAS PLEINE LARGEUR (CARACTÉRISTIQUES EN COLONNES & PRESTATIONS) */
         .bottom-table {
             width: 100%;
             border-collapse: collapse;
@@ -512,6 +546,69 @@
             padding: 12px 14px;
             vertical-align: middle;
             border-bottom: 1px solid #e2e8f0;
+        }
+
+        /* TABLEAU MATRICIEL CARACTÉRISTIQUES DES FOURNISSEURS ADAPTÉ EN LARGEUR */
+        .carac-matrix-table {
+            width: 100%;
+            table-layout: auto;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            margin-bottom: 22px;
+            font-size: 0.78rem;
+        }
+
+        .carac-matrix-table th {
+            background-color: #172554;
+            color: #fde047;
+            font-weight: 700;
+            padding: 9px 7px;
+            text-align: center;
+            font-size: 0.78rem;
+            line-height: 1.25;
+            border-right: 1px solid #1e3a8a;
+            border-bottom: 2px solid #0f172a;
+        }
+
+        .carac-matrix-table th:first-child {
+            width: 138px;
+            min-width: 138px;
+        }
+
+        .carac-matrix-table td {
+            padding: 7px 7px;
+            text-align: center;
+            vertical-align: middle;
+            border-bottom: 1px solid #e2e8f0;
+            border-right: 1px solid #f1f5f9;
+            line-height: 1.28;
+            font-weight: 500;
+            color: #1e293b;
+            word-wrap: break-word;
+        }
+
+        .carac-matrix-table tbody tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .carac-matrix-table tbody tr:hover {
+            background-color: #f1f5f9;
+        }
+
+        .carac-matrix-table td.logo-cell-matrix {
+            width: 138px;
+            min-width: 138px;
+            padding: 6px 8px !important;
+            background-color: #ffffff !important;
+            border-right: 1px solid #e2e8f0;
+        }
+
+        .carac-matrix-table .provider-logo-box {
+            width: 118px;
+            height: 40px;
         }
 
         .logo-cell {
@@ -559,18 +656,6 @@
             border: 1px solid rgba(0,0,0,0.12);
             line-height: 1.35;
         }
-
-        /* COULEURS LÉGÈRES ET LISIBLES PAR FOURNISSEUR */
-        .theme-edf { background-color: #dbeafe; color: #1e3a8a; border-color: #93c5fd; }
-        .theme-engie { background-color: #e0f2fe; color: #0c4a6e; border-color: #7dd3fc; }
-        .theme-plenitude { background-color: #dcfce7; color: #14532d; border-color: #86efac; }
-        .theme-alterna { background-color: #d1fae5; color: #064e3b; border-color: #6ee7b7; }
-        .theme-octopus { background-color: #f3e8ff; color: #581c87; border-color: #d8b4fe; }
-        .theme-total { background-color: #fee2e2; color: #7f1d1d; border-color: #fca5a5; }
-        .theme-alpiq { background-color: #fef3c7; color: #78350f; border-color: #fcd34d; }
-        .theme-primeo { background-color: #dcfce7; color: #14532d; border-color: #86efac; }
-        .theme-bordeaux { background-color: #dbeafe; color: #1e3a8a; border-color: #93c5fd; }
-        .theme-default { background-color: #f1f5f9; color: #1e293b; border-color: #cbd5e1; }
 
         /* COULEURS PRESTATIONS ENEDIS ET GRDF */
         .theme-enedis { background-color: #e0f2fe; color: #0369a1; border-color: #7dd3fc; }
@@ -720,13 +805,14 @@
 
     <!-- PARTIE BASSE PLEINE LARGEUR : EN DESSOUS DU COMPARATEUR ET DU SCRIPT -->
     <div class="full-width-bottom">
-        <!-- NOUVEAU TABLEAU 1 : CARACTÉRISTIQUES DES FOURNISSEURS -->
+        <!-- NOUVEAU TABLEAU 1 : CARACTÉRISTIQUES DES FOURNISSEURS EN COLONNES AVEC EN-TÊTES -->
         <div class="dark-section-banner">
             📊 Caractéristiques des Fournisseurs
         </div>
-        <table class="bottom-table">
+        <table class="carac-matrix-table" id="table-caracteristiques">
+            <thead id="thead-caracteristiques"></thead>
             <tbody id="tbody-caracteristiques">
-                <tr><td colspan="2"><em>Chargement des caractéristiques...</em></td></tr>
+                <tr><td><em>Chargement des caractéristiques...</em></td></tr>
             </tbody>
         </table>
 
@@ -1041,20 +1127,6 @@
         return n;
     }
 
-    function getThemeFournisseur(nom) {
-        const n = nom.toLowerCase();
-        if (n.includes("edf")) return "theme-edf";
-        if (n.includes("engie")) return "theme-engie";
-        if (n.includes("plenitude") || n.includes("plénitude") || n.includes("pleniude")) return "theme-plenitude";
-        if (n.includes("alterna")) return "theme-alterna";
-        if (n.includes("octopus") || n.includes("ocopus")) return "theme-octopus";
-        if (n.includes("total")) return "theme-total";
-        if (n.includes("alpiq")) return "theme-alpiq";
-        if (n.includes("primeo") || n.includes("pimeo")) return "theme-primeo";
-        if (n.includes("bordeaux") || n.includes("bordeau")) return "theme-bordeaux";
-        return "theme-default";
-    }
-
     function getLogoHTML(nom) {
         const n = nom.toLowerCase();
         let svgCode = "";
@@ -1146,12 +1218,15 @@
         afficherDetails(fournisseurSelectionne);
     }
 
+    // TABLEAU CARACTÉRISTIQUES DES FOURNISSEURS : EN-TÊTES DE COLONNES + RÉPONSES UNIQUEMENT PAR FOURNISSEUR
     async function chargerTableauCaracteristiques() {
         try {
             const response = await fetch(URL_CARACTERISTIQUES);
             const csvText = await response.text();
             const rows = parseCSVMultiline(csvText);
+            const thead = document.getElementById('thead-caracteristiques');
             const tbody = document.getElementById('tbody-caracteristiques');
+            thead.innerHTML = '';
             tbody.innerHTML = '';
 
             if (rows.length === 0) return;
@@ -1163,29 +1238,68 @@
                 headers = rows[1];
             }
 
+            // Déterminer les colonnes actives (qui ont un en-tête ou au moins une valeur)
+            const maxCols = Math.max(...rows.map(r => r.length));
+            const activeColIndices = [];
+            for (let j = 1; j < maxCols; j++) {
+                const hText = headers[j] ? headers[j].replace(/:\s*$/, '').trim() : '';
+                let hasData = false;
+                for (let i = headerIndex + 1; i < rows.length; i++) {
+                    if (rows[i][j] && rows[i][j].trim() !== '') {
+                        hasData = true;
+                        break;
+                    }
+                }
+                if (hText !== '' || hasData) {
+                    activeColIndices.push(j);
+                }
+            }
+
+            // Création de la ligne d'en-tête avec tous les intitulés (Activation CHF, Activation MES, etc.)
+            const trHead = document.createElement('tr');
+            let headHTML = `<th>Fournisseur</th>`;
+            activeColIndices.forEach(colIdx => {
+                let colTitle = headers[colIdx] ? headers[colIdx].replace(/:\s*$/, '').trim() : '';
+                if (!colTitle) {
+                    // Si l'en-tête CSV est vide mais que la cellule contient "Intitulé : Valeur", extraire avant ":"
+                    for (let i = headerIndex + 1; i < rows.length; i++) {
+                        const rawVal = rows[i][colIdx] || '';
+                        if (rawVal.includes(':')) {
+                            colTitle = rawVal.split(':')[0].trim();
+                            break;
+                        }
+                    }
+                }
+                headHTML += `<th>${colTitle}</th>`;
+            });
+            trHead.innerHTML = headHTML;
+            thead.appendChild(trHead);
+
+            // Création des lignes fournisseurs avec logo dessiné + réponses uniquement
             for (let i = headerIndex + 1; i < rows.length; i++) {
                 const cols = rows[i];
                 const fournisseur = cols[0] ? cols[0].trim() : '';
                 if (!fournisseur) continue;
 
-                const themeClass = getThemeFournisseur(fournisseur);
-                let chipsHTML = '<div class="chips-container">';
-
-                for (let j = 1; j < cols.length; j++) {
-                    const val = cols[j] ? cols[j].replace(/\n/g, ' ').trim() : '';
-                    if (val !== '') {
-                        const headerName = headers[j] ? headers[j].trim() : '';
-                        const labelText = headerName ? `<strong>${headerName} :</strong> ${val}` : val;
-                        chipsHTML += `<div class="feature-chip ${themeClass}">${labelText}</div>`;
-                    }
-                }
-                chipsHTML += '</div>';
-
                 const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td class="logo-cell">${getLogoHTML(fournisseur)}</td>
-                    <td>${chipsHTML}</td>
-                `;
+                let rowHTML = `<td class="logo-cell-matrix">${getLogoHTML(fournisseur)}</td>`;
+
+                activeColIndices.forEach(colIdx => {
+                    let val = cols[colIdx] ? cols[colIdx].replace(/\n/g, ' ').trim() : '-';
+                    const headerName = headers[colIdx] ? headers[colIdx].replace(/:\s*$/, '').trim() : '';
+
+                    // Retirer le préfixe "Intitulé :" s'il est présent dans la cellule
+                    if (headerName && val.toLowerCase().startsWith(headerName.toLowerCase())) {
+                        val = val.slice(headerName.length).replace(/^[\s:–-]+/, '').trim();
+                    } else if (val.includes(':') && !val.toLowerCase().startsWith('si ')) {
+                        val = val.split(':').slice(1).join(':').trim();
+                    }
+
+                    if (!val) val = '-';
+                    rowHTML += `<td>${val}</td>`;
+                });
+
+                tr.innerHTML = rowHTML;
                 tbody.appendChild(tr);
             }
         } catch (e) {
@@ -1264,6 +1378,7 @@
             scriptSectionsData = [];
 
             let currentCategory = 'accueil';
+            let accueilFollowUpType = ''; // 'new-prospect' ou 'recall-at' pour colorer le paragraphe suivant
 
             lines.forEach(line => {
                 const cols = parseCSVLine(line);
@@ -1273,6 +1388,7 @@
                 const textLower = text.toLowerCase();
                 let isTitle = false;
                 let isAlertRed = false;
+                let accueilHighlightClass = '';
 
                 let isBlueTitle = false;
                 let isGreenBox = false;
@@ -1288,10 +1404,39 @@
                     textLower.includes("mise en place du contrat")
                 ) {
                     isBlueTitle = true;
+                    accueilFollowUpType = '';
                     if (textLower.includes("accueil client")) currentCategory = 'accueil';
                     else if (textLower.includes("découverte") || textLower.includes("decouverte")) currentCategory = 'decouverte';
                     else if (textLower.includes("argumentaire")) currentCategory = 'argumentaire';
                     else if (textLower.includes("mise en place") || textLower.includes("contrat")) currentCategory = 'contrat';
+                }
+
+                // SURBRILLANCES SPÉCIFIQUES DANS ACCUEIL CLIENT - PRÉSENTATION
+                if (!isBlueTitle && currentCategory === 'accueil') {
+                    if (textLower.includes("[new prospect")) {
+                        accueilHighlightClass = 'highlight-new-prospect';
+                        accueilFollowUpType = 'new-prospect';
+                    } else if (textLower.includes("[validated]")) {
+                        accueilHighlightClass = 'highlight-validated';
+                        accueilFollowUpType = '';
+                    } else if (textLower.includes("[recall at]")) {
+                        accueilHighlightClass = 'highlight-recall-at';
+                        accueilFollowUpType = 'recall-at';
+                    } else if (
+                        accueilFollowUpType === 'new-prospect' &&
+                        textLower.includes("je vais commencer par vous poser quelques questions")
+                    ) {
+                        accueilHighlightClass = 'highlight-new-prospect';
+                        accueilFollowUpType = '';
+                    } else if (
+                        accueilFollowUpType === 'recall-at' &&
+                        textLower.includes("je vais commencer par vous poser quelques questions")
+                    ) {
+                        accueilHighlightClass = 'highlight-recall-at';
+                        accueilFollowUpType = '';
+                    } else {
+                        accueilFollowUpType = '';
+                    }
                 }
 
                 // REGLES SPECIALES SCRIPT PLENITUDE
@@ -1351,7 +1496,6 @@
 
                 // Mise en forme des éléments entre crochets [...]
                 if (isAlertRed) {
-                    // Dans les paragraphes rouges : les crochets [...] sont en noir gras de même taille
                     text = text.replace(/(\[[^\]]+\])/g, '<span class="bracket-black">$1</span>');
                 } else {
                     text = text.replace(/\[(Validated|Recall at|New prospect\/User|Obtenir le [^\]]+|Si oui du client)\]/gi, '<span class="tag-blue">[$1]</span>');
@@ -1366,6 +1510,7 @@
                     isGreenBox: isGreenBox,
                     isYellowBox: isYellowBox,
                     isAlertRed: isAlertRed,
+                    accueilHighlightClass: accueilHighlightClass,
                     category: currentCategory,
                     textLower: textLower
                 });
@@ -1408,7 +1553,8 @@
             } else {
                 const p = document.createElement('div');
                 let extraClass = '';
-                if (item.isGreenBox) extraClass = 'script-box-green';
+                if (item.accueilHighlightClass) extraClass = item.accueilHighlightClass;
+                else if (item.isGreenBox) extraClass = 'script-box-green';
                 else if (item.isYellowBox) extraClass = 'script-box-yellow';
                 else if (item.isAlertRed) extraClass = 'text-alert-red';
 
