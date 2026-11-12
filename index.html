@@ -287,10 +287,10 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.12);
         }
 
-        .section-subtitle-light {
-            font-size: 0.8rem;
-            font-weight: normal;
-            color: #cbd5e1;
+        .section-subtitle-yellow {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #fde047;
             margin-left: 8px;
         }
 
@@ -366,9 +366,12 @@
             border-bottom: 1px solid #e2e8f0;
         }
 
+        /* EN-TÊTES DES TABLEAUX : FOND CLAIR DIFFÉRENT DU BANDEAU FONCÉ + ÉCRITURE FONCÉE */
         th {
-            background-color: #f1f5f9;
-            font-weight: 600;
+            background-color: #e2e8f0;
+            color: #0f172a;
+            font-weight: 700;
+            border-bottom: 2px solid #cbd5e1;
         }
 
         tr.provider-row {
@@ -404,14 +407,14 @@
         }
 
         .details-header-dark {
-            background-color: #1e293b;
+            background-color: #0f172a;
             color: #f8fafc;
             padding: 8px 12px;
             border-radius: 6px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .details-hint {
@@ -429,6 +432,20 @@
             font-weight: bold;
         }
 
+        /* NOM DU FOURNISSEUR EN DESSOUS DE DÉTAILS DANS UN CARREAU ARRONDI CLAIR / ÉCRITURE FONCÉE */
+        .selected-provider-box {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 7px 14px;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            font-weight: 800;
+            display: inline-block;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+        }
+
         .info-box {
             background-color: #f8fafc;
             border-left: 3px solid var(--blue-header);
@@ -437,10 +454,17 @@
             border-radius: 0 5px 5px 0;
         }
 
-        .info-box h4 {
-            margin: 0 0 5px 0;
-            color: #334155;
-            font-size: 0.9rem;
+        /* TITRES PRÉSENTATION FOURNISSEUR / OFFRE DANS UN PETIT CARREAU BLEU CLAIR */
+        .info-box-title-chip {
+            display: inline-block;
+            background-color: #dbeafe;
+            color: #0f172a;
+            border: 1px solid #93c5fd;
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            margin: 0 0 7px 0;
         }
 
         .info-box ul {
@@ -560,26 +584,29 @@
             <!-- CARTE DÉTAILS (RESTE À SA PLACE AU SCROLL) -->
             <div class="details-card">
                 <div class="details-header-dark">
-                    <h3 style="margin:0; font-size: 1.05rem;" id="details-name">
-                        📋 Détails <span class="details-hint">(veuillez sélectionner un fournisseur)</span> : EDF
+                    <h3 style="margin:0; font-size: 1.05rem;">
+                        📋 Détails <span class="details-hint">(veuillez sélectionner un fournisseur)</span>
                     </h3>
                     <span class="details-badge">Fournisseur actif</span>
                 </div>
 
+                <!-- NOM DU FOURNISSEUR SÉLECTIONNÉ DANS UN CARREAU ARRONDI CLAIR / ÉCRITURE FONCÉE -->
+                <div class="selected-provider-box" id="details-name">EDF</div>
+
                 <div class="info-box">
-                    <h4>Présentation fournisseur</h4>
+                    <div class="info-box-title-chip">Présentation fournisseur</div>
                     <ul id="details-entreprise"></ul>
                 </div>
 
                 <div class="info-box">
-                    <h4>Présentation Offre</h4>
+                    <div class="info-box-title-chip">Présentation Offre</div>
                     <ul id="details-offre"></ul>
                 </div>
             </div>
 
             <!-- SECTION ÉLECTRICITÉ -->
             <div class="dark-section-banner">
-                ⚡ Électricité <span class="section-subtitle-light">(veuillez sélectionner une puissance souscrite et une option tarifaire)</span>
+                ⚡ Électricité <span class="section-subtitle-yellow">(veuillez sélectionner une puissance souscrite et une option tarifaire)</span>
             </div>
             <div class="filter-card">
                 <div class="filter-group">
@@ -621,7 +648,7 @@
 
             <!-- SECTION GAZ -->
             <div class="dark-section-banner">
-                🔥 Gaz Naturel <span class="section-subtitle-light">(veuillez sélectionner la classe de consommation)</span>
+                🔥 Gaz Naturel <span class="section-subtitle-yellow">(veuillez sélectionner la classe de consommation)</span>
             </div>
             <div class="filter-card">
                 <div class="filter-group">
@@ -1572,7 +1599,7 @@
         const item = dataFournisseurs[nom];
         if (!item) return;
 
-        document.getElementById('details-name').innerHTML = `📋 Détails <span class="details-hint">(veuillez sélectionner un fournisseur)</span> : ${nom}`;
+        document.getElementById('details-name').textContent = nom;
 
         const ulEntreprise = document.getElementById('details-entreprise');
         ulEntreprise.innerHTML = '';
