@@ -366,12 +366,12 @@
             border-bottom: 1px solid #e2e8f0;
         }
 
-        /* EN-TÊTES DES TABLEAUX : FOND CLAIR DIFFÉRENT DU BANDEAU FONCÉ + ÉCRITURE FONCÉE */
+        /* EN-TÊTES DES TABLEAUX : BLEU FONCÉ (UN PEU PLUS CLAIR QUE #0f172a) + ÉCRITURE DORÉE */
         th {
-            background-color: #e2e8f0;
-            color: #0f172a;
+            background-color: #1e3a8a;
+            color: #fde047;
             font-weight: 700;
-            border-bottom: 2px solid #cbd5e1;
+            border-bottom: 2px solid #172554;
         }
 
         tr.provider-row {
@@ -414,7 +414,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .details-hint {
@@ -432,18 +432,30 @@
             font-weight: bold;
         }
 
-        /* NOM DU FOURNISSEUR EN DESSOUS DE DÉTAILS DANS UN CARREAU ARRONDI CLAIR / ÉCRITURE FONCÉE */
-        .selected-provider-box {
-            background-color: #f1f5f9;
-            color: #0f172a;
-            border: 1px solid #cbd5e1;
+        /* LIGNE PRÉSENTATION FOURNISSEUR + CARREAU VERT À GAUCHE EN DEHORS DE LA RUBRIQUE */
+        .provider-presentation-row {
+            display: flex;
+            align-items: stretch;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .selected-provider-green-box {
+            background-color: #dcfce7;
+            color: #14532d;
+            border: 2px solid #16a34a;
             border-radius: 8px;
-            padding: 7px 14px;
-            margin-bottom: 12px;
-            font-size: 1rem;
+            padding: 10px 14px;
+            min-width: 135px;
+            max-width: 155px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 1.05rem;
             font-weight: 800;
-            display: inline-block;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+            box-shadow: 0 2px 4px rgba(22, 163, 74, 0.12);
+            flex-shrink: 0;
         }
 
         .info-box {
@@ -452,6 +464,11 @@
             padding: 8px 12px;
             margin-bottom: 10px;
             border-radius: 0 5px 5px 0;
+            flex: 1;
+        }
+
+        .provider-presentation-row .info-box {
+            margin-bottom: 0;
         }
 
         /* TITRES PRÉSENTATION FOURNISSEUR / OFFRE DANS UN PETIT CARREAU BLEU CLAIR */
@@ -590,12 +607,13 @@
                     <span class="details-badge">Fournisseur actif</span>
                 </div>
 
-                <!-- NOM DU FOURNISSEUR SÉLECTIONNÉ DANS UN CARREAU ARRONDI CLAIR / ÉCRITURE FONCÉE -->
-                <div class="selected-provider-box" id="details-name">EDF</div>
-
-                <div class="info-box">
-                    <div class="info-box-title-chip">Présentation fournisseur</div>
-                    <ul id="details-entreprise"></ul>
+                <!-- CARREAU VERT À GAUCHE EN DEHORS DE LA RUBRIQUE AVEC LA MÊME HAUTEUR QUE PRÉSENTATION FOURNISSEUR -->
+                <div class="provider-presentation-row">
+                    <div class="selected-provider-green-box" id="details-name">EDF</div>
+                    <div class="info-box">
+                        <div class="info-box-title-chip">Présentation fournisseur</div>
+                        <ul id="details-entreprise"></ul>
+                    </div>
                 </div>
 
                 <div class="info-box">
