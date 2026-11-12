@@ -393,7 +393,7 @@
             margin-left: 5px;
         }
 
-        /* CARTE DETAILS */
+        /* CARTE DETAILS (NON FIGÉE - RESTE À SA PLACE AU SCROLL) */
         .details-card {
             background-color: white;
             border: 1px solid #cbd5e1;
@@ -401,9 +401,6 @@
             padding: 12px 15px;
             margin-bottom: 18px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.08);
-            position: sticky;
-            top: 15px;
-            z-index: 90;
         }
 
         .details-header-dark {
@@ -531,8 +528,8 @@
         .theme-octopus { background-color: #f3e8ff; color: #581c87; border-color: #d8b4fe; }
         .theme-total { background-color: #fee2e2; color: #7f1d1d; border-color: #fca5a5; }
         .theme-alpiq { background-color: #fef3c7; color: #78350f; border-color: #fcd34d; }
-        .theme-primeo { background-color: #ffedd5; color: #9a3412; border-color: #fdba74; }
-        .theme-bordeaux { background-color: #ffe4e6; color: #881337; border-color: #fda4af; }
+        .theme-primeo { background-color: #dcfce7; color: #14532d; border-color: #86efac; }
+        .theme-bordeaux { background-color: #dbeafe; color: #1e3a8a; border-color: #93c5fd; }
         .theme-default { background-color: #f1f5f9; color: #1e293b; border-color: #cbd5e1; }
 
         /* COULEURS PRESTATIONS ENEDIS ET GRDF */
@@ -560,7 +557,7 @@
     <div class="page-layout">
         <!-- COLONNE GAUCHE : COMPARATEUR ET DÉTAILS -->
         <div class="left-col">
-            <!-- CARTE DÉTAILS FIGÉE -->
+            <!-- CARTE DÉTAILS (RESTE À SA PLACE AU SCROLL) -->
             <div class="details-card">
                 <div class="details-header-dark">
                     <h3 style="margin:0; font-size: 1.05rem;" id="details-name">
@@ -765,14 +762,15 @@
             <text x="54" y="38" font-family="Arial, sans-serif" font-weight="900" font-size="27" fill="#1e293b" letter-spacing="1">ALPIQ</text>
         </svg>`,
         "primeo": `<svg viewBox="0 0 180 60" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="24" cy="30" r="12" fill="#ea580c"/>
-            <text x="44" y="31" font-family="Arial, sans-serif" font-weight="800" font-size="21" fill="#1e293b">Primeo</text>
-            <text x="44" y="45" font-family="Arial, sans-serif" font-weight="600" font-size="13" fill="#ea580c">Energie</text>
+            <circle cx="24" cy="30" r="12" fill="#16a34a"/>
+            <path d="M18,30 A6,6 0 0,1 30,30 Z" fill="#0284c7"/>
+            <text x="44" y="31" font-family="Arial, sans-serif" font-weight="800" font-size="21" fill="#0284c7">Primeo</text>
+            <text x="44" y="45" font-family="Arial, sans-serif" font-weight="700" font-size="13" fill="#16a34a">Energie</text>
         </svg>`,
         "bordeaux": `<svg viewBox="0 0 180 60" xmlns="http://www.w3.org/2000/svg">
-            <path d="M24,14 C32,24 34,36 24,44 C14,36 16,24 24,14 Z" fill="#be123c"/>
-            <text x="42" y="28" font-family="Arial, sans-serif" font-weight="800" font-size="16" fill="#be123c">Gaz de</text>
-            <text x="42" y="44" font-family="Arial, sans-serif" font-weight="800" font-size="16" fill="#1e293b">Bordeaux</text>
+            <path d="M24,14 C32,24 34,36 24,44 C14,36 16,24 24,14 Z" fill="#0284c7"/>
+            <text x="42" y="28" font-family="Arial, sans-serif" font-weight="800" font-size="16" fill="#0284c7">Gaz de</text>
+            <text x="42" y="44" font-family="Arial, sans-serif" font-weight="800" font-size="16" fill="#0369a1">Bordeaux</text>
         </svg>`,
         "enedis": `<svg viewBox="0 0 180 60" xmlns="http://www.w3.org/2000/svg">
             <rect x="8" y="8" width="164" height="44" rx="8" fill="#1423dc"/>
@@ -998,8 +996,8 @@
         if (n.toLowerCase().includes("alterna")) return "Alterna";
         if (n.toLowerCase().includes("octopus") || n.toLowerCase().includes("ocopus")) return "Octopus";
         if (n.toLowerCase().includes("total")) return "TotalEnergies";
-        if (n.toLowerCase().includes("primeo")) return "Primeo Energie";
-        if (n.toLowerCase().includes("bordeaux")) return "Gaz de Bordeaux";
+        if (n.toLowerCase().includes("primeo") || n.toLowerCase().includes("pimeo")) return "Primeo Energie";
+        if (n.toLowerCase().includes("bordeaux") || n.toLowerCase().includes("bordeau")) return "Gaz de Bordeaux";
         return n;
     }
 
@@ -1012,8 +1010,8 @@
         if (n.includes("octopus") || n.includes("ocopus")) return "theme-octopus";
         if (n.includes("total")) return "theme-total";
         if (n.includes("alpiq")) return "theme-alpiq";
-        if (n.includes("primeo")) return "theme-primeo";
-        if (n.includes("bordeaux")) return "theme-bordeaux";
+        if (n.includes("primeo") || n.includes("pimeo")) return "theme-primeo";
+        if (n.includes("bordeaux") || n.includes("bordeau")) return "theme-bordeaux";
         return "theme-default";
     }
 
@@ -1027,8 +1025,8 @@
         else if (n.includes("octopus") || n.includes("ocopus")) svgCode = SVG_LOGOS.octopus;
         else if (n.includes("total")) svgCode = SVG_LOGOS.total;
         else if (n.includes("alpiq")) svgCode = SVG_LOGOS.alpiq;
-        else if (n.includes("primeo")) svgCode = SVG_LOGOS.primeo;
-        else if (n.includes("bordeaux")) svgCode = SVG_LOGOS.bordeaux;
+        else if (n.includes("primeo") || n.includes("pimeo")) svgCode = SVG_LOGOS.primeo;
+        else if (n.includes("bordeaux") || n.includes("bordeau")) svgCode = SVG_LOGOS.bordeaux;
         else if (n.includes("enedis")) svgCode = SVG_LOGOS.enedis;
         else if (n.includes("grdf")) svgCode = SVG_LOGOS.grdf;
 
