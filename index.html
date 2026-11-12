@@ -374,6 +374,13 @@
             border-bottom: 2px solid #172554;
         }
 
+        /* SURBRILLANCE VERTE LÉGÈRE UNIQUEMENT SUR LES PRIX DE L'OPTION TARIFAIRE CHOISIE */
+        td.active-option-highlight {
+            background-color: #dcfce7;
+            color: #14532d;
+            font-weight: 700;
+        }
+
         tr.provider-row {
             cursor: pointer;
             transition: background-color 0.2s;
@@ -388,6 +395,11 @@
             font-weight: 600;
         }
 
+        tr.provider-row.active td.active-option-highlight {
+            background-color: #bbf7d0 !important;
+            color: #14532d !important;
+        }
+
         .remise-tag {
             font-size: 0.85em;
             font-style: italic;
@@ -396,13 +408,46 @@
             margin-left: 5px;
         }
 
+        /* WRAPPER EXTERNE DETAILS + CARREAU VERT FOURNISSEUR EN DEHORS A GAUCHE */
+        .details-outer-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .external-provider-sidebar {
+            width: 115px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .selected-provider-green-box {
+            background-color: #dcfce7;
+            color: #14532d;
+            border: 2px solid #16a34a;
+            border-radius: 8px;
+            padding: 10px 8px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 800;
+            box-shadow: 0 2px 4px rgba(22, 163, 74, 0.14);
+            word-break: break-word;
+        }
+
         /* CARTE DETAILS (NON FIGÉE - RESTE À SA PLACE AU SCROLL) */
         .details-card {
+            flex: 1;
+            min-width: 0;
             background-color: white;
             border: 1px solid #cbd5e1;
             border-radius: 8px;
             padding: 12px 15px;
-            margin-bottom: 18px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.08);
         }
 
@@ -432,42 +477,15 @@
             font-weight: bold;
         }
 
-        /* LIGNE PRÉSENTATION FOURNISSEUR + CARREAU VERT À GAUCHE EN DEHORS DE LA RUBRIQUE */
-        .provider-presentation-row {
-            display: flex;
-            align-items: stretch;
-            gap: 12px;
-            margin-bottom: 10px;
-        }
-
-        .selected-provider-green-box {
-            background-color: #dcfce7;
-            color: #14532d;
-            border: 2px solid #16a34a;
-            border-radius: 8px;
-            padding: 10px 14px;
-            min-width: 135px;
-            max-width: 155px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-size: 1.05rem;
-            font-weight: 800;
-            box-shadow: 0 2px 4px rgba(22, 163, 74, 0.12);
-            flex-shrink: 0;
-        }
-
         .info-box {
             background-color: #f8fafc;
             border-left: 3px solid var(--blue-header);
             padding: 8px 12px;
             margin-bottom: 10px;
             border-radius: 0 5px 5px 0;
-            flex: 1;
         }
 
-        .provider-presentation-row .info-box {
+        .info-box:last-child {
             margin-bottom: 0;
         }
 
@@ -598,27 +616,31 @@
     <div class="page-layout">
         <!-- COLONNE GAUCHE : COMPARATEUR ET DÉTAILS -->
         <div class="left-col">
-            <!-- CARTE DÉTAILS (RESTE À SA PLACE AU SCROLL) -->
-            <div class="details-card">
-                <div class="details-header-dark">
-                    <h3 style="margin:0; font-size: 1.05rem;">
-                        📋 Détails <span class="details-hint">(veuillez sélectionner un fournisseur)</span>
-                    </h3>
-                    <span class="details-badge">Fournisseur actif</span>
+            <!-- WRAPPER EXTERNE POUR PLACER LE CARREAU VERT EN DEHORS À GAUCHE DE LA RUBRIQUE -->
+            <div class="details-outer-wrapper">
+                <div class="external-provider-sidebar">
+                    <div id="details-green-spacer"></div>
+                    <div class="selected-provider-green-box" id="details-name">EDF</div>
                 </div>
 
-                <!-- CARREAU VERT À GAUCHE EN DEHORS DE LA RUBRIQUE AVEC LA MÊME HAUTEUR QUE PRÉSENTATION FOURNISSEUR -->
-                <div class="provider-presentation-row">
-                    <div class="selected-provider-green-box" id="details-name">EDF</div>
-                    <div class="info-box">
+                <!-- CARTE DÉTAILS (RESTE À SA PLACE AU SCROLL) -->
+                <div class="details-card" id="details-card-box">
+                    <div class="details-header-dark" id="details-header-bar">
+                        <h3 style="margin:0; font-size: 1.05rem;">
+                            📋 Détails <span class="details-hint">(veuillez sélectionner un fournisseur)</span>
+                        </h3>
+                        <span class="details-badge">Fournisseur actif</span>
+                    </div>
+
+                    <div class="info-box" id="box-presentation-fournisseur">
                         <div class="info-box-title-chip">Présentation fournisseur</div>
                         <ul id="details-entreprise"></ul>
                     </div>
-                </div>
 
-                <div class="info-box">
-                    <div class="info-box-title-chip">Présentation Offre</div>
-                    <ul id="details-offre"></ul>
+                    <div class="info-box">
+                        <div class="info-box-title-chip">Présentation Offre</div>
+                        <ul id="details-offre"></ul>
+                    </div>
                 </div>
             </div>
 
@@ -958,13 +980,36 @@
         document.getElementById('select-elec').addEventListener('change', afficherTableauElec);
         document.getElementById('select-option').addEventListener('change', afficherTableauElec);
         document.getElementById('select-gaz').addEventListener('change', afficherTableauGaz);
-        window.addEventListener('resize', alignerBadgesClassement);
+        window.addEventListener('resize', function() {
+            alignerBadgesClassement();
+            syncDetailsGreenBoxHeight();
+        });
 
         chargerDonneesGoogleSheets();
         chargerScriptConseiller(URL_SCRIPT_GENERAL);
         chargerTableauCaracteristiques();
         chargerTableauPrestations();
+        syncDetailsGreenBoxHeight();
     });
+
+    // ALIGNE LE CARREAU VERT EXTERNE SUR LA MÊME HAUTEUR ET LE MÊME NIVEAU QUE "PRÉSENTATION FOURNISSEUR"
+    function syncDetailsGreenBoxHeight() {
+        const card = document.getElementById('details-card-box');
+        const presBox = document.getElementById('box-presentation-fournisseur');
+        const spacer = document.getElementById('details-green-spacer');
+        const greenBox = document.getElementById('details-name');
+        if (!card || !presBox || !spacer || !greenBox) return;
+
+        const cardRect = card.getBoundingClientRect();
+        const presRect = presBox.getBoundingClientRect();
+        const zoomFactor = 0.88;
+
+        const offsetTop = (presRect.top - cardRect.top) / zoomFactor;
+        const boxHeight = presRect.height / zoomFactor;
+
+        spacer.style.height = Math.max(0, offsetTop) + 'px';
+        greenBox.style.height = Math.max(40, boxHeight) + 'px';
+    }
 
     function cleanNum(val) {
         if (!val) return 0;
@@ -1473,6 +1518,10 @@
         document.getElementById('th-base-sort').textContent = optionTarifaire === 'Base' ? '🔽' : '';
         document.getElementById('th-hp-sort').textContent = optionTarifaire === 'HPHC' ? '🔽' : '';
 
+        // Classes de surbrillance verte uniquement sur les cellules de prix de l'option choisie
+        const clsHPHC = optionTarifaire === 'HPHC' ? 'class="active-option-highlight"' : '';
+        const clsBase = optionTarifaire === 'Base' ? 'class="active-option-highlight"' : '';
+
         let listeElec = [];
         for (const [nom, data] of Object.entries(dataFournisseurs)) {
             const elecData = data.elec ? data.elec[puissance] : null;
@@ -1517,9 +1566,9 @@
                 tr.innerHTML = `
                     <td><strong>${nom}</strong> ${remiseText}</td>
                     <td>${montantAbo ? montantAbo.toFixed(2) + ' €' : '-'}</td>
-                    <td>${elecData.hp ? elecData.hp.toFixed(4) + ' €' : '-'}</td>
-                    <td>${elecData.hc ? elecData.hc.toFixed(4) + ' €' : '-'}</td>
-                    <td>${elecData.base ? elecData.base.toFixed(4) + ' €' : '-'}</td>
+                    <td ${elecData.hp ? clsHPHC : ''}>${elecData.hp ? elecData.hp.toFixed(4) + ' €' : '-'}</td>
+                    <td ${elecData.hc ? clsHPHC : ''}>${elecData.hc ? elecData.hc.toFixed(4) + ' €' : '-'}</td>
+                    <td ${elecData.base ? clsBase : ''}>${elecData.base ? elecData.base.toFixed(4) + ' €' : '-'}</td>
                 `;
             } else {
                 tr.innerHTML = `<td><strong>${nom}</strong> ${remiseText}</td><td colspan="4" class="no-gas">Non disponible</td>`;
@@ -1634,6 +1683,8 @@
             li.textContent = txt;
             ulOffre.appendChild(li);
         });
+
+        setTimeout(syncDetailsGreenBoxHeight, 0);
     }
 </script>
 
