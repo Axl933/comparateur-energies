@@ -611,6 +611,35 @@
             height: 40px;
         }
 
+        /* BOUTONS STYLÉS ARRONDIS DANS CARACTÉRISTIQUES DES FOURNISSEURS */
+        .status-pill {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            line-height: 1.2;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+        }
+
+        .pill-green {
+            background-color: #dcfce7;
+            color: #15803d;
+            border: 1px solid #4ade80;
+        }
+
+        .pill-orange {
+            background-color: #ffedd5;
+            color: #c2410c;
+            border: 1px solid #fb923c;
+        }
+
+        .pill-red {
+            background-color: #fee2e2;
+            color: #b91c1c;
+            border: 1px solid #f87171;
+        }
+
         .logo-cell {
             width: 160px;
             min-width: 160px;
@@ -1148,6 +1177,51 @@
         return `<div class="provider-logo-box"><strong style="font-size:0.85rem;">${nom}</strong></div>`;
     }
 
+    // FORMATE UNIQUEMENT LES RÉPONSES DEMANDÉES EN BOUTONS ARRONDIES COLORÉS
+    function formatCaracteristiqueCell(colTitle, val) {
+        if (!val || val === '-') return '-';
+        const colNorm = colTitle.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        const valNorm = val.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+
+        let pillClass = '';
+
+        // 1. Activation CHF
+        if (colNorm.includes("activation chf")) {
+            if (valNorm.includes("14")) pillClass = "pill-orange";
+            else if (valNorm.includes("21")) pillClass = "pill-red";
+            else if (valNorm.includes("des que possible")) pillClass = "pill-green";
+        }
+        // 2. Activation MES
+        else if (colNorm.includes("activation mes")) {
+            if (valNorm.includes("rapide")) pillClass = "pill-green";
+            else if (valNorm.includes("7 jour") || valNorm.includes("48h")) pillClass = "pill-orange";
+            else if (valNorm.includes("15 jour")) pillClass = "pill-red";
+        }
+        // 3. Première MES
+        else if (colNorm.includes("premiere mes")) {
+            if (valNorm === "oui") pillClass = "pill-green";
+            else if (valNorm === "non") pillClass = "pill-red";
+        }
+        // 4. Type de compteur
+        else if (colNorm.includes("type de compteur") || colNorm.includes("compteur")) {
+            if (valNorm.includes("linky") && (valNorm.includes("classique") || valNorm.includes("classqique") || valNorm.includes("&"))) {
+                pillClass = "pill-green";
+            } else if (valNorm === "linky") {
+                pillClass = "pill-red";
+            }
+        }
+        // 5. Echéancier
+        else if (colNorm.includes("echeancier")) {
+            if (valNorm.includes("11 mois")) pillClass = "pill-green";
+            else if (valNorm.includes("12 mois")) pillClass = "pill-red";
+        }
+
+        if (pillClass) {
+            return `<span class="status-pill ${pillClass}">${val}</span>`;
+        }
+        return val;
+    }
+
     async function chargerDonneesGoogleSheets() {
         try {
             const response = await fetch(GOOGLE_SHEETS_PRICES_URL);
@@ -1238,7 +1312,6 @@
                 headers = rows[1];
             }
 
-            // Déterminer les colonnes actives (qui ont un en-tête ou au moins une valeur)
             const maxCols = Math.max(...rows.map(r => r.length));
             const activeColIndices = [];
             for (let j = 1; j < maxCols; j++) {
@@ -1255,13 +1328,12 @@
                 }
             }
 
-            // Création de la ligne d'en-tête avec tous les intitulés (Activation CHF, Activation MES, etc.)
+            const colTitlesMap = {};
             const trHead = document.createElement('tr');
             let headHTML = `<th>Fournisseur</th>`;
             activeColIndices.forEach(colIdx => {
                 let colTitle = headers[colIdx] ? headers[colIdx].replace(/:\s*$/, '').trim() : '';
                 if (!colTitle) {
-                    // Si l'en-tête CSV est vide mais que la cellule contient "Intitulé : Valeur", extraire avant ":"
                     for (let i = headerIndex + 1; i < rows.length; i++) {
                         const rawVal = rows[i][colIdx] || '';
                         if (rawVal.includes(':')) {
@@ -1270,12 +1342,12 @@
                         }
                     }
                 }
+                colTitlesMap[colIdx] = colTitle;
                 headHTML += `<th>${colTitle}</th>`;
             });
             trHead.innerHTML = headHTML;
             thead.appendChild(trHead);
 
-            // Création des lignes fournisseurs avec logo dessiné + réponses uniquement
             for (let i = headerIndex + 1; i < rows.length; i++) {
                 const cols = rows[i];
                 const fournisseur = cols[0] ? cols[0].trim() : '';
@@ -1286,9 +1358,8 @@
 
                 activeColIndices.forEach(colIdx => {
                     let val = cols[colIdx] ? cols[colIdx].replace(/\n/g, ' ').trim() : '-';
-                    const headerName = headers[colIdx] ? headers[colIdx].replace(/:\s*$/, '').trim() : '';
+                    const headerName = colTitlesMap[colIdx] || '';
 
-                    // Retirer le préfixe "Intitulé :" s'il est présent dans la cellule
                     if (headerName && val.toLowerCase().startsWith(headerName.toLowerCase())) {
                         val = val.slice(headerName.length).replace(/^[\s:–-]+/, '').trim();
                     } else if (val.includes(':') && !val.toLowerCase().startsWith('si ')) {
@@ -1296,7 +1367,8 @@
                     }
 
                     if (!val) val = '-';
-                    rowHTML += `<td>${val}</td>`;
+                    const formattedVal = formatCaracteristiqueCell(headerName, val);
+                    rowHTML += `<td>${formattedVal}</td>`;
                 });
 
                 tr.innerHTML = rowHTML;
@@ -1378,7 +1450,7 @@
             scriptSectionsData = [];
 
             let currentCategory = 'accueil';
-            let accueilFollowUpType = ''; // 'new-prospect' ou 'recall-at' pour colorer le paragraphe suivant
+            let accueilFollowUpType = '';
 
             lines.forEach(line => {
                 const cols = parseCSVLine(line);
@@ -1623,7 +1695,6 @@
         document.getElementById('th-base-sort').textContent = optionTarifaire === 'Base' ? '🔽' : '';
         document.getElementById('th-hp-sort').textContent = optionTarifaire === 'HPHC' ? '🔽' : '';
 
-        // Classes de surbrillance verte uniquement sur les cellules de prix de l'option choisie
         const clsHPHC = optionTarifaire === 'HPHC' ? 'class="active-option-highlight"' : '';
         const clsBase = optionTarifaire === 'Base' ? 'class="active-option-highlight"' : '';
 
@@ -1639,10 +1710,8 @@
             listeElec.push({ nom: nom, data: elecData, sortPrice: price });
         }
 
-        // Tri croissant (moins cher en haut)
         listeElec.sort((a, b) => a.sortPrice - b.sortPrice);
 
-        // Identification des 3 MOINS chers parmi ceux ayant un tarif valide
         const valides = listeElec.filter(x => x.sortPrice < 999);
         const top3Cheapest = {};
         if (valides.length >= 1) top3Cheapest[valides[0].nom] = 1;
@@ -1698,7 +1767,6 @@
 
         listeGaz.sort((a, b) => a.sortPrice - b.sortPrice);
 
-        // Identification des 3 MOINS chers pour le gaz
         const valides = listeGaz.filter(x => x.sortPrice < 999);
         const top3Cheapest = {};
         if (valides.length >= 1) top3Cheapest[valides[0].nom] = 1;
