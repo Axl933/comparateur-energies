@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comparateur d'Offres d'Énergie & Script Comparateur</title>
+    <title>Team Viking - all in ONE</title>
     <style>
         :root {
             --primary-yellow: #fef08a;
@@ -25,7 +25,6 @@
             margin: 0;
             padding: 15px;
             font-size: 0.85rem;
-            /* AJUSTEMENT DU ZOOM A 88% (ZOOM IN DE 3%) */
             zoom: 88%;
             transform: scale(0.88);
             transform-origin: top center;
@@ -35,7 +34,9 @@
             text-align: center;
             color: #0f172a;
             margin-bottom: 18px;
-            font-size: 1.6rem;
+            font-size: 1.7rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
         }
 
         /* DISPOSITION DEUX COLONNES */
@@ -43,17 +44,17 @@
             display: flex;
             gap: 20px;
             align-items: flex-start;
-            max-width: 1600px;
+            max-width: 1650px;
             margin: 0 auto;
         }
 
         .left-col {
-            flex: 1;
+            flex: 1.15;
             min-width: 0;
         }
 
         .right-col {
-            flex: 1;
+            flex: 0.85;
             min-width: 350px;
             position: sticky;
             top: 15px;
@@ -157,7 +158,6 @@
             padding-left: 6px;
         }
 
-        /* STYLES ENGIE, PLÉNITUDE & TITRES BLEUS */
         .script-section-blue-title {
             background-color: #e0f2fe;
             border: 2px solid #0284c7;
@@ -228,7 +228,7 @@
             border-left: 3px solid #dc2626;
         }
 
-        /* CARTE FILTRES & DÉTAILS - ÉPAISSEUR RÉDUITE AU MINIMUM */
+        /* CARTE FILTRES */
         .filter-card {
             background-color: var(--primary-yellow);
             border: 1.5px solid var(--border-yellow);
@@ -262,30 +262,93 @@
             cursor: pointer;
         }
 
-        .section-title {
-            color: var(--blue-header);
-            border-bottom: 2px solid var(--blue-header);
-            padding-bottom: 4px;
+        /* TITRES FONCÉS AVEC TEXTE CLAIR */
+        .dark-section-banner {
+            background-color: #0f172a;
+            color: #f8fafc;
+            padding: 8px 14px;
+            border-radius: 6px;
             margin-top: 18px;
             margin-bottom: 10px;
-            font-size: 1.15rem;
+            font-size: 1.05rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.12);
         }
 
-        .section-subtitle {
+        .section-subtitle-light {
             font-size: 0.8rem;
             font-weight: normal;
-            color: #64748b;
-            margin-left: 6px;
+            color: #cbd5e1;
+            margin-left: 8px;
+        }
+
+        /* WRAPPER AVEC COLONNE INDICATEUR DE CLASSEMENT EXTERNE A GAUCHE */
+        .ranked-table-wrapper {
+            display: flex;
+            align-items: stretch;
+            margin-bottom: 20px;
+        }
+
+        .rank-sidebar {
+            width: 68px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            padding-right: 6px;
+        }
+
+        .rank-header-spacer {
+            /* Hauteur alignée sur l'en-tête du tableau */
+            border-bottom: 1px solid transparent;
+        }
+
+        .rank-slot {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .expensive-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            padding: 2px 6px;
+            border-radius: 12px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            white-space: nowrap;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .exp-1 {
+            background-color: #fee2e2;
+            color: #b91c1c;
+            border: 1px solid #f87171;
+        }
+
+        .exp-2 {
+            background-color: #ffedd5;
+            color: #c2410c;
+            border: 1px solid #fb923c;
+        }
+
+        .exp-3 {
+            background-color: #fef3c7;
+            color: #b45309;
+            border: 1px solid #fbbf24;
         }
 
         table {
+            flex: 1;
             width: 100%;
             border-collapse: collapse;
             background-color: white;
             border-radius: 6px;
             overflow: hidden;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
             font-size: 0.85rem;
         }
 
@@ -322,30 +385,39 @@
             margin-left: 5px;
         }
 
+        /* CARTE DETAILS */
         .details-card {
             background-color: white;
             border: 1px solid #cbd5e1;
             border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
+            padding: 12px 15px;
+            margin-bottom: 18px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.08);
             position: sticky;
             top: 15px;
             z-index: 90;
         }
 
-        .details-header {
+        .details-header-dark {
+            background-color: #1e293b;
+            color: #f8fafc;
+            padding: 8px 12px;
+            border-radius: 6px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 8px;
             margin-bottom: 12px;
         }
 
+        .details-hint {
+            color: #fde047;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
         .details-badge {
-            background-color: var(--blue-light);
-            color: var(--blue-header);
+            background-color: var(--blue-header);
+            color: white;
             padding: 3px 10px;
             border-radius: 16px;
             font-size: 0.75rem;
@@ -380,6 +452,66 @@
             font-style: italic;
         }
 
+        /* TABLEAUX DU BAS (CARACTÉRISTIQUES & PRESTATIONS) */
+        .bottom-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            margin-bottom: 22px;
+        }
+
+        .bottom-table th {
+            background-color: #e2e8f0;
+            color: #0f172a;
+            padding: 10px 12px;
+        }
+
+        .bottom-table td {
+            padding: 10px 12px;
+            vertical-align: middle;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .provider-name-cell {
+            font-weight: 700;
+            font-size: 0.9rem;
+            width: 160px;
+            white-space: nowrap;
+        }
+
+        .chips-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .feature-chip {
+            padding: 5px 11px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(0,0,0,0.1);
+            line-height: 1.3;
+        }
+
+        /* COULEURS LÉGÈRES ET LISIBLES PAR FOURNISSEUR */
+        .theme-edf { background-color: #dbeafe; color: #1e3a8a; border-color: #93c5fd; }
+        .theme-engie { background-color: #e0f2fe; color: #0c4a6e; border-color: #7dd3fc; }
+        .theme-plenitude { background-color: #dcfce7; color: #14532d; border-color: #86efac; }
+        .theme-alterna { background-color: #d1fae5; color: #064e3b; border-color: #6ee7b7; }
+        .theme-octopus { background-color: #f3e8ff; color: #581c87; border-color: #d8b4fe; }
+        .theme-total { background-color: #fee2e2; color: #7f1d1d; border-color: #fca5a5; }
+        .theme-primeo { background-color: #fef3c7; color: #78350f; border-color: #fcd34d; }
+        .theme-bordeaux { background-color: #ffe4e6; color: #881337; border-color: #fda4af; }
+        .theme-default { background-color: #f1f5f9; color: #1e293b; border-color: #cbd5e1; }
+
+        /* COULEURS PRESTATIONS ENEDIS ET GRDF */
+        .theme-enedis { background-color: #e0f2fe; color: #0369a1; border-color: #7dd3fc; }
+        .theme-grdf { background-color: #ffedd5; color: #9a3412; border-color: #fdba74; }
+
         @media (max-width: 1024px) {
             .page-layout {
                 flex-direction: column;
@@ -394,15 +526,17 @@
 </head>
 <body>
 
-<h1 class="main-title">Comparateur d'Offres d'Énergie</h1>
+<h1 class="main-title">🛡️ Team Viking - all in ONE</h1>
 
 <div class="page-layout">
-    <!-- COLONNE GAUCHE : COMPARATEUR ET DÉTAILS -->
+    <!-- COLONNE GAUCHE : COMPARATEUR, DÉTAILS ET TABLEAUX SUPPLÉMENTAIRES -->
     <div class="left-col">
         <!-- CARTE DÉTAILS FIGÉE -->
         <div class="details-card">
-            <div class="details-header">
-                <h3 style="margin:0; font-size: 1.1rem;" id="details-name">ℹ️ Détails (veuillez sélectionner un fournisseur) : EDF</h3>
+            <div class="details-header-dark">
+                <h3 style="margin:0; font-size: 1.05rem;" id="details-name">
+                    📋 Détails <span class="details-hint">(veuillez sélectionner un fournisseur)</span> : EDF
+                </h3>
                 <span class="details-badge">Fournisseur actif</span>
             </div>
 
@@ -418,7 +552,9 @@
         </div>
 
         <!-- SECTION ÉLECTRICITÉ -->
-        <h2 class="section-title">⚡ Électricité <span class="section-subtitle">(veuillez sélectionner une puissance souscrite et une option tarifaire)</span></h2>
+        <div class="dark-section-banner">
+            ⚡ Électricité <span class="section-subtitle-light">(veuillez sélectionner une puissance souscrite et une option tarifaire)</span>
+        </div>
         <div class="filter-card">
             <div class="filter-group">
                 <label for="select-elec">Puissance :</label>
@@ -441,21 +577,26 @@
             </div>
         </div>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Fournisseur</th>
-                    <th>Abonnement (€/mois)</th>
-                    <th>Prix kWh HP (€) <span id="th-hp-sort"></span></th>
-                    <th>Prix kWh HC (€)</th>
-                    <th>Prix kWh Base (€) <span id="th-base-sort">🔽</span></th>
-                </tr>
-            </thead>
-            <tbody id="tbody-elec"></tbody>
-        </table>
+        <div class="ranked-table-wrapper">
+            <div class="rank-sidebar" id="rank-sidebar-elec"></div>
+            <table id="table-elec">
+                <thead>
+                    <tr>
+                        <th>Fournisseur</th>
+                        <th>Abonnement (€/mois)</th>
+                        <th>Prix kWh HP (€) <span id="th-hp-sort"></span></th>
+                        <th>Prix kWh HC (€)</th>
+                        <th>Prix kWh Base (€) <span id="th-base-sort">🔽</span></th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-elec"></tbody>
+            </table>
+        </div>
 
         <!-- SECTION GAZ -->
-        <h2 class="section-title">🔥 Gaz Naturel <span class="section-subtitle">(veuillez sélectionner la classe de consommation)</span></h2>
+        <div class="dark-section-banner">
+            🔥 Gaz Naturel <span class="section-subtitle-light">(veuillez sélectionner la classe de consommation)</span>
+        </div>
         <div class="filter-card">
             <div class="filter-group">
                 <label for="select-gaz">Classe de consommation :</label>
@@ -466,15 +607,50 @@
             </div>
         </div>
 
-        <table>
+        <div class="ranked-table-wrapper">
+            <div class="rank-sidebar" id="rank-sidebar-gaz"></div>
+            <table id="table-gaz">
+                <thead>
+                    <tr>
+                        <th>Fournisseur</th>
+                        <th>Abonnement (€/mois)</th>
+                        <th>Prix kWh Gaz (€) 🔽</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-gaz"></tbody>
+            </table>
+        </div>
+
+        <!-- NOUVEAU TABLEAU 1 : CARACTÉRISTIQUES DES FOURNISSEURS -->
+        <div class="dark-section-banner">
+            📊 Caractéristiques des Fournisseurs
+        </div>
+        <table class="bottom-table">
             <thead>
                 <tr>
                     <th>Fournisseur</th>
-                    <th>Abonnement (€/mois)</th>
-                    <th>Prix kWh Gaz (€) 🔽</th>
+                    <th>Caractéristiques & Avantages</th>
                 </tr>
             </thead>
-            <tbody id="tbody-gaz"></tbody>
+            <tbody id="tbody-caracteristiques">
+                <tr><td colspan="2"><em>Chargement des caractéristiques...</em></td></tr>
+            </tbody>
+        </table>
+
+        <!-- NOUVEAU TABLEAU 2 : PRESTATION ENEDIS ET GRDF -->
+        <div class="dark-section-banner">
+            🛠️ Prestation Enedis et GRDF
+        </div>
+        <table class="bottom-table">
+            <thead>
+                <tr>
+                    <th>Prestataire</th>
+                    <th>Prestations & Tarifs</th>
+                </tr>
+            </thead>
+            <tbody id="tbody-prestations">
+                <tr><td colspan="2"><em>Chargement des prestations Enedis et GRDF...</em></td></tr>
+            </tbody>
         </table>
     </div>
 
@@ -517,6 +693,10 @@
     const URL_SCRIPT_ENGIE_ELEC = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=1214012203&single=true&output=csv";
     const URL_SCRIPT_ENGIE_GAZ = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=887654579&single=true&output=csv";
     const URL_SCRIPT_ENGIE_DUAL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=1661582761&single=true&output=csv";
+
+    // NOUVEAUX LIENS CSV POUR LES TABLEAUX DU BAS
+    const URL_CARACTERISTIQUES = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=1949724626&single=true&output=csv";
+    const URL_PRESTATIONS = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=1158477169&single=true&output=csv";
 
     let scriptSectionsData = [];
     let scriptActuelUrl = URL_SCRIPT_GENERAL;
@@ -647,9 +827,12 @@
         document.getElementById('select-elec').addEventListener('change', afficherTableauElec);
         document.getElementById('select-option').addEventListener('change', afficherTableauElec);
         document.getElementById('select-gaz').addEventListener('change', afficherTableauGaz);
+        window.addEventListener('resize', alignerBadgesClassement);
 
         chargerDonneesGoogleSheets();
         chargerScriptConseiller(URL_SCRIPT_GENERAL);
+        chargerTableauCaracteristiques();
+        chargerTableauPrestations();
     });
 
     function cleanNum(val) {
@@ -682,13 +865,26 @@
         const n = nom.trim();
         if (n.toLowerCase().includes("edf")) return "EDF";
         if (n.toLowerCase().includes("engie")) return "Engie";
-        if (n.toLowerCase().includes("plenitude")) return "Plenitude";
+        if (n.toLowerCase().includes("plenitude") || n.toLowerCase().includes("plénitude")) return "Plenitude";
         if (n.toLowerCase().includes("alterna")) return "Alterna";
         if (n.toLowerCase().includes("octopus")) return "Octopus";
         if (n.toLowerCase().includes("total")) return "TotalEnergies";
         if (n.toLowerCase().includes("primeo")) return "Primeo Energie";
         if (n.toLowerCase().includes("bordeaux")) return "Gaz de Bordeaux";
         return n;
+    }
+
+    function getThemeFournisseur(nom) {
+        const n = nom.toLowerCase();
+        if (n.includes("edf")) return "theme-edf";
+        if (n.includes("engie")) return "theme-engie";
+        if (n.includes("plenitude") || n.includes("plénitude")) return "theme-plenitude";
+        if (n.includes("alterna")) return "theme-alterna";
+        if (n.includes("octopus")) return "theme-octopus";
+        if (n.includes("total")) return "theme-total";
+        if (n.includes("primeo")) return "theme-primeo";
+        if (n.includes("bordeaux")) return "theme-bordeaux";
+        return "theme-default";
     }
 
     async function chargerDonneesGoogleSheets() {
@@ -759,6 +955,109 @@
         afficherTableauElec();
         afficherTableauGaz();
         afficherDetails(fournisseurSelectionne);
+    }
+
+    async function chargerTableauCaracteristiques() {
+        try {
+            const response = await fetch(URL_CARACTERISTIQUES);
+            const csvText = await response.text();
+            const lines = csvText.split(/\r?\n/).filter(l => l.trim() !== '');
+            const tbody = document.getElementById('tbody-caracteristiques');
+            tbody.innerHTML = '';
+
+            if (lines.length === 0) return;
+
+            const headers = parseCSVLine(lines[0]);
+
+            for (let i = 1; i < lines.length; i++) {
+                const cols = parseCSVLine(lines[i]);
+                const fournisseur = cols[0] ? cols[0].trim() : '';
+                if (!fournisseur) continue;
+
+                const themeClass = getThemeFournisseur(fournisseur);
+                let chipsHTML = '<div class="chips-container">';
+
+                for (let j = 1; j < cols.length; j++) {
+                    const val = cols[j] ? cols[j].trim() : '';
+                    if (val !== '') {
+                        const headerName = headers[j] ? headers[j].trim() : '';
+                        const labelText = (headerName && headerName.toLowerCase() !== 'caractéristiques' && headerName.toLowerCase() !== 'caracteristiques') 
+                            ? `<strong>${headerName} :</strong> ${val}` 
+                            : val;
+                        chipsHTML += `<div class="feature-chip ${themeClass}">${labelText}</div>`;
+                    }
+                }
+                chipsHTML += '</div>';
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="provider-name-cell">${fournisseur}</td>
+                    <td>${chipsHTML}</td>
+                `;
+                tbody.appendChild(tr);
+            }
+        } catch (e) {
+            console.warn("Erreur chargement caractéristiques", e);
+        }
+    }
+
+    async function chargerTableauPrestations() {
+        try {
+            const response = await fetch(URL_PRESTATIONS);
+            const csvText = await response.text();
+            const lines = csvText.split(/\r?\n/).filter(l => l.trim() !== '');
+            const tbody = document.getElementById('tbody-prestations');
+            tbody.innerHTML = '';
+
+            if (lines.length === 0) return;
+
+            // Regroupement par prestataire (Enedis / GRDF)
+            let grouped = {};
+
+            for (let i = 1; i < lines.length; i++) {
+                const cols = parseCSVLine(lines[i]);
+                if (cols.length < 2) continue;
+
+                const prestataireRaw = cols[0] ? cols[0].trim() : '';
+                if (!prestataireRaw) continue;
+
+                const prestataire = prestataireRaw.toUpperCase().includes("ENEDIS") ? "ENEDIS" :
+                                    prestataireRaw.toUpperCase().includes("GRDF") ? "GRDF" : prestataireRaw;
+
+                if (!grouped[prestataire]) grouped[prestataire] = [];
+
+                // Si la feuille est formatée en colonnes (Prestataire | Prestation | Prix)
+                if (cols.length >= 3 && cols[2].trim() !== '') {
+                    grouped[prestataire].push(`<strong>${cols[1].trim()}</strong> : ${cols[2].trim()}`);
+                } else {
+                    for (let j = 1; j < cols.length; j++) {
+                        if (cols[j] && cols[j].trim() !== '') {
+                            grouped[prestataire].push(cols[j].trim());
+                        }
+                    }
+                }
+            }
+
+            for (const [prestataire, items] of Object.entries(grouped)) {
+                const isEnedis = prestataire.toUpperCase().includes("ENEDIS");
+                const themeClass = isEnedis ? "theme-enedis" : "theme-grdf";
+
+                let chipsHTML = '<div class="chips-container">';
+                items.forEach(item => {
+                    chipsHTML += `<div class="feature-chip ${themeClass}">${item}</div>`;
+                });
+                chipsHTML += '</div>';
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="provider-name-cell">${prestataire}</td>
+                    <td>${chipsHTML}</td>
+                `;
+                tbody.appendChild(tr);
+            }
+        } catch (e) {
+            console.warn("Erreur chargement prestations", e);
+        }
     }
 
     async function chargerScriptConseiller(urlToFetch) {
@@ -980,23 +1279,24 @@
         let listeElec = [];
         for (const [nom, data] of Object.entries(dataFournisseurs)) {
             const elecData = data.elec ? data.elec[puissance] : null;
-            listeElec.push({ nom: nom, data: elecData });
+            let price = 999;
+            if (optionTarifaire === 'Base') {
+                price = (elecData && elecData.base > 0) ? elecData.base : 999;
+            } else {
+                price = (elecData && elecData.hp > 0) ? elecData.hp : 999;
+            }
+            listeElec.push({ nom: nom, data: elecData, sortPrice: price });
         }
 
-        listeElec.sort((a, b) => {
-            let priceA = 999;
-            let priceB = 999;
+        // Tri croissant (moins cher en haut, plus cher en bas)
+        listeElec.sort((a, b) => a.sortPrice - b.sortPrice);
 
-            if (optionTarifaire === 'Base') {
-                priceA = (a.data && a.data.base > 0) ? a.data.base : 999;
-                priceB = (b.data && b.data.base > 0) ? b.data.base : 999;
-            } else {
-                priceA = (a.data && a.data.hp > 0) ? a.data.hp : 999;
-                priceB = (b.data && b.data.hp > 0) ? b.data.hp : 999;
-            }
-
-            return priceA - priceB;
-        });
+        // Identification des 3 plus chers parmi ceux ayant un tarif valide
+        const valides = listeElec.filter(x => x.sortPrice < 999);
+        const top3Expensive = {};
+        if (valides.length >= 1) top3Expensive[valides[valides.length - 1].nom] = 1;
+        if (valides.length >= 2) top3Expensive[valides[valides.length - 2].nom] = 2;
+        if (valides.length >= 3) top3Expensive[valides[valides.length - 3].nom] = 3;
 
         listeElec.forEach(item => {
             const nom = item.nom;
@@ -1006,6 +1306,7 @@
             const tr = document.createElement('tr');
             tr.className = `provider-row ${nom === fournisseurSelectionne ? 'active' : ''}`;
             tr.dataset.fournisseur = nom;
+            if (top3Expensive[nom]) tr.dataset.expensiveRank = top3Expensive[nom];
             tr.onclick = function() { selectionnerFournisseur(nom); };
 
             if (elecData && (elecData.aboBase > 0 || elecData.aboHPHC > 0 || elecData.base > 0 || elecData.hp > 0)) {
@@ -1028,6 +1329,8 @@
             }
             tbody.appendChild(tr);
         });
+
+        setTimeout(alignerBadgesClassement, 0);
     }
 
     function afficherTableauGaz() {
@@ -1038,14 +1341,17 @@
         let listeGaz = [];
         for (const [nom, data] of Object.entries(dataFournisseurs)) {
             const gazData = data.gaz ? data.gaz[classeGaz] : null;
-            listeGaz.push({ nom: nom, data: gazData });
+            const price = (gazData && gazData.kwh > 0) ? gazData.kwh : 999;
+            listeGaz.push({ nom: nom, data: gazData, sortPrice: price });
         }
 
-        listeGaz.sort((a, b) => {
-            const priceA = (a.data && a.data.kwh > 0) ? a.data.kwh : 999;
-            const priceB = (b.data && b.data.kwh > 0) ? b.data.kwh : 999;
-            return priceA - priceB;
-        });
+        listeGaz.sort((a, b) => a.sortPrice - b.sortPrice);
+
+        const valides = listeGaz.filter(x => x.sortPrice < 999);
+        const top3Expensive = {};
+        if (valides.length >= 1) top3Expensive[valides[valides.length - 1].nom] = 1;
+        if (valides.length >= 2) top3Expensive[valides[valides.length - 2].nom] = 2;
+        if (valides.length >= 3) top3Expensive[valides[valides.length - 3].nom] = 3;
 
         listeGaz.forEach(item => {
             const nom = item.nom;
@@ -1055,6 +1361,7 @@
             const tr = document.createElement('tr');
             tr.className = `provider-row ${nom === fournisseurSelectionne ? 'active' : ''}`;
             tr.dataset.fournisseur = nom;
+            if (top3Expensive[nom]) tr.dataset.expensiveRank = top3Expensive[nom];
             tr.onclick = function() { selectionnerFournisseur(nom); };
 
             if (gazData && (gazData.abonnement > 0 || gazData.kwh > 0)) {
@@ -1068,13 +1375,52 @@
             }
             tbody.appendChild(tr);
         });
+
+        setTimeout(alignerBadgesClassement, 0);
+    }
+
+    // Génère les icônes fixes en dehors à gauche du tableau alignées exactement avec chaque ligne
+    function syncSidebar(tableId, sidebarId) {
+        const table = document.getElementById(tableId);
+        const sidebar = document.getElementById(sidebarId);
+        if (!table || !sidebar) return;
+
+        sidebar.innerHTML = '';
+        const thead = table.querySelector('thead');
+        const spacer = document.createElement('div');
+        spacer.className = 'rank-header-spacer';
+        spacer.style.height = (thead ? thead.offsetHeight : 36) + 'px';
+        sidebar.appendChild(spacer);
+
+        const rows = table.querySelectorAll('tbody tr');
+        rows.forEach(tr => {
+            const slot = document.createElement('div');
+            slot.className = 'rank-slot';
+            slot.style.height = tr.offsetHeight + 'px';
+
+            const rank = tr.dataset.expensiveRank;
+            if (rank) {
+                const badge = document.createElement('span');
+                badge.className = `expensive-badge exp-${rank}`;
+                if (rank === '1') badge.innerHTML = '🔺 1er +cher';
+                else if (rank === '2') badge.innerHTML = '🔸 2e +cher';
+                else if (rank === '3') badge.innerHTML = '▫️ 3e +cher';
+                slot.appendChild(badge);
+            }
+            sidebar.appendChild(slot);
+        });
+    }
+
+    function alignerBadgesClassement() {
+        syncSidebar('table-elec', 'rank-sidebar-elec');
+        syncSidebar('table-gaz', 'rank-sidebar-gaz');
     }
 
     function afficherDetails(nom) {
         const item = dataFournisseurs[nom];
         if (!item) return;
 
-        document.getElementById('details-name').textContent = `ℹ️ Détails (veuillez sélectionner un fournisseur) : ${nom}`;
+        document.getElementById('details-name').innerHTML = `📋 Détails <span class="details-hint">(veuillez sélectionner un fournisseur)</span> : ${nom}`;
 
         const ulEntreprise = document.getElementById('details-entreprise');
         ulEntreprise.innerHTML = '';
