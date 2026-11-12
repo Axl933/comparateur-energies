@@ -179,24 +179,26 @@
             margin-bottom: 8px;
         }
 
+        /* MÊME TAILLE QUE LE RESTE DU SCRIPT (0.85rem) */
         .script-title-green {
             background-color: #dcfce7;
             border: 2px solid #16a34a;
             color: #14532d;
             font-weight: bold;
-            font-size: 1.05rem;
+            font-size: 0.85rem;
             padding: 8px 12px;
             border-radius: 6px;
-            margin-top: 14px;
+            margin-top: 12px;
             margin-bottom: 8px;
         }
 
+        /* MÊME TAILLE QUE LE RESTE DU SCRIPT (0.85rem) */
         .script-title-yellow {
             background-color: #fef9c3;
             border: 2px solid #ca8a04;
             color: #713f12;
             font-weight: bold;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             padding: 8px 12px;
             border-radius: 6px;
             margin-top: 12px;
@@ -208,6 +210,7 @@
             border: 1.5px solid #16a34a !important;
             border-radius: 6px !important;
             color: #14532d !important;
+            font-size: 0.85rem !important;
         }
 
         .script-box-yellow {
@@ -215,6 +218,7 @@
             border: 1.5px solid #ca8a04 !important;
             border-radius: 6px !important;
             color: #713f12 !important;
+            font-size: 0.85rem !important;
         }
 
         .script-paragraph {
@@ -223,6 +227,7 @@
             padding: 8px 12px;
             border-radius: 4px;
             border: 1px solid #e2e8f0;
+            font-size: 0.85rem;
         }
 
         .tag-blue {
@@ -235,6 +240,15 @@
             font-weight: bold;
             background-color: #fef2f2;
             border-left: 3px solid #dc2626;
+            font-size: 0.85rem;
+        }
+
+        /* DANS LES PARAGRAPHES ROUGES, LES CROCHETS [...] SONT EN NOIR GRAS DE MÊME TAILLE */
+        .text-alert-red .tag-blue,
+        .text-alert-red .bracket-black {
+            color: #000000 !important;
+            font-weight: 800 !important;
+            font-size: inherit !important;
         }
 
         /* CARTE FILTRES */
@@ -366,12 +380,12 @@
             border-bottom: 1px solid #e2e8f0;
         }
 
-        /* EN-TÊTES DES TABLEAUX : BLEU FONCÉ + ÉCRITURE DORÉE */
+        /* EN-TÊTES DES TABLEAUX : BLEU PLUS FONCÉ (#172554) + ÉCRITURE DORÉE */
         th {
-            background-color: #1e3a8a;
+            background-color: #172554;
             color: #fde047;
             font-weight: 700;
-            border-bottom: 2px solid #172554;
+            border-bottom: 2px solid #0f172a;
         }
 
         /* SURBRILLANCE VERTE LÉGÈRE UNIQUEMENT SUR LES PRIX DE L'OPTION TARIFAIRE CHOISIE */
@@ -1321,18 +1335,27 @@
                     isYellowBox = true;
                 }
 
-                // Inscription en rouge pour les phrases d'alerte / consentement
+                // Inscription en rouge pour les phrases d'alerte / consentement + bloc Hello Watt complet
                 if (
                     textLower.includes("enregistré") || 
                     textLower.includes("qualité et de formation") ||
                     textLower.includes("afin de réaliser le devis le plus précis") ||
                     textLower.includes("hello watt vous propose également une application gratuite") ||
-                    textLower.includes("pour avoir accès à cette application")
+                    textLower.includes("pour avoir accès à cette application") ||
+                    textLower.includes("souhaitez-vous en bénéficier") ||
+                    textLower.includes("souhaitez vous en bénéficier") ||
+                    textLower.includes("je vous envoie un lien de téléchargement par sms")
                 ) {
                     isAlertRed = true;
                 }
 
-                text = text.replace(/\[(Validated|Recall at|New prospect\/User|Obtenir le [^\]]+|Si oui du client)\]/gi, '<span class="tag-blue">[$1]</span>');
+                // Mise en forme des éléments entre crochets [...]
+                if (isAlertRed) {
+                    // Dans les paragraphes rouges : les crochets [...] sont en noir gras de même taille
+                    text = text.replace(/(\[[^\]]+\])/g, '<span class="bracket-black">$1</span>');
+                } else {
+                    text = text.replace(/\[(Validated|Recall at|New prospect\/User|Obtenir le [^\]]+|Si oui du client)\]/gi, '<span class="tag-blue">[$1]</span>');
+                }
 
                 scriptSectionsData.push({
                     text: text,
