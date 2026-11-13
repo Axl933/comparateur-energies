@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Viking - all in ONE</title>
+    <!-- IMPORT GOOGLE FONT JOSEFIN SANS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-yellow: #fef08a;
@@ -45,23 +49,38 @@
         }
 
         /* BARRE DE NAVIGATION PRINCIPALE (2 CM EN DESSOUS DU TITRE ET 2 CM AU-DESSUS DU CONTENU) */
-        .top-pages-nav {
+        .top-pages-nav-wrapper {
             margin-top: 2cm;
             margin-bottom: 2cm;
             display: flex;
             justify-content: center;
-            align-items: center;
+            width: 100%;
+        }
+
+        /* TOUS LES BOUTONS ONT EXACTEMENT LA MÊME LONGUEUR, ADAPTÉE AU PLUS LONG TEXTE */
+        .top-pages-nav {
+            display: inline-grid;
+            grid-auto-flow: column;
+            grid-auto-columns: 1fr;
             gap: 14px;
-            flex-wrap: wrap;
+            max-width: 100%;
         }
 
         .page-nav-btn {
-            padding: 11px 20px;
+            font-family: 'Josefin Sans', sans-serif;
+            padding: 13px 20px;
             border-radius: 10px;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            letter-spacing: 0.3px;
             cursor: pointer;
             transition: transform 0.15s ease, box-shadow 0.15s ease;
             box-shadow: 0 3px 6px rgba(0,0,0,0.12);
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
         }
 
         .page-nav-btn:hover {
@@ -78,7 +97,7 @@
         .btn-page-comparateur {
             background-color: #93c5fd;
             color: #1e3a8a;
-            font-weight: 800;
+            font-weight: 700;
             border: 2px solid #2563eb;
         }
 
@@ -86,7 +105,7 @@
         .btn-page-boxfree {
             background-color: #ffffff;
             color: #dc2626;
-            font-weight: 700;
+            font-weight: 600;
             border: 2px solid #dc2626;
         }
 
@@ -94,7 +113,7 @@
         .btn-page-homeserve {
             background-color: #0f172a;
             color: #ffffff;
-            font-weight: 800;
+            font-weight: 700;
             border: 2px solid #334155;
         }
         .btn-page-homeserve .txt-hs {
@@ -108,7 +127,7 @@
         .btn-page-direct {
             background-color: #e2e8f0;
             color: #dc2626;
-            font-weight: 800;
+            font-weight: 700;
             border: 2px solid #94a3b8;
         }
 
@@ -116,7 +135,7 @@
         .btn-page-plenitude {
             background-color: #fef9c3;
             color: #14532d;
-            font-weight: 700;
+            font-weight: 600;
             border: 2px solid #eab308;
         }
 
@@ -124,8 +143,21 @@
         .btn-page-hellowatt {
             background-color: #dc2626;
             color: #000000;
-            font-weight: 800;
+            font-weight: 700;
             border: 2px solid #7f1d1d;
+        }
+
+        @media (max-width: 1300px) {
+            .top-pages-nav {
+                grid-auto-flow: row;
+                grid-template-columns: repeat(3, minmax(220px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-pages-nav {
+                grid-template-columns: repeat(2, minmax(180px, 1fr));
+            }
         }
 
         /* CONTENEUR DES AUTRES PAGES */
@@ -801,26 +833,28 @@
 <div class="main-container">
     <h1 class="main-title">🛡️ Team Viking - all in ONE</h1>
 
-    <!-- BARRE DE NAVIGATION DES 6 BOUTONS (2 CM SOUS LE TITRE ET 2 CM AU-DESSUS DU CONTENU) -->
-    <div class="top-pages-nav">
-        <button class="page-nav-btn btn-page-comparateur active-page" onclick="changerPagePrincipale('comparateur', this)">
-            Comparateur Energies
-        </button>
-        <button class="page-nav-btn btn-page-boxfree" onclick="changerPagePrincipale('boxfree', this)">
-            Box free
-        </button>
-        <button class="page-nav-btn btn-page-homeserve" onclick="changerPagePrincipale('homeserve', this)">
-            <span class="txt-hs">HomeServe</span> &amp; <span class="txt-pc">PleniCoach</span>
-        </button>
-        <button class="page-nav-btn btn-page-direct" onclick="changerPagePrincipale('direct', this)">
-            Direct Assurance
-        </button>
-        <button class="page-nav-btn btn-page-plenitude" onclick="changerPagePrincipale('plenitude', this)">
-            Challenge Plenitude
-        </button>
-        <button class="page-nav-btn btn-page-hellowatt" onclick="changerPagePrincipale('hellowatt', this)">
-            Classement Hellowatt
-        </button>
+    <!-- BARRE DE NAVIGATION DES 6 BOUTONS (JOSEFIN SANS, MÊME LONGUEUR, 2 CM SOUS LE TITRE ET 2 CM AU-DESSUS DU CONTENU) -->
+    <div class="top-pages-nav-wrapper">
+        <div class="top-pages-nav">
+            <button class="page-nav-btn btn-page-comparateur active-page" onclick="changerPagePrincipale('comparateur', this)">
+                Comparateur Energies
+            </button>
+            <button class="page-nav-btn btn-page-boxfree" onclick="changerPagePrincipale('boxfree', this)">
+                Box free
+            </button>
+            <button class="page-nav-btn btn-page-homeserve" onclick="changerPagePrincipale('homeserve', this)">
+                <span><span class="txt-hs">HomeServe</span> &amp; <span class="txt-pc">PleniCoach</span></span>
+            </button>
+            <button class="page-nav-btn btn-page-direct" onclick="changerPagePrincipale('direct', this)">
+                Direct Assurance
+            </button>
+            <button class="page-nav-btn btn-page-plenitude" onclick="changerPagePrincipale('plenitude', this)">
+                Challenge Plenitude
+            </button>
+            <button class="page-nav-btn btn-page-hellowatt" onclick="changerPagePrincipale('hellowatt', this)">
+                Classement Hellowatt
+            </button>
+        </div>
     </div>
 
     <!-- PAGE 1 : COMPARATEUR ENERGIES (VOTRE CONTENU ACTUEL COMPLET) -->
