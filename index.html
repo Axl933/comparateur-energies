@@ -275,17 +275,6 @@
             border-color: var(--blue-header);
         }
 
-        .free-theme .script-btn:hover {
-            background-color: #fee2e2;
-            color: #dc2626;
-        }
-
-        .free-theme .script-btn.active {
-            background-color: #dc2626;
-            color: white;
-            border-color: #dc2626;
-        }
-
         .sub-btn {
             background-color: white;
             border: 1px solid #0284c7;
@@ -327,16 +316,21 @@
             margin-bottom: 8px;
         }
 
+        /* TITRES DES BLOCS SCRIPT FREE (ACCROCHE, DÉCOUVERTE, ARGUMENTATION, MISE EN PLACE DU CONTRAT) */
         .script-section-free-title {
-            background-color: #fee2e2;
-            border: 2px solid #dc2626;
-            color: #7f1d1d;
-            font-weight: bold;
+            background-color: #e0f2fe;
+            border: 2px solid #0284c7;
+            color: #0f172a;
+            font-weight: 800;
             font-size: 0.95rem;
             padding: 8px 12px;
             border-radius: 6px;
-            margin-top: 12px;
+            margin-top: 14px;
             margin-bottom: 8px;
+        }
+
+        .script-section-free-title:first-child {
+            margin-top: 2px;
         }
 
         /* MÊME TAILLE QUE LE RESTE DU SCRIPT (0.85rem) */
@@ -409,6 +403,7 @@
             padding: 8px 12px;
             border-radius: 4px;
             border: 1px solid #e2e8f0;
+            color: #1e293b;
             font-size: 0.85rem;
         }
 
@@ -425,11 +420,11 @@
         }
 
         .text-alert-red {
-            color: #dc2626;
+            color: #dc2626 !important;
             font-weight: bold;
-            background-color: #fef2f2;
-            border: 1px solid #fecaca;
-            border-left: 4px solid #dc2626;
+            background-color: #fef2f2 !important;
+            border: 1px solid #fecaca !important;
+            border-left: 4px solid #dc2626 !important;
             font-size: 0.85rem;
         }
 
@@ -624,9 +619,88 @@
             background-color: #fef2f2;
         }
 
-        .free-box-table td:first-child {
-            font-weight: 700;
-            color: #0f172a;
+        /* LIGNE FREE EN SURBRILLANCE VERTE DANS LES 3 TABLEAUX */
+        .free-box-table tbody tr.free-row-highlight {
+            background-color: #dcfce7 !important;
+            color: #14532d !important;
+            font-weight: 600;
+        }
+
+        .free-box-table tbody tr.free-row-highlight td {
+            background-color: #dcfce7 !important;
+            color: #14532d !important;
+            border-bottom-color: #86efac;
+        }
+
+        /* BOUTONS ARRONDIS DES OPÉRATEURS DANS LES TABLEAUX BOX FREE */
+        .op-pill {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-weight: 800;
+            font-size: 0.78rem;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+            text-align: center;
+        }
+
+        /* Free en blanc écriture rouge */
+        .op-free {
+            background-color: #ffffff;
+            color: #dc2626;
+            border: 1.5px solid #dc2626;
+        }
+
+        /* RED by SFR en rouge */
+        .op-red-sfr {
+            background-color: #ef4444;
+            color: #ffffff;
+            border: 1.5px solid #b91c1c;
+        }
+
+        /* SFR en rouge avec écriture blanche */
+        .op-sfr {
+            background-color: #dc2626;
+            color: #ffffff;
+            border: 1.5px solid #991b1b;
+        }
+
+        /* Orange en orange */
+        .op-orange {
+            background-color: #f97316;
+            color: #ffffff;
+            border: 1.5px solid #c2410c;
+        }
+
+        /* Sosh en vert */
+        .op-sosh {
+            background-color: #16a34a;
+            color: #ffffff;
+            border: 1.5px solid #15803d;
+        }
+
+        /* Bouygues en bleu */
+        .op-bouygues {
+            background-color: #0284c7;
+            color: #ffffff;
+            border: 1.5px solid #0369a1;
+        }
+
+        /* CROIX EN ROUGE DANS LES TABLEAUX BOX FREE */
+        .cross-red {
+            color: #dc2626 !important;
+            font-weight: 900;
+            font-size: 1rem;
+            display: inline-block;
+        }
+
+        /* TICS EN VERT DANS FORCES DE FREE */
+        .tic-green {
+            color: #16a34a !important;
+            font-weight: 900;
+            font-size: 1.05rem;
+            margin-right: 4px;
         }
 
         /* ENCADRÉ FORCES DE FREE */
@@ -655,10 +729,11 @@
 
         .forces-free-list {
             margin: 0;
-            padding-left: 20px;
+            padding-left: 8px;
+            list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 7px;
+            gap: 8px;
         }
 
         .forces-free-list li {
@@ -1183,18 +1258,10 @@
                 </div>
             </div>
 
-            <!-- COLONNE DROITE : SCRIPT FREE (CELLULE A40+) -->
+            <!-- COLONNE DROITE : SCRIPT FREE (CELLULE A40+, SANS BOUTONS DE FILTRE) -->
             <div class="right-col">
                 <div class="script-card free-theme">
                     <h2>📞 Script Free</h2>
-
-                    <div class="script-nav">
-                        <button class="script-btn active" onclick="filtrerScriptFree('all', this)">Tout</button>
-                        <button class="script-btn" onclick="filtrerScriptFree('accroche', this)">Accroche</button>
-                        <button class="script-btn" onclick="filtrerScriptFree('decouverte', this)">Découverte</button>
-                        <button class="script-btn" onclick="filtrerScriptFree('argumentation', this)">Argumentation</button>
-                        <button class="script-btn" onclick="filtrerScriptFree('contrat', this)">Mise en place du contrat</button>
-                    </div>
 
                     <div class="script-content" id="script-free-container">
                         <em>Chargement du script Free...</em>
@@ -1537,6 +1604,53 @@
         return parseCSVExactRows(text).filter(r => r.some(cell => cell !== ''));
     }
 
+    // BOUTONS ARRONDIS POUR LES OPÉRATEURS DANS LES TABLEAUX BOX FREE
+    function formatOperateurButton(val) {
+        if (!val) return '-';
+        const cleanVal = val.trim();
+        const lower = cleanVal.toLowerCase();
+
+        if (lower.includes('red')) {
+            return `<span class="op-pill op-red-sfr">${cleanVal}</span>`;
+        }
+        if (lower.includes('free')) {
+            return `<span class="op-pill op-free">${cleanVal}</span>`;
+        }
+        if (lower.includes('orange')) {
+            return `<span class="op-pill op-orange">${cleanVal}</span>`;
+        }
+        if (lower.includes('sosh')) {
+            return `<span class="op-pill op-sosh">${cleanVal}</span>`;
+        }
+        if (lower.includes('bouygues') || lower.includes('bougues') || lower.includes('bbox')) {
+            return `<span class="op-pill op-bouygues">${cleanVal}</span>`;
+        }
+        if (lower.includes('sfr')) {
+            return `<span class="op-pill op-sfr">${cleanVal}</span>`;
+        }
+        return cleanVal;
+    }
+
+    // FORMATE LES CROIX EN ROUGE DANS LES CELLULES DES TABLEAUX BOX FREE
+    function formatFreeCellContent(val, isFirstCol) {
+        if (!val || val === '-') return '-';
+        const trimmed = val.trim();
+
+        if (isFirstCol) {
+            return formatOperateurButton(trimmed);
+        }
+
+        // Si la cellule ne contient qu'une croix (✗, ✖, ❌, X, x)
+        if (/^[✗✘✖✕❌xX]$/.test(trimmed)) {
+            return `<span class="cross-red">${trimmed}</span>`;
+        }
+
+        // Remplacer les symboles croix dans un texte par des croix rouges
+        let html = trimmed.replace(/\n/g, '<br>');
+        html = html.replace(/([✗✘✖✕❌])/g, '<span class="cross-red">$1</span>');
+        return html;
+    }
+
     // CHARGEMENT COMPLET DE LA FEUILLE BOX FREE (A3:H9, A13:H19, A23:H27, A30:O36, A40+)
     async function chargerDonneesBoxFree() {
         try {
@@ -1561,7 +1675,7 @@
                 const row = exactRows[r] || [];
                 const nonEmptyCells = row.slice(0, 15).map(c => c.replace(/\n/g, ' ').trim()).filter(c => c !== '');
                 if (nonEmptyCells.length > 0) {
-                    const lineText = nonEmptyCells.join(' — ');
+                    const lineText = nonEmptyCells.join(' ');
                     if (!lineText.toLowerCase().startsWith('forces de free')) {
                         forcesItems.push(lineText);
                     }
@@ -1570,7 +1684,9 @@
             if (forcesItems.length > 0) {
                 forcesItems.forEach(txt => {
                     const li = document.createElement('li');
-                    li.textContent = txt;
+                    // Mettre le tic au début de chaque phrase en vert (s'il existe déjà ou en ajouter un s'il n'y en a pas)
+                    const cleanTxt = txt.replace(/^[✓✔☑✅•\-]\s*/, '');
+                    li.innerHTML = `<span class="tic-green">✔</span> ${cleanTxt}`;
                     ulForces.appendChild(li);
                 });
             } else {
@@ -1579,88 +1695,85 @@
 
             // 5. Script Free à partir de la cellule A40 (index 0-based : ligne 39 et suivantes)
             scriptFreeSectionsData = [];
-            let currentFreeCat = 'accroche';
 
+            let rawScriptLines = [];
             for (let r = 39; r < exactRows.length; r++) {
                 const row = exactRows[r] || [];
-                // Prendre le texte de la ligne (A40+ et éventuelles colonnes fusionnées)
-                let text = row.map(c => c.trim()).filter(c => c !== '').join(' ').trim();
-                if (!text) continue;
-
-                const textLower = text.toLowerCase();
-                let isSectionTitle = false;
-                let isAlertRed = false;
-
-                // Détection des 4 blocs demandés : Accroche, Découverte, Argumentation, Mise en place du contrat
-                if (
-                    textLower === 'accroche' || textLower === 'accroche :' || textLower.startsWith('accroche ') && text.length < 35
-                ) {
-                    isSectionTitle = true;
-                    currentFreeCat = 'accroche';
-                } else if (
-                    textLower === 'découverte' || textLower === 'decouverte' ||
-                    textLower === 'découverte :' || textLower === 'decouverte :' ||
-                    (textLower.startsWith('découverte') || textLower.startsWith('decouverte')) && text.length < 45
-                ) {
-                    isSectionTitle = true;
-                    currentFreeCat = 'decouverte';
-                } else if (
-                    textLower === 'argumentation' || textLower === 'argumentation :' ||
-                    textLower.startsWith('argumentation') && text.length < 45
-                ) {
-                    isSectionTitle = true;
-                    currentFreeCat = 'argumentation';
-                } else if (
-                    textLower.includes('mise en place du contrat') ||
-                    (textLower.includes('souscription') && text.length < 45)
-                ) {
-                    isSectionTitle = true;
-                    currentFreeCat = 'contrat';
-                }
-
-                // Détection des phrases écrites en rouge dans votre script Free (mentions obligatoires, enregistrement, RGPD, engagement, frais, etc.)
-                if (
-                    !isSectionTitle && (
-                        textLower.includes("enregistré") ||
-                        textLower.includes("qualité et de formation") ||
-                        textLower.includes("rétractation") ||
-                        textLower.includes("retractation") ||
-                        textLower.includes("frais de mise en service") ||
-                        textLower.includes("frais de résiliation") ||
-                        textLower.includes("frais de resiliation") ||
-                        textLower.includes("sans engagement") ||
-                        textLower.includes("engagement") ||
-                        textLower.includes("mandat sepa") ||
-                        textLower.includes("prélèvement automatique") ||
-                        textLower.includes("prelevement automatique") ||
-                        textLower.includes("attention") ||
-                        textLower.includes("important") ||
-                        textLower.includes("obligatoire") ||
-                        textLower.includes("rgpd") ||
-                        textLower.includes("données personnelles") ||
-                        textLower.includes("donnees personnelles") ||
-                        textLower.includes("conditions générales") ||
-                        textLower.includes("conditions generales")
-                    )
-                ) {
-                    isAlertRed = true;
-                }
-
-                if (isAlertRed) {
-                    text = text.replace(/(\[[^\]]+\])/g, '<span class="bracket-black">$1</span>');
-                } else {
-                    text = text.replace(/(\[[^\]]+\])/g, '<span class="tag-blue">$1</span>');
-                }
-
-                scriptFreeSectionsData.push({
-                    text: text.replace(/\n/g, '<br>'),
-                    isSectionTitle: isSectionTitle,
-                    isAlertRed: isAlertRed,
-                    category: currentFreeCat
+                const cellJoined = row.map(c => c.trim()).filter(c => c !== '').join(' ').trim();
+                if (!cellJoined) continue;
+                cellJoined.split(/\r?\n/).forEach(subLine => {
+                    const trimmed = subLine.trim();
+                    if (trimmed) rawScriptLines.push(trimmed);
                 });
             }
 
-            afficherScriptFree('all');
+            let currentParagraphLines = [];
+            const flushParagraph = () => {
+                if (currentParagraphLines.length === 0) return;
+                const fullPara = currentParagraphLines.join('<br>');
+                const paraLower = fullPara.toLowerCase().replace(/[’']/g, "'");
+
+                // UNIQUEMENT les 6 paragraphes demandés en surbrillance rouge
+                const isAlertRed = (
+                    paraLower.includes("l'offre que je vous propose est la freebox") ||
+                    paraLower.includes("afin de procéder à l'activation de votre ligne") ||
+                    paraLower.includes("concernant l'activation, vous allez pouvoir choisir") ||
+                    paraLower.includes("concernant la facturation, vous serez prélevé") ||
+                    paraLower.includes("sachez également que vous disposez d'un délai de 14 jours") ||
+                    paraLower.includes("pouvez-vous me redonner votre iban")
+                );
+
+                let formattedText = fullPara;
+                if (isAlertRed) {
+                    formattedText = formattedText.replace(/(\[[^\]]+\])/g, '<span class="bracket-black">$1</span>');
+                } else {
+                    formattedText = formattedText.replace(/(\[[^\]]+\])/g, '<span class="tag-blue">$1</span>');
+                }
+
+                scriptFreeSectionsData.push({
+                    text: formattedText,
+                    isSectionTitle: false,
+                    isAlertRed: isAlertRed
+                });
+                currentParagraphLines = [];
+            };
+
+            rawScriptLines.forEach(line => {
+                const titleMatch = line.match(/^(Accroche|Découverte|Decouverte|Argumentation|Mise en place du contrat)\s*:?\s*(.*)$/i);
+
+                if (titleMatch) {
+                    flushParagraph();
+
+                    const rawTitle = titleMatch[1];
+                    const restOfLine = titleMatch[2] ? titleMatch[2].trim() : '';
+
+                    scriptFreeSectionsData.push({
+                        text: rawTitle + ' :',
+                        isSectionTitle: true,
+                        isAlertRed: false
+                    });
+
+                    if (restOfLine) {
+                        currentParagraphLines.push(restOfLine);
+                    }
+                } else {
+                    const startsNewBlock = (
+                        line.startsWith('•') && currentParagraphLines.length > 0 && !currentParagraphLines[currentParagraphLines.length - 1].startsWith('•')
+                    ) || (
+                        !line.startsWith('•') && currentParagraphLines.length > 0 && currentParagraphLines[currentParagraphLines.length - 1].startsWith('•')
+                    ) || (
+                        /^(Au vu des informations|L’offre que je vous propose|L'offre que je vous propose|Afin que Free|Afin de procéder|Concernant l’activation|Concernant l'activation|Concernant la facturation|Sachez également|Pouvez-vous me redonner)/i.test(line)
+                    );
+
+                    if (startsNewBlock) {
+                        flushParagraph();
+                    }
+                    currentParagraphLines.push(line);
+                }
+            });
+
+            flushParagraph();
+            afficherScriptFree();
         } catch (e) {
             console.warn("Erreur lors du chargement de la feuille Box Free :", e);
             document.getElementById('script-free-container').innerHTML = "<em>Impossible de charger le script Free.</em>";
@@ -1673,7 +1786,6 @@
         thead.innerHTML = '';
         tbody.innerHTML = '';
 
-        // Récupérer les lignes A..H (colonnes 0 à 7)
         const sliceRows = [];
         for (let r = startRowIdx; r <= endRowIdx && r < exactRows.length; r++) {
             const row = (exactRows[r] || []).slice(0, 8);
@@ -1687,7 +1799,6 @@
             return;
         }
 
-        // Déterminer quelles colonnes entre A (0) et H (7) contiennent au moins une donnée
         const activeCols = [];
         for (let c = 0; c < 8; c++) {
             if (sliceRows.some(r => (r[c] || '').trim() !== '')) {
@@ -1695,7 +1806,7 @@
             }
         }
 
-        // Première ligne non vide = en-tête du tableau
+        // Première ligne = en-tête du tableau
         const headerRow = sliceRows[0];
         const trHead = document.createElement('tr');
         activeCols.forEach(c => {
@@ -1709,17 +1820,24 @@
         for (let i = 1; i < sliceRows.length; i++) {
             const dataRow = sliceRows[i];
             const tr = document.createElement('tr');
-            activeCols.forEach(c => {
+
+            // Vérifier si toute la ligne correspond à Free (colonne opérateur contient "free")
+            const firstColVal = (dataRow[activeCols[0]] || '').toLowerCase();
+            if (firstColVal.includes('free')) {
+                tr.classList.add('free-row-highlight');
+            }
+
+            activeCols.forEach((c, colIndex) => {
                 const td = document.createElement('td');
                 const val = dataRow[c] ? dataRow[c].trim() : '-';
-                td.innerHTML = val ? val.replace(/\n/g, '<br>') : '-';
+                td.innerHTML = formatFreeCellContent(val, colIndex === 0);
                 tr.appendChild(td);
             });
             tbody.appendChild(tr);
         }
     }
 
-    function afficherScriptFree(catFilter) {
+    function afficherScriptFree() {
         const container = document.getElementById('script-free-container');
         container.innerHTML = '';
 
@@ -1729,8 +1847,6 @@
         }
 
         scriptFreeSectionsData.forEach(item => {
-            if (catFilter !== 'all' && item.category !== catFilter) return;
-
             if (item.isSectionTitle) {
                 const h = document.createElement('div');
                 h.className = 'script-section-free-title';
@@ -1745,12 +1861,6 @@
         });
 
         container.scrollTop = 0;
-    }
-
-    function filtrerScriptFree(cat, btn) {
-        document.querySelectorAll('#page-boxfree .script-btn').forEach(b => b.classList.remove('active'));
-        if (btn) btn.classList.add('active');
-        afficherScriptFree(cat);
     }
 
     function normaliserNom(nom) {
