@@ -85,12 +85,15 @@
             overflow: hidden;
         }
 
+        /* TITRE SCRIPT COMPARATEUR : FOND BLEU FONCÉ + ÉCRITURE DORÉE COMME LES ENTÊTES DES TABLEAUX */
         .script-card h2 {
             margin: 0 0 10px 0;
             font-size: 1.15rem;
-            color: var(--blue-header);
-            border-bottom: 2px solid var(--blue-light);
-            padding-bottom: 6px;
+            background-color: #172554;
+            color: #fde047;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border-bottom: 2px solid #0f172a;
             flex-shrink: 0;
         }
 
@@ -257,16 +260,11 @@
             font-weight: bold;
         }
 
-        .highlight-new-prospect .tag-blue {
-            color: #15803d !important;
-        }
-
-        .highlight-validated .tag-blue {
-            color: #7e22ce !important;
-        }
-
-        .highlight-recall-at .tag-blue {
-            color: #0369a1 !important;
+        /* [New prospect/User] [Validated] [Recall at] : EN NOIR + TAILLE AUGMENTÉE D'UN DEGRÉ (0.95rem) */
+        .tag-lead-black {
+            color: #000000 !important;
+            font-weight: 800;
+            font-size: 0.95rem;
         }
 
         .text-alert-red {
@@ -335,9 +333,10 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.12);
         }
 
+        /* SOUS-TITRES JAUNES : TAILLE AUGMENTÉE D'UN DEGRÉ (0.95rem) ET EN GRAS */
         .section-subtitle-yellow {
-            font-size: 0.82rem;
-            font-weight: 600;
+            font-size: 0.95rem;
+            font-weight: 700;
             color: #fde047;
             margin-left: 8px;
         }
@@ -350,7 +349,7 @@
         }
 
         .rank-sidebar {
-            width: 78px;
+            width: 68px;
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
@@ -371,9 +370,9 @@
             display: inline-flex;
             align-items: center;
             gap: 3px;
-            padding: 2px 7px;
+            padding: 2px 8px;
             border-radius: 12px;
-            font-size: 0.72rem;
+            font-size: 0.75rem;
             font-weight: 800;
             white-space: nowrap;
             box-shadow: 0 1px 2px rgba(0,0,0,0.1);
@@ -1570,7 +1569,9 @@
                 if (isAlertRed) {
                     text = text.replace(/(\[[^\]]+\])/g, '<span class="bracket-black">$1</span>');
                 } else {
-                    text = text.replace(/\[(Validated|Recall at|New prospect\/User|Obtenir le [^\]]+|Si oui du client)\]/gi, '<span class="tag-blue">[$1]</span>');
+                    // [New prospect/User], [Validated], [Recall at] : en noir et taille augmentée d'un degré
+                    text = text.replace(/\[(Validated|Recall at|New prospect\/User)\]/gi, '<span class="tag-lead-black">[$1]</span>');
+                    text = text.replace(/\[(Obtenir le [^\]]+|Si oui du client)\]/gi, '<span class="tag-blue">[$1]</span>');
                 }
 
                 scriptSectionsData.push({
@@ -1821,9 +1822,9 @@
             if (rank) {
                 const badge = document.createElement('span');
                 badge.className = `cheapest-badge cheap-${rank}`;
-                if (rank === '1') badge.innerHTML = '🥇 1er -cher';
-                else if (rank === '2') badge.innerHTML = '🥈 2e -cher';
-                else if (rank === '3') badge.innerHTML = '🥉 3e -cher';
+                if (rank === '1') badge.innerHTML = '🥇 1er';
+                else if (rank === '2') badge.innerHTML = '🥈 2em';
+                else if (rank === '3') badge.innerHTML = '🥉 3em';
                 slot.appendChild(badge);
             }
             sidebar.appendChild(slot);
