@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Viking - all in ONE</title>
-    <!-- IMPORT GOOGLE FONT JOSEFIN SANS -->
+    <!-- IMPORT GOOGLE FONT ROBOTO -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-yellow: #fef08a;
@@ -57,7 +57,7 @@
             width: 100%;
         }
 
-        /* TOUS LES BOUTONS ONT EXACTEMENT LA MÊME LONGUEUR, ADAPTÉE AU PLUS LONG TEXTE */
+        /* TOUS LES BOUTONS ONT EXACTEMENT LA MÊME LONGUEUR ET LA MÊME HAUTEUR */
         .top-pages-nav {
             display: inline-grid;
             grid-auto-flow: column;
@@ -67,14 +67,16 @@
         }
 
         .page-nav-btn {
-            font-family: 'Josefin Sans', sans-serif;
-            padding: 13px 20px;
-            border-radius: 10px;
-            font-size: 1rem;
-            letter-spacing: 0.3px;
+            font-family: 'Roboto', sans-serif;
+            height: 32px;
+            padding: 0 18px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            line-height: 1;
+            letter-spacing: 0.2px;
             cursor: pointer;
             transition: transform 0.15s ease, box-shadow 0.15s ease;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.12);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.12);
             white-space: nowrap;
             display: inline-flex;
             align-items: center;
@@ -85,7 +87,7 @@
 
         .page-nav-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 12px rgba(0,0,0,0.18);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.18);
         }
 
         .page-nav-btn.active-page {
@@ -105,7 +107,7 @@
         .btn-page-boxfree {
             background-color: #ffffff;
             color: #dc2626;
-            font-weight: 600;
+            font-weight: 500;
             border: 2px solid #dc2626;
         }
 
@@ -135,7 +137,7 @@
         .btn-page-plenitude {
             background-color: #fef9c3;
             color: #14532d;
-            font-weight: 600;
+            font-weight: 500;
             border: 2px solid #eab308;
         }
 
@@ -833,7 +835,7 @@
 <div class="main-container">
     <h1 class="main-title">🛡️ Team Viking - all in ONE</h1>
 
-    <!-- BARRE DE NAVIGATION DES 6 BOUTONS (JOSEFIN SANS, MÊME LONGUEUR, 2 CM SOUS LE TITRE ET 2 CM AU-DESSUS DU CONTENU) -->
+    <!-- BARRE DE NAVIGATION DES 6 BOUTONS (ROBOTO, MÊME LONGUEUR ET MÊME HAUTEUR RÉDUITE, 2 CM SOUS LE TITRE ET 2 CM AU-DESSUS DU CONTENU) -->
     <div class="top-pages-nav-wrapper">
         <div class="top-pages-nav">
             <button class="page-nav-btn btn-page-comparateur active-page" onclick="changerPagePrincipale('comparateur', this)">
