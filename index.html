@@ -703,13 +703,13 @@
             margin-right: 4px;
         }
 
-        /* ENCADRÉ FORCES DE FREE */
+        /* ENCADRÉ FORCES DE FREE (PLACÉ EN PREMIER) */
         .forces-free-card {
             background-color: #ffffff;
             border: 2px solid #dc2626;
             border-radius: 8px;
             padding: 16px 20px;
-            margin-top: 10px;
+            margin-top: 0;
             margin-bottom: 20px;
             box-shadow: 0 4px 8px rgba(220, 38, 38, 0.08);
         }
@@ -1206,9 +1206,19 @@
     <!-- PAGE 2 : BOX FREE (DISPOSITION 2 COLONNES IDENTIQUE AU COMPARATEUR) -->
     <div id="page-boxfree" style="display: none;">
         <div class="page-layout">
-            <!-- COLONNE GAUCHE : 3 TABLEAUX + ENCADRÉ FORCES DE FREE -->
+            <!-- COLONNE GAUCHE : ENCADRÉ FORCES DE FREE EN PREMIER + 3 TABLEAUX ENSUITE -->
             <div class="left-col">
-                <!-- TABLEAU 1 : A3:H9 -->
+                <!-- 1. PARAGRAPHE ENCADRÉ : FORCES DE FREE (A30:O36) EN PREMIER -->
+                <div class="forces-free-card">
+                    <div class="forces-free-header">
+                        💪 Forces de Free
+                    </div>
+                    <ul class="forces-free-list" id="forces-free-content">
+                        <li><em>Chargement des forces de Free...</em></li>
+                    </ul>
+                </div>
+
+                <!-- 2. TABLEAU 1 : A3:H9 -->
                 <div class="dark-section-banner">
                     📦 Box entrée de Gamme
                 </div>
@@ -1221,7 +1231,7 @@
                     </table>
                 </div>
 
-                <!-- TABLEAU 2 : A13:H19 -->
+                <!-- 3. TABLEAU 2 : A13:H19 -->
                 <div class="dark-section-banner">
                     🚀 Box CŒUR DE GAMME
                 </div>
@@ -1234,7 +1244,7 @@
                     </table>
                 </div>
 
-                <!-- TABLEAU 3 : A23:H27 -->
+                <!-- 4. TABLEAU 3 : A23:H27 -->
                 <div class="dark-section-banner">
                     👑 HAUT DE GAMME
                 </div>
@@ -1245,16 +1255,6 @@
                             <tr><td><em>Chargement des offres Haut de Gamme...</em></td></tr>
                         </tbody>
                     </table>
-                </div>
-
-                <!-- PARAGRAPHE ENCADRÉ : FORCES DE FREE (A30:O36) -->
-                <div class="forces-free-card">
-                    <div class="forces-free-header">
-                        💪 Forces de Free
-                    </div>
-                    <ul class="forces-free-list" id="forces-free-content">
-                        <li><em>Chargement des forces de Free...</em></li>
-                    </ul>
                 </div>
             </div>
 
@@ -1651,23 +1651,14 @@
         return html;
     }
 
-    // CHARGEMENT COMPLET DE LA FEUILLE BOX FREE (A3:H9, A13:H19, A23:H27, A30:O36, A40+)
+    // CHARGEMENT COMPLET DE LA FEUILLE BOX FREE (A30:O36 EN PREMIER, PUIS A3:H9, A13:H19, A23:H27, A40+)
     async function chargerDonneesBoxFree() {
         try {
             const response = await fetch(URL_BOX_FREE);
             const csvText = await response.text();
             const exactRows = parseCSVExactRows(csvText);
 
-            // 1. Tableau A3:H9 -> index 0-based : lignes 2 à 8, colonnes 0 à 7
-            rendreTableauFree(exactRows, 2, 8, 'thead-free-entree', 'tbody-free-entree');
-
-            // 2. Tableau A13:H19 -> index 0-based : lignes 12 à 18, colonnes 0 à 7
-            rendreTableauFree(exactRows, 12, 18, 'thead-free-coeur', 'tbody-free-coeur');
-
-            // 3. Tableau A23:H27 -> index 0-based : lignes 22 à 26, colonnes 0 à 7
-            rendreTableauFree(exactRows, 22, 26, 'thead-free-haut', 'tbody-free-haut');
-
-            // 4. Encadré Forces de Free A30:O36 -> index 0-based : lignes 29 à 35, colonnes 0 à 14
+            // 1. Encadré Forces de Free A30:O36 -> index 0-based : lignes 29 à 35, colonnes 0 à 14
             const ulForces = document.getElementById('forces-free-content');
             ulForces.innerHTML = '';
             let forcesItems = [];
@@ -1684,7 +1675,6 @@
             if (forcesItems.length > 0) {
                 forcesItems.forEach(txt => {
                     const li = document.createElement('li');
-                    // Mettre le tic au début de chaque phrase en vert (s'il existe déjà ou en ajouter un s'il n'y en a pas)
                     const cleanTxt = txt.replace(/^[✓✔☑✅•\-]\s*/, '');
                     li.innerHTML = `<span class="tic-green">✔</span> ${cleanTxt}`;
                     ulForces.appendChild(li);
@@ -1692,6 +1682,15 @@
             } else {
                 ulForces.innerHTML = '<li><em>Aucune donnée trouvée dans A30:O36.</em></li>';
             }
+
+            // 2. Tableau A3:H9 -> index 0-based : lignes 2 à 8, colonnes 0 à 7
+            rendreTableauFree(exactRows, 2, 8, 'thead-free-entree', 'tbody-free-entree');
+
+            // 3. Tableau A13:H19 -> index 0-based : lignes 12 à 18, colonnes 0 à 7
+            rendreTableauFree(exactRows, 12, 18, 'thead-free-coeur', 'tbody-free-coeur');
+
+            // 4. Tableau A23:H27 -> index 0-based : lignes 22 à 26, colonnes 0 à 7
+            rendreTableauFree(exactRows, 22, 26, 'thead-free-haut', 'tbody-free-haut');
 
             // 5. Script Free à partir de la cellule A40 (index 0-based : ligne 39 et suivantes)
             scriptFreeSectionsData = [];
