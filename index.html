@@ -38,10 +38,105 @@
         .main-title {
             text-align: center;
             color: #0f172a;
-            margin-bottom: 18px;
+            margin-bottom: 0;
             font-size: 1.7rem;
             font-weight: 800;
             letter-spacing: 0.5px;
+        }
+
+        /* BARRE DE NAVIGATION PRINCIPALE (2 CM EN DESSOUS DU TITRE ET 2 CM AU-DESSUS DU CONTENU) */
+        .top-pages-nav {
+            margin-top: 2cm;
+            margin-bottom: 2cm;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .page-nav-btn {
+            padding: 11px 20px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.12);
+        }
+
+        .page-nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.18);
+        }
+
+        .page-nav-btn.active-page {
+            outline: 3px solid #0f172a;
+            outline-offset: 2px;
+        }
+
+        /* Bouton 1 "Comparateur Energies" : en bleu avec font bleu foncé et gras */
+        .btn-page-comparateur {
+            background-color: #93c5fd;
+            color: #1e3a8a;
+            font-weight: 800;
+            border: 2px solid #2563eb;
+        }
+
+        /* Bouton 2 "Box free" : blanc avec font rouge */
+        .btn-page-boxfree {
+            background-color: #ffffff;
+            color: #dc2626;
+            font-weight: 700;
+            border: 2px solid #dc2626;
+        }
+
+        /* Bouton 3 "HomeServe & PleniCoach" : Bouton noir, Homeserve en rouge et Plenicoach en jaune */
+        .btn-page-homeserve {
+            background-color: #0f172a;
+            color: #ffffff;
+            font-weight: 800;
+            border: 2px solid #334155;
+        }
+        .btn-page-homeserve .txt-hs {
+            color: #ef4444;
+        }
+        .btn-page-homeserve .txt-pc {
+            color: #facc15;
+        }
+
+        /* Bouton 4 "Direct Assurance" : bouton gris léger avec font rouge gras */
+        .btn-page-direct {
+            background-color: #e2e8f0;
+            color: #dc2626;
+            font-weight: 800;
+            border: 2px solid #94a3b8;
+        }
+
+        /* Bouton 5 "Challenge Plenitude" : bouton jaune léger avec font vert foncé */
+        .btn-page-plenitude {
+            background-color: #fef9c3;
+            color: #14532d;
+            font-weight: 700;
+            border: 2px solid #eab308;
+        }
+
+        /* Bouton 6 "Classement Hellowatt" : Bouton rouge et font noir en gras */
+        .btn-page-hellowatt {
+            background-color: #dc2626;
+            color: #000000;
+            font-weight: 800;
+            border: 2px solid #7f1d1d;
+        }
+
+        /* CONTENEUR DES AUTRES PAGES */
+        .other-page-section {
+            display: none;
+            background-color: white;
+            border: 2px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            min-height: 400px;
         }
 
         /* DISPOSITION DEUX COLONNES (PARTIE HAUTE) */
@@ -706,157 +801,227 @@
 <div class="main-container">
     <h1 class="main-title">🛡️ Team Viking - all in ONE</h1>
 
-    <!-- PARTIE HAUTE : COMPARATEUR A GAUCHE + SCRIPT COMPARATEUR A DROITE -->
-    <div class="page-layout">
-        <!-- COLONNE GAUCHE : COMPARATEUR ET DÉTAILS -->
-        <div class="left-col">
-            <!-- CARTE DÉTAILS (RESTE À SA PLACE AU SCROLL) -->
-            <div class="details-card">
-                <div class="details-header-dark">
-                    <h3 style="margin:0; font-size: 1.05rem;">
-                        📋 <span id="details-name">EDF</span> <span class="details-hint">(veuillez sélectionner un fournisseur)</span>
-                    </h3>
-                    <span class="details-badge">Fournisseur actif</span>
+    <!-- BARRE DE NAVIGATION DES 6 BOUTONS (2 CM SOUS LE TITRE ET 2 CM AU-DESSUS DU CONTENU) -->
+    <div class="top-pages-nav">
+        <button class="page-nav-btn btn-page-comparateur active-page" onclick="changerPagePrincipale('comparateur', this)">
+            Comparateur Energies
+        </button>
+        <button class="page-nav-btn btn-page-boxfree" onclick="changerPagePrincipale('boxfree', this)">
+            Box free
+        </button>
+        <button class="page-nav-btn btn-page-homeserve" onclick="changerPagePrincipale('homeserve', this)">
+            <span class="txt-hs">HomeServe</span> &amp; <span class="txt-pc">PleniCoach</span>
+        </button>
+        <button class="page-nav-btn btn-page-direct" onclick="changerPagePrincipale('direct', this)">
+            Direct Assurance
+        </button>
+        <button class="page-nav-btn btn-page-plenitude" onclick="changerPagePrincipale('plenitude', this)">
+            Challenge Plenitude
+        </button>
+        <button class="page-nav-btn btn-page-hellowatt" onclick="changerPagePrincipale('hellowatt', this)">
+            Classement Hellowatt
+        </button>
+    </div>
+
+    <!-- PAGE 1 : COMPARATEUR ENERGIES (VOTRE CONTENU ACTUEL COMPLET) -->
+    <div id="page-comparateur">
+        <!-- PARTIE HAUTE : COMPARATEUR A GAUCHE + SCRIPT COMPARATEUR A DROITE -->
+        <div class="page-layout">
+            <!-- COLONNE GAUCHE : COMPARATEUR ET DÉTAILS -->
+            <div class="left-col">
+                <!-- CARTE DÉTAILS (RESTE À SA PLACE AU SCROLL) -->
+                <div class="details-card">
+                    <div class="details-header-dark">
+                        <h3 style="margin:0; font-size: 1.05rem;">
+                            📋 <span id="details-name">EDF</span> <span class="details-hint">(veuillez sélectionner un fournisseur)</span>
+                        </h3>
+                        <span class="details-badge">Fournisseur actif</span>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-box-title-chip">Présentation fournisseur</div>
+                        <ul id="details-entreprise"></ul>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-box-title-chip">Présentation Offre</div>
+                        <ul id="details-offre"></ul>
+                    </div>
                 </div>
 
-                <div class="info-box">
-                    <div class="info-box-title-chip">Présentation fournisseur</div>
-                    <ul id="details-entreprise"></ul>
+                <!-- SECTION ÉLECTRICITÉ -->
+                <div class="dark-section-banner">
+                    ⚡ Électricité <span class="section-subtitle-yellow">(veuillez sélectionner une puissance souscrite et une option tarifaire)</span>
+                </div>
+                <div class="filter-card">
+                    <div class="filter-group">
+                        <label for="select-elec">Puissance :</label>
+                        <select id="select-elec">
+                            <option value="3kVA">3 kVA</option>
+                            <option value="6kVA" selected>6 kVA</option>
+                            <option value="9kVA">9 kVA</option>
+                            <option value="12kVA">12 kVA</option>
+                            <option value="15kVA">15 kVA</option>
+                            <option value="18kVA">18 kVA</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="select-option">Option tarifaire :</label>
+                        <select id="select-option">
+                            <option value="Base" selected>Base</option>
+                            <option value="HPHC">Heures Pleines / Heures Creuses (HP/HC)</option>
+                        </select>
+                    </div>
                 </div>
 
-                <div class="info-box">
-                    <div class="info-box-title-chip">Présentation Offre</div>
-                    <ul id="details-offre"></ul>
+                <div class="ranked-table-wrapper">
+                    <div class="rank-sidebar" id="rank-sidebar-elec"></div>
+                    <table id="table-elec">
+                        <thead>
+                            <tr>
+                                <th>Fournisseur</th>
+                                <th>Abonnement (€/mois)</th>
+                                <th>Prix kWh HP (€) <span id="th-hp-sort"></span></th>
+                                <th>Prix kWh HC (€)</th>
+                                <th>Prix kWh Base (€) <span id="th-base-sort">🔽</span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-elec"></tbody>
+                    </table>
+                </div>
+
+                <!-- SECTION GAZ -->
+                <div class="dark-section-banner">
+                    🔥 Gaz Naturel <span class="section-subtitle-yellow">(veuillez sélectionner la classe de consommation)</span>
+                </div>
+                <div class="filter-card">
+                    <div class="filter-group">
+                        <label for="select-gaz">Classe de consommation :</label>
+                        <select id="select-gaz">
+                            <option value="Base" selected>Base / B0 (Cuisine & Eau chaude)</option>
+                            <option value="B1">B1 / B2I (Chauffage)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="ranked-table-wrapper">
+                    <div class="rank-sidebar" id="rank-sidebar-gaz"></div>
+                    <table id="table-gaz">
+                        <thead>
+                            <tr>
+                                <th>Fournisseur</th>
+                                <th>Abonnement (€/mois)</th>
+                                <th>Prix kWh Gaz (€) 🔽</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-gaz"></tbody>
+                    </table>
                 </div>
             </div>
 
-            <!-- SECTION ÉLECTRICITÉ -->
-            <div class="dark-section-banner">
-                ⚡ Électricité <span class="section-subtitle-yellow">(veuillez sélectionner une puissance souscrite et une option tarifaire)</span>
-            </div>
-            <div class="filter-card">
-                <div class="filter-group">
-                    <label for="select-elec">Puissance :</label>
-                    <select id="select-elec">
-                        <option value="3kVA">3 kVA</option>
-                        <option value="6kVA" selected>6 kVA</option>
-                        <option value="9kVA">9 kVA</option>
-                        <option value="12kVA">12 kVA</option>
-                        <option value="15kVA">15 kVA</option>
-                        <option value="18kVA">18 kVA</option>
-                    </select>
+            <!-- COLONNE DROITE : SCRIPT COMPARATEUR -->
+            <div class="right-col">
+                <div class="script-card">
+                    <h2>📞 Script Comparateur</h2>
+                    
+                    <!-- BOUTONS FILTRES SCRIPT -->
+                    <div class="script-nav">
+                        <button class="script-btn active" onclick="filtrerScript('all', this)">Tout</button>
+                        <button class="script-btn" onclick="filtrerScript('accueil', this)">Accueil</button>
+                        <button class="script-btn" onclick="filtrerScript('decouverte', this)">Découverte</button>
+                        <button class="script-btn" onclick="filtrerScript('argumentaire', this)">Argumentaire</button>
+                        <button class="script-btn" onclick="filtrerScript('contrat', this)">Contrat</button>
+                        <button class="script-btn" onclick="chargerEtAfficherScript(URL_SCRIPT_PLENITUDE, this)">Script Plénitude</button>
+                        <button class="script-btn" onclick="ouvrirMenuEngie(this)">Script Engie</button>
+                    </div>
+
+                    <!-- SOUS-BOUTONS ENGIE -->
+                    <div class="script-subnav" id="engie-subnav">
+                        <button class="script-btn sub-btn" onclick="chargerEtAfficherScript(URL_SCRIPT_ENGIE_ELEC, this)">Script Engie ELEC</button>
+                        <button class="script-btn sub-btn" onclick="chargerEtAfficherScript(URL_SCRIPT_ENGIE_GAZ, this)">Script Engie Gaz</button>
+                        <button class="script-btn sub-btn" onclick="chargerEtAfficherScript(URL_SCRIPT_ENGIE_DUAL, this)">Script Engie Dual</button>
+                    </div>
+
+                    <div class="script-content" id="script-container">
+                        <em>Chargement du script...</em>
+                    </div>
                 </div>
-
-                <div class="filter-group">
-                    <label for="select-option">Option tarifaire :</label>
-                    <select id="select-option">
-                        <option value="Base" selected>Base</option>
-                        <option value="HPHC">Heures Pleines / Heures Creuses (HP/HC)</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="ranked-table-wrapper">
-                <div class="rank-sidebar" id="rank-sidebar-elec"></div>
-                <table id="table-elec">
-                    <thead>
-                        <tr>
-                            <th>Fournisseur</th>
-                            <th>Abonnement (€/mois)</th>
-                            <th>Prix kWh HP (€) <span id="th-hp-sort"></span></th>
-                            <th>Prix kWh HC (€)</th>
-                            <th>Prix kWh Base (€) <span id="th-base-sort">🔽</span></th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody-elec"></tbody>
-                </table>
-            </div>
-
-            <!-- SECTION GAZ -->
-            <div class="dark-section-banner">
-                🔥 Gaz Naturel <span class="section-subtitle-yellow">(veuillez sélectionner la classe de consommation)</span>
-            </div>
-            <div class="filter-card">
-                <div class="filter-group">
-                    <label for="select-gaz">Classe de consommation :</label>
-                    <select id="select-gaz">
-                        <option value="Base" selected>Base / B0 (Cuisine & Eau chaude)</option>
-                        <option value="B1">B1 / B2I (Chauffage)</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="ranked-table-wrapper">
-                <div class="rank-sidebar" id="rank-sidebar-gaz"></div>
-                <table id="table-gaz">
-                    <thead>
-                        <tr>
-                            <th>Fournisseur</th>
-                            <th>Abonnement (€/mois)</th>
-                            <th>Prix kWh Gaz (€) 🔽</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody-gaz"></tbody>
-                </table>
             </div>
         </div>
 
-        <!-- COLONNE DROITE : SCRIPT COMPARATEUR -->
-        <div class="right-col">
-            <div class="script-card">
-                <h2>📞 Script Comparateur</h2>
-                
-                <!-- BOUTONS FILTRES SCRIPT -->
-                <div class="script-nav">
-                    <button class="script-btn active" onclick="filtrerScript('all', this)">Tout</button>
-                    <button class="script-btn" onclick="filtrerScript('accueil', this)">Accueil</button>
-                    <button class="script-btn" onclick="filtrerScript('decouverte', this)">Découverte</button>
-                    <button class="script-btn" onclick="filtrerScript('argumentaire', this)">Argumentaire</button>
-                    <button class="script-btn" onclick="filtrerScript('contrat', this)">Contrat</button>
-                    <button class="script-btn" onclick="chargerEtAfficherScript(URL_SCRIPT_PLENITUDE, this)">Script Plénitude</button>
-                    <button class="script-btn" onclick="ouvrirMenuEngie(this)">Script Engie</button>
-                </div>
-
-                <!-- SOUS-BOUTONS ENGIE -->
-                <div class="script-subnav" id="engie-subnav">
-                    <button class="script-btn sub-btn" onclick="chargerEtAfficherScript(URL_SCRIPT_ENGIE_ELEC, this)">Script Engie ELEC</button>
-                    <button class="script-btn sub-btn" onclick="chargerEtAfficherScript(URL_SCRIPT_ENGIE_GAZ, this)">Script Engie Gaz</button>
-                    <button class="script-btn sub-btn" onclick="chargerEtAfficherScript(URL_SCRIPT_ENGIE_DUAL, this)">Script Engie Dual</button>
-                </div>
-
-                <div class="script-content" id="script-container">
-                    <em>Chargement du script...</em>
-                </div>
+        <!-- PARTIE BASSE PLEINE LARGEUR : EN DESSOUS DU COMPARATEUR ET DU SCRIPT -->
+        <div class="full-width-bottom">
+            <!-- NOUVEAU TABLEAU 1 : CARACTÉRISTIQUES DES FOURNISSEURS EN COLONNES AVEC EN-TÊTES -->
+            <div class="dark-section-banner">
+                📊 Caractéristiques des Fournisseurs
             </div>
+            <table class="carac-matrix-table" id="table-caracteristiques">
+                <thead id="thead-caracteristiques"></thead>
+                <tbody id="tbody-caracteristiques">
+                    <tr><td><em>Chargement des caractéristiques...</em></td></tr>
+                </tbody>
+            </table>
+
+            <!-- NOUVEAU TABLEAU 2 : PRESTATION ENEDIS ET GRDF -->
+            <div class="dark-section-banner">
+                🛠️ Prestation Enedis et GRDF
+            </div>
+            <table class="bottom-table">
+                <tbody id="tbody-prestations">
+                    <tr><td colspan="2"><em>Chargement des prestations Enedis et GRDF...</em></td></tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
-    <!-- PARTIE BASSE PLEINE LARGEUR : EN DESSOUS DU COMPARATEUR ET DU SCRIPT -->
-    <div class="full-width-bottom">
-        <!-- NOUVEAU TABLEAU 1 : CARACTÉRISTIQUES DES FOURNISSEURS EN COLONNES AVEC EN-TÊTES -->
-        <div class="dark-section-banner">
-            📊 Caractéristiques des Fournisseurs
-        </div>
-        <table class="carac-matrix-table" id="table-caracteristiques">
-            <thead id="thead-caracteristiques"></thead>
-            <tbody id="tbody-caracteristiques">
-                <tr><td><em>Chargement des caractéristiques...</em></td></tr>
-            </tbody>
-        </table>
+    <!-- AUTRES PAGES (PRÊTES À RECEVOIR VOTRE CONTENU) -->
+    <div id="page-boxfree" class="other-page-section">
+        <div class="dark-section-banner">📦 Box free</div>
+        <p>Contenu Box free à venir...</p>
+    </div>
 
-        <!-- NOUVEAU TABLEAU 2 : PRESTATION ENEDIS ET GRDF -->
-        <div class="dark-section-banner">
-            🛠️ Prestation Enedis et GRDF
-        </div>
-        <table class="bottom-table">
-            <tbody id="tbody-prestations">
-                <tr><td colspan="2"><em>Chargement des prestations Enedis et GRDF...</em></td></tr>
-            </tbody>
-        </table>
+    <div id="page-homeserve" class="other-page-section">
+        <div class="dark-section-banner">🏠 HomeServe &amp; PleniCoach</div>
+        <p>Contenu HomeServe &amp; PleniCoach à venir...</p>
+    </div>
+
+    <div id="page-direct" class="other-page-section">
+        <div class="dark-section-banner">🛡️ Direct Assurance</div>
+        <p>Contenu Direct Assurance à venir...</p>
+    </div>
+
+    <div id="page-plenitude" class="other-page-section">
+        <div class="dark-section-banner">🏆 Challenge Plenitude</div>
+        <p>Contenu Challenge Plenitude à venir...</p>
+    </div>
+
+    <div id="page-hellowatt" class="other-page-section">
+        <div class="dark-section-banner">📊 Classement Hellowatt</div>
+        <p>Contenu Classement Hellowatt à venir...</p>
     </div>
 </div>
 
 <script>
+    function changerPagePrincipale(pageId, btn) {
+        // Mettre à jour le bouton actif
+        document.querySelectorAll('.page-nav-btn').forEach(b => b.classList.remove('active-page'));
+        if (btn) btn.classList.add('active-page');
+
+        // Masquer toutes les sections
+        document.getElementById('page-comparateur').style.display = 'none';
+        document.querySelectorAll('.other-page-section').forEach(sec => sec.style.display = 'none');
+
+        // Afficher la page choisie
+        if (pageId === 'comparateur') {
+            document.getElementById('page-comparateur').style.display = 'block';
+            setTimeout(alignerBadgesClassement, 0);
+        } else {
+            const target = document.getElementById('page-' + pageId);
+            if (target) target.style.display = 'block';
+        }
+    }
+
     const GOOGLE_SHEETS_PRICES_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?output=csv";
     const URL_SCRIPT_GENERAL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=2146359891&single=true&output=csv";
 
