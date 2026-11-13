@@ -750,22 +750,11 @@
         }
 
         tr.provider-row {
-            cursor: pointer;
             transition: background-color 0.2s;
         }
 
         tr.provider-row:hover {
             background-color: #f8fafc;
-        }
-
-        tr.provider-row.active {
-            background-color: var(--blue-light) !important;
-            font-weight: 600;
-        }
-
-        tr.provider-row.active td.active-option-highlight {
-            background-color: #bbf7d0 !important;
-            color: #14532d !important;
         }
 
         .remise-tag {
@@ -795,6 +784,42 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 12px;
+            gap: 10px;
+        }
+
+        .details-selector-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        /* PETITE FLÈCHE VERTE POINTANT VERS LE MENU DÉROULANT */
+        .green-pointer-arrow {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #22c55e;
+            font-size: 1.15rem;
+            line-height: 1;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));
+        }
+
+        /* MENU DÉROULANT POUR CHOISIR LE FOURNISSEUR */
+        .details-provider-select {
+            padding: 3px 10px;
+            border-radius: 5px;
+            border: 1.5px solid #22c55e;
+            background-color: #ffffff;
+            color: #0f172a;
+            font-weight: 800;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .details-provider-select:focus {
+            box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.4);
         }
 
         .details-hint {
@@ -810,6 +835,7 @@
             border-radius: 16px;
             font-size: 0.75rem;
             font-weight: bold;
+            white-space: nowrap;
         }
 
         .info-box {
@@ -1030,22 +1056,22 @@
     <!-- BARRE DE NAVIGATION DES 6 BOUTONS -->
     <div class="top-pages-nav-wrapper">
         <div class="top-pages-nav">
-            <button class="page-nav-btn btn-page-comparateur active-page" onclick="changerPagePrincipale('comparateur', this)">
+            <button id="nav-btn-comparateur" class="page-nav-btn btn-page-comparateur active-page" onclick="changerPagePrincipale('comparateur', this)">
                 Comparateur Energies
             </button>
-            <button class="page-nav-btn btn-page-boxfree" onclick="changerPagePrincipale('boxfree', this)">
+            <button id="nav-btn-boxfree" class="page-nav-btn btn-page-boxfree" onclick="changerPagePrincipale('boxfree', this)">
                 Box free
             </button>
-            <button class="page-nav-btn btn-page-homeserve" onclick="changerPagePrincipale('homeserve', this)">
+            <button id="nav-btn-homeserve" class="page-nav-btn btn-page-homeserve" onclick="changerPagePrincipale('homeserve', this)">
                 <span><span class="txt-hs">HomeServe</span> &amp; <span class="txt-pc">PleniCoach</span></span>
             </button>
-            <button class="page-nav-btn btn-page-direct" onclick="changerPagePrincipale('direct', this)">
+            <button id="nav-btn-direct" class="page-nav-btn btn-page-direct" onclick="changerPagePrincipale('direct', this)">
                 Direct Assurance
             </button>
-            <button class="page-nav-btn btn-page-plenitude" onclick="changerPagePrincipale('plenitude', this)">
+            <button id="nav-btn-plenitude" class="page-nav-btn btn-page-plenitude" onclick="changerPagePrincipale('plenitude', this)">
                 Challenge Plenitude
             </button>
-            <button class="page-nav-btn btn-page-hellowatt" onclick="changerPagePrincipale('hellowatt', this)">
+            <button id="nav-btn-hellowatt" class="page-nav-btn btn-page-hellowatt" onclick="changerPagePrincipale('hellowatt', this)">
                 Classement Hellowatt
             </button>
         </div>
@@ -1057,12 +1083,29 @@
         <div class="page-layout">
             <!-- COLONNE GAUCHE : COMPARATEUR ET DÉTAILS -->
             <div class="left-col">
-                <!-- CARTE DÉTAILS (RESTE À SA PLACE AU SCROLL) -->
+                <!-- CARTE DÉTAILS (MENU DÉROULANT + PETITE FLÈCHE VERTE) -->
                 <div class="details-card">
                     <div class="details-header-dark">
-                        <h3 style="margin:0; font-size: 1.05rem;">
-                            📋 <span id="details-name">EDF</span> <span class="details-hint">(veuillez sélectionner un fournisseur)</span>
-                        </h3>
+                        <div class="details-selector-group">
+                            <span style="font-size: 1.05rem;">📋</span>
+                            <select id="select-fournisseur-details" class="details-provider-select" aria-label="Sélectionner un fournisseur">
+                                <option value="EDF" selected>EDF</option>
+                                <option value="Engie">Engie</option>
+                                <option value="Plenitude">Plenitude</option>
+                                <option value="Alterna">Alterna</option>
+                                <option value="Octopus">Octopus</option>
+                                <option value="TotalEnergies">TotalEnergies</option>
+                                <option value="Primeo Energie">Primeo Energie</option>
+                                <option value="Gaz de Bordeaux">Gaz de Bordeaux</option>
+                            </select>
+                            <span class="green-pointer-arrow" title="Choisissez un fournisseur dans le menu">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                                    <polyline points="12 19 5 12 12 5"></polyline>
+                                </svg>
+                            </span>
+                            <span class="details-hint">(veuillez sélectionner un fournisseur)</span>
+                        </div>
                         <span class="details-badge">Fournisseur actif</span>
                     </div>
 
@@ -1294,10 +1337,23 @@
 </div>
 
 <script>
+    const PAGES_VALIDES = ['comparateur', 'boxfree', 'homeserve', 'direct', 'plenitude', 'hellowatt'];
+
     function changerPagePrincipale(pageId, btn) {
+        if (!PAGES_VALIDES.includes(pageId)) pageId = 'comparateur';
+
+        // Mémoriser la page active pour conserver la même page après actualisation
+        try {
+            localStorage.setItem('team_viking_active_page', pageId);
+        } catch (e) {}
+        if (window.location.hash !== '#' + pageId) {
+            history.replaceState(null, '', '#' + pageId);
+        }
+
         // Mettre à jour le bouton actif
         document.querySelectorAll('.page-nav-btn').forEach(b => b.classList.remove('active-page'));
-        if (btn) btn.classList.add('active-page');
+        const activeBtn = btn || document.getElementById('nav-btn-' + pageId);
+        if (activeBtn) activeBtn.classList.add('active-page');
 
         // Masquer toutes les sections
         document.getElementById('page-comparateur').style.display = 'none';
@@ -1314,6 +1370,20 @@
             const target = document.getElementById('page-' + pageId);
             if (target) target.style.display = 'block';
         }
+    }
+
+    function restaurerPageActive() {
+        let savedPage = '';
+        const hashPage = window.location.hash ? window.location.hash.replace('#', '').trim() : '';
+        if (PAGES_VALIDES.includes(hashPage)) {
+            savedPage = hashPage;
+        } else {
+            try {
+                const stored = localStorage.getItem('team_viking_active_page');
+                if (PAGES_VALIDES.includes(stored)) savedPage = stored;
+            } catch (e) {}
+        }
+        changerPagePrincipale(savedPage || 'comparateur');
     }
 
     const GOOGLE_SHEETS_PRICES_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?output=csv";
@@ -1525,6 +1595,18 @@
     let fournisseurSelectionne = "EDF";
 
     document.addEventListener("DOMContentLoaded", function () {
+        // Restaurer la dernière page consultée avant actualisation
+        restaurerPageActive();
+
+        // Écouteur sur le menu déroulant de présentation fournisseur/offre
+        const selectDetails = document.getElementById('select-fournisseur-details');
+        if (selectDetails) {
+            selectDetails.addEventListener('change', function () {
+                fournisseurSelectionne = this.value;
+                afficherDetails(fournisseurSelectionne);
+            });
+        }
+
         document.getElementById('select-elec').addEventListener('change', afficherTableauElec);
         document.getElementById('select-option').addEventListener('change', afficherTableauElec);
         document.getElementById('select-gaz').addEventListener('change', afficherTableauGaz);
@@ -1640,12 +1722,10 @@
             return formatOperateurButton(trimmed);
         }
 
-        // Si la cellule ne contient qu'une croix (✗, ✖, ❌, X, x)
         if (/^[✗✘✖✕❌xX]$/.test(trimmed)) {
             return `<span class="cross-red">${trimmed}</span>`;
         }
 
-        // Remplacer les symboles croix dans un texte par des croix rouges
         let html = trimmed.replace(/\n/g, '<br>');
         html = html.replace(/([✗✘✖✕❌])/g, '<span class="cross-red">$1</span>');
         return html;
@@ -1738,22 +1818,37 @@
             };
 
             rawScriptLines.forEach(line => {
-                const titleMatch = line.match(/^(Accroche|Découverte|Decouverte|Argumentation|Mise en place du contrat)\s*:?\s*(.*)$/i);
+                // Nettoyer la ligne pour vérifier si c'est un titre de bloc (et éviter les doublons consécutifs)
+                const cleanLineForMatch = line.replace(/^[•\-–*]\s*/, '').trim();
+                const titleMatch = cleanLineForMatch.match(/^(Accroche|Découverte|Decouverte|Argumentation|Mise en place du contrat)\s*:?\s*(.*)$/i);
 
                 if (titleMatch) {
                     flushParagraph();
 
                     const rawTitle = titleMatch[1];
+                    const formattedTitle = rawTitle.charAt(0).toUpperCase() + rawTitle.slice(1) + ' :';
                     const restOfLine = titleMatch[2] ? titleMatch[2].trim() : '';
 
-                    scriptFreeSectionsData.push({
-                        text: rawTitle + ' :',
-                        isSectionTitle: true,
-                        isAlertRed: false
-                    });
+                    // Ne pas ajouter le titre s'il est déjà identique au dernier bloc ajouté (suppression du doublon)
+                    const lastItem = scriptFreeSectionsData[scriptFreeSectionsData.length - 1];
+                    if (!lastItem || !lastItem.isSectionTitle || lastItem.text.toLowerCase() !== formattedTitle.toLowerCase()) {
+                        scriptFreeSectionsData.push({
+                            text: formattedTitle,
+                            isSectionTitle: true,
+                            isAlertRed: false
+                        });
+                    }
 
                     if (restOfLine) {
-                        currentParagraphLines.push(restOfLine);
+                        // Vérifier que restOfLine ne répète pas le titre
+                        const restTitleCheck = restOfLine.match(/^(Accroche|Découverte|Decouverte|Argumentation|Mise en place du contrat)\s*:?\s*(.*)$/i);
+                        if (restTitleCheck) {
+                            if (restTitleCheck[2] && restTitleCheck[2].trim()) {
+                                currentParagraphLines.push(restTitleCheck[2].trim());
+                            }
+                        } else {
+                            currentParagraphLines.push(restOfLine);
+                        }
                     }
                 } else {
                     const startsNewBlock = (
@@ -1805,7 +1900,6 @@
             }
         }
 
-        // Première ligne = en-tête du tableau
         const headerRow = sliceRows[0];
         const trHead = document.createElement('tr');
         activeCols.forEach(c => {
@@ -1815,12 +1909,10 @@
         });
         thead.appendChild(trHead);
 
-        // Lignes suivantes = corps du tableau
         for (let i = 1; i < sliceRows.length; i++) {
             const dataRow = sliceRows[i];
             const tr = document.createElement('tr');
 
-            // Vérifier si toute la ligne correspond à Free (colonne opérateur contient "free")
             const firstColVal = (dataRow[activeCols[0]] || '').toLowerCase();
             if (firstColVal.includes('free')) {
                 tr.classList.add('free-row-highlight');
@@ -2290,7 +2382,6 @@
                 if (isAlertRed) {
                     text = text.replace(/(\[[^\]]+\])/g, '<span class="bracket-black">$1</span>');
                 } else {
-                    // [New prospect/User], [Validated], [Recall at] : en noir et taille augmentée d'un degré
                     text = text.replace(/\[(Validated|Recall at|New prospect\/User)\]/gi, '<span class="tag-lead-black">[$1]</span>');
                     text = text.replace(/\[(Obtenir le [^\]]+|Si oui du client)\]/gi, '<span class="tag-blue">[$1]</span>');
                 }
@@ -2400,14 +2491,6 @@
         chargerScriptConseiller(url);
     }
 
-    function selectionnerFournisseur(nom) {
-        fournisseurSelectionne = nom;
-        document.querySelectorAll('tr.provider-row').forEach(row => {
-            row.classList.toggle('active', row.dataset.fournisseur === nom);
-        });
-        afficherDetails(nom);
-    }
-
     function afficherTableauElec() {
         const puissance = document.getElementById('select-elec').value;
         const optionTarifaire = document.getElementById('select-option').value;
@@ -2446,10 +2529,9 @@
             const remiseText = dataFournisseurs[nom].remiseElec ? `<span class="remise-tag">(${dataFournisseurs[nom].remiseElec})</span>` : '';
             
             const tr = document.createElement('tr');
-            tr.className = `provider-row ${nom === fournisseurSelectionne ? 'active' : ''}`;
+            tr.className = 'provider-row';
             tr.dataset.fournisseur = nom;
             if (top3Cheapest[nom]) tr.dataset.cheapestRank = top3Cheapest[nom];
-            tr.onclick = function() { selectionnerFournisseur(nom); };
 
             if (elecData && (elecData.aboBase > 0 || elecData.aboHPHC > 0 || elecData.base > 0 || elecData.hp > 0)) {
                 let montantAbo = 0;
@@ -2501,10 +2583,9 @@
             const remiseText = dataFournisseurs[nom].remiseGaz ? `<span class="remise-tag">(${dataFournisseurs[nom].remiseGaz})</span>` : '';
 
             const tr = document.createElement('tr');
-            tr.className = `provider-row ${nom === fournisseurSelectionne ? 'active' : ''}`;
+            tr.className = 'provider-row';
             tr.dataset.fournisseur = nom;
             if (top3Cheapest[nom]) tr.dataset.cheapestRank = top3Cheapest[nom];
-            tr.onclick = function() { selectionnerFournisseur(nom); };
 
             if (gazData && (gazData.abonnement > 0 || gazData.kwh > 0)) {
                 tr.innerHTML = `
@@ -2561,7 +2642,10 @@
         const item = dataFournisseurs[nom];
         if (!item) return;
 
-        document.getElementById('details-name').textContent = nom;
+        const selectDetails = document.getElementById('select-fournisseur-details');
+        if (selectDetails && selectDetails.value !== nom) {
+            selectDetails.value = nom;
+        }
 
         const ulEntreprise = document.getElementById('details-entreprise');
         ulEntreprise.innerHTML = '';
