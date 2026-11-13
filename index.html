@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Viking - all in ONE</title>
-    <!-- IMPORT GOOGLE FONT ROBOTO -->
+    <!-- IMPORT GOOGLE FONT PLUS JAKARTA SANS (POLICE CORPORATE PRO) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-yellow: #fef08a;
@@ -67,16 +67,17 @@
         }
 
         .page-nav-btn {
-            font-family: 'Roboto', sans-serif;
-            height: 32px;
-            padding: 0 18px;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            height: 34px;
+            padding: 0 20px;
             border-radius: 8px;
-            font-size: 0.95rem;
+            font-size: 0.94rem;
+            font-weight: 700;
             line-height: 1;
-            letter-spacing: 0.2px;
+            letter-spacing: 0.25px;
             cursor: pointer;
-            transition: transform 0.15s ease, box-shadow 0.15s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.12);
+            transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+            box-shadow: 0 2px 4px rgba(15, 23, 42, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.25);
             white-space: nowrap;
             display: inline-flex;
             align-items: center;
@@ -86,40 +87,40 @@
         }
 
         .page-nav-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.18);
+            transform: translateY(-1.5px);
+            box-shadow: 0 4px 10px rgba(15, 23, 42, 0.16);
+            filter: brightness(0.98);
         }
 
         .page-nav-btn.active-page {
-            outline: 3px solid #0f172a;
-            outline-offset: 2px;
+            box-shadow: 0 0 0 2px #f8fafc, 0 0 0 4px #0f172a, 0 4px 10px rgba(15, 23, 42, 0.2);
         }
 
         /* Bouton 1 "Comparateur Energies" : en bleu avec font bleu foncé et gras */
         .btn-page-comparateur {
             background-color: #93c5fd;
             color: #1e3a8a;
-            font-weight: 700;
-            border: 2px solid #2563eb;
+            font-weight: 800;
+            border: 1.5px solid #2563eb;
         }
 
         /* Bouton 2 "Box free" : blanc avec font rouge */
         .btn-page-boxfree {
             background-color: #ffffff;
             color: #dc2626;
-            font-weight: 500;
-            border: 2px solid #dc2626;
+            font-weight: 700;
+            border: 1.5px solid #dc2626;
         }
 
         /* Bouton 3 "HomeServe & PleniCoach" : Bouton noir, Homeserve en rouge et Plenicoach en jaune */
         .btn-page-homeserve {
             background-color: #0f172a;
             color: #ffffff;
-            font-weight: 700;
-            border: 2px solid #334155;
+            font-weight: 800;
+            border: 1.5px solid #334155;
         }
         .btn-page-homeserve .txt-hs {
-            color: #ef4444;
+            color: #f87171;
         }
         .btn-page-homeserve .txt-pc {
             color: #facc15;
@@ -129,24 +130,24 @@
         .btn-page-direct {
             background-color: #e2e8f0;
             color: #dc2626;
-            font-weight: 700;
-            border: 2px solid #94a3b8;
+            font-weight: 800;
+            border: 1.5px solid #94a3b8;
         }
 
-        /* Bouton 5 "Challenge Plenitude" : bouton jaune léger avec font vert foncé */
+        /* Bouton 5 "Challenge Plenitude" : bouton jaune léger avec font vert foncé bien rempli */
         .btn-page-plenitude {
             background-color: #fef9c3;
             color: #14532d;
-            font-weight: 500;
-            border: 2px solid #eab308;
+            font-weight: 700;
+            border: 1.5px solid #ca8a04;
         }
 
         /* Bouton 6 "Classement Hellowatt" : Bouton rouge et font noir en gras */
         .btn-page-hellowatt {
             background-color: #dc2626;
             color: #000000;
-            font-weight: 700;
-            border: 2px solid #7f1d1d;
+            font-weight: 800;
+            border: 1.5px solid #991b1b;
         }
 
         @media (max-width: 1300px) {
@@ -835,7 +836,7 @@
 <div class="main-container">
     <h1 class="main-title">🛡️ Team Viking - all in ONE</h1>
 
-    <!-- BARRE DE NAVIGATION DES 6 BOUTONS (ROBOTO, MÊME LONGUEUR ET MÊME HAUTEUR RÉDUITE, 2 CM SOUS LE TITRE ET 2 CM AU-DESSUS DU CONTENU) -->
+    <!-- BARRE DE NAVIGATION DES 6 BOUTONS (PLUS JAKARTA SANS PRO, MÊME LONGUEUR ET HAUTEUR 34PX) -->
     <div class="top-pages-nav-wrapper">
         <div class="top-pages-nav">
             <button class="page-nav-btn btn-page-comparateur active-page" onclick="changerPagePrincipale('comparateur', this)">
