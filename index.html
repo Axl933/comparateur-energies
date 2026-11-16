@@ -202,7 +202,7 @@
             margin-top: 15px;
         }
 
-        /* CARTE SCRIPT COMPARATEUR & FREE */
+        /* CARTE SCRIPT COMPARATEUR, FREE & HOMESERVE */
         .script-card {
             background-color: white;
             border: 2px solid var(--blue-header);
@@ -215,7 +215,8 @@
             overflow: hidden;
         }
 
-        .script-card.free-theme {
+        .script-card.free-theme,
+        .script-card.homeserve-theme {
             border-color: #dc2626;
         }
 
@@ -316,7 +317,7 @@
             margin-bottom: 8px;
         }
 
-        /* TITRES DES BLOCS SCRIPT FREE (ACCROCHE, DÉCOUVERTE, ARGUMENTATION, MISE EN PLACE DU CONTRAT) */
+        /* TITRES DES BLOCS SCRIPT FREE */
         .script-section-free-title {
             background-color: #e0f2fe;
             border: 2px solid #0284c7;
@@ -330,6 +331,25 @@
         }
 
         .script-section-free-title:first-child {
+            margin-top: 2px;
+        }
+
+        /* TITRES SCRIPT HOMESERVE EN CARREAU FONCÉ AVEC TITRE DORÉ */
+        .script-section-homeserve-dark {
+            background-color: #0f172a;
+            color: #fde047;
+            border: 1.5px solid #1e293b;
+            font-weight: 800;
+            font-size: 0.95rem;
+            padding: 8px 14px;
+            border-radius: 6px;
+            margin-top: 14px;
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+            box-shadow: 0 2px 4px rgba(15, 23, 42, 0.14);
+        }
+
+        .script-section-homeserve-dark:first-child {
             margin-top: 2px;
         }
 
@@ -375,7 +395,7 @@
             font-size: 0.85rem !important;
         }
 
-        /* SURBRILLANCES LÉGÈRES ACCUEIL CLIENT (NEW PROSPECT = VERT, VALIDATED = VIOLET, RECALL AT = BLEU) */
+        /* SURBRILLANCES LÉGÈRES ACCUEIL CLIENT */
         .highlight-new-prospect {
             background-color: #dcfce7 !important;
             border: 1px solid #86efac !important;
@@ -428,7 +448,6 @@
             font-size: 0.85rem;
         }
 
-        /* DANS LES PARAGRAPHES ROUGES, LES CROCHETS [...] SONT EN NOIR GRAS DE MÊME TAILLE */
         .text-alert-red .tag-blue,
         .text-alert-red .bracket-black {
             color: #000000 !important;
@@ -619,7 +638,6 @@
             background-color: #fef2f2;
         }
 
-        /* LIGNE FREE EN SURBRILLANCE VERTE DANS LES 3 TABLEAUX */
         .free-box-table tbody tr.free-row-highlight {
             background-color: #dcfce7 !important;
             color: #14532d !important;
@@ -632,7 +650,6 @@
             border-bottom-color: #86efac;
         }
 
-        /* BOUTONS ARRONDIS DES OPÉRATEURS DANS LES TABLEAUX BOX FREE */
         .op-pill {
             display: inline-block;
             padding: 4px 12px;
@@ -645,49 +662,13 @@
             text-align: center;
         }
 
-        /* Free en blanc écriture rouge */
-        .op-free {
-            background-color: #ffffff;
-            color: #dc2626;
-            border: 1.5px solid #dc2626;
-        }
+        .op-free { background-color: #ffffff; color: #dc2626; border: 1.5px solid #dc2626; }
+        .op-red-sfr { background-color: #ef4444; color: #ffffff; border: 1.5px solid #b91c1c; }
+        .op-sfr { background-color: #dc2626; color: #ffffff; border: 1.5px solid #991b1b; }
+        .op-orange { background-color: #f97316; color: #ffffff; border: 1.5px solid #c2410c; }
+        .op-sosh { background-color: #16a34a; color: #ffffff; border: 1.5px solid #15803d; }
+        .op-bouygues { background-color: #0284c7; color: #ffffff; border: 1.5px solid #0369a1; }
 
-        /* RED by SFR en rouge */
-        .op-red-sfr {
-            background-color: #ef4444;
-            color: #ffffff;
-            border: 1.5px solid #b91c1c;
-        }
-
-        /* SFR en rouge avec écriture blanche */
-        .op-sfr {
-            background-color: #dc2626;
-            color: #ffffff;
-            border: 1.5px solid #991b1b;
-        }
-
-        /* Orange en orange */
-        .op-orange {
-            background-color: #f97316;
-            color: #ffffff;
-            border: 1.5px solid #c2410c;
-        }
-
-        /* Sosh en vert */
-        .op-sosh {
-            background-color: #16a34a;
-            color: #ffffff;
-            border: 1.5px solid #15803d;
-        }
-
-        /* Bouygues en bleu */
-        .op-bouygues {
-            background-color: #0284c7;
-            color: #ffffff;
-            border: 1.5px solid #0369a1;
-        }
-
-        /* CROIX EN ROUGE DANS LES TABLEAUX BOX FREE */
         .cross-red {
             color: #dc2626 !important;
             font-weight: 900;
@@ -695,7 +676,6 @@
             display: inline-block;
         }
 
-        /* TICS EN VERT DANS FORCES DE FREE */
         .tic-green {
             color: #16a34a !important;
             font-weight: 900;
@@ -703,7 +683,7 @@
             margin-right: 4px;
         }
 
-        /* ENCADRÉ FORCES DE FREE (PLACÉ EN PREMIER) */
+        /* ENCADRÉ FORCES DE FREE */
         .forces-free-card {
             background-color: #ffffff;
             border: 2px solid #dc2626;
@@ -742,7 +722,6 @@
             color: #1e293b;
         }
 
-        /* SURBRILLANCE VERTE LÉGÈRE UNIQUEMENT SUR LES PRIX DE L'OPTION TARIFAIRE CHOISIE */
         td.active-option-highlight {
             background-color: #dcfce7;
             color: #14532d;
@@ -765,7 +744,7 @@
             margin-left: 5px;
         }
 
-        /* CARTE DETAILS (NON FIGÉE - RESTE À SA PLACE AU SCROLL) */
+        /* CARTE DETAILS */
         .details-card {
             background-color: white;
             border: 1px solid #cbd5e1;
@@ -794,7 +773,6 @@
             flex-wrap: wrap;
         }
 
-        /* PETITE FLÈCHE VERTE POINTANT VERS LE MENU DÉROULANT */
         .green-pointer-arrow {
             display: inline-flex;
             align-items: center;
@@ -805,7 +783,6 @@
             filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));
         }
 
-        /* MENU DÉROULANT POUR CHOISIR LE FOURNISSEUR */
         .details-provider-select {
             padding: 3px 10px;
             border-radius: 5px;
@@ -850,7 +827,6 @@
             margin-bottom: 0;
         }
 
-        /* TITRES PRÉSENTATION FOURNISSEUR / OFFRE DANS UN PETIT CARREAU BLEU CLAIR */
         .info-box-title-chip {
             display: inline-block;
             background-color: #dbeafe;
@@ -877,7 +853,7 @@
             font-style: italic;
         }
 
-        /* TABLEAUX DU BAS PLEINE LARGEUR (CARACTÉRISTIQUES EN COLONNES & PRESTATIONS) */
+        /* TABLEAUX DU BAS PLEINE LARGEUR */
         .bottom-table {
             width: 100%;
             border-collapse: collapse;
@@ -894,7 +870,6 @@
             border-bottom: 1px solid #e2e8f0;
         }
 
-        /* TABLEAU MATRICIEL CARACTÉRISTIQUES DES FOURNISSEURS ADAPTÉ EN LARGEUR */
         .carac-matrix-table {
             width: 100%;
             table-layout: auto;
@@ -957,7 +932,6 @@
             height: 40px;
         }
 
-        /* BOUTONS STYLÉS ARRONDIS DANS CARACTÉRISTIQUES DES FOURNISSEURS */
         .status-pill {
             display: inline-block;
             padding: 4px 10px;
@@ -968,23 +942,9 @@
             box-shadow: 0 1px 2px rgba(0,0,0,0.06);
         }
 
-        .pill-green {
-            background-color: #dcfce7;
-            color: #15803d;
-            border: 1px solid #4ade80;
-        }
-
-        .pill-orange {
-            background-color: #ffedd5;
-            color: #c2410c;
-            border: 1px solid #fb923c;
-        }
-
-        .pill-red {
-            background-color: #fee2e2;
-            color: #b91c1c;
-            border: 1px solid #f87171;
-        }
+        .pill-green { background-color: #dcfce7; color: #15803d; border: 1px solid #4ade80; }
+        .pill-orange { background-color: #ffedd5; color: #c2410c; border: 1px solid #fb923c; }
+        .pill-red { background-color: #fee2e2; color: #b91c1c; border: 1px solid #f87171; }
 
         .logo-cell {
             width: 160px;
@@ -1032,9 +992,482 @@
             line-height: 1.35;
         }
 
-        /* COULEURS PRESTATIONS ENEDIS ET GRDF */
         .theme-enedis { background-color: #e0f2fe; color: #0369a1; border-color: #7dd3fc; }
         .theme-grdf { background-color: #ffedd5; color: #9a3412; border-color: #fdba74; }
+
+        /* ========================================================================= */
+        /* STYLES SPÉCIFIQUES PAGE HOMESERVE & PLENICOACH                              */
+        /* ========================================================================= */
+        .hs-pc-subnav {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            margin-bottom: 22px;
+            flex-wrap: wrap;
+        }
+
+        .hs-sub-btn {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            padding: 10px 28px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.18s ease;
+            box-shadow: 0 3px 6px rgba(15, 23, 42, 0.12);
+        }
+
+        /* Bouton HomeServe rouge et blanc */
+        .btn-sub-homeserve {
+            background-color: #dc2626;
+            color: #ffffff;
+            border: 2px solid #991b1b;
+        }
+
+        .btn-sub-homeserve:hover {
+            background-color: #b91c1c;
+            transform: translateY(-1.5px);
+        }
+
+        /* Bouton PleniCoach jaune et vert */
+        .btn-sub-plenicoach {
+            background-color: #facc15;
+            color: #14532d;
+            border: 2px solid #15803d;
+        }
+
+        .btn-sub-plenicoach:hover {
+            background-color: #eab308;
+            transform: translateY(-1.5px);
+        }
+
+        .hs-sub-btn.active-sub-tab {
+            box-shadow: 0 0 0 3px #f8fafc, 0 0 0 6px #0f172a, 0 6px 14px rgba(15, 23, 42, 0.25);
+            transform: translateY(-1px);
+        }
+
+        /* Encadré rouge écriture blanche : HomeServe en quelques chiffres */
+        .hs-chiffres-card {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: #ffffff;
+            border: 2px solid #991b1b;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 10px rgba(220, 38, 38, 0.22);
+        }
+
+        .hs-chiffres-title {
+            font-size: 1.12rem;
+            font-weight: 800;
+            margin: 0 0 12px 0;
+            padding-bottom: 8px;
+            border-bottom: 1.5px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #ffffff;
+        }
+
+        .hs-chiffres-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .hs-chiffres-list li {
+            font-size: 0.88rem;
+            line-height: 1.45;
+            color: #ffffff;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .hs-tic-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+            color: #16a34a;
+            font-weight: 900;
+            font-size: 0.8rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 1px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        /* Grand carreau horizontal offre : Assistance Pannes électriques et plomberie */
+        .hs-offre-banner {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff;
+            border: 2px solid #0284c7;
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            box-shadow: 0 4px 10px rgba(15, 23, 42, 0.14);
+        }
+
+        .hs-offre-banner-title {
+            font-size: 1.12rem;
+            font-weight: 800;
+            color: #fde047;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Rectangle stylé pour attirer l'attention sur le prix */
+        .hs-price-callout {
+            background: linear-gradient(135deg, #fef08a 0%, #fde047 100%);
+            color: #0f172a;
+            border: 2.5px solid #dc2626;
+            border-radius: 10px;
+            padding: 8px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            box-shadow: 0 4px 12px rgba(250, 204, 21, 0.35);
+        }
+
+        .hs-price-old {
+            font-size: 0.8rem;
+            color: #7f1d1d;
+            font-weight: 700;
+        }
+
+        .hs-price-old del {
+            text-decoration: line-through;
+            font-weight: 800;
+        }
+
+        .hs-price-new {
+            font-size: 1.15rem;
+            font-weight: 900;
+            color: #dc2626;
+            letter-spacing: 0.2px;
+        }
+
+        /* Deux rectangles côte à côte : Prestations incluses & Non pris en charge */
+        .hs-two-boxes-grid {
+            display: grid;
+            grid-template-columns: 1.25fr 0.85fr;
+            gap: 16px;
+            align-items: stretch;
+        }
+
+        @media (max-width: 900px) {
+            .hs-two-boxes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .hs-box-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 15px 16px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hs-box-inclus {
+            border: 2px solid #16a34a;
+        }
+
+        .hs-box-exclus {
+            border: 2px solid #dc2626;
+            background-color: #fffafa;
+        }
+
+        .hs-box-header-inclus {
+            background-color: #16a34a;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 0.98rem;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hs-box-header-exclus {
+            background-color: #dc2626;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 0.98rem;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hs-prestations-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .hs-prestations-list li {
+            font-size: 0.84rem;
+            line-height: 1.42;
+            color: #1e293b;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .hs-prestation-icon {
+            font-size: 1rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .hs-sub-separator {
+            background-color: #e0f2fe;
+            border-left: 4px solid #0284c7;
+            color: #0c4a6e;
+            font-weight: 700;
+            font-size: 0.84rem;
+            padding: 8px 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            line-height: 1.4;
+        }
+
+        .hs-exclus-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .hs-exclus-list li {
+            font-size: 0.85rem;
+            line-height: 1.48;
+            color: #1e293b;
+            background-color: #ffffff;
+            border: 1px solid #fecaca;
+            padding: 10px 12px;
+            border-radius: 7px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        /* ========================================================================= */
+        /* STYLES SPÉCIFIQUES ONGLET PLENICOACH (SANS BLOC SCRIPT)                    */
+        /* ========================================================================= */
+        .pc-main-horizontal-card {
+            background-color: #ffffff;
+            border: 2px solid #15803d;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(21, 128, 61, 0.12);
+            margin-bottom: 18px;
+        }
+
+        /* Intitulé en vert avec écriture jaune */
+        .pc-green-yellow-header {
+            background-color: #15803d;
+            color: #fde047;
+            font-size: 1.22rem;
+            font-weight: 800;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid #14532d;
+        }
+
+        .pc-card-body {
+            padding: 18px 20px;
+        }
+
+        .pc-intro-paragraph {
+            background-color: #f0fdf4;
+            border-left: 4px solid #16a34a;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #14532d;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .pc-features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        @media (max-width: 900px) {
+            .pc-features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .pc-feature-item {
+            background-color: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 11px 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.88rem;
+            line-height: 1.45;
+            color: #1e293b;
+        }
+
+        .pc-feature-icon {
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* Bandeau horizontal fin mais large juste au-dessus des 2 offres PleniCoach */
+        .pc-thin-notice-bar {
+            width: 100%;
+            background-color: #fef9c3;
+            border: 1.5px solid #ca8a04;
+            color: #713f12;
+            font-weight: 700;
+            font-size: 0.88rem;
+            padding: 8px 16px;
+            border-radius: 7px;
+            text-align: center;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Deux carreaux l'un après l'autre pour les formules PleniCoach */
+        .pc-offers-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            align-items: stretch;
+        }
+
+        @media (max-width: 900px) {
+            .pc-offers-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Premier carreau : PleniCoach Dépannage en vert et blanc */
+        .pc-offer-standard {
+            background-color: #ffffff;
+            border: 2.5px solid #16a34a;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(22, 163, 74, 0.14);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pc-offer-standard-header {
+            background-color: #16a34a;
+            color: #ffffff;
+            padding: 12px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .pc-offer-standard-header h3 {
+            margin: 0;
+            font-size: 1.12rem;
+            font-weight: 800;
+        }
+
+        .pc-price-pill-green {
+            background-color: #ffffff;
+            color: #15803d;
+            font-weight: 900;
+            font-size: 1.08rem;
+            padding: 4px 14px;
+            border-radius: 999px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+        }
+
+        /* Deuxième carreau : PleniCoach Dépannage Premium */
+        .pc-offer-premium {
+            background-color: #fefce8;
+            border: 2.5px solid #eab308;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(234, 179, 8, 0.18);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pc-offer-premium-header {
+            background-color: #14532d;
+            color: #fde047;
+            padding: 12px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .pc-offer-premium-header h3 {
+            margin: 0;
+            font-size: 1.12rem;
+            font-weight: 800;
+        }
+
+        .pc-price-pill-premium {
+            background-color: #fde047;
+            color: #14532d;
+            font-weight: 900;
+            font-size: 1.08rem;
+            padding: 4px 14px;
+            border-radius: 999px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.18);
+        }
+
+        .pc-offer-body {
+            padding: 16px 20px;
+            font-size: 0.92rem;
+            line-height: 1.5;
+            color: #1e293b;
+        }
+
+        .pc-offer-highlight {
+            font-size: 1.02rem;
+            font-weight: 800;
+            color: #15803d;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
 
         @media (max-width: 1024px) {
             .page-layout {
@@ -1314,12 +1747,175 @@
         </div>
     </div>
 
-    <!-- AUTRES PAGES -->
-    <div id="page-homeserve" class="other-page-section">
-        <div class="dark-section-banner">🏠 HomeServe &amp; PleniCoach</div>
-        <p>Contenu HomeServe &amp; PleniCoach à venir...</p>
+    <!-- PAGE 3 : HOMESERVE & PLENICOACH -->
+    <div id="page-homeserve" style="display: none;">
+        <!-- DEUX BOUTONS DE SOUS-NAVIGATION : HOMESERVE (ROUGE & BLANC) ET PLENICOACH (JAUNE & VERT) -->
+        <div class="hs-pc-subnav">
+            <button id="subbtn-homeserve" class="hs-sub-btn btn-sub-homeserve active-sub-tab" onclick="changerSousOngletHS('homeserve', this)">
+                🏠 HomeServe
+            </button>
+            <button id="subbtn-plenicoach" class="hs-sub-btn btn-sub-plenicoach" onclick="changerSousOngletHS('plenicoach', this)">
+                ⚡ PleniCoach
+            </button>
+        </div>
+
+        <!-- CONTENU 1 : HOMESERVE (OFFRE A GAUCHE + SCRIPT HOMESERVE A DROITE) -->
+        <div id="subcontent-homeserve">
+            <div class="page-layout">
+                <!-- COLONNE GAUCHE : CHIFFRES + OFFRE + PRESTATIONS INCLUSES & NON PRIS EN CHARGE -->
+                <div class="left-col">
+                    <!-- 1. PARAGRAPHE INTITULÉ "HomeServe en quelques chiffres" EN CARREAU ROUGE AVEC ÉCRITURE BLANCHE -->
+                    <div class="hs-chiffres-card">
+                        <h3 class="hs-chiffres-title">📊 HomeServe en quelques chiffres</h3>
+                        <ul class="hs-chiffres-list">
+                            <li><span class="hs-tic-badge">✔</span> <span><strong>24/7 :</strong> le service d’assistance proposé par HomeServe est disponible 7 jours sur 7 et 24 heures sur 24 ;</span></li>
+                            <li><span class="hs-tic-badge">✔</span> <span><strong>2 heures :</strong> après avoir contacté HomeServe pour obtenir un dépannage, un technicien vous contactera dans les 2 heures pour fixer un rendez-vous ;</span></li>
+                            <li><span class="hs-tic-badge">✔</span> <span><strong>1,1 million</strong> de clients ;</span></li>
+                            <li><span class="hs-tic-badge">✔</span> <span><strong>4 000</strong> professionnels dans toute la France ;</span></li>
+                            <li><span class="hs-tic-badge">✔</span> <span><strong>190 000</strong> interventions par an ;</span></li>
+                            <li><span class="hs-tic-badge">✔</span> <span><strong>97 %</strong> de clients satisfaits.</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- 2. GRAND CARREAU HORIZONTAL OFFRE + PRIX STYLÉ -->
+                    <div class="hs-offre-banner">
+                        <div class="hs-offre-banner-title">
+                            🛠️ Assistance Pannes électriques et plomberie
+                        </div>
+                        <div class="hs-price-callout">
+                            <span class="hs-price-old">Prix initial : <del>7,99 €/mois</del></span>
+                            <span class="hs-price-new">5,99 € TTC / mois la 1ère année</span>
+                        </div>
+                    </div>
+
+                    <!-- 3. DEUX RECTANGLES CÔTE À CÔTE : PRESTATIONS INCLUSES & NON PRIS EN CHARGE -->
+                    <div class="hs-two-boxes-grid">
+                        <!-- RECTANGLE 1 : PRESTATIONS INCLUSES -->
+                        <div class="hs-box-card hs-box-inclus">
+                            <div class="hs-box-header-inclus">
+                                ✅ Prestations incluses
+                            </div>
+                            <ul class="hs-prestations-list">
+                                <li><span class="hs-prestation-icon">🔌</span> <span>câbles d’alimentation ;</span></li>
+                                <li><span class="hs-prestation-icon">💡</span> <span>terminaisons électriques (prises de courant, interrupteurs et douilles) ;</span></li>
+                                <li><span class="hs-prestation-icon">⚡</span> <span>disjoncteurs, interrupteurs différentiels et contacteur jour/nuit du chauffe-eau électrique ;</span></li>
+                                <li><span class="hs-prestation-icon">🔍</span> <span>recherche de panne, afin d’isoler un élément non couvert défectueux et rétablir son fonctionnement total ou partiel.</span></li>
+                            </ul>
+
+                            <div class="hs-sub-separator">
+                                💧 Ce contrat d’assurance comprend également l’intervention d’un technicien pour la recherche et réparation d’une fuite d’eau (intérieure et extérieure) sur les équipements suivants :
+                            </div>
+
+                            <ul class="hs-prestations-list">
+                                <li><span class="hs-prestation-icon">🚰</span> <span>les canalisations d’alimentation d’eau propres privatives ;</span></li>
+                                <li><span class="hs-prestation-icon">🚿</span> <span>les canalisations d’évacuation d’eaux vannes et d’eaux usées privatives ;</span></li>
+                                <li><span class="hs-prestation-icon">🔧</span> <span>les robinets d’arrêt et de radiateur ;</span></li>
+                                <li><span class="hs-prestation-icon">🚽</span> <span>les joints d’étanchéité du réservoir de WC ;</span></li>
+                                <li><span class="hs-prestation-icon">🪠</span> <span>les siphons ;</span></li>
+                                <li><span class="hs-prestation-icon">🛁</span> <span>les trop-pleins d’évier et de baignoire ;</span></li>
+                                <li><span class="hs-prestation-icon">🌡️</span> <span>les canalisations d’eau intérieure reliant l’appareil de chauffage individuel aux radiateurs.</span></li>
+                            </ul>
+                        </div>
+
+                        <!-- RECTANGLE 2 : NON PRIS EN CHARGE -->
+                        <div class="hs-box-card hs-box-exclus">
+                            <div class="hs-box-header-exclus">
+                                🚫 Non pris en charge
+                            </div>
+                            <ul class="hs-exclus-list">
+                                <li>
+                                    <span class="cross-red">✖</span>
+                                    <span><strong>Installations électriques :</strong> installations électriques non reliées à la terre, systèmes de gestion de l’énergie, planchers chauffant électriques, fusibles ;</span>
+                                </li>
+                                <li>
+                                    <span class="cross-red">✖</span>
+                                    <span><strong>Plomberie :</strong> canalisations communes à plusieurs habitations, robinetterie sanitaire, mécanisme de chasse d’eau, systèmes de chauffage par le sol, sanibroyeurs, fosses septiques traditionnelles ou toutes eaux et sacs à graisse.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COLONNE DROITE : SCRIPT HOMESERVE -->
+                <div class="right-col">
+                    <div class="script-card homeserve-theme">
+                        <h2>📞 Script HomeServe</h2>
+                        <div class="script-content" id="script-homeserve-container">
+                            <em>Chargement du script HomeServe...</em>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENU 2 : PLENICOACH (SANS BLOC SCRIPT) -->
+        <div id="subcontent-plenicoach" style="display: none;">
+            <!-- GRAND BLOC HORIZONTAL INTITULÉ EN VERT AVEC ÉCRITURE JAUNE : PleniCoach Dépannage -->
+            <div class="pc-main-horizontal-card">
+                <div class="pc-green-yellow-header">
+                    🛠️ PleniCoach Dépannage
+                </div>
+                <div class="pc-card-body">
+                    <div class="pc-intro-paragraph">
+                        Avec PleniCoach Dépannage et PleniCoach Dépannage Premium, bénéficiez d’un service de dépannage à domicile ou en ligne pensé pour l’entretien et la réparation de votre logement. Qu’il s’agisse d’un dépannage électricité, d’un dépannage gaz ou d’un dépannage plomberie (service premium uniquement), PleniCoach vous accompagne à chaque étape pour une intervention rapide et efficace par des professionnels qualifiés Homeserve.
+                    </div>
+
+                    <div class="pc-features-grid">
+                        <div class="pc-feature-item">
+                            <span class="pc-feature-icon">📘</span>
+                            <span><strong>1-</strong> Tutos, conseils personnalisés, guides mensuels pour l’entretien du logement et durabilité des installations.</span>
+                        </div>
+                        <div class="pc-feature-item">
+                            <span class="pc-feature-icon">📱</span>
+                            <span><strong>2-</strong> Service d’assistance à distance (via téléphone ou visio) disponible 7j/7 pour les dépannages.</span>
+                        </div>
+                        <div class="pc-feature-item">
+                            <span class="pc-feature-icon">⏱️</span>
+                            <span><strong>2-</strong> Prise de rendez-vous avec un professionnel en moins de 2 h.</span>
+                        </div>
+                        <div class="pc-feature-item">
+                            <span class="pc-feature-icon">🧰</span>
+                            <span><strong>3-</strong> 1 h 30 de main d’œuvre, jusqu'à 20 € HT inclus de pièces.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BANDEAU HORIZONTAL FIN MAIS LARGE AU-DESSUS DES DEUX TABLEAUX -->
+            <div class="pc-thin-notice-bar">
+                ℹ️ Après le 31/12/2026, le tarif pour les nouveaux abonnés sera de 5,99€/mois pour le Plenicoach Dépannage et 12,99€/mois pour le Plenicoach Dépannage Premium.
+            </div>
+
+            <!-- DEUX CARREAUX L'UN APRÈS L'AUTRE -->
+            <div class="pc-offers-row">
+                <!-- CARREAU 1 : PleniCoach Dépannage 4.99€/mois en vert et blanc -->
+                <div class="pc-offer-standard">
+                    <div class="pc-offer-standard-header">
+                        <h3>🟢 PleniCoach Dépannage</h3>
+                        <span class="pc-price-pill-green">4,99 €/mois</span>
+                    </div>
+                    <div class="pc-offer-body">
+                        <div class="pc-offer-highlight">✔ 1 intervention par an*</div>
+                        <p style="margin: 0;">Interventions pour les problèmes d’électricité et de gaz liés aux installations intérieures de votre maison.</p>
+                    </div>
+                </div>
+
+                <!-- CARREAU 2 : PleniCoach Dépannage Premium 10.99€/mois -->
+                <div class="pc-offer-premium">
+                    <div class="pc-offer-premium-header">
+                        <h3>👑 PleniCoach Dépannage Premium</h3>
+                        <span class="pc-price-pill-premium">10,99 €/mois</span>
+                    </div>
+                    <div class="pc-offer-body">
+                        <div class="pc-offer-highlight">✔ Interventions illimitées**</div>
+                        <p style="margin: 0;">Interventions pour les problèmes d’électricité, de gaz et de plomberie liés aux installations intérieures de votre maison.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- AUTRES PAGES -->
     <div id="page-direct" class="other-page-section">
         <div class="dark-section-banner">🛡️ Direct Assurance</div>
         <p>Contenu Direct Assurance à venir...</p>
@@ -1358,6 +1954,7 @@
         // Masquer toutes les sections
         document.getElementById('page-comparateur').style.display = 'none';
         document.getElementById('page-boxfree').style.display = 'none';
+        document.getElementById('page-homeserve').style.display = 'none';
         document.querySelectorAll('.other-page-section').forEach(sec => sec.style.display = 'none');
 
         // Afficher la page choisie
@@ -1366,10 +1963,21 @@
             setTimeout(alignerBadgesClassement, 0);
         } else if (pageId === 'boxfree') {
             document.getElementById('page-boxfree').style.display = 'block';
+        } else if (pageId === 'homeserve') {
+            document.getElementById('page-homeserve').style.display = 'block';
         } else {
             const target = document.getElementById('page-' + pageId);
             if (target) target.style.display = 'block';
         }
+    }
+
+    function changerSousOngletHS(subId, btn) {
+        document.querySelectorAll('.hs-sub-btn').forEach(b => b.classList.remove('active-sub-tab'));
+        const activeSubBtn = btn || document.getElementById('subbtn-' + subId);
+        if (activeSubBtn) activeSubBtn.classList.add('active-sub-tab');
+
+        document.getElementById('subcontent-homeserve').style.display = (subId === 'homeserve') ? 'block' : 'none';
+        document.getElementById('subcontent-plenicoach').style.display = (subId === 'plenicoach') ? 'block' : 'none';
     }
 
     function restaurerPageActive() {
@@ -1395,10 +2003,11 @@
     const URL_SCRIPT_ENGIE_GAZ = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=887654579&single=true&output=csv";
     const URL_SCRIPT_ENGIE_DUAL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=1661582761&single=true&output=csv";
 
-    // NOUVEAUX LIENS CSV POUR LES TABLEAUX DU BAS & PAGE BOX FREE
+    // NOUVEAUX LIENS CSV POUR LES TABLEAUX DU BAS, PAGE BOX FREE & SCRIPT HOMESERVE
     const URL_CARACTERISTIQUES = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=1949724626&single=true&output=csv";
     const URL_PRESTATIONS = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=1158477169&single=true&output=csv";
     const URL_BOX_FREE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=1906177763&single=true&output=csv";
+    const URL_SCRIPT_HOMESERVE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=1609026340&single=true&output=csv";
 
     // LOGOS SVG INTÉGRÉS (100% HORS-LIGNE, AFFICHAGE INSTANTANÉ ET TAILLE IDENTIQUE)
     const SVG_LOGOS = {
@@ -1617,6 +2226,7 @@
         chargerTableauCaracteristiques();
         chargerTableauPrestations();
         chargerDonneesBoxFree();
+        chargerScriptHomeServe();
     });
 
     function cleanNum(val) {
@@ -1625,7 +2235,6 @@
         return parseFloat(cleaned) || 0;
     }
 
-    // PARSEUR LIGNE PAR LIGNE D'ORIGINE (POUR LE SCRIPT ET LES TARIFS)
     function parseCSVLine(text) {
         let result = [];
         let cur = '';
@@ -1645,7 +2254,6 @@
         return result;
     }
 
-    // PARSEUR MULTILIGNE (PRÉSERVANT EXACTEMENT LES NUMÉROS DE LIGNES EXCEL / GOOGLE SHEETS)
     function parseCSVExactRows(text) {
         const rows = [];
         let curRow = [];
@@ -1681,39 +2289,127 @@
         return rows;
     }
 
-    // PARSEUR MULTILIGNE FILTRANT LES LIGNES VIDES (POUR ENEDIS / GRDF ET CARACTÉRISTIQUES)
     function parseCSVMultiline(text) {
         return parseCSVExactRows(text).filter(r => r.some(cell => cell !== ''));
     }
 
-    // BOUTONS ARRONDIS POUR LES OPÉRATEURS DANS LES TABLEAUX BOX FREE
+    // CHARGEMENT DU SCRIPT HOMESERVE DEPUIS LE LIEN GOOGLE SHEETS
+    async function chargerScriptHomeServe() {
+        const container = document.getElementById('script-homeserve-container');
+        if (!container) return;
+
+        try {
+            const response = await fetch(URL_SCRIPT_HOMESERVE);
+            const csvText = await response.text();
+            const exactRows = parseCSVExactRows(csvText);
+
+            let rawLines = [];
+            exactRows.forEach(row => {
+                const lineJoined = row.map(c => c.trim()).filter(c => c !== '').join(' ').trim();
+                if (!lineJoined) return;
+                lineJoined.split(/\r?\n/).forEach(sub => {
+                    const trimmed = sub.trim();
+                    if (trimmed) rawLines.push(trimmed);
+                });
+            });
+
+            const blocks = [];
+            let currentPara = [];
+
+            const flushHS = () => {
+                if (currentPara.length === 0) return;
+                let textHtml = currentPara.join('<br>');
+                textHtml = textHtml.replace(/(\[[^\]]+\])/g, '<span class="tag-blue">$1</span>');
+                blocks.push({
+                    isTitle: false,
+                    html: textHtml
+                });
+                currentPara = [];
+            };
+
+            rawLines.forEach(line => {
+                const cleanCheck = line.replace(/^[•\-–*]\s*/, '').trim();
+                // Détecter les 4 titres demandés : ACCROCHE :, AVANTAGE HOMESERVE :, FONCTIONNEMENT DU CONTRAT :, ENGAGEMENT CLIENT :
+                const titleRegex = /^(ACCROCHE|AVANTAGES?\s+HOMESERVE|FONCTIONNEMENT\s+DU\s+CONTRAT|ENGAGEMENT\s+CLIENT)\s*:?\s*(.*)$/i;
+                const match = cleanCheck.match(titleRegex);
+
+                if (match) {
+                    flushHS();
+                    const rawTitleUpper = match[1].toUpperCase();
+                    let normalizedTitle = rawTitleUpper + ' :';
+                    if (rawTitleUpper.startsWith('ACCROCHE')) normalizedTitle = 'ACCROCHE :';
+                    else if (rawTitleUpper.startsWith('AVANTAGE')) normalizedTitle = 'AVANTAGE HOMESERVE :';
+                    else if (rawTitleUpper.startsWith('FONCTIONNEMENT')) normalizedTitle = 'FONCTIONNEMENT DU CONTRAT :';
+                    else if (rawTitleUpper.startsWith('ENGAGEMENT')) normalizedTitle = 'ENGAGEMENT CLIENT :';
+
+                    const lastBlock = blocks[blocks.length - 1];
+                    if (!lastBlock || !lastBlock.isTitle || lastBlock.html !== normalizedTitle) {
+                        blocks.push({
+                            isTitle: true,
+                            html: normalizedTitle
+                        });
+                    }
+
+                    const rest = match[2] ? match[2].trim() : '';
+                    if (rest) {
+                        const restCheck = rest.match(titleRegex);
+                        if (!restCheck) {
+                            currentPara.push(rest);
+                        } else if (restCheck[2] && restCheck[2].trim()) {
+                            currentPara.push(restCheck[2].trim());
+                        }
+                    }
+                } else {
+                    if (line.startsWith('•') && currentPara.length > 0 && !currentPara[currentPara.length - 1].startsWith('•')) {
+                        flushHS();
+                    } else if (!line.startsWith('•') && currentPara.length > 0 && currentPara[currentPara.length - 1].startsWith('•')) {
+                        flushHS();
+                    }
+                    currentPara.push(line);
+                }
+            });
+
+            flushHS();
+
+            container.innerHTML = '';
+            if (blocks.length === 0) {
+                container.innerHTML = '<em>Aucun contenu trouvé dans le script HomeServe.</em>';
+                return;
+            }
+
+            blocks.forEach(item => {
+                if (item.isTitle) {
+                    const h = document.createElement('div');
+                    h.className = 'script-section-homeserve-dark';
+                    h.innerHTML = item.html;
+                    container.appendChild(h);
+                } else {
+                    const p = document.createElement('div');
+                    p.className = 'script-paragraph';
+                    p.innerHTML = item.html;
+                    container.appendChild(p);
+                }
+            });
+        } catch (e) {
+            console.warn("Erreur lors du chargement du script HomeServe :", e);
+            container.innerHTML = '<em>Impossible de charger le script HomeServe.</em>';
+        }
+    }
+
     function formatOperateurButton(val) {
         if (!val) return '-';
         const cleanVal = val.trim();
         const lower = cleanVal.toLowerCase();
 
-        if (lower.includes('red')) {
-            return `<span class="op-pill op-red-sfr">${cleanVal}</span>`;
-        }
-        if (lower.includes('free')) {
-            return `<span class="op-pill op-free">${cleanVal}</span>`;
-        }
-        if (lower.includes('orange')) {
-            return `<span class="op-pill op-orange">${cleanVal}</span>`;
-        }
-        if (lower.includes('sosh')) {
-            return `<span class="op-pill op-sosh">${cleanVal}</span>`;
-        }
-        if (lower.includes('bouygues') || lower.includes('bougues') || lower.includes('bbox')) {
-            return `<span class="op-pill op-bouygues">${cleanVal}</span>`;
-        }
-        if (lower.includes('sfr')) {
-            return `<span class="op-pill op-sfr">${cleanVal}</span>`;
-        }
+        if (lower.includes('red')) return `<span class="op-pill op-red-sfr">${cleanVal}</span>`;
+        if (lower.includes('free')) return `<span class="op-pill op-free">${cleanVal}</span>`;
+        if (lower.includes('orange')) return `<span class="op-pill op-orange">${cleanVal}</span>`;
+        if (lower.includes('sosh')) return `<span class="op-pill op-sosh">${cleanVal}</span>`;
+        if (lower.includes('bouygues') || lower.includes('bougues') || lower.includes('bbox')) return `<span class="op-pill op-bouygues">${cleanVal}</span>`;
+        if (lower.includes('sfr')) return `<span class="op-pill op-sfr">${cleanVal}</span>`;
         return cleanVal;
     }
 
-    // FORMATE LES CROIX EN ROUGE DANS LES CELLULES DES TABLEAUX BOX FREE
     function formatFreeCellContent(val, isFirstCol) {
         if (!val || val === '-') return '-';
         const trimmed = val.trim();
@@ -1731,14 +2427,12 @@
         return html;
     }
 
-    // CHARGEMENT COMPLET DE LA FEUILLE BOX FREE (A30:O36 EN PREMIER, PUIS A3:H9, A13:H19, A23:H27, A40+)
     async function chargerDonneesBoxFree() {
         try {
             const response = await fetch(URL_BOX_FREE);
             const csvText = await response.text();
             const exactRows = parseCSVExactRows(csvText);
 
-            // 1. Encadré Forces de Free A30:O36 -> index 0-based : lignes 29 à 35, colonnes 0 à 14
             const ulForces = document.getElementById('forces-free-content');
             ulForces.innerHTML = '';
             let forcesItems = [];
@@ -1763,16 +2457,10 @@
                 ulForces.innerHTML = '<li><em>Aucune donnée trouvée dans A30:O36.</em></li>';
             }
 
-            // 2. Tableau A3:H9 -> index 0-based : lignes 2 à 8, colonnes 0 à 7
             rendreTableauFree(exactRows, 2, 8, 'thead-free-entree', 'tbody-free-entree');
-
-            // 3. Tableau A13:H19 -> index 0-based : lignes 12 à 18, colonnes 0 à 7
             rendreTableauFree(exactRows, 12, 18, 'thead-free-coeur', 'tbody-free-coeur');
-
-            // 4. Tableau A23:H27 -> index 0-based : lignes 22 à 26, colonnes 0 à 7
             rendreTableauFree(exactRows, 22, 26, 'thead-free-haut', 'tbody-free-haut');
 
-            // 5. Script Free à partir de la cellule A40 (index 0-based : ligne 39 et suivantes)
             scriptFreeSectionsData = [];
 
             let rawScriptLines = [];
@@ -1792,7 +2480,6 @@
                 const fullPara = currentParagraphLines.join('<br>');
                 const paraLower = fullPara.toLowerCase().replace(/[’']/g, "'");
 
-                // UNIQUEMENT les 6 paragraphes demandés en surbrillance rouge
                 const isAlertRed = (
                     paraLower.includes("l'offre que je vous propose est la freebox") ||
                     paraLower.includes("afin de procéder à l'activation de votre ligne") ||
@@ -1818,7 +2505,6 @@
             };
 
             rawScriptLines.forEach(line => {
-                // Nettoyer la ligne pour vérifier si c'est un titre de bloc (et éviter les doublons consécutifs)
                 const cleanLineForMatch = line.replace(/^[•\-–*]\s*/, '').trim();
                 const titleMatch = cleanLineForMatch.match(/^(Accroche|Découverte|Decouverte|Argumentation|Mise en place du contrat)\s*:?\s*(.*)$/i);
 
@@ -1829,7 +2515,6 @@
                     const formattedTitle = rawTitle.charAt(0).toUpperCase() + rawTitle.slice(1) + ' :';
                     const restOfLine = titleMatch[2] ? titleMatch[2].trim() : '';
 
-                    // Ne pas ajouter le titre s'il est déjà identique au dernier bloc ajouté (suppression du doublon)
                     const lastItem = scriptFreeSectionsData[scriptFreeSectionsData.length - 1];
                     if (!lastItem || !lastItem.isSectionTitle || lastItem.text.toLowerCase() !== formattedTitle.toLowerCase()) {
                         scriptFreeSectionsData.push({
@@ -1840,7 +2525,6 @@
                     }
 
                     if (restOfLine) {
-                        // Vérifier que restOfLine ne répète pas le titre
                         const restTitleCheck = restOfLine.match(/^(Accroche|Découverte|Decouverte|Argumentation|Mise en place du contrat)\s*:?\s*(.*)$/i);
                         if (restTitleCheck) {
                             if (restTitleCheck[2] && restTitleCheck[2].trim()) {
@@ -1989,7 +2673,6 @@
         return `<div class="provider-logo-box"><strong style="font-size:0.85rem;">${nom}</strong></div>`;
     }
 
-    // FORMATE UNIQUEMENT LES RÉPONSES DEMANDÉES EN BOUTONS ARRONDIES COLORÉS
     function formatCaracteristiqueCell(colTitle, val) {
         if (!val || val === '-') return '-';
         const colNorm = colTitle.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -1997,33 +2680,24 @@
 
         let pillClass = '';
 
-        // 1. Activation CHF
         if (colNorm.includes("activation chf")) {
             if (valNorm.includes("14")) pillClass = "pill-orange";
             else if (valNorm.includes("21")) pillClass = "pill-red";
             else if (valNorm.includes("des que possible")) pillClass = "pill-green";
-        }
-        // 2. Activation MES
-        else if (colNorm.includes("activation mes")) {
+        } else if (colNorm.includes("activation mes")) {
             if (valNorm.includes("rapide")) pillClass = "pill-green";
             else if (valNorm.includes("7 jour") || valNorm.includes("48h")) pillClass = "pill-orange";
             else if (valNorm.includes("15 jour")) pillClass = "pill-red";
-        }
-        // 3. Première MES
-        else if (colNorm.includes("premiere mes")) {
+        } else if (colNorm.includes("premiere mes")) {
             if (valNorm === "oui") pillClass = "pill-green";
             else if (valNorm === "non") pillClass = "pill-red";
-        }
-        // 4. Type de compteur
-        else if (colNorm.includes("type de compteur") || colNorm.includes("compteur")) {
+        } else if (colNorm.includes("type de compteur") || colNorm.includes("compteur")) {
             if (valNorm.includes("linky") && (valNorm.includes("classique") || valNorm.includes("classqique") || valNorm.includes("&"))) {
                 pillClass = "pill-green";
             } else if (valNorm === "linky") {
                 pillClass = "pill-red";
             }
-        }
-        // 5. Echéancier
-        else if (colNorm.includes("echeancier")) {
+        } else if (colNorm.includes("echeancier")) {
             if (valNorm.includes("11 mois")) pillClass = "pill-green";
             else if (valNorm.includes("12 mois")) pillClass = "pill-red";
         }
@@ -2104,7 +2778,6 @@
         afficherDetails(fournisseurSelectionne);
     }
 
-    // TABLEAU CARACTÉRISTIQUES DES FOURNISSEURS : EN-TÊTES DE COLONNES + RÉPONSES UNIQUEMENT PAR FOURNISSEUR
     async function chargerTableauCaracteristiques() {
         try {
             const response = await fetch(URL_CARACTERISTIQUES);
@@ -2280,7 +2953,6 @@
                 let isGreenTitlePlenitude = false;
                 let isYellowTitlePlenitude = false;
 
-                // TITRES PRINCIPAUX SCRIPT GENERAL (RECTANGLES BLEUS)
                 if (
                     textLower.includes("accueil client") || 
                     textLower.includes("découverte & reformulation") || textLower.includes("decouverte & reformulation") || textLower.includes("découverte et reformulation") ||
@@ -2295,7 +2967,6 @@
                     else if (textLower.includes("mise en place") || textLower.includes("contrat")) currentCategory = 'contrat';
                 }
 
-                // SURBRILLANCES SPÉCIFIQUES DANS ACCUEIL CLIENT - PRÉSENTATION
                 if (!isBlueTitle && currentCategory === 'accueil') {
                     if (textLower.includes("[new prospect")) {
                         accueilHighlightClass = 'highlight-new-prospect';
@@ -2323,7 +2994,6 @@
                     }
                 }
 
-                // REGLES SPECIALES SCRIPT PLENITUDE
                 if (
                     textLower.includes("consentement accès aux données") || textLower.includes("consentement acces aux donnees") ||
                     textLower.includes("vente de l’offre") || textLower.includes("vente de l'offre") ||
@@ -2341,7 +3011,6 @@
                     isYellowTitlePlenitude = true;
                 }
 
-                // REGLES SPECIALES SCRIPT ENGIE
                 if (
                     textLower.startsWith("annonce de l’offre") || textLower.startsWith("annonce de l'offre") ||
                     textLower.startsWith("annonce du prix") ||
@@ -2364,7 +3033,6 @@
                     isYellowBox = true;
                 }
 
-                // Inscription en rouge pour les phrases d'alerte / consentement + bloc Hello Watt complet
                 if (
                     textLower.includes("enregistré") || 
                     textLower.includes("qualité et de formation") ||
@@ -2378,7 +3046,6 @@
                     isAlertRed = true;
                 }
 
-                // Mise en forme des éléments entre crochets [...]
                 if (isAlertRed) {
                     text = text.replace(/(\[[^\]]+\])/g, '<span class="bracket-black">$1</span>');
                 } else {
