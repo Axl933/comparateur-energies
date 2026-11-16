@@ -2440,7 +2440,7 @@
         return parseCSVExactRows(text).filter(r => r.some(cell => cell !== ''));
     }
 
-    // CHARGEMENT DU SCRIPT DIRECT ASSURANCE
+    // CHARGEMENT DYNAMIQUE COMPLET DU SCRIPT DIRECT ASSURANCE DEPUIS GOOGLE SHEETS
     async function chargerScriptDirectAssurance() {
         const container = document.getElementById('script-direct-container');
         if (!container) return;
@@ -2450,13 +2450,24 @@
             const csvText = await response.text();
             const exactRows = parseCSVExactRows(csvText);
 
-            let rawLines = [];
+            // Extraire toutes les lignes non vides (en préservant les séparations de lignes vides)
+            const entries = [];
             exactRows.forEach(row => {
-                const lineJoined = row.map(c => c.trim()).filter(c => c !== '').join(' ').trim();
-                if (!lineJoined) return;
-                lineJoined.split(/\r?\n/).forEach(sub => {
-                    const trimmed = sub.trim();
-                    if (trimmed) rawLines.push(trimmed);
+                const nonEmptyCells = row.map(c => c.trim()).filter(c => c !== '');
+                if (nonEmptyCells.length === 0) {
+                    entries.push({ isEmptyRow: true });
+                    return;
+                }
+                nonEmptyCells.forEach(cellText => {
+                    const subLines = cellText.split(/\r?\n/);
+                    subLines.forEach(sub => {
+                        const trimmed = sub.trim();
+                        if (trimmed) {
+                            entries.push({ isEmptyRow: false, text: trimmed });
+                        } else {
+                            entries.push({ isEmptyRow: true });
+                        }
+                    });
                 });
             });
 
@@ -2478,9 +2489,18 @@
             const redTitleRegex = /^(Découverte|Decouverte|Synthèse des arguments de Direct Assurance|Synthese des arguments de Direct Assurance|Proposition de l[’']offre et closing\s*-\s*Direct Assurance|Annonce des couvertures\s*\(obligatoire\))\s*:?\s*(.*)$/i;
             const formuleRegex = /^(Formule\s+Essentielle|Formule\s+Confort\+|Formule\s+Confort)\s*:?\s*(.*)$/i;
 
-            rawLines.forEach(line => {
+            entries.forEach(entry => {
+                if (entry.isEmptyRow) {
+                    // Une ligne vide termine la description d'une formule afin que les paragraphes suivants (ex: prise des coordonnées / IBAN) soient rendus dans leur propre bloc
+                    flushDA();
+                    inFormuleDesc = false;
+                    return;
+                }
+
+                const line = entry.text;
                 const cleanCheck = line.replace(/^[•\-–*]\s*/, '').trim();
 
+                // 1. Détection d'un des 4 grands titres rouges
                 const redMatch = cleanCheck.match(redTitleRegex);
                 if (redMatch) {
                     flushDA();
@@ -2524,6 +2544,7 @@
                     return;
                 }
 
+                // 2. Détection d'une des 3 sous-catégories bleues (Formule Essentielle / Confort / Confort+)
                 const formuleMatch = cleanCheck.match(formuleRegex);
                 if (formuleMatch) {
                     flushDA();
@@ -2543,6 +2564,20 @@
                         currentPara.push(restF);
                     }
                     return;
+                }
+
+                // 3. Si une instruction entre crochets (ex: [Prise des coordonnées et de l’IBAN...] ou [Si paiement par CB]) démarre,
+                // on sort automatiquement de l'encadré bleu de la Formule Confort+ pour l'afficher dans le bloc final standard
+                if (cleanCheck.startsWith('[')) {
+                    flushDA();
+                    inFormuleDesc = false;
+                } else if (
+                    inFormuleDesc &&
+                    currentPara.length > 0 &&
+                    /^(je vous ai envoyé un mail|sachez également que vous serez prélevé)/i.test(cleanCheck)
+                ) {
+                    flushDA();
+                    inFormuleDesc = false;
                 }
 
                 if (line.startsWith('•') && currentPara.length > 0 && !currentPara[currentPara.length - 1].startsWith('•')) {
