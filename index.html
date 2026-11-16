@@ -22,8 +22,16 @@
             box-sizing: border-box;
         }
 
+        body,
+        button,
+        input,
+        select,
+        textarea,
+        table {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-slate);
             color: var(--text-main);
             margin: 0;
@@ -32,21 +40,6 @@
             zoom: 88%;
             transform: scale(0.88);
             transform-origin: top center;
-        }
-
-        /* APPLICATION DE LA POLICE CORPORATE PRO SUR LES ZONES DEMANDÉES */
-        #page-comparateur .left-col,
-        #page-comparateur .full-width-bottom,
-        #page-boxfree .left-col,
-        #page-direct {
-            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-
-        #page-comparateur .left-col select,
-        #page-comparateur .left-col table,
-        #page-comparateur .full-width-bottom table,
-        #page-boxfree .left-col table {
-            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         .main-container {
@@ -81,7 +74,6 @@
         }
 
         .page-nav-btn {
-            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             height: 34px;
             padding: 0 20px;
             border-radius: 8px;
@@ -991,7 +983,6 @@
         }
 
         .hs-sub-btn {
-            font-family: 'Plus Jakarta Sans', sans-serif;
             padding: 10px 28px;
             border-radius: 10px;
             font-size: 1rem;
@@ -1035,7 +1026,6 @@
             overflow: hidden;
             margin-bottom: 16px;
             box-shadow: 0 4px 10px rgba(220, 38, 38, 0.12);
-            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         .hs-chiffres-title {
@@ -1104,7 +1094,6 @@
             flex-wrap: wrap;
             gap: 10px;
             box-shadow: 0 3px 8px rgba(220, 38, 38, 0.16);
-            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         .hs-offre-banner-title {
@@ -1151,7 +1140,6 @@
             grid-template-columns: 1.25fr 0.85fr;
             gap: 16px;
             align-items: stretch;
-            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         @media (max-width: 900px) {
@@ -1267,10 +1255,6 @@
         /* ========================================================================= */
         /* STYLES SPÉCIFIQUES ONGLET PLENICOACH                                       */
         /* ========================================================================= */
-        #subcontent-plenicoach {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
         .pc-main-horizontal-card {
             background-color: #ffffff;
             border: 2px solid #15803d;
@@ -1557,7 +1541,6 @@
             letter-spacing: 0.3px;
         }
 
-        /* Rectangle rouge écriture blanche pour les 4 grands titres */
         .da-red-title-box {
             background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
             color: #ffffff;
@@ -1575,7 +1558,6 @@
             margin-top: 0;
         }
 
-        /* Rectangle bleu écriture blanche pour Formule Essentielle, Formule Confort, Formule Confort+ */
         .da-blue-formule-badge {
             display: inline-block;
             background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
@@ -1656,7 +1638,7 @@
     <!-- PAGE 1 : COMPARATEUR ENERGIES -->
     <div id="page-comparateur">
         <div class="page-layout">
-            <!-- COLONNE GAUCHE : COMPARATEUR ET DÉTAILS (POLICE PLUS JAKARTA SANS) -->
+            <!-- COLONNE GAUCHE -->
             <div class="left-col">
                 <div class="details-card">
                     <div class="details-header-dark">
@@ -1765,7 +1747,7 @@
                 </div>
             </div>
 
-            <!-- COLONNE DROITE : SCRIPT COMPARATEUR (POLICE D'ORIGINE INCHANGÉE) -->
+            <!-- COLONNE DROITE : SCRIPT COMPARATEUR -->
             <div class="right-col">
                 <div class="script-card">
                     <h2>📞 Script Comparateur</h2>
@@ -1793,7 +1775,7 @@
             </div>
         </div>
 
-        <!-- PARTIE BASSE PLEINE LARGEUR (POLICE PLUS JAKARTA SANS) -->
+        <!-- PARTIE BASSE PLEINE LARGEUR -->
         <div class="full-width-bottom">
             <div class="dark-section-banner">
                 📊 Caractéristiques des Fournisseurs
@@ -1819,7 +1801,6 @@
     <!-- PAGE 2 : BOX FREE -->
     <div id="page-boxfree" style="display: none;">
         <div class="page-layout">
-            <!-- COLONNE GAUCHE : POLICE PLUS JAKARTA SANS -->
             <div class="left-col">
                 <div class="forces-free-card">
                     <div class="forces-free-header">
@@ -1867,7 +1848,6 @@
                 </div>
             </div>
 
-            <!-- COLONNE DROITE : SCRIPT FREE (POLICE D'ORIGINE INCHANGÉE) -->
             <div class="right-col">
                 <div class="script-card free-theme">
                     <h2>📞 Script Free</h2>
@@ -2064,7 +2044,7 @@
         </div>
     </div>
 
-    <!-- PAGE 4 : DIRECT ASSURANCE (BLOC UNIQUE AU CENTRE INTITULÉ SCRIPT DIRECT ASSURANCE) -->
+    <!-- PAGE 4 : DIRECT ASSURANCE -->
     <div id="page-direct" style="display: none;">
         <div class="da-center-wrapper">
             <div class="da-script-card">
@@ -2440,7 +2420,6 @@
         return parseCSVExactRows(text).filter(r => r.some(cell => cell !== ''));
     }
 
-    // CHARGEMENT DYNAMIQUE COMPLET DU SCRIPT DIRECT ASSURANCE DEPUIS GOOGLE SHEETS
     async function chargerScriptDirectAssurance() {
         const container = document.getElementById('script-direct-container');
         if (!container) return;
@@ -2450,7 +2429,6 @@
             const csvText = await response.text();
             const exactRows = parseCSVExactRows(csvText);
 
-            // Extraire toutes les lignes non vides (en préservant les séparations de lignes vides)
             const entries = [];
             exactRows.forEach(row => {
                 const nonEmptyCells = row.map(c => c.trim()).filter(c => c !== '');
@@ -2491,7 +2469,6 @@
 
             entries.forEach(entry => {
                 if (entry.isEmptyRow) {
-                    // Une ligne vide termine la description d'une formule afin que les paragraphes suivants (ex: prise des coordonnées / IBAN) soient rendus dans leur propre bloc
                     flushDA();
                     inFormuleDesc = false;
                     return;
@@ -2500,7 +2477,6 @@
                 const line = entry.text;
                 const cleanCheck = line.replace(/^[•\-–*]\s*/, '').trim();
 
-                // 1. Détection d'un des 4 grands titres rouges
                 const redMatch = cleanCheck.match(redTitleRegex);
                 if (redMatch) {
                     flushDA();
@@ -2544,7 +2520,6 @@
                     return;
                 }
 
-                // 2. Détection d'une des 3 sous-catégories bleues (Formule Essentielle / Confort / Confort+)
                 const formuleMatch = cleanCheck.match(formuleRegex);
                 if (formuleMatch) {
                     flushDA();
@@ -2566,8 +2541,6 @@
                     return;
                 }
 
-                // 3. Si une instruction entre crochets (ex: [Prise des coordonnées et de l’IBAN...] ou [Si paiement par CB]) démarre,
-                // on sort automatiquement de l'encadré bleu de la Formule Confort+ pour l'afficher dans le bloc final standard
                 if (cleanCheck.startsWith('[')) {
                     flushDA();
                     inFormuleDesc = false;
