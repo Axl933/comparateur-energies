@@ -34,6 +34,21 @@
             transform-origin: top center;
         }
 
+        /* APPLICATION DE LA POLICE CORPORATE PRO SUR LES ZONES DEMANDÉES */
+        #page-comparateur .left-col,
+        #page-comparateur .full-width-bottom,
+        #page-boxfree .left-col,
+        #page-direct {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        #page-comparateur .left-col select,
+        #page-comparateur .left-col table,
+        #page-comparateur .full-width-bottom table,
+        #page-boxfree .left-col table {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
         .main-container {
             max-width: 1650px;
             margin: 0 auto;
@@ -48,7 +63,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* BARRE DE NAVIGATION PRINCIPALE (2 CM EN DESSOUS DU TITRE ET 2 CM AU-DESSUS DU CONTENU) */
+        /* BARRE DE NAVIGATION PRINCIPALE */
         .top-pages-nav-wrapper {
             margin-top: 2cm;
             margin-bottom: 2cm;
@@ -57,7 +72,6 @@
             width: 100%;
         }
 
-        /* TOUS LES BOUTONS ONT EXACTEMENT LA MÊME LONGUEUR ET LA MÊME HAUTEUR */
         .top-pages-nav {
             display: inline-grid;
             grid-auto-flow: column;
@@ -96,7 +110,6 @@
             box-shadow: 0 0 0 2px #f8fafc, 0 0 0 4px #0f172a, 0 4px 10px rgba(15, 23, 42, 0.2);
         }
 
-        /* Bouton 1 "Comparateur Energies" : en bleu avec font bleu foncé et gras */
         .btn-page-comparateur {
             background-color: #93c5fd;
             color: #1e3a8a;
@@ -104,7 +117,6 @@
             border: 1.5px solid #2563eb;
         }
 
-        /* Bouton 2 "Box free" : blanc avec font rouge */
         .btn-page-boxfree {
             background-color: #ffffff;
             color: #dc2626;
@@ -112,7 +124,6 @@
             border: 1.5px solid #dc2626;
         }
 
-        /* Bouton 3 "HomeServe & PleniCoach" : Bouton noir, Homeserve en rouge et Plenicoach en jaune */
         .btn-page-homeserve {
             background-color: #0f172a;
             color: #ffffff;
@@ -126,7 +137,6 @@
             color: #facc15;
         }
 
-        /* Bouton 4 "Direct Assurance" : bouton gris léger avec font rouge gras */
         .btn-page-direct {
             background-color: #e2e8f0;
             color: #dc2626;
@@ -134,7 +144,6 @@
             border: 1.5px solid #94a3b8;
         }
 
-        /* Bouton 5 "Classement Hellowatt" : Bouton rouge et font noir en gras */
         .btn-page-hellowatt {
             background-color: #dc2626;
             color: #000000;
@@ -166,7 +175,7 @@
             min-height: 400px;
         }
 
-        /* DISPOSITION DEUX COLONNES (PARTIE HAUTE) */
+        /* DISPOSITION DEUX COLONNES */
         .page-layout {
             display: flex;
             gap: 20px;
@@ -188,7 +197,6 @@
             flex-direction: column;
         }
 
-        /* PARTIE BASSE PLEINE LARGEUR */
         .full-width-bottom {
             width: 100%;
             margin-top: 15px;
@@ -212,7 +220,6 @@
             border-color: #dc2626;
         }
 
-        /* TITRE SCRIPT : FOND BLEU FONCÉ + ÉCRITURE DORÉE COMME LES ENTÊTES DES TABLEAUX */
         .script-card h2 {
             margin: 0 0 10px 0;
             font-size: 1.15rem;
@@ -224,7 +231,6 @@
             flex-shrink: 0;
         }
 
-        /* BOUTONS NAVIGATION SCRIPT */
         .script-nav {
             display: flex;
             gap: 6px;
@@ -309,7 +315,6 @@
             margin-bottom: 8px;
         }
 
-        /* TITRES DES BLOCS SCRIPT FREE */
         .script-section-free-title {
             background-color: #e0f2fe;
             border: 2px solid #0284c7;
@@ -326,7 +331,6 @@
             margin-top: 2px;
         }
 
-        /* TITRES SCRIPT HOMESERVE EN CARREAU FONCÉ AVEC TITRE DORÉ */
         .script-section-homeserve-dark {
             background-color: #0f172a;
             color: #fde047;
@@ -345,7 +349,6 @@
             margin-top: 2px;
         }
 
-        /* MÊME TAILLE QUE LE RESTE DU SCRIPT (0.85rem) */
         .script-title-green {
             background-color: #dcfce7;
             border: 2px solid #16a34a;
@@ -358,7 +361,6 @@
             margin-bottom: 8px;
         }
 
-        /* MÊME TAILLE QUE LE RESTE DU SCRIPT (0.85rem) */
         .script-title-yellow {
             background-color: #fef9c3;
             border: 2px solid #ca8a04;
@@ -387,7 +389,6 @@
             font-size: 0.85rem !important;
         }
 
-        /* SURBRILLANCES LÉGÈRES ACCUEIL CLIENT */
         .highlight-new-prospect {
             background-color: #dcfce7 !important;
             border: 1px solid #86efac !important;
@@ -424,7 +425,6 @@
             font-weight: bold;
         }
 
-        /* [New prospect/User] [Validated] [Recall at] : EN NOIR + TAILLE AUGMENTÉE D'UN DEGRÉ (0.95rem) */
         .tag-lead-black {
             color: #000000 !important;
             font-weight: 800;
@@ -481,7 +481,6 @@
             cursor: pointer;
         }
 
-        /* TITRES FONCÉS AVEC TEXTE CLAIR */
         .dark-section-banner {
             background-color: #0f172a;
             color: #f8fafc;
@@ -501,7 +500,6 @@
             margin-top: 0;
         }
 
-        /* SOUS-TITRES JAUNES : TAILLE AUGMENTÉE D'UN DEGRÉ (0.95rem) ET EN GRAS */
         .section-subtitle-yellow {
             font-size: 0.95rem;
             font-weight: 700;
@@ -509,7 +507,6 @@
             margin-left: 8px;
         }
 
-        /* WRAPPER AVEC COLONNE INDICATEUR DE CLASSEMENT EXTERNE A GAUCHE */
         .ranked-table-wrapper {
             display: flex;
             align-items: stretch;
@@ -581,7 +578,6 @@
             border-bottom: 1px solid #e2e8f0;
         }
 
-        /* EN-TÊTES DES TABLEAUX : BLEU PLUS FONCÉ (#172554) + ÉCRITURE DORÉE */
         th {
             background-color: #172554;
             color: #fde047;
@@ -589,7 +585,6 @@
             border-bottom: 2px solid #0f172a;
         }
 
-        /* TABLEAUX BOX FREE */
         .free-table-wrapper {
             margin-bottom: 20px;
             overflow-x: auto;
@@ -675,7 +670,6 @@
             margin-right: 4px;
         }
 
-        /* ENCADRÉ FORCES DE FREE */
         .forces-free-card {
             background-color: #ffffff;
             border: 2px solid #dc2626;
@@ -736,7 +730,6 @@
             margin-left: 5px;
         }
 
-        /* CARTE DETAILS */
         .details-card {
             background-color: white;
             border: 1px solid #cbd5e1;
@@ -845,7 +838,6 @@
             font-style: italic;
         }
 
-        /* TABLEAUX DU BAS PLEINE LARGEUR */
         .bottom-table {
             width: 100%;
             border-collapse: collapse;
@@ -1036,7 +1028,6 @@
             transform: translateY(-1px);
         }
 
-        /* 1. HomeServe en quelques chiffres : Titre rouge + corps blanc légèrement rosé */
         .hs-chiffres-card {
             background-color: #fff5f7;
             border: 2px solid #dc2626;
@@ -1100,7 +1091,6 @@
             margin-top: 1px;
         }
 
-        /* 2. Bandeau horizontal réduit : Assistance Pannes électriques et plomberie en rouge */
         .hs-offre-banner {
             background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
             color: #ffffff;
@@ -1126,7 +1116,6 @@
             gap: 8px;
         }
 
-        /* Carreau prix en blanc avec légère nuance rose et contour noir */
         .hs-price-callout {
             background-color: #fff5f7;
             border: 2px solid #0f172a;
@@ -1157,7 +1146,6 @@
             letter-spacing: 0.2px;
         }
 
-        /* 3. Deux rectangles côte à côte : font corporate plus grande et en gras */
         .hs-two-boxes-grid {
             display: grid;
             grid-template-columns: 1.25fr 0.85fr;
@@ -1277,7 +1265,7 @@
         }
 
         /* ========================================================================= */
-        /* STYLES SPÉCIFIQUES ONGLET PLENICOACH (POLICE CORPORATE ATTRACTIVE)         */
+        /* STYLES SPÉCIFIQUES ONGLET PLENICOACH                                       */
         /* ========================================================================= */
         #subcontent-plenicoach {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -1380,7 +1368,6 @@
             }
         }
 
-        /* Premier carreau : PleniCoach Dépannage en vert et blanc */
         .pc-offer-standard {
             background-color: #ffffff;
             border: 2.5px solid #16a34a;
@@ -1419,7 +1406,6 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.15);
         }
 
-        /* Deuxième carreau : PleniCoach Dépannage Premium */
         .pc-offer-premium {
             background-color: #fefce8;
             border: 2.5px solid #eab308;
@@ -1541,6 +1527,94 @@
             gap: 8px;
         }
 
+        /* ========================================================================= */
+        /* STYLES SPÉCIFIQUES PAGE DIRECT ASSURANCE (BLOC UNIQUE CENTRÉ)              */
+        /* ========================================================================= */
+        .da-center-wrapper {
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+
+        .da-script-card {
+            background-color: #ffffff;
+            border: 2.5px solid #dc2626;
+            border-radius: 12px;
+            padding: 22px 26px;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.1);
+        }
+
+        .da-main-header {
+            background-color: #0f172a;
+            color: #fde047;
+            font-size: 1.3rem;
+            font-weight: 800;
+            padding: 12px 18px;
+            border-radius: 8px;
+            margin: 0 0 18px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 0.3px;
+        }
+
+        /* Rectangle rouge écriture blanche pour les 4 grands titres */
+        .da-red-title-box {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 1.05rem;
+            padding: 10px 16px;
+            border-radius: 8px;
+            margin-top: 18px;
+            margin-bottom: 10px;
+            box-shadow: 0 3px 6px rgba(220, 38, 38, 0.18);
+            letter-spacing: 0.2px;
+        }
+
+        .da-red-title-box:first-child {
+            margin-top: 0;
+        }
+
+        /* Rectangle bleu écriture blanche pour Formule Essentielle, Formule Confort, Formule Confort+ */
+        .da-blue-formule-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 0.98rem;
+            padding: 7px 16px;
+            border-radius: 7px;
+            margin-top: 12px;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 5px rgba(2, 132, 199, 0.22);
+            letter-spacing: 0.2px;
+        }
+
+        .da-paragraph {
+            background-color: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            font-size: 0.93rem;
+            font-weight: 600;
+            line-height: 1.55;
+            color: #0f172a;
+        }
+
+        .da-formule-desc {
+            background-color: #f0f9ff;
+            border: 1.5px solid #bae6fd;
+            border-left: 4px solid #0284c7;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 12px;
+            font-size: 0.93rem;
+            font-weight: 600;
+            line-height: 1.55;
+            color: #0c4a6e;
+        }
+
         @media (max-width: 1024px) {
             .page-layout {
                 flex-direction: column;
@@ -1558,7 +1632,7 @@
 <div class="main-container">
     <h1 class="main-title">🛡️ Team Viking - all in ONE</h1>
 
-    <!-- BARRE DE NAVIGATION DES 5 BOUTONS (BOUTON CHALLENGE PLENITUDE SUPPRIMÉ) -->
+    <!-- BARRE DE NAVIGATION DES 5 BOUTONS -->
     <div class="top-pages-nav-wrapper">
         <div class="top-pages-nav">
             <button id="nav-btn-comparateur" class="page-nav-btn btn-page-comparateur active-page" onclick="changerPagePrincipale('comparateur', this)">
@@ -1581,11 +1655,9 @@
 
     <!-- PAGE 1 : COMPARATEUR ENERGIES -->
     <div id="page-comparateur">
-        <!-- PARTIE HAUTE : COMPARATEUR A GAUCHE + SCRIPT COMPARATEUR A DROITE -->
         <div class="page-layout">
-            <!-- COLONNE GAUCHE : COMPARATEUR ET DÉTAILS -->
+            <!-- COLONNE GAUCHE : COMPARATEUR ET DÉTAILS (POLICE PLUS JAKARTA SANS) -->
             <div class="left-col">
-                <!-- CARTE DÉTAILS (MENU DÉROULANT + PETITE FLÈCHE VERTE) -->
                 <div class="details-card">
                     <div class="details-header-dark">
                         <div class="details-selector-group">
@@ -1693,12 +1765,11 @@
                 </div>
             </div>
 
-            <!-- COLONNE DROITE : SCRIPT COMPARATEUR -->
+            <!-- COLONNE DROITE : SCRIPT COMPARATEUR (POLICE D'ORIGINE INCHANGÉE) -->
             <div class="right-col">
                 <div class="script-card">
                     <h2>📞 Script Comparateur</h2>
                     
-                    <!-- BOUTONS FILTRES SCRIPT -->
                     <div class="script-nav">
                         <button class="script-btn active" onclick="filtrerScript('all', this)">Tout</button>
                         <button class="script-btn" onclick="filtrerScript('accueil', this)">Accueil</button>
@@ -1709,7 +1780,6 @@
                         <button class="script-btn" onclick="ouvrirMenuEngie(this)">Script Engie</button>
                     </div>
 
-                    <!-- SOUS-BOUTONS ENGIE -->
                     <div class="script-subnav" id="engie-subnav">
                         <button class="script-btn sub-btn" onclick="chargerEtAfficherScript(URL_SCRIPT_ENGIE_ELEC, this)">Script Engie ELEC</button>
                         <button class="script-btn sub-btn" onclick="chargerEtAfficherScript(URL_SCRIPT_ENGIE_GAZ, this)">Script Engie Gaz</button>
@@ -1723,7 +1793,7 @@
             </div>
         </div>
 
-        <!-- PARTIE BASSE PLEINE LARGEUR : EN DESSOUS DU COMPARATEUR ET DU SCRIPT -->
+        <!-- PARTIE BASSE PLEINE LARGEUR (POLICE PLUS JAKARTA SANS) -->
         <div class="full-width-bottom">
             <div class="dark-section-banner">
                 📊 Caractéristiques des Fournisseurs
@@ -1749,6 +1819,7 @@
     <!-- PAGE 2 : BOX FREE -->
     <div id="page-boxfree" style="display: none;">
         <div class="page-layout">
+            <!-- COLONNE GAUCHE : POLICE PLUS JAKARTA SANS -->
             <div class="left-col">
                 <div class="forces-free-card">
                     <div class="forces-free-header">
@@ -1796,6 +1867,7 @@
                 </div>
             </div>
 
+            <!-- COLONNE DROITE : SCRIPT FREE (POLICE D'ORIGINE INCHANGÉE) -->
             <div class="right-col">
                 <div class="script-card free-theme">
                     <h2>📞 Script Free</h2>
@@ -1810,7 +1882,6 @@
 
     <!-- PAGE 3 : HOMESERVE & PLENICOACH -->
     <div id="page-homeserve" style="display: none;">
-        <!-- DEUX BOUTONS DE SOUS-NAVIGATION : HOMESERVE (ROUGE & BLANC) ET PLENICOACH (JAUNE & VERT) -->
         <div class="hs-pc-subnav">
             <button id="subbtn-homeserve" class="hs-sub-btn btn-sub-homeserve active-sub-tab" onclick="changerSousOngletHS('homeserve', this)">
                 🏠 HomeServe
@@ -1820,12 +1891,10 @@
             </button>
         </div>
 
-        <!-- CONTENU 1 : HOMESERVE (OFFRE A GAUCHE + SCRIPT HOMESERVE A DROITE) -->
+        <!-- CONTENU 1 : HOMESERVE -->
         <div id="subcontent-homeserve">
             <div class="page-layout">
-                <!-- COLONNE GAUCHE -->
                 <div class="left-col">
-                    <!-- 1. TITRE ROUGE + CORPS BLANC AVEC LÉGÈRE NUANCE ROSE + POINTS À LA FIN -->
                     <div class="hs-chiffres-card">
                         <h3 class="hs-chiffres-title">📊 HomeServe en quelques chiffres</h3>
                         <div class="hs-chiffres-body">
@@ -1840,7 +1909,6 @@
                         </div>
                     </div>
 
-                    <!-- 2. BANDEAU HORIZONTAL ÉPAISSEUR RÉDUITE + TITRE ROUGE + CARREAU PRIX BLANC ROSÉ CONTOUR NOIR -->
                     <div class="hs-offre-banner">
                         <div class="hs-offre-banner-title">
                             🛠️ Assistance Pannes électriques et plomberie
@@ -1851,9 +1919,7 @@
                         </div>
                     </div>
 
-                    <!-- 3. DEUX RECTANGLES CÔTE À CÔTE : FONT CORPORATE PLUS GRANDE EN GRAS + POINTS À LA FIN -->
                     <div class="hs-two-boxes-grid">
-                        <!-- RECTANGLE 1 : PRESTATIONS INCLUSES -->
                         <div class="hs-box-card hs-box-inclus">
                             <div class="hs-box-header-inclus">
                                 ✅ Prestations incluses
@@ -1880,7 +1946,6 @@
                             </ul>
                         </div>
 
-                        <!-- RECTANGLE 2 : NON PRIS EN CHARGE -->
                         <div class="hs-box-card hs-box-exclus">
                             <div class="hs-box-header-exclus">
                                 🚫 Non pris en charge
@@ -1899,7 +1964,6 @@
                     </div>
                 </div>
 
-                <!-- COLONNE DROITE : SCRIPT HOMESERVE -->
                 <div class="right-col">
                     <div class="script-card homeserve-theme">
                         <h2>📞 Script HomeServe</h2>
@@ -1911,9 +1975,8 @@
             </div>
         </div>
 
-        <!-- CONTENU 2 : PLENICOACH (SANS BLOC SCRIPT) -->
+        <!-- CONTENU 2 : PLENICOACH -->
         <div id="subcontent-plenicoach" style="display: none;">
-            <!-- GRAND BLOC HORIZONTAL INTITULÉ EN VERT AVEC ÉCRITURE JAUNE : PleniCoach Dépannage -->
             <div class="pc-main-horizontal-card">
                 <div class="pc-green-yellow-header">
                     🛠️ PleniCoach Dépannage
@@ -1944,14 +2007,11 @@
                 </div>
             </div>
 
-            <!-- BANDEAU HORIZONTAL FIN MAIS LARGE AU-DESSUS DES DEUX TABLEAUX -->
             <div class="pc-thin-notice-bar">
                 ℹ️ Après le 31/12/2026, le tarif pour les nouveaux abonnés sera de 5,99€/mois pour le Plenicoach Dépannage et 12,99€/mois pour le Plenicoach Dépannage Premium.
             </div>
 
-            <!-- DEUX CARREAUX L'UN APRÈS L'AUTRE -->
             <div class="pc-offers-row">
-                <!-- CARREAU 1 : PleniCoach Dépannage 4.99€/mois en vert et blanc -->
                 <div class="pc-offer-standard">
                     <div class="pc-offer-standard-header">
                         <h3>🟢 PleniCoach Dépannage</h3>
@@ -1971,7 +2031,6 @@
                     </div>
                 </div>
 
-                <!-- CARREAU 2 : PleniCoach Dépannage Premium 10.99€/mois -->
                 <div class="pc-offer-premium">
                     <div class="pc-offer-premium-header">
                         <h3>👑 PleniCoach Dépannage Premium</h3>
@@ -2005,12 +2064,19 @@
         </div>
     </div>
 
-    <!-- AUTRES PAGES -->
-    <div id="page-direct" class="other-page-section">
-        <div class="dark-section-banner">🛡️ Direct Assurance</div>
-        <p>Contenu Direct Assurance à venir...</p>
+    <!-- PAGE 4 : DIRECT ASSURANCE (BLOC UNIQUE AU CENTRE INTITULÉ SCRIPT DIRECT ASSURANCE) -->
+    <div id="page-direct" style="display: none;">
+        <div class="da-center-wrapper">
+            <div class="da-script-card">
+                <h2 class="da-main-header">📞 Script Direct Assurance</h2>
+                <div id="script-direct-container">
+                    <em>Chargement du script Direct Assurance...</em>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- PAGE 5 : CLASSEMENT HELLOWATT -->
     <div id="page-hellowatt" class="other-page-section">
         <div class="dark-section-banner">📊 Classement Hellowatt</div>
         <p>Contenu Classement Hellowatt à venir...</p>
@@ -2023,7 +2089,6 @@
     function changerPagePrincipale(pageId, btn) {
         if (!PAGES_VALIDES.includes(pageId)) pageId = 'comparateur';
 
-        // Mémoriser la page active pour conserver la même page après actualisation
         try {
             localStorage.setItem('team_viking_active_page', pageId);
         } catch (e) {}
@@ -2031,18 +2096,16 @@
             history.replaceState(null, '', '#' + pageId);
         }
 
-        // Mettre à jour le bouton actif
         document.querySelectorAll('.page-nav-btn').forEach(b => b.classList.remove('active-page'));
         const activeBtn = btn || document.getElementById('nav-btn-' + pageId);
         if (activeBtn) activeBtn.classList.add('active-page');
 
-        // Masquer toutes les sections
         document.getElementById('page-comparateur').style.display = 'none';
         document.getElementById('page-boxfree').style.display = 'none';
         document.getElementById('page-homeserve').style.display = 'none';
+        document.getElementById('page-direct').style.display = 'none';
         document.querySelectorAll('.other-page-section').forEach(sec => sec.style.display = 'none');
 
-        // Afficher la page choisie
         if (pageId === 'comparateur') {
             document.getElementById('page-comparateur').style.display = 'block';
             setTimeout(alignerBadgesClassement, 0);
@@ -2050,6 +2113,8 @@
             document.getElementById('page-boxfree').style.display = 'block';
         } else if (pageId === 'homeserve') {
             document.getElementById('page-homeserve').style.display = 'block';
+        } else if (pageId === 'direct') {
+            document.getElementById('page-direct').style.display = 'block';
         } else {
             const target = document.getElementById('page-' + pageId);
             if (target) target.style.display = 'block';
@@ -2091,6 +2156,7 @@
     const URL_PRESTATIONS = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=1158477169&single=true&output=csv";
     const URL_BOX_FREE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=1906177763&single=true&output=csv";
     const URL_SCRIPT_HOMESERVE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=1609026340&single=true&output=csv";
+    const URL_SCRIPT_DIRECT_ASSURANCE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=803123270&single=true&output=csv";
 
     const SVG_LOGOS = {
         "edf": `<svg viewBox="0 0 180 60" xmlns="http://www.w3.org/2000/svg">
@@ -2307,6 +2373,7 @@
         chargerTableauPrestations();
         chargerDonneesBoxFree();
         chargerScriptHomeServe();
+        chargerScriptDirectAssurance();
     });
 
     function cleanNum(val) {
@@ -2371,6 +2438,157 @@
 
     function parseCSVMultiline(text) {
         return parseCSVExactRows(text).filter(r => r.some(cell => cell !== ''));
+    }
+
+    // CHARGEMENT DU SCRIPT DIRECT ASSURANCE
+    async function chargerScriptDirectAssurance() {
+        const container = document.getElementById('script-direct-container');
+        if (!container) return;
+
+        try {
+            const response = await fetch(URL_SCRIPT_DIRECT_ASSURANCE);
+            const csvText = await response.text();
+            const exactRows = parseCSVExactRows(csvText);
+
+            let rawLines = [];
+            exactRows.forEach(row => {
+                const lineJoined = row.map(c => c.trim()).filter(c => c !== '').join(' ').trim();
+                if (!lineJoined) return;
+                lineJoined.split(/\r?\n/).forEach(sub => {
+                    const trimmed = sub.trim();
+                    if (trimmed) rawLines.push(trimmed);
+                });
+            });
+
+            const blocks = [];
+            let currentPara = [];
+            let inFormuleDesc = false;
+
+            const flushDA = () => {
+                if (currentPara.length === 0) return;
+                let textHtml = currentPara.join('<br>');
+                textHtml = textHtml.replace(/(\[[^\]]+\])/g, '<span class="tag-blue">$1</span>');
+                blocks.push({
+                    type: inFormuleDesc ? 'formule-desc' : 'para',
+                    html: textHtml
+                });
+                currentPara = [];
+            };
+
+            const redTitleRegex = /^(Découverte|Decouverte|Synthèse des arguments de Direct Assurance|Synthese des arguments de Direct Assurance|Proposition de l[’']offre et closing\s*-\s*Direct Assurance|Annonce des couvertures\s*\(obligatoire\))\s*:?\s*(.*)$/i;
+            const formuleRegex = /^(Formule\s+Essentielle|Formule\s+Confort\+|Formule\s+Confort)\s*:?\s*(.*)$/i;
+
+            rawLines.forEach(line => {
+                const cleanCheck = line.replace(/^[•\-–*]\s*/, '').trim();
+
+                const redMatch = cleanCheck.match(redTitleRegex);
+                if (redMatch) {
+                    flushDA();
+                    inFormuleDesc = false;
+
+                    const rawT = redMatch[1].toLowerCase();
+                    let labelRed = redMatch[1].trim() + ' :';
+                    if (rawT.startsWith('découverte') || rawT.startsWith('decouverte')) {
+                        labelRed = 'Découverte :';
+                    } else if (rawT.startsWith('synthèse') || rawT.startsWith('synthese')) {
+                        labelRed = 'Synthèse des arguments de Direct Assurance :';
+                    } else if (rawT.startsWith('proposition')) {
+                        labelRed = 'Proposition de l’offre et closing - Direct Assurance :';
+                    } else if (rawT.startsWith('annonce des couvertures')) {
+                        labelRed = 'Annonce des couvertures (obligatoire) :';
+                    }
+
+                    blocks.push({
+                        type: 'red-title',
+                        html: labelRed
+                    });
+
+                    const rest = redMatch[2] ? redMatch[2].trim() : '';
+                    if (rest) {
+                        const subFormule = rest.match(formuleRegex);
+                        if (subFormule) {
+                            const fLower = subFormule[1].toLowerCase();
+                            let fLabel = 'Formule Essentielle';
+                            if (fLower.includes('confort+')) fLabel = 'Formule Confort+';
+                            else if (fLower.includes('confort')) fLabel = 'Formule Confort';
+
+                            blocks.push({ type: 'blue-formule', html: fLabel });
+                            inFormuleDesc = true;
+                            if (subFormule[2] && subFormule[2].trim()) {
+                                currentPara.push(subFormule[2].trim());
+                            }
+                        } else {
+                            currentPara.push(rest);
+                        }
+                    }
+                    return;
+                }
+
+                const formuleMatch = cleanCheck.match(formuleRegex);
+                if (formuleMatch) {
+                    flushDA();
+                    const fLower = formuleMatch[1].toLowerCase();
+                    let fLabel = 'Formule Essentielle';
+                    if (fLower.includes('confort+')) fLabel = 'Formule Confort+';
+                    else if (fLower.includes('confort')) fLabel = 'Formule Confort';
+
+                    blocks.push({
+                        type: 'blue-formule',
+                        html: fLabel
+                    });
+                    inFormuleDesc = true;
+
+                    const restF = formuleMatch[2] ? formuleMatch[2].trim() : '';
+                    if (restF) {
+                        currentPara.push(restF);
+                    }
+                    return;
+                }
+
+                if (line.startsWith('•') && currentPara.length > 0 && !currentPara[currentPara.length - 1].startsWith('•')) {
+                    flushDA();
+                } else if (!line.startsWith('•') && currentPara.length > 0 && currentPara[currentPara.length - 1].startsWith('•')) {
+                    flushDA();
+                }
+
+                currentPara.push(line);
+            });
+
+            flushDA();
+
+            container.innerHTML = '';
+            if (blocks.length === 0) {
+                container.innerHTML = '<em>Aucun contenu trouvé dans le script Direct Assurance.</em>';
+                return;
+            }
+
+            blocks.forEach(item => {
+                if (item.type === 'red-title') {
+                    const div = document.createElement('div');
+                    div.className = 'da-red-title-box';
+                    div.textContent = item.html;
+                    container.appendChild(div);
+                } else if (item.type === 'blue-formule') {
+                    const badge = document.createElement('div');
+                    badge.className = 'da-blue-formule-badge';
+                    badge.textContent = item.html;
+                    container.appendChild(badge);
+                } else if (item.type === 'formule-desc') {
+                    const p = document.createElement('div');
+                    p.className = 'da-formule-desc';
+                    p.innerHTML = item.html;
+                    container.appendChild(p);
+                } else {
+                    const p = document.createElement('div');
+                    p.className = 'da-paragraph';
+                    p.innerHTML = item.html;
+                    container.appendChild(p);
+                }
+            });
+        } catch (e) {
+            console.warn("Erreur lors du chargement du script Direct Assurance :", e);
+            container.innerHTML = '<em>Impossible de charger le script Direct Assurance.</em>';
+        }
     }
 
     async function chargerScriptHomeServe() {
