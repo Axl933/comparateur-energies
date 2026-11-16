@@ -7,7 +7,7 @@
     <!-- IMPORT GOOGLE FONT PLUS JAKARTA SANS (POLICE CORPORATE PRO) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-yellow: #fef08a;
@@ -134,15 +134,7 @@
             border: 1.5px solid #94a3b8;
         }
 
-        /* Bouton 5 "Challenge Plenitude" : bouton jaune léger avec font vert foncé bien rempli */
-        .btn-page-plenitude {
-            background-color: #fef9c3;
-            color: #14532d;
-            font-weight: 700;
-            border: 1.5px solid #ca8a04;
-        }
-
-        /* Bouton 6 "Classement Hellowatt" : Bouton rouge et font noir en gras */
+        /* Bouton 5 "Classement Hellowatt" : Bouton rouge et font noir en gras */
         .btn-page-hellowatt {
             background-color: #dc2626;
             color: #000000;
@@ -672,7 +664,7 @@
         .cross-red {
             color: #dc2626 !important;
             font-weight: 900;
-            font-size: 1rem;
+            font-size: 1.05rem;
             display: inline-block;
         }
 
@@ -1017,7 +1009,6 @@
             box-shadow: 0 3px 6px rgba(15, 23, 42, 0.12);
         }
 
-        /* Bouton HomeServe rouge et blanc */
         .btn-sub-homeserve {
             background-color: #dc2626;
             color: #ffffff;
@@ -1029,7 +1020,6 @@
             transform: translateY(-1.5px);
         }
 
-        /* Bouton PleniCoach jaune et vert */
         .btn-sub-plenicoach {
             background-color: #facc15;
             color: #14532d;
@@ -1046,27 +1036,33 @@
             transform: translateY(-1px);
         }
 
-        /* Encadré rouge écriture blanche : HomeServe en quelques chiffres */
+        /* 1. HomeServe en quelques chiffres : Titre rouge + corps blanc légèrement rosé */
         .hs-chiffres-card {
-            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-            color: #ffffff;
-            border: 2px solid #991b1b;
+            background-color: #fff5f7;
+            border: 2px solid #dc2626;
             border-radius: 10px;
-            padding: 16px 20px;
-            margin-bottom: 18px;
-            box-shadow: 0 4px 10px rgba(220, 38, 38, 0.22);
+            overflow: hidden;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 10px rgba(220, 38, 38, 0.12);
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         .hs-chiffres-title {
-            font-size: 1.12rem;
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: #ffffff;
+            font-size: 1.08rem;
             font-weight: 800;
-            margin: 0 0 12px 0;
-            padding-bottom: 8px;
-            border-bottom: 1.5px solid rgba(255, 255, 255, 0.3);
+            margin: 0;
+            padding: 10px 18px;
             display: flex;
             align-items: center;
             gap: 8px;
-            color: #ffffff;
+            border-bottom: 1.5px solid #991b1b;
+        }
+
+        .hs-chiffres-body {
+            padding: 14px 18px;
+            background-color: #fff5f7;
         }
 
         .hs-chiffres-list {
@@ -1079,92 +1075,95 @@
         }
 
         .hs-chiffres-list li {
-            font-size: 0.88rem;
+            font-size: 0.92rem;
+            font-weight: 700;
             line-height: 1.45;
-            color: #ffffff;
+            color: #1e293b;
             display: flex;
             align-items: flex-start;
-            gap: 8px;
+            gap: 9px;
         }
 
         .hs-tic-badge {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background-color: #ffffff;
-            color: #16a34a;
+            background-color: #dcfce7;
+            color: #15803d;
+            border: 1.5px solid #22c55e;
             font-weight: 900;
-            font-size: 0.8rem;
-            width: 20px;
-            height: 20px;
+            font-size: 0.78rem;
+            width: 21px;
+            height: 21px;
             border-radius: 50%;
             flex-shrink: 0;
             margin-top: 1px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
 
-        /* Grand carreau horizontal offre : Assistance Pannes électriques et plomberie */
+        /* 2. Bandeau horizontal réduit : Assistance Pannes électriques et plomberie en rouge */
         .hs-offre-banner {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
             color: #ffffff;
-            border: 2px solid #0284c7;
+            border: 2px solid #991b1b;
             border-radius: 10px;
-            padding: 14px 18px;
+            padding: 8px 16px;
             margin-bottom: 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 12px;
-            box-shadow: 0 4px 10px rgba(15, 23, 42, 0.14);
+            gap: 10px;
+            box-shadow: 0 3px 8px rgba(220, 38, 38, 0.16);
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         .hs-offre-banner-title {
-            font-size: 1.12rem;
+            font-size: 1.06rem;
             font-weight: 800;
-            color: #fde047;
+            color: #ffffff;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        /* Rectangle stylé pour attirer l'attention sur le prix */
+        /* Carreau prix en blanc avec légère nuance rose et contour noir */
         .hs-price-callout {
-            background: linear-gradient(135deg, #fef08a 0%, #fde047 100%);
-            color: #0f172a;
-            border: 2.5px solid #dc2626;
-            border-radius: 10px;
-            padding: 8px 16px;
+            background-color: #fff5f7;
+            border: 2px solid #0f172a;
+            border-radius: 8px;
+            padding: 5px 14px;
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            box-shadow: 0 4px 12px rgba(250, 204, 21, 0.35);
+            box-shadow: 0 2px 6px rgba(15, 23, 42, 0.22);
         }
 
         .hs-price-old {
-            font-size: 0.8rem;
-            color: #7f1d1d;
-            font-weight: 700;
+            font-size: 0.82rem;
+            color: #0f172a;
+            font-weight: 800;
         }
 
         .hs-price-old del {
             text-decoration: line-through;
             font-weight: 800;
+            color: #0f172a;
         }
 
         .hs-price-new {
-            font-size: 1.15rem;
-            font-weight: 900;
+            font-size: 1.08rem;
+            font-weight: 800;
             color: #dc2626;
             letter-spacing: 0.2px;
         }
 
-        /* Deux rectangles côte à côte : Prestations incluses & Non pris en charge */
+        /* 3. Deux rectangles côte à côte : font corporate plus grande et en gras */
         .hs-two-boxes-grid {
             display: grid;
             grid-template-columns: 1.25fr 0.85fr;
             gap: 16px;
             align-items: stretch;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         @media (max-width: 900px) {
@@ -1195,7 +1194,7 @@
             background-color: #16a34a;
             color: #ffffff;
             font-weight: 800;
-            font-size: 0.98rem;
+            font-size: 1.02rem;
             padding: 8px 12px;
             border-radius: 6px;
             margin-bottom: 12px;
@@ -1208,7 +1207,7 @@
             background-color: #dc2626;
             color: #ffffff;
             font-weight: 800;
-            font-size: 0.98rem;
+            font-size: 1.02rem;
             padding: 8px 12px;
             border-radius: 6px;
             margin-bottom: 12px;
@@ -1223,20 +1222,21 @@
             padding: 0;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 9px;
         }
 
         .hs-prestations-list li {
-            font-size: 0.84rem;
-            line-height: 1.42;
-            color: #1e293b;
+            font-size: 0.91rem;
+            font-weight: 700;
+            line-height: 1.45;
+            color: #0f172a;
             display: flex;
             align-items: flex-start;
-            gap: 8px;
+            gap: 9px;
         }
 
         .hs-prestation-icon {
-            font-size: 1rem;
+            font-size: 1.05rem;
             flex-shrink: 0;
             margin-top: 1px;
         }
@@ -1245,12 +1245,12 @@
             background-color: #e0f2fe;
             border-left: 4px solid #0284c7;
             color: #0c4a6e;
-            font-weight: 700;
-            font-size: 0.84rem;
-            padding: 8px 10px;
-            border-radius: 5px;
-            margin: 10px 0;
-            line-height: 1.4;
+            font-weight: 800;
+            font-size: 0.9rem;
+            padding: 9px 12px;
+            border-radius: 6px;
+            margin: 12px 0;
+            line-height: 1.42;
         }
 
         .hs-exclus-list {
@@ -1263,21 +1263,26 @@
         }
 
         .hs-exclus-list li {
-            font-size: 0.85rem;
+            font-size: 0.91rem;
+            font-weight: 700;
             line-height: 1.48;
-            color: #1e293b;
+            color: #0f172a;
             background-color: #ffffff;
-            border: 1px solid #fecaca;
-            padding: 10px 12px;
+            border: 1.5px solid #fecaca;
+            padding: 11px 13px;
             border-radius: 7px;
             display: flex;
             align-items: flex-start;
-            gap: 8px;
+            gap: 9px;
         }
 
         /* ========================================================================= */
-        /* STYLES SPÉCIFIQUES ONGLET PLENICOACH (SANS BLOC SCRIPT)                    */
+        /* STYLES SPÉCIFIQUES ONGLET PLENICOACH (POLICE CORPORATE ATTRACTIVE)         */
         /* ========================================================================= */
+        #subcontent-plenicoach {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
         .pc-main-horizontal-card {
             background-color: #ffffff;
             border: 2px solid #15803d;
@@ -1287,17 +1292,17 @@
             margin-bottom: 18px;
         }
 
-        /* Intitulé en vert avec écriture jaune */
         .pc-green-yellow-header {
             background-color: #15803d;
             color: #fde047;
-            font-size: 1.22rem;
+            font-size: 1.24rem;
             font-weight: 800;
             padding: 12px 18px;
             display: flex;
             align-items: center;
             gap: 10px;
             border-bottom: 2px solid #14532d;
+            letter-spacing: 0.2px;
         }
 
         .pc-card-body {
@@ -1307,13 +1312,13 @@
         .pc-intro-paragraph {
             background-color: #f0fdf4;
             border-left: 4px solid #16a34a;
-            padding: 12px 15px;
+            padding: 13px 16px;
             border-radius: 6px;
-            font-size: 0.9rem;
-            line-height: 1.5;
+            font-size: 0.94rem;
+            line-height: 1.55;
             color: #14532d;
             margin-bottom: 16px;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .pc-features-grid {
@@ -1330,15 +1335,16 @@
 
         .pc-feature-item {
             background-color: #f8fafc;
-            border: 1px solid #cbd5e1;
+            border: 1.5px solid #cbd5e1;
             border-radius: 8px;
-            padding: 11px 14px;
+            padding: 12px 15px;
             display: flex;
             align-items: flex-start;
             gap: 10px;
-            font-size: 0.88rem;
+            font-size: 0.92rem;
+            font-weight: 700;
             line-height: 1.45;
-            color: #1e293b;
+            color: #0f172a;
         }
 
         .pc-feature-icon {
@@ -1347,26 +1353,24 @@
             margin-top: 1px;
         }
 
-        /* Bandeau horizontal fin mais large juste au-dessus des 2 offres PleniCoach */
         .pc-thin-notice-bar {
             width: 100%;
             background-color: #fef9c3;
             border: 1.5px solid #ca8a04;
             color: #713f12;
-            font-weight: 700;
-            font-size: 0.88rem;
-            padding: 8px 16px;
+            font-weight: 800;
+            font-size: 0.92rem;
+            padding: 9px 16px;
             border-radius: 7px;
             text-align: center;
-            margin-bottom: 16px;
+            margin-bottom: 18px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
-        /* Deux carreaux l'un après l'autre pour les formules PleniCoach */
         .pc-offers-row {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 22px;
             align-items: stretch;
         }
 
@@ -1380,17 +1384,17 @@
         .pc-offer-standard {
             background-color: #ffffff;
             border: 2.5px solid #16a34a;
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(22, 163, 74, 0.14);
+            box-shadow: 0 6px 16px rgba(22, 163, 74, 0.14);
             display: flex;
             flex-direction: column;
         }
 
         .pc-offer-standard-header {
-            background-color: #16a34a;
+            background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
             color: #ffffff;
-            padding: 12px 18px;
+            padding: 14px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -1400,35 +1404,36 @@
 
         .pc-offer-standard-header h3 {
             margin: 0;
-            font-size: 1.12rem;
+            font-size: 1.18rem;
             font-weight: 800;
+            letter-spacing: 0.2px;
         }
 
         .pc-price-pill-green {
             background-color: #ffffff;
             color: #15803d;
-            font-weight: 900;
-            font-size: 1.08rem;
-            padding: 4px 14px;
+            font-weight: 800;
+            font-size: 1.12rem;
+            padding: 5px 16px;
             border-radius: 999px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
         }
 
         /* Deuxième carreau : PleniCoach Dépannage Premium */
         .pc-offer-premium {
             background-color: #fefce8;
             border: 2.5px solid #eab308;
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(234, 179, 8, 0.18);
+            box-shadow: 0 6px 16px rgba(234, 179, 8, 0.18);
             display: flex;
             flex-direction: column;
         }
 
         .pc-offer-premium-header {
-            background-color: #14532d;
+            background: linear-gradient(135deg, #14532d 0%, #166534 100%);
             color: #fde047;
-            padding: 12px 18px;
+            padding: 14px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -1438,35 +1443,102 @@
 
         .pc-offer-premium-header h3 {
             margin: 0;
-            font-size: 1.12rem;
+            font-size: 1.18rem;
             font-weight: 800;
+            letter-spacing: 0.2px;
         }
 
         .pc-price-pill-premium {
             background-color: #fde047;
             color: #14532d;
-            font-weight: 900;
-            font-size: 1.08rem;
-            padding: 4px 14px;
+            font-weight: 800;
+            font-size: 1.12rem;
+            padding: 5px 16px;
             border-radius: 999px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.18);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
         }
 
         .pc-offer-body {
-            padding: 16px 20px;
-            font-size: 0.92rem;
+            padding: 18px 22px;
+            font-size: 0.94rem;
             line-height: 1.5;
-            color: #1e293b;
+            color: #0f172a;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
         .pc-offer-highlight {
-            font-size: 1.02rem;
+            font-size: 1.05rem;
             font-weight: 800;
             color: #15803d;
-            margin-bottom: 8px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 7px;
+        }
+
+        .pc-offer-desc {
+            margin: 0;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .pc-offer-checklist {
+            list-style: none;
+            margin: 4px 0 0 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .pc-offer-checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            font-size: 0.93rem;
+            font-weight: 700;
+            color: #0f172a;
+            background-color: rgba(255, 255, 255, 0.75);
+            padding: 7px 11px;
+            border-radius: 7px;
+            border: 1px solid rgba(22, 163, 74, 0.2);
+        }
+
+        .pc-examples-box {
+            margin-top: 6px;
+            background-color: #ffffff;
+            border: 1.5px solid #ca8a04;
+            border-radius: 9px;
+            padding: 12px 15px;
+        }
+
+        .pc-examples-title {
+            font-size: 0.96rem;
+            font-weight: 800;
+            color: #14532d;
+            margin: 0 0 9px 0;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .pc-examples-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .pc-examples-list li {
+            font-size: 0.91rem;
+            font-weight: 700;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         @media (max-width: 1024px) {
@@ -1486,7 +1558,7 @@
 <div class="main-container">
     <h1 class="main-title">🛡️ Team Viking - all in ONE</h1>
 
-    <!-- BARRE DE NAVIGATION DES 6 BOUTONS -->
+    <!-- BARRE DE NAVIGATION DES 5 BOUTONS (BOUTON CHALLENGE PLENITUDE SUPPRIMÉ) -->
     <div class="top-pages-nav-wrapper">
         <div class="top-pages-nav">
             <button id="nav-btn-comparateur" class="page-nav-btn btn-page-comparateur active-page" onclick="changerPagePrincipale('comparateur', this)">
@@ -1500,9 +1572,6 @@
             </button>
             <button id="nav-btn-direct" class="page-nav-btn btn-page-direct" onclick="changerPagePrincipale('direct', this)">
                 Direct Assurance
-            </button>
-            <button id="nav-btn-plenitude" class="page-nav-btn btn-page-plenitude" onclick="changerPagePrincipale('plenitude', this)">
-                Challenge Plenitude
             </button>
             <button id="nav-btn-hellowatt" class="page-nav-btn btn-page-hellowatt" onclick="changerPagePrincipale('hellowatt', this)">
                 Classement Hellowatt
@@ -1656,7 +1725,6 @@
 
         <!-- PARTIE BASSE PLEINE LARGEUR : EN DESSOUS DU COMPARATEUR ET DU SCRIPT -->
         <div class="full-width-bottom">
-            <!-- NOUVEAU TABLEAU 1 : CARACTÉRISTIQUES DES FOURNISSEURS EN COLONNES AVEC EN-TÊTES -->
             <div class="dark-section-banner">
                 📊 Caractéristiques des Fournisseurs
             </div>
@@ -1667,7 +1735,6 @@
                 </tbody>
             </table>
 
-            <!-- NOUVEAU TABLEAU 2 : PRESTATION ENEDIS ET GRDF -->
             <div class="dark-section-banner">
                 🛠️ Prestation Enedis et GRDF
             </div>
@@ -1679,12 +1746,10 @@
         </div>
     </div>
 
-    <!-- PAGE 2 : BOX FREE (DISPOSITION 2 COLONNES IDENTIQUE AU COMPARATEUR) -->
+    <!-- PAGE 2 : BOX FREE -->
     <div id="page-boxfree" style="display: none;">
         <div class="page-layout">
-            <!-- COLONNE GAUCHE : ENCADRÉ FORCES DE FREE EN PREMIER + 3 TABLEAUX ENSUITE -->
             <div class="left-col">
-                <!-- 1. PARAGRAPHE ENCADRÉ : FORCES DE FREE (A30:O36) EN PREMIER -->
                 <div class="forces-free-card">
                     <div class="forces-free-header">
                         💪 Forces de Free
@@ -1694,7 +1759,6 @@
                     </ul>
                 </div>
 
-                <!-- 2. TABLEAU 1 : A3:H9 -->
                 <div class="dark-section-banner">
                     📦 Box entrée de Gamme
                 </div>
@@ -1707,7 +1771,6 @@
                     </table>
                 </div>
 
-                <!-- 3. TABLEAU 2 : A13:H19 -->
                 <div class="dark-section-banner">
                     🚀 Box CŒUR DE GAMME
                 </div>
@@ -1720,7 +1783,6 @@
                     </table>
                 </div>
 
-                <!-- 4. TABLEAU 3 : A23:H27 -->
                 <div class="dark-section-banner">
                     👑 HAUT DE GAMME
                 </div>
@@ -1734,7 +1796,6 @@
                 </div>
             </div>
 
-            <!-- COLONNE DROITE : SCRIPT FREE (CELLULE A40+, SANS BOUTONS DE FILTRE) -->
             <div class="right-col">
                 <div class="script-card free-theme">
                     <h2>📞 Script Free</h2>
@@ -1762,22 +1823,24 @@
         <!-- CONTENU 1 : HOMESERVE (OFFRE A GAUCHE + SCRIPT HOMESERVE A DROITE) -->
         <div id="subcontent-homeserve">
             <div class="page-layout">
-                <!-- COLONNE GAUCHE : CHIFFRES + OFFRE + PRESTATIONS INCLUSES & NON PRIS EN CHARGE -->
+                <!-- COLONNE GAUCHE -->
                 <div class="left-col">
-                    <!-- 1. PARAGRAPHE INTITULÉ "HomeServe en quelques chiffres" EN CARREAU ROUGE AVEC ÉCRITURE BLANCHE -->
+                    <!-- 1. TITRE ROUGE + CORPS BLANC AVEC LÉGÈRE NUANCE ROSE + POINTS À LA FIN -->
                     <div class="hs-chiffres-card">
                         <h3 class="hs-chiffres-title">📊 HomeServe en quelques chiffres</h3>
-                        <ul class="hs-chiffres-list">
-                            <li><span class="hs-tic-badge">✔</span> <span><strong>24/7 :</strong> le service d’assistance proposé par HomeServe est disponible 7 jours sur 7 et 24 heures sur 24 ;</span></li>
-                            <li><span class="hs-tic-badge">✔</span> <span><strong>2 heures :</strong> après avoir contacté HomeServe pour obtenir un dépannage, un technicien vous contactera dans les 2 heures pour fixer un rendez-vous ;</span></li>
-                            <li><span class="hs-tic-badge">✔</span> <span><strong>1,1 million</strong> de clients ;</span></li>
-                            <li><span class="hs-tic-badge">✔</span> <span><strong>4 000</strong> professionnels dans toute la France ;</span></li>
-                            <li><span class="hs-tic-badge">✔</span> <span><strong>190 000</strong> interventions par an ;</span></li>
-                            <li><span class="hs-tic-badge">✔</span> <span><strong>97 %</strong> de clients satisfaits.</span></li>
-                        </ul>
+                        <div class="hs-chiffres-body">
+                            <ul class="hs-chiffres-list">
+                                <li><span class="hs-tic-badge">✔</span> <span><strong>24/7 :</strong> le service d’assistance proposé par HomeServe est disponible 7 jours sur 7 et 24 heures sur 24.</span></li>
+                                <li><span class="hs-tic-badge">✔</span> <span><strong>2 heures :</strong> après avoir contacté HomeServe pour obtenir un dépannage, un technicien vous contactera dans les 2 heures pour fixer un rendez-vous.</span></li>
+                                <li><span class="hs-tic-badge">✔</span> <span><strong>1,1 million</strong> de clients.</span></li>
+                                <li><span class="hs-tic-badge">✔</span> <span><strong>4 000</strong> professionnels dans toute la France.</span></li>
+                                <li><span class="hs-tic-badge">✔</span> <span><strong>190 000</strong> interventions par an.</span></li>
+                                <li><span class="hs-tic-badge">✔</span> <span><strong>97 %</strong> de clients satisfaits.</span></li>
+                            </ul>
+                        </div>
                     </div>
 
-                    <!-- 2. GRAND CARREAU HORIZONTAL OFFRE + PRIX STYLÉ -->
+                    <!-- 2. BANDEAU HORIZONTAL ÉPAISSEUR RÉDUITE + TITRE ROUGE + CARREAU PRIX BLANC ROSÉ CONTOUR NOIR -->
                     <div class="hs-offre-banner">
                         <div class="hs-offre-banner-title">
                             🛠️ Assistance Pannes électriques et plomberie
@@ -1788,7 +1851,7 @@
                         </div>
                     </div>
 
-                    <!-- 3. DEUX RECTANGLES CÔTE À CÔTE : PRESTATIONS INCLUSES & NON PRIS EN CHARGE -->
+                    <!-- 3. DEUX RECTANGLES CÔTE À CÔTE : FONT CORPORATE PLUS GRANDE EN GRAS + POINTS À LA FIN -->
                     <div class="hs-two-boxes-grid">
                         <!-- RECTANGLE 1 : PRESTATIONS INCLUSES -->
                         <div class="hs-box-card hs-box-inclus">
@@ -1796,9 +1859,9 @@
                                 ✅ Prestations incluses
                             </div>
                             <ul class="hs-prestations-list">
-                                <li><span class="hs-prestation-icon">🔌</span> <span>câbles d’alimentation ;</span></li>
-                                <li><span class="hs-prestation-icon">💡</span> <span>terminaisons électriques (prises de courant, interrupteurs et douilles) ;</span></li>
-                                <li><span class="hs-prestation-icon">⚡</span> <span>disjoncteurs, interrupteurs différentiels et contacteur jour/nuit du chauffe-eau électrique ;</span></li>
+                                <li><span class="hs-prestation-icon">🔌</span> <span>câbles d’alimentation.</span></li>
+                                <li><span class="hs-prestation-icon">💡</span> <span>terminaisons électriques (prises de courant, interrupteurs et douilles).</span></li>
+                                <li><span class="hs-prestation-icon">⚡</span> <span>disjoncteurs, interrupteurs différentiels et contacteur jour/nuit du chauffe-eau électrique.</span></li>
                                 <li><span class="hs-prestation-icon">🔍</span> <span>recherche de panne, afin d’isoler un élément non couvert défectueux et rétablir son fonctionnement total ou partiel.</span></li>
                             </ul>
 
@@ -1807,12 +1870,12 @@
                             </div>
 
                             <ul class="hs-prestations-list">
-                                <li><span class="hs-prestation-icon">🚰</span> <span>les canalisations d’alimentation d’eau propres privatives ;</span></li>
-                                <li><span class="hs-prestation-icon">🚿</span> <span>les canalisations d’évacuation d’eaux vannes et d’eaux usées privatives ;</span></li>
-                                <li><span class="hs-prestation-icon">🔧</span> <span>les robinets d’arrêt et de radiateur ;</span></li>
-                                <li><span class="hs-prestation-icon">🚽</span> <span>les joints d’étanchéité du réservoir de WC ;</span></li>
-                                <li><span class="hs-prestation-icon">🪠</span> <span>les siphons ;</span></li>
-                                <li><span class="hs-prestation-icon">🛁</span> <span>les trop-pleins d’évier et de baignoire ;</span></li>
+                                <li><span class="hs-prestation-icon">🚰</span> <span>les canalisations d’alimentation d’eau propres privatives.</span></li>
+                                <li><span class="hs-prestation-icon">🚿</span> <span>les canalisations d’évacuation d’eaux vannes et d’eaux usées privatives.</span></li>
+                                <li><span class="hs-prestation-icon">🔧</span> <span>les robinets d’arrêt et de radiateur.</span></li>
+                                <li><span class="hs-prestation-icon">🚽</span> <span>les joints d’étanchéité du réservoir de WC.</span></li>
+                                <li><span class="hs-prestation-icon">🪠</span> <span>les siphons.</span></li>
+                                <li><span class="hs-prestation-icon">🛁</span> <span>les trop-pleins d’évier et de baignoire.</span></li>
                                 <li><span class="hs-prestation-icon">🌡️</span> <span>les canalisations d’eau intérieure reliant l’appareil de chauffage individuel aux radiateurs.</span></li>
                             </ul>
                         </div>
@@ -1825,7 +1888,7 @@
                             <ul class="hs-exclus-list">
                                 <li>
                                     <span class="cross-red">✖</span>
-                                    <span><strong>Installations électriques :</strong> installations électriques non reliées à la terre, systèmes de gestion de l’énergie, planchers chauffant électriques, fusibles ;</span>
+                                    <span><strong>Installations électriques :</strong> installations électriques non reliées à la terre, systèmes de gestion de l’énergie, planchers chauffant électriques, fusibles.</span>
                                 </li>
                                 <li>
                                     <span class="cross-red">✖</span>
@@ -1896,7 +1959,15 @@
                     </div>
                     <div class="pc-offer-body">
                         <div class="pc-offer-highlight">✔ 1 intervention par an*</div>
-                        <p style="margin: 0;">Interventions pour les problèmes d’électricité et de gaz liés aux installations intérieures de votre maison.</p>
+                        <p class="pc-offer-desc">Interventions pour les problèmes d’électricité et de gaz liés aux installations intérieures de votre maison.</p>
+
+                        <ul class="pc-offer-checklist">
+                            <li><span class="tic-green">✔</span> <span>Assistance Visio</span></li>
+                            <li><span class="tic-green">✔</span> <span>Tuto par un coach</span></li>
+                            <li><span class="tic-green">✔</span> <span>Prise de RDV avec un Professionnel en moins de 2 heures</span></li>
+                            <li><span class="tic-green">✔</span> <span>1h30 de main d'œuvre et forfait pièces offert jusqu'à 20 € HT</span></li>
+                            <li><span class="tic-green">✔</span> <span>1 intervention Électricité &amp; gaz par an</span></li>
+                        </ul>
                     </div>
                 </div>
 
@@ -1908,7 +1979,26 @@
                     </div>
                     <div class="pc-offer-body">
                         <div class="pc-offer-highlight">✔ Interventions illimitées**</div>
-                        <p style="margin: 0;">Interventions pour les problèmes d’électricité, de gaz et de plomberie liés aux installations intérieures de votre maison.</p>
+                        <p class="pc-offer-desc">Interventions pour les problèmes d’électricité, de gaz et de plomberie liés aux installations intérieures de votre maison.</p>
+
+                        <ul class="pc-offer-checklist">
+                            <li><span class="tic-green">✔</span> <span>Assistance Visio</span></li>
+                            <li><span class="tic-green">✔</span> <span>Tuto par un coach</span></li>
+                            <li><span class="tic-green">✔</span> <span>Prise de RDV avec un Professionnel en moins de 2 heures</span></li>
+                            <li><span class="tic-green">✔</span> <span>1h30 de main d'œuvre et forfait pièces offert jusqu'à 20 € HT</span></li>
+                            <li><span class="tic-green">✔</span> <span>Interventions électricité &amp; gaz illimité</span></li>
+                            <li><span class="tic-green">✔</span> <span>Intervention plomberie intérieure illimité</span></li>
+                        </ul>
+
+                        <div class="pc-examples-box">
+                            <h4 class="pc-examples-title">📋 Exemple d'intervention incluse :</h4>
+                            <ul class="pc-examples-list">
+                                <li><span>🚽</span> <span>Canalisation bouchée dans les toilettes</span></li>
+                                <li><span>🧺</span> <span>Canalisation d'évacuation de machine à laver endommagée</span></li>
+                                <li><span>🔌</span> <span>Prise murale endommagée</span></li>
+                                <li><span>⚡</span> <span>Installation électrique disjoncte</span></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1921,11 +2011,6 @@
         <p>Contenu Direct Assurance à venir...</p>
     </div>
 
-    <div id="page-plenitude" class="other-page-section">
-        <div class="dark-section-banner">🏆 Challenge Plenitude</div>
-        <p>Contenu Challenge Plenitude à venir...</p>
-    </div>
-
     <div id="page-hellowatt" class="other-page-section">
         <div class="dark-section-banner">📊 Classement Hellowatt</div>
         <p>Contenu Classement Hellowatt à venir...</p>
@@ -1933,7 +2018,7 @@
 </div>
 
 <script>
-    const PAGES_VALIDES = ['comparateur', 'boxfree', 'homeserve', 'direct', 'plenitude', 'hellowatt'];
+    const PAGES_VALIDES = ['comparateur', 'boxfree', 'homeserve', 'direct', 'hellowatt'];
 
     function changerPagePrincipale(pageId, btn) {
         if (!PAGES_VALIDES.includes(pageId)) pageId = 'comparateur';
@@ -1997,19 +2082,16 @@
     const GOOGLE_SHEETS_PRICES_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?output=csv";
     const URL_SCRIPT_GENERAL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=2146359891&single=true&output=csv";
 
-    // LIENS CSV SPECIFIQUES DE VOS FEUILLES SCRIPT GOOGLE SHEETS
     const URL_SCRIPT_PLENITUDE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=50074924&single=true&output=csv";
     const URL_SCRIPT_ENGIE_ELEC = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=1214012203&single=true&output=csv";
     const URL_SCRIPT_ENGIE_GAZ = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=887654579&single=true&output=csv";
     const URL_SCRIPT_ENGIE_DUAL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=1661582761&single=true&output=csv";
 
-    // NOUVEAUX LIENS CSV POUR LES TABLEAUX DU BAS, PAGE BOX FREE & SCRIPT HOMESERVE
     const URL_CARACTERISTIQUES = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=1949724626&single=true&output=csv";
     const URL_PRESTATIONS = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=1158477169&single=true&output=csv";
     const URL_BOX_FREE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=1906177763&single=true&output=csv";
     const URL_SCRIPT_HOMESERVE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQEHx9EEKr5la6Ydp2nX3hs9QhuMhDep99FtO9DMQD4koLrnItzbKNU4dTiUNVolXGAYkiBcXRTgP4H/pub?gid=1609026340&single=true&output=csv";
 
-    // LOGOS SVG INTÉGRÉS (100% HORS-LIGNE, AFFICHAGE INSTANTANÉ ET TAILLE IDENTIQUE)
     const SVG_LOGOS = {
         "edf": `<svg viewBox="0 0 180 60" xmlns="http://www.w3.org/2000/svg">
             <g transform="translate(18, 12)">
@@ -2204,10 +2286,8 @@
     let fournisseurSelectionne = "EDF";
 
     document.addEventListener("DOMContentLoaded", function () {
-        // Restaurer la dernière page consultée avant actualisation
         restaurerPageActive();
 
-        // Écouteur sur le menu déroulant de présentation fournisseur/offre
         const selectDetails = document.getElementById('select-fournisseur-details');
         if (selectDetails) {
             selectDetails.addEventListener('change', function () {
@@ -2293,7 +2373,6 @@
         return parseCSVExactRows(text).filter(r => r.some(cell => cell !== ''));
     }
 
-    // CHARGEMENT DU SCRIPT HOMESERVE DEPUIS LE LIEN GOOGLE SHEETS
     async function chargerScriptHomeServe() {
         const container = document.getElementById('script-homeserve-container');
         if (!container) return;
@@ -2329,7 +2408,6 @@
 
             rawLines.forEach(line => {
                 const cleanCheck = line.replace(/^[•\-–*]\s*/, '').trim();
-                // Détecter les 4 titres demandés : ACCROCHE :, AVANTAGE HOMESERVE :, FONCTIONNEMENT DU CONTRAT :, ENGAGEMENT CLIENT :
                 const titleRegex = /^(ACCROCHE|AVANTAGES?\s+HOMESERVE|FONCTIONNEMENT\s+DU\s+CONTRAT|ENGAGEMENT\s+CLIENT)\s*:?\s*(.*)$/i;
                 const match = cleanCheck.match(titleRegex);
 
