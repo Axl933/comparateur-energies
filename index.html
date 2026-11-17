@@ -371,28 +371,122 @@
             margin-top: 2px;
         }
 
-        .script-title-green {
-            background-color: #dcfce7;
-            border: 2px solid #16a34a;
-            color: #14532d;
-            font-weight: bold;
-            font-size: 0.85rem;
-            padding: 8px 12px;
-            border-radius: 6px;
-            margin-top: 12px;
-            margin-bottom: 8px;
+        /* ========================================================================= */
+        /* SYSTÈME UNIVERSEL DE GRANDS BLOCS ORGANISÉS (GÉNÉRAL, PLÉNITUDE & ENGIE)  */
+        /* ========================================================================= */
+        .script-major-block {
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 14px;
+            margin-bottom: 12px;
         }
 
-        .script-title-yellow {
-            background-color: #fef9c3;
-            border: 2px solid #ca8a04;
-            color: #713f12;
-            font-weight: bold;
-            font-size: 0.85rem;
-            padding: 8px 12px;
+        .script-major-block:first-child {
+            margin-top: 2px;
+        }
+
+        .script-major-title {
+            font-weight: 800;
+            font-size: 0.95rem;
+            padding: 8px 14px;
             border-radius: 6px;
-            margin-top: 12px;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            letter-spacing: 0.2px;
+        }
+
+        /* THÈME 1 : BLOCS BLEUS (SCRIPT GÉNÉRAL & 1ÈRE PARTIE ENGIE) */
+        .block-theme-blue {
+            background-color: #f0f9ff;
+            border: 2px solid #0284c7;
+        }
+
+        .title-theme-blue {
+            background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
+            color: #ffffff;
+            box-shadow: 0 2px 4px rgba(2, 132, 199, 0.2);
+        }
+
+        .para-theme-blue {
+            background-color: #ffffff !important;
+            border: 1px solid #bae6fd !important;
+            border-left: 3px solid #0284c7 !important;
+            color: #0f172a !important;
+        }
+
+        /* THÈME 2 : BLOCS INDIGO / ARDOISE (SCRIPT GÉNÉRAL ARGUMENTAIRE / CONTRAT) */
+        .block-theme-indigo {
+            background-color: #eef2ff;
+            border: 2px solid #4f46e5;
+        }
+
+        .title-theme-indigo {
+            background: linear-gradient(135deg, #3730a3 0%, #4f46e5 100%);
+            color: #ffffff;
+            box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
+        }
+
+        .para-theme-indigo {
+            background-color: #ffffff !important;
+            border: 1px solid #c7d2fe !important;
+            border-left: 3px solid #4f46e5 !important;
+            color: #0f172a !important;
+        }
+
+        /* THÈME 3 : BLOCS ÉMERAUDE / VERT (ENGIE CHF & PLÉNITUDE) */
+        .block-theme-green {
+            background-color: #f7fee7;
+            border: 2px solid #16a34a;
+        }
+
+        .title-theme-green {
+            background: linear-gradient(135deg, #15803d 0%, #16a34a 100%);
+            color: #ffffff;
+            box-shadow: 0 2px 4px rgba(22, 163, 74, 0.2);
+        }
+
+        .para-theme-green {
+            background-color: #ecfdf5 !important;
+            border: 1px solid #86efac !important;
+            border-left: 3px solid #16a34a !important;
+            color: #0f172a !important;
+        }
+
+        /* THÈME 4 : BLOCS AMBRE / ORANGE (ENGIE EMMÉNAGEMENT & PLÉNITUDE VENTE) */
+        .block-theme-amber {
+            background-color: #fffbeb;
+            border: 2px solid #d97706;
+        }
+
+        .title-theme-amber {
+            background: linear-gradient(135deg, #b45309 0%, #d97706 100%);
+            color: #ffffff;
+            box-shadow: 0 2px 4px rgba(217, 119, 6, 0.2);
+        }
+
+        .para-theme-amber {
+            background-color: #fef3c7 !important;
+            border: 1px solid #fcd34d !important;
+            border-left: 3px solid #d97706 !important;
+            color: #0f172a !important;
+        }
+
+        /* THÈME 5 : BLOC PLÉNITUDE BLANC / VERT DOUX */
+        .block-theme-plenitude-soft {
+            background-color: #f0fdf4;
+            border: 2px solid #16a34a;
+        }
+
+        .title-theme-plenitude-soft {
+            background: linear-gradient(135deg, #15803d 0%, #16a34a 100%);
+            color: #ffffff;
+            box-shadow: 0 2px 4px rgba(22, 163, 74, 0.2);
+        }
+
+        .para-theme-plenitude-soft {
+            background-color: #ffffff !important;
+            border: 1px solid #bbf7d0 !important;
+            border-left: 3px solid #16a34a !important;
+            color: #0f172a !important;
         }
 
         /* BOUTON COMPACT PLÉNITUDE (COULEUR JAUNE ACTUELLE) */
@@ -405,48 +499,21 @@
             font-size: 0.84rem;
             padding: 5px 14px;
             border-radius: 7px;
-            margin-top: 10px;
+            margin-top: 8px;
             margin-bottom: 6px;
             box-shadow: 0 1px 3px rgba(202, 138, 4, 0.18);
         }
 
-        /* PARAGRAPHE DÉLAI DE RÉTRACTATION PLÉNITUDE (ARRIÈRE-PLAN ROUGE TRÈS LÉGER + ÉCRITURE NOIRE) */
-        .script-box-retractation-red {
-            background-color: #fff1f2 !important;
-            border: 1.5px solid #fda4af !important;
+        /* PHRASE DÉLAI DE RÉTRACTATION PLÉNITUDE : TEXTE ROUGE SUR CARREAU BLANC AVEC LÉGÈRE NUANCE ROSE */
+        .script-box-retractation-pink {
+            background-color: #fff5f7 !important;
+            border: 1.5px solid #fbcfe8 !important;
             border-left: 4px solid #e11d48 !important;
-            color: #000000 !important;
-            font-weight: 600;
+            color: #dc2626 !important;
+            font-weight: 700;
         }
 
-        /* ========================================================================= */
-        /* BLOCS ENGIE : CHANGEMENT DE FOURNISSEUR (VERT) & EMMÉNAGEMENT (AMBRE)     */
-        /* ========================================================================= */
-        .engie-major-block {
-            border-radius: 10px;
-            padding: 12px;
-            margin-top: 14px;
-            margin-bottom: 12px;
-        }
-
-        /* BLOC 1 : CHANGEMENT DE FOURNISSEUR (COULEUR ÉMERAUDE / VERT) */
-        .engie-block-chf {
-            background-color: #f7fee7;
-            border: 2px solid #16a34a;
-        }
-
-        .engie-title-chf {
-            background: linear-gradient(135deg, #15803d 0%, #16a34a 100%);
-            color: #ffffff;
-            font-weight: 800;
-            font-size: 0.96rem;
-            padding: 8px 14px;
-            border-radius: 6px;
-            margin-bottom: 10px;
-            letter-spacing: 0.25px;
-            box-shadow: 0 2px 4px rgba(22, 163, 74, 0.2);
-        }
-
+        /* SOUS-TITRES ENGIE */
         .engie-subtitle-chf {
             display: inline-block;
             background-color: #bbf7d0;
@@ -458,31 +525,6 @@
             border-radius: 6px;
             margin-top: 8px;
             margin-bottom: 6px;
-        }
-
-        .engie-para-chf {
-            background-color: #ecfdf5 !important;
-            border: 1px solid #86efac !important;
-            border-left: 3px solid #16a34a !important;
-            color: #0f172a !important;
-        }
-
-        /* BLOC 2 : EMMÉNAGEMENT (COULEUR AMBRE / ORANGE) */
-        .engie-block-mes {
-            background-color: #fffbeb;
-            border: 2px solid #d97706;
-        }
-
-        .engie-title-mes {
-            background: linear-gradient(135deg, #b45309 0%, #d97706 100%);
-            color: #ffffff;
-            font-weight: 800;
-            font-size: 0.96rem;
-            padding: 8px 14px;
-            border-radius: 6px;
-            margin-bottom: 10px;
-            letter-spacing: 0.25px;
-            box-shadow: 0 2px 4px rgba(217, 119, 6, 0.2);
         }
 
         .engie-subtitle-mes {
@@ -498,11 +540,17 @@
             margin-bottom: 6px;
         }
 
-        .engie-para-mes {
-            background-color: #fef3c7 !important;
-            border: 1px solid #fcd34d !important;
-            border-left: 3px solid #d97706 !important;
-            color: #0f172a !important;
+        .engie-subtitle-blue {
+            display: inline-block;
+            background-color: #bae6fd;
+            border: 1.5px solid #0284c7;
+            color: #0c4a6e;
+            font-weight: 800;
+            font-size: 0.84rem;
+            padding: 4px 12px;
+            border-radius: 6px;
+            margin-top: 8px;
+            margin-bottom: 6px;
         }
 
         /* BOUTONS CLAIRS [Client au bimestriel] & [Client mensualisé] */
@@ -548,6 +596,10 @@
             border: 1px solid #e2e8f0;
             color: #1e293b;
             font-size: 0.85rem;
+        }
+
+        .script-major-block .script-paragraph:last-child {
+            margin-bottom: 0;
         }
 
         .tag-blue {
@@ -2554,7 +2606,6 @@
         return parseCSVExactRows(text).filter(r => r.some(cell => cell !== ''));
     }
 
-    /* Extrait chaque ligne individuellement même si le Google Sheet contient des cellules multilignes */
     function extraireLignesDepuisCSV(csvText) {
         const exactRows = parseCSVExactRows(csvText);
         const lignes = [];
@@ -3148,7 +3199,6 @@
 
         let pillClass = '';
 
-        // Tous les "Oui" en bouton vert et tous les "Non" en bouton rouge sur tout le tableau
         if (valNorm === "oui") {
             pillClass = "pill-green";
         } else if (valNorm === "non") {
@@ -3409,6 +3459,7 @@
                 urlToFetch === URL_SCRIPT_ENGIE_DUAL
             );
             const isPlenitudeScript = (urlToFetch === URL_SCRIPT_PLENITUDE);
+            const isGeneralScript = (urlToFetch === URL_SCRIPT_GENERAL);
             
             const response = await fetch(urlToFetch);
             const csvText = await response.text();
@@ -3418,7 +3469,8 @@
 
             let currentCategory = 'accueil';
             let accueilFollowUpType = '';
-            let engieCurrentBlock = ''; // '' | 'chf' | 'mes'
+            let currentBlockId = '';
+            let currentBlockTheme = '';
 
             lignes.forEach(lineText => {
                 let text = lineText.trim();
@@ -3426,62 +3478,91 @@
 
                 const textLower = text.toLowerCase();
                 const textNorm = textLower.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                let isTitle = false;
-                let isAlertRed = false;
-                let accueilHighlightClass = '';
+                const cleanCheck = text.replace(/^[•\-–*]\s*/, '').trim();
+                const cleanLower = cleanCheck.toLowerCase();
+                const cleanNorm = cleanLower.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-                let isBlueTitle = false;
-                let isGreenTitlePlenitude = false;
-                let isYellowBtnPlenitude = false;
-                let isRetractationRedPlenitude = false;
-
-                // -----------------------------------------------------------------
-                // LOGIQUE SPÉCIFIQUE AUX 3 SCRIPTS ENGIE
-                // -----------------------------------------------------------------
+                // =================================================================
+                // 1. LOGIQUE SPÉCIFIQUE AUX 3 SCRIPTS ENGIE
+                // =================================================================
                 if (isEngieScript) {
-                    const cleanCheck = text.replace(/^[•\-–*]\s*/, '').trim();
-                    const cleanLower = cleanCheck.toLowerCase();
-                    const cleanNorm = cleanLower.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-
-                    // Détection des 2 grands blocs : Changement de fournisseur / Emménagement
-                    if (/^changement de fournisseur\s*:?$/i.test(cleanCheck) || cleanNorm.startsWith("changement de fournisseur")) {
-                        engieCurrentBlock = 'chf';
+                    // Détection des 5 grands blocs Engie
+                    if (/^annonce de l[’']offre\s*:?$/i.test(cleanCheck) || cleanNorm.startsWith("annonce de l'offre")) {
+                        currentBlockId = 'engie-offre';
+                        currentBlockTheme = 'blue';
+                        scriptSectionsData.push({
+                            text: 'Annonce de l’offre :',
+                            isMajorTitle: true,
+                            blockId: currentBlockId,
+                            blockTheme: currentBlockTheme,
+                            category: 'all'
+                        });
+                        return;
+                    } else if (/^annonce du prix\s*:?$/i.test(cleanCheck) || cleanNorm.startsWith("annonce du prix")) {
+                        currentBlockId = 'engie-prix';
+                        currentBlockTheme = 'indigo';
+                        scriptSectionsData.push({
+                            text: 'Annonce du prix :',
+                            isMajorTitle: true,
+                            blockId: currentBlockId,
+                            blockTheme: currentBlockTheme,
+                            category: 'all'
+                        });
+                        return;
+                    } else if (/^annonce r[ée]versibilit[ée]\s*:?$/i.test(cleanCheck) || cleanNorm.startsWith("annonce reversibilite")) {
+                        currentBlockId = 'engie-reversibilite';
+                        currentBlockTheme = 'blue';
+                        scriptSectionsData.push({
+                            text: 'Annonce réversibilité :',
+                            isMajorTitle: true,
+                            blockId: currentBlockId,
+                            blockTheme: currentBlockTheme,
+                            category: 'all'
+                        });
+                        return;
+                    } else if (/^changement de fournisseur\s*:?$/i.test(cleanCheck) || cleanNorm.startsWith("changement de fournisseur")) {
+                        currentBlockId = 'engie-chf';
+                        currentBlockTheme = 'green';
                         scriptSectionsData.push({
                             text: 'Changement de fournisseur',
-                            engieItemType: 'block-title-chf',
-                            engieBlock: 'chf',
+                            isMajorTitle: true,
+                            blockId: currentBlockId,
+                            blockTheme: currentBlockTheme,
                             category: 'all'
                         });
                         return;
                     } else if (/^emmenagement\s*:?$/i.test(cleanNorm) || cleanNorm.startsWith("emmenagement")) {
-                        engieCurrentBlock = 'mes';
+                        currentBlockId = 'engie-mes';
+                        currentBlockTheme = 'amber';
                         scriptSectionsData.push({
                             text: 'Emménagement',
-                            engieItemType: 'block-title-mes',
-                            engieBlock: 'mes',
+                            isMajorTitle: true,
+                            blockId: currentBlockId,
+                            blockTheme: currentBlockTheme,
                             category: 'all'
                         });
                         return;
                     }
 
-                    // Détection des sous-titres dans les 2 blocs Engie :
-                    // Une fois dans Emménagement ('mes'), tout ce qui suit reste dans Emménagement ('mes')
+                    // Sous-titres dans Engie (Option Elec Vert+, Facturation, Rétractation, Reformulation)
+                    const isSubElecVert = cleanNorm.startsWith("option elec vert");
                     const isSubFacturationMES = cleanNorm.startsWith("annonce facturation et frais de mes");
                     const isSubFacturationCHF = !isSubFacturationMES && (cleanNorm.startsWith("annonce facturation chf") || cleanNorm.startsWith("annonce facturation"));
                     const isSubRetractationMES = cleanNorm.startsWith("annonce droit de retractation mes");
                     const isSubRetractationCHF = !isSubRetractationMES && (cleanNorm.startsWith("annonce droit de retractation chf") || cleanNorm.startsWith("annonce droit de retractation"));
                     const isSubReformulation = cleanNorm.startsWith("reformulation et validation contrat");
 
-                    if (isSubFacturationCHF || isSubFacturationMES || isSubRetractationCHF || isSubRetractationMES || isSubReformulation) {
-                        if (engieCurrentBlock !== 'mes') {
+                    if (isSubElecVert || isSubFacturationCHF || isSubFacturationMES || isSubRetractationCHF || isSubRetractationMES || isSubReformulation) {
+                        if (currentBlockId !== 'engie-mes' && !isSubElecVert) {
                             if (isSubFacturationMES || isSubRetractationMES) {
-                                engieCurrentBlock = 'mes';
+                                currentBlockId = 'engie-mes';
+                                currentBlockTheme = 'amber';
                             } else if (isSubFacturationCHF || isSubRetractationCHF) {
-                                engieCurrentBlock = 'chf';
+                                currentBlockId = 'engie-chf';
+                                currentBlockTheme = 'green';
                             }
                         }
 
-                        const activeBlock = engieCurrentBlock || 'chf';
                         let labelSub = cleanCheck;
                         if (isSubFacturationCHF) labelSub = "Annonce Facturation :";
                         else if (isSubFacturationMES) labelSub = "Annonce Facturation et Frais de MES :";
@@ -3491,26 +3572,14 @@
 
                         scriptSectionsData.push({
                             text: labelSub,
-                            engieItemType: activeBlock === 'mes' ? 'sub-mes' : 'sub-chf',
-                            engieBlock: activeBlock,
+                            isEngieSubTitle: true,
+                            blockId: currentBlockId,
+                            blockTheme: currentBlockTheme || 'blue',
                             category: 'all'
                         });
                         return;
                     }
 
-                    // Titres de la 1ère partie (immodifiable avant les 2 blocs)
-                    if (
-                        engieCurrentBlock === '' && (
-                            textLower.startsWith("annonce de l’offre") || textLower.startsWith("annonce de l'offre") ||
-                            textLower.startsWith("annonce du prix") ||
-                            textLower.startsWith("option elec vert") ||
-                            textLower.startsWith("annonce réversibilité") || textLower.startsWith("annonce reversibilite")
-                        )
-                    ) {
-                        isBlueTitle = true;
-                    }
-
-                    // Formatage des crochets, boutons [Client au bimestriel]/[Client mensualisé] et gras sur Engie
                     let formattedEngie = text;
                     formattedEngie = formattedEngie.replace(/\[(Client au bimestriel|Client mensualisé)\]/gi, '<span class="btn-client-mode">[$1]</span>');
                     formattedEngie = formattedEngie.replace(/\[(Obtenir le [^\]]+|Si oui du client)\]/gi, '<span class="tag-blue">[$1]</span>');
@@ -3518,89 +3587,195 @@
 
                     scriptSectionsData.push({
                         text: formattedEngie,
-                        isBlueTitle: isBlueTitle,
-                        engieItemType: engieCurrentBlock === 'chf' ? 'para-chf' : (engieCurrentBlock === 'mes' ? 'para-mes' : ''),
-                        engieBlock: engieCurrentBlock,
+                        blockId: currentBlockId,
+                        blockTheme: currentBlockTheme,
                         category: 'all'
                     });
                     return;
                 }
 
-                // -----------------------------------------------------------------
-                // LOGIQUE SCRIPT GÉNÉRAL & SCRIPT PLÉNITUDE
-                // -----------------------------------------------------------------
-                if (
-                    textLower.includes("accueil client") || 
-                    textLower.includes("découverte & reformulation") || textLower.includes("decouverte & reformulation") || textLower.includes("découverte et reformulation") ||
-                    textLower === "argumentaire" || textLower === "argumentaire :" ||
-                    textLower.includes("mise en place du contrat")
-                ) {
-                    isBlueTitle = true;
-                    accueilFollowUpType = '';
-                    if (textLower.includes("accueil client")) currentCategory = 'accueil';
-                    else if (textLower.includes("découverte") || textLower.includes("decouverte")) currentCategory = 'decouverte';
-                    else if (textLower.includes("argumentaire")) currentCategory = 'argumentaire';
-                    else if (textLower.includes("mise en place") || textLower.includes("contrat")) currentCategory = 'contrat';
-                }
-
-                if (!isBlueTitle && currentCategory === 'accueil') {
-                    if (textLower.includes("[new prospect")) {
-                        accueilHighlightClass = 'highlight-new-prospect';
-                        accueilFollowUpType = 'new-prospect';
-                    } else if (textLower.includes("[validated]")) {
-                        accueilHighlightClass = 'highlight-validated';
-                        accueilFollowUpType = '';
-                    } else if (textLower.includes("[recall at]")) {
-                        accueilHighlightClass = 'highlight-recall-at';
-                        accueilFollowUpType = 'recall-at';
-                    } else if (
-                        accueilFollowUpType === 'new-prospect' &&
-                        textLower.includes("je vais commencer par vous poser quelques questions")
-                    ) {
-                        accueilHighlightClass = 'highlight-new-prospect';
-                        accueilFollowUpType = '';
-                    } else if (
-                        accueilFollowUpType === 'recall-at' &&
-                        textLower.includes("je vais commencer par vous poser quelques questions")
-                    ) {
-                        accueilHighlightClass = 'highlight-recall-at';
-                        accueilFollowUpType = '';
-                    } else {
-                        accueilFollowUpType = '';
+                // =================================================================
+                // 2. LOGIQUE SPÉCIFIQUE AU SCRIPT PLÉNITUDE (5 BLOCS)
+                // =================================================================
+                if (isPlenitudeScript) {
+                    if (cleanNorm.includes("consentement acces aux donnees")) {
+                        currentBlockId = 'plenitude-1';
+                        currentBlockTheme = 'green';
+                        scriptSectionsData.push({
+                            text: 'Consentement accès aux données de consommation (Si changement de fournisseur)',
+                            isMajorTitle: true,
+                            blockId: currentBlockId,
+                            blockTheme: currentBlockTheme,
+                            category: 'all'
+                        });
+                        return;
+                    } else if (cleanNorm.includes("vente de l'offre") || cleanLower.includes("vente de l’offre")) {
+                        currentBlockId = 'plenitude-2';
+                        currentBlockTheme = 'amber';
+                        scriptSectionsData.push({
+                            text: 'Vente de l’offre',
+                            isMajorTitle: true,
+                            blockId: currentBlockId,
+                            blockTheme: currentBlockTheme,
+                            category: 'all'
+                        });
+                        return;
+                    } else if (cleanNorm.includes("delai de retractation")) {
+                        currentBlockId = 'plenitude-3';
+                        currentBlockTheme = 'plenitude-soft';
+                        scriptSectionsData.push({
+                            text: 'Délai de rétractation',
+                            isMajorTitle: true,
+                            blockId: currentBlockId,
+                            blockTheme: currentBlockTheme,
+                            category: 'all'
+                        });
+                        return;
+                    } else if (cleanNorm.includes("closing souscription")) {
+                        currentBlockId = 'plenitude-4';
+                        currentBlockTheme = 'blue';
+                        scriptSectionsData.push({
+                            text: 'Closing souscription',
+                            isMajorTitle: true,
+                            blockId: currentBlockId,
+                            blockTheme: currentBlockTheme,
+                            category: 'all'
+                        });
+                        return;
+                    } else if (cleanNorm.includes("accompagnement du client a la souscription")) {
+                        currentBlockId = 'plenitude-5';
+                        currentBlockTheme = 'indigo';
+                        scriptSectionsData.push({
+                            text: 'Accompagnement du client à la souscription',
+                            isMajorTitle: true,
+                            blockId: currentBlockId,
+                            blockTheme: currentBlockTheme,
+                            category: 'all'
+                        });
+                        return;
                     }
+
+                    // Boutons jaunes internes dans Plénitude (Bloc 1 & Bloc 2)
+                    const isYellowBtnPlenitude = (
+                        cleanNorm.includes("electricite ou elec & gaz") ||
+                        cleanNorm.includes("electricite - elec/gaz") ||
+                        cleanNorm === "gaz" || cleanNorm === "gaz :" ||
+                        cleanNorm.includes("paiement en mensualisation") ||
+                        cleanNorm.includes("paiement en reel bimestriel")
+                    );
+
+                    if (isYellowBtnPlenitude) {
+                        scriptSectionsData.push({
+                            text: cleanCheck,
+                            isYellowBtnPlenitude: true,
+                            blockId: currentBlockId,
+                            blockTheme: currentBlockTheme,
+                            category: 'all'
+                        });
+                        return;
+                    }
+
+                    // Phrase délai de rétractation en rouge sur carreau blanc avec légère nuance rose
+                    const isRetractationRedPlenitude = cleanNorm.includes("sachez que vous disposez d'un delai de 14 jours pour exercer votre droit de retractation");
+
+                    let formattedPlen = text;
+                    formattedPlen = formattedPlen.replace(/\[(Obtenir le [^\]]+|Si oui du client)\]/gi, '<span class="tag-blue">[$1]</span>');
+
+                    scriptSectionsData.push({
+                        text: formattedPlen,
+                        isRetractationRedPlenitude: isRetractationRedPlenitude,
+                        blockId: currentBlockId,
+                        blockTheme: currentBlockTheme,
+                        category: 'all'
+                    });
+                    return;
                 }
 
-                // Titres conservés tels quels dans Plénitude
-                if (
-                    textLower.includes("consentement accès aux données") || textLower.includes("consentement acces aux donnees") ||
-                    textLower.includes("vente de l’offre") || textLower.includes("vente de l'offre") ||
-                    textLower.includes("délai de rétractation") || textLower.includes("delai de retractation") ||
-                    textLower.includes("closing souscription") ||
-                    textLower.includes("accompagnement du client à la souscription") || textLower.includes("accompagnement du client a la souscription")
-                ) {
-                    isGreenTitlePlenitude = true;
-                } 
-                // Sous-titres Plénitude sous forme de bouton compact jaune
-                else if (
-                    textNorm.includes("electricite ou elec & gaz") ||
-                    textNorm.includes("electricite - elec/gaz") ||
-                    textNorm === "gaz" || textNorm === "gaz :" ||
-                    textNorm.includes("paiement en mensualisation") ||
-                    textNorm.includes("paiement en reel bimestriel")
-                ) {
-                    isYellowBtnPlenitude = true;
-                }
+                // =================================================================
+                // 3. LOGIQUE SPÉCIFIQUE AU SCRIPT GÉNÉRAL
+                // =================================================================
+                if (isGeneralScript) {
+                    if (textLower.includes("accueil client")) {
+                        currentCategory = 'accueil';
+                        currentBlockId = '';
+                        currentBlockTheme = '';
+                        accueilFollowUpType = '';
+                        scriptSectionsData.push({
+                            text: text,
+                            isBlueTitle: true,
+                            category: currentCategory
+                        });
+                        return;
+                    } else if (textNorm.includes("decouverte & reformulation") || textNorm.includes("decouverte et reformulation")) {
+                        currentCategory = 'decouverte';
+                        currentBlockId = 'gen-decouverte';
+                        currentBlockTheme = 'blue';
+                        accueilFollowUpType = '';
+                        scriptSectionsData.push({
+                            text: 'Découverte & reformulation',
+                            isMajorTitle: true,
+                            blockId: currentBlockId,
+                            blockTheme: currentBlockTheme,
+                            category: currentCategory
+                        });
+                        return;
+                    } else if (cleanNorm === "argumentaire" || cleanNorm === "argumentaire :") {
+                        currentCategory = 'argumentaire';
+                        currentBlockId = 'gen-argumentaire';
+                        currentBlockTheme = 'indigo';
+                        accueilFollowUpType = '';
+                        scriptSectionsData.push({
+                            text: 'Argumentaire',
+                            isMajorTitle: true,
+                            blockId: currentBlockId,
+                            blockTheme: currentBlockTheme,
+                            category: currentCategory
+                        });
+                        return;
+                    } else if (textNorm.includes("mise en place du contrat")) {
+                        currentCategory = 'contrat';
+                        currentBlockId = 'gen-contrat';
+                        currentBlockTheme = 'green';
+                        accueilFollowUpType = '';
+                        scriptSectionsData.push({
+                            text: 'Mise en place du contrat',
+                            isMajorTitle: true,
+                            blockId: currentBlockId,
+                            blockTheme: currentBlockTheme,
+                            category: currentCategory
+                        });
+                        return;
+                    }
 
-                // Phrase délai de rétractation Plénitude (fond rouge très léger + écriture noire)
-                if (
-                    isPlenitudeScript &&
-                    textNorm.includes("sachez que vous disposez d'un delai de 14 jours pour exercer votre droit de retractation")
-                ) {
-                    isRetractationRedPlenitude = true;
-                }
+                    let accueilHighlightClass = '';
+                    if (currentCategory === 'accueil') {
+                        if (textLower.includes("[new prospect")) {
+                            accueilHighlightClass = 'highlight-new-prospect';
+                            accueilFollowUpType = 'new-prospect';
+                        } else if (textLower.includes("[validated]")) {
+                            accueilHighlightClass = 'highlight-validated';
+                            accueilFollowUpType = '';
+                        } else if (textLower.includes("[recall at]")) {
+                            accueilHighlightClass = 'highlight-recall-at';
+                            accueilFollowUpType = 'recall-at';
+                        } else if (
+                            accueilFollowUpType === 'new-prospect' &&
+                            textLower.includes("je vais commencer par vous poser quelques questions")
+                        ) {
+                            accueilHighlightClass = 'highlight-new-prospect';
+                            accueilFollowUpType = '';
+                        } else if (
+                            accueilFollowUpType === 'recall-at' &&
+                            textLower.includes("je vais commencer par vous poser quelques questions")
+                        ) {
+                            accueilHighlightClass = 'highlight-recall-at';
+                            accueilFollowUpType = '';
+                        } else {
+                            accueilFollowUpType = '';
+                        }
+                    }
 
-                if (
-                    !isPlenitudeScript && (
+                    const isAlertRed = (
                         textLower.includes("enregistré") || 
                         textLower.includes("qualité et de formation") ||
                         textLower.includes("afin de réaliser le devis le plus précis") ||
@@ -3609,31 +3784,25 @@
                         textLower.includes("souhaitez-vous en bénéficier") ||
                         textLower.includes("souhaitez vous en bénéficier") ||
                         textLower.includes("je vous envoie un lien de téléchargement par sms")
-                    )
-                ) {
-                    isAlertRed = true;
-                }
+                    );
 
-                let formattedText = text;
-                if (isAlertRed) {
-                    formattedText = formattedText.replace(/(\[[^\]]+\])/g, '<span class="bracket-black">$1</span>');
-                } else {
-                    formattedText = formattedText.replace(/\[(Validated|Recall at|New prospect\/User)\]/gi, '<span class="tag-lead-black">[$1]</span>');
-                    formattedText = formattedText.replace(/\[(Obtenir le [^\]]+|Si oui du client)\]/gi, '<span class="tag-blue">[$1]</span>');
-                }
+                    let formattedText = text;
+                    if (isAlertRed) {
+                        formattedText = formattedText.replace(/(\[[^\]]+\])/g, '<span class="bracket-black">$1</span>');
+                    } else {
+                        formattedText = formattedText.replace(/\[(Validated|Recall at|New prospect\/User)\]/gi, '<span class="tag-lead-black">[$1]</span>');
+                        formattedText = formattedText.replace(/\[(Obtenir le [^\]]+|Si oui du client)\]/gi, '<span class="tag-blue">[$1]</span>');
+                    }
 
-                scriptSectionsData.push({
-                    text: formattedText,
-                    isTitle: isTitle,
-                    isBlueTitle: isBlueTitle,
-                    isGreenTitlePlenitude: isGreenTitlePlenitude,
-                    isYellowBtnPlenitude: isYellowBtnPlenitude,
-                    isRetractationRedPlenitude: isRetractationRedPlenitude,
-                    isAlertRed: isAlertRed,
-                    accueilHighlightClass: accueilHighlightClass,
-                    category: currentCategory,
-                    textLower: textLower
-                });
+                    scriptSectionsData.push({
+                        text: formattedText,
+                        isAlertRed: isAlertRed,
+                        accueilHighlightClass: accueilHighlightClass,
+                        blockId: currentBlockId,
+                        blockTheme: currentBlockTheme,
+                        category: currentCategory
+                    });
+                }
             });
 
             afficherScript('all');
@@ -3648,67 +3817,64 @@
         container.innerHTML = '';
 
         let currentMajorBlockEl = null;
-        let currentMajorBlockType = '';
+        let currentMajorBlockId = '';
 
         scriptSectionsData.forEach(item => {
             if (catFilter !== 'all' && item.category !== catFilter) return;
 
-            // Gestion des 2 grands blocs Engie (Changement de fournisseur / Emménagement)
-            if (item.engieBlock === 'chf' || item.engieBlock === 'mes') {
-                if (!currentMajorBlockEl || currentMajorBlockType !== item.engieBlock) {
-                    currentMajorBlockType = item.engieBlock;
+            // Rendu à l'intérieur d'un grand bloc (Script Général, Plénitude ou Engie)
+            if (item.blockId) {
+                if (!currentMajorBlockEl || currentMajorBlockId !== item.blockId) {
+                    currentMajorBlockId = item.blockId;
                     currentMajorBlockEl = document.createElement('div');
-                    currentMajorBlockEl.className = `engie-major-block ${item.engieBlock === 'chf' ? 'engie-block-chf' : 'engie-block-mes'}`;
+                    currentMajorBlockEl.className = `script-major-block block-theme-${item.blockTheme || 'blue'}`;
                     container.appendChild(currentMajorBlockEl);
                 }
 
-                if (item.engieItemType === 'block-title-chf' || item.engieItemType === 'block-title-mes') {
+                if (item.isMajorTitle) {
                     const titleDiv = document.createElement('div');
-                    titleDiv.className = item.engieItemType === 'block-title-chf' ? 'engie-title-chf' : 'engie-title-mes';
+                    titleDiv.className = `script-major-title title-theme-${item.blockTheme || 'blue'}`;
                     titleDiv.innerHTML = item.text;
                     currentMajorBlockEl.appendChild(titleDiv);
-                } else if (item.engieItemType === 'sub-chf' || item.engieItemType === 'sub-mes') {
+                } else if (item.isEngieSubTitle) {
                     const subDiv = document.createElement('div');
-                    subDiv.className = item.engieItemType === 'sub-chf' ? 'engie-subtitle-chf' : 'engie-subtitle-mes';
+                    let subCls = 'engie-subtitle-blue';
+                    if (item.blockTheme === 'green') subCls = 'engie-subtitle-chf';
+                    else if (item.blockTheme === 'amber') subCls = 'engie-subtitle-mes';
+                    subDiv.className = subCls;
                     subDiv.innerHTML = item.text;
                     currentMajorBlockEl.appendChild(subDiv);
+                } else if (item.isYellowBtnPlenitude) {
+                    const btnDiv = document.createElement('div');
+                    btnDiv.className = 'script-btn-yellow-inline';
+                    btnDiv.innerHTML = item.text;
+                    currentMajorBlockEl.appendChild(btnDiv);
                 } else {
                     const pDiv = document.createElement('div');
-                    pDiv.className = `script-paragraph ${item.engieItemType === 'para-chf' ? 'engie-para-chf' : 'engie-para-mes'}`;
+                    let paraCls = `para-theme-${item.blockTheme || 'blue'}`;
+                    if (item.isRetractationRedPlenitude) paraCls = 'script-box-retractation-pink';
+                    else if (item.isAlertRed) paraCls = 'text-alert-red';
+
+                    pDiv.className = `script-paragraph ${paraCls}`;
                     pDiv.innerHTML = item.text;
                     currentMajorBlockEl.appendChild(pDiv);
                 }
                 return;
             } else {
                 currentMajorBlockEl = null;
-                currentMajorBlockType = '';
+                currentMajorBlockId = '';
             }
 
-            if (item.isGreenTitlePlenitude) {
-                const h = document.createElement('div');
-                h.className = 'script-title-green';
-                h.innerHTML = item.text;
-                container.appendChild(h);
-            } else if (item.isYellowBtnPlenitude) {
-                const h = document.createElement('div');
-                h.className = 'script-btn-yellow-inline';
-                h.innerHTML = item.text;
-                container.appendChild(h);
-            } else if (item.isBlueTitle) {
+            // Rendu hors bloc (Accueil client du Script Général)
+            if (item.isBlueTitle) {
                 const h = document.createElement('div');
                 h.className = 'script-section-blue-title';
-                h.innerHTML = item.text;
-                container.appendChild(h);
-            } else if (item.isTitle) {
-                const h = document.createElement('div');
-                h.className = 'script-section-title';
                 h.innerHTML = item.text;
                 container.appendChild(h);
             } else {
                 const p = document.createElement('div');
                 let extraClass = '';
                 if (item.accueilHighlightClass) extraClass = item.accueilHighlightClass;
-                else if (item.isRetractationRedPlenitude) extraClass = 'script-box-retractation-red';
                 else if (item.isAlertRed) extraClass = 'text-alert-red';
 
                 p.className = `script-paragraph ${extraClass}`;
