@@ -504,7 +504,7 @@
             box-shadow: 0 1px 3px rgba(202, 138, 4, 0.18);
         }
 
-        /* PHRASE DÉLAI DE RÉTRACTATION PLÉNITUDE : ÉCRITE EN ROUGE SUR ARRIÈRE-PLAN BLANC AVEC LÉGÈRE NUANCE ROUGE */
+        /* PHRASE DÉLAI DE RÉTRACTATION PLÉNITUDE */
         .script-box-retractation-red {
             background-color: #fff6f6 !important;
             border: 1.5px solid #fecaca !important;
@@ -635,7 +635,7 @@
             font-size: inherit !important;
         }
 
-        /* BANDEAUX SOMBRES ÉLECTRICITÉ & GAZ AVEC SÉLECTEURS INTÉGRÉS */
+        /* BANDEAUX SOMBRES ÉLECTRICITÉ & GAZ AVEC SÉLECTEURS INTÉGRÉS EN JAUNE */
         .dark-section-banner {
             background-color: #0f172a;
             color: #f8fafc;
@@ -675,10 +675,11 @@
             align-items: center;
             gap: 12px;
             flex-wrap: wrap;
-            background-color: #1e293b;
-            padding: 5px 10px;
+            background-color: #facc15;
+            padding: 5px 12px;
             border-radius: 6px;
-            border: 1.5px solid #38bdf8;
+            border: 1.5px solid #ca8a04;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
         }
 
         .banner-select-item {
@@ -688,8 +689,8 @@
         }
 
         .banner-select-item label {
-            color: #e0f2fe;
-            font-weight: 700;
+            color: #0f172a;
+            font-weight: 800;
             font-size: 0.82rem;
             white-space: nowrap;
         }
@@ -697,18 +698,18 @@
         .banner-select {
             padding: 4px 10px;
             border-radius: 5px;
-            border: 2px solid #22c55e;
+            border: 1.5px solid #0f172a;
             background-color: #ffffff;
             color: #0f172a;
             font-weight: 800;
             font-size: 0.84rem;
             cursor: pointer;
             outline: none;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.15);
         }
 
         .banner-select:focus {
-            box-shadow: 0 0 0 2.5px rgba(34, 197, 94, 0.45);
+            box-shadow: 0 0 0 2.5px rgba(15, 23, 42, 0.35);
         }
 
         .ranked-table-wrapper {
@@ -1888,7 +1889,7 @@
                     </div>
                 </div>
 
-                <!-- SECTION ÉLECTRICITÉ AVEC SÉLECTEURS INTÉGRÉS DANS LE BANDEAU -->
+                <!-- SECTION ÉLECTRICITÉ AVEC BLOC JAUNE PUISSANCE & OPTION TARIFAIRE -->
                 <div class="dark-section-banner">
                     <div class="banner-title-left">
                         <span>⚡ Électricité</span>
@@ -1933,7 +1934,7 @@
                     </table>
                 </div>
 
-                <!-- SECTION GAZ AVEC SÉLECTEUR INTÉGRÉ DANS LE BANDEAU -->
+                <!-- SECTION GAZ AVEC BLOC JAUNE CLASSE DE CONSOMMATION -->
                 <div class="dark-section-banner">
                     <div class="banner-title-left">
                         <span>🔥 Gaz Naturel</span>
@@ -3612,9 +3613,7 @@
                     }
 
                     let formattedEngie = text;
-                    // Boutons rouges [Client mensualisé] & [Client au réel] / [Client au bimestriel] (y compris dans Script Engie ELEC)
                     formattedEngie = formattedEngie.replace(/\[([^\]]*(?:client\s+mensualis[eé]|client\s+au\s+r[eé]el|client\s+au\s+bimestriel)[^\]]*)\]/gi, '<span class="btn-client-mode-red">[$1]</span>');
-                    // Si le libellé apparaît seul sans crochets sur une ligne dans Engie ELEC, on l'affiche aussi en bouton rouge
                     if (/^\s*(client\s+mensualis[eé]|client\s+au\s+r[eé]el|client\s+au\s+bimestriel)\s*:?\s*$/i.test(formattedEngie)) {
                         const labelClean = formattedEngie.replace(/[:\s]+$/, '').trim();
                         formattedEngie = `<span class="btn-client-mode-red">[${labelClean}]</span>`;
