@@ -3148,7 +3148,12 @@
 
         let pillClass = '';
 
-        if (colNorm.includes("activation chf")) {
+        // Tous les "Oui" en bouton vert et tous les "Non" en bouton rouge sur tout le tableau
+        if (valNorm === "oui") {
+            pillClass = "pill-green";
+        } else if (valNorm === "non") {
+            pillClass = "pill-red";
+        } else if (colNorm.includes("activation chf")) {
             if (valNorm.includes("14")) pillClass = "pill-orange";
             else if (valNorm.includes("21")) pillClass = "pill-red";
             else if (valNorm.includes("des que possible")) pillClass = "pill-green";
@@ -3156,9 +3161,6 @@
             if (valNorm.includes("rapide")) pillClass = "pill-green";
             else if (valNorm.includes("7 jour") || valNorm.includes("48h")) pillClass = "pill-orange";
             else if (valNorm.includes("15 jour")) pillClass = "pill-red";
-        } else if (colNorm.includes("premiere mes")) {
-            if (valNorm === "oui") pillClass = "pill-green";
-            else if (valNorm === "non") pillClass = "pill-red";
         } else if (colNorm.includes("type de compteur") || colNorm.includes("compteur")) {
             if (valNorm.includes("linky") && (valNorm.includes("classique") || valNorm.includes("classqique") || valNorm.includes("&"))) {
                 pillClass = "pill-green";
@@ -3462,7 +3464,8 @@
                         return;
                     }
 
-                    // Détection des sous-titres dans les 2 blocs Engie
+                    // Détection des sous-titres dans les 2 blocs Engie :
+                    // Une fois dans Emménagement ('mes'), tout ce qui suit reste dans Emménagement ('mes')
                     const isSubFacturationMES = cleanNorm.startsWith("annonce facturation et frais de mes");
                     const isSubFacturationCHF = !isSubFacturationMES && (cleanNorm.startsWith("annonce facturation chf") || cleanNorm.startsWith("annonce facturation"));
                     const isSubRetractationMES = cleanNorm.startsWith("annonce droit de retractation mes");
@@ -3470,10 +3473,12 @@
                     const isSubReformulation = cleanNorm.startsWith("reformulation et validation contrat");
 
                     if (isSubFacturationCHF || isSubFacturationMES || isSubRetractationCHF || isSubRetractationMES || isSubReformulation) {
-                        if (isSubFacturationMES || isSubRetractationMES) {
-                            engieCurrentBlock = 'mes';
-                        } else if (isSubFacturationCHF || isSubRetractationCHF) {
-                            engieCurrentBlock = 'chf';
+                        if (engieCurrentBlock !== 'mes') {
+                            if (isSubFacturationMES || isSubRetractationMES) {
+                                engieCurrentBlock = 'mes';
+                            } else if (isSubFacturationCHF || isSubRetractationCHF) {
+                                engieCurrentBlock = 'chf';
+                            }
                         }
 
                         const activeBlock = engieCurrentBlock || 'chf';
