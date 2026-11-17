@@ -312,6 +312,7 @@
             padding-right: 8px;
             font-size: 0.85rem;
             line-height: 1.45;
+            background-color: #ffffff;
         }
 
         .script-section-title {
@@ -394,7 +395,7 @@
             margin-bottom: 8px;
         }
 
-        /* BOUTON COMPACT PLÉNITUDE (DÉGRADÉ DU JAUNE ACTUEL) */
+        /* BOUTON COMPACT PLÉNITUDE (COULEUR JAUNE ACTUELLE) */
         .script-btn-yellow-inline {
             display: inline-block;
             background-color: #fef08a;
@@ -516,22 +517,6 @@
             border-radius: 999px;
             margin: 2px 0;
             box-shadow: 0 1px 2px rgba(2, 132, 199, 0.14);
-        }
-
-        .script-box-green {
-            background-color: #dcfce7 !important;
-            border: 1.5px solid #16a34a !important;
-            border-radius: 6px !important;
-            color: #14532d !important;
-            font-size: 0.85rem !important;
-        }
-
-        .script-box-yellow {
-            background-color: #fef9c3 !important;
-            border: 1.5px solid #ca8a04 !important;
-            border-radius: 6px !important;
-            color: #713f12 !important;
-            font-size: 0.85rem !important;
         }
 
         .highlight-new-prospect {
@@ -2569,6 +2554,36 @@
         return parseCSVExactRows(text).filter(r => r.some(cell => cell !== ''));
     }
 
+    /* Extrait chaque ligne individuellement même si le Google Sheet contient des cellules multilignes */
+    function extraireLignesDepuisCSV(csvText) {
+        const exactRows = parseCSVExactRows(csvText);
+        const lignes = [];
+        exactRows.forEach(row => {
+            const nonEmptyCells = row.map(c => c.trim()).filter(c => c !== '');
+            if (nonEmptyCells.length === 0) return;
+
+            if (nonEmptyCells.length === 1) {
+                nonEmptyCells[0].split(/\r?\n/).forEach(sub => {
+                    const t = sub.trim();
+                    if (t) lignes.push(t);
+                });
+            } else {
+                const hasNewlines = nonEmptyCells.some(c => /\r?\n/.test(c));
+                if (hasNewlines) {
+                    nonEmptyCells.forEach(cell => {
+                        cell.split(/\r?\n/).forEach(sub => {
+                            const t = sub.trim();
+                            if (t) lignes.push(t);
+                        });
+                    });
+                } else {
+                    lignes.push(nonEmptyCells.join(' '));
+                }
+            }
+        });
+        return lignes;
+    }
+
     async function chargerScriptDirectAssurance() {
         const container = document.getElementById('script-direct-container');
         if (!container) return;
@@ -3396,15 +3411,15 @@
             const response = await fetch(urlToFetch);
             const csvText = await response.text();
             
-            const exactRows = parseCSVExactRows(csvText);
+            const lignes = extraireLignesDepuisCSV(csvText);
             scriptSectionsData = [];
 
             let currentCategory = 'accueil';
             let accueilFollowUpType = '';
             let engieCurrentBlock = ''; // '' | 'chf' | 'mes'
 
-            exactRows.forEach(cols => {
-                let text = cols.map(c => c.trim()).filter(c => c !== '').join(' ').trim();
+            lignes.forEach(lineText => {
+                let text = lineText.trim();
                 if (!text) return;
 
                 const textLower = text.toLowerCase();
@@ -3417,8 +3432,6 @@
                 let isGreenTitlePlenitude = false;
                 let isYellowBtnPlenitude = false;
                 let isRetractationRedPlenitude = false;
-
-                let engieItemType = ''; // 'block-title-chf' | 'block-title-mes' | 'sub-chf' | 'sub-mes' | 'para-chf' | 'para-mes'
 
                 // -----------------------------------------------------------------
                 // LOGIQUE SPÉCIFIQUE AUX 3 SCRIPTS ENGIE
@@ -3493,7 +3506,7 @@
                     }
 
                     // Formatage des crochets, boutons [Client au bimestriel]/[Client mensualisé] et gras sur Engie
-                    let formattedEngie = text.replace(/\r?\n/g, '<br>');
+                    let formattedEngie = text;
                     formattedEngie = formattedEngie.replace(/\[(Client au bimestriel|Client mensualisé)\]/gi, '<span class="btn-client-mode">[$1]</span>');
                     formattedEngie = formattedEngie.replace(/\[(Obtenir le [^\]]+|Si oui du client)\]/gi, '<span class="tag-blue">[$1]</span>');
                     formattedEngie = formaterTexteGrasEngie(formattedEngie);
@@ -3596,7 +3609,7 @@
                     isAlertRed = true;
                 }
 
-                let formattedText = text.replace(/\r?\n/g, '<br>');
+                let formattedText = text;
                 if (isAlertRed) {
                     formattedText = formattedText.replace(/(\[[^\]]+\])/g, '<span class="bracket-black">$1</span>');
                 } else {
