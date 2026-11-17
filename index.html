@@ -413,7 +413,7 @@
             color: #0f172a !important;
         }
 
-        /* THÈME 2 : BLOCS INDIGO / ARDOISE (SCRIPT GÉNÉRAL ARGUMENTAIRE / CONTRAT) */
+        /* THÈME 2 : BLOCS INDIGO / ARDOISE */
         .block-theme-indigo {
             background-color: #eef2ff;
             border: 2px solid #4f46e5;
@@ -504,11 +504,11 @@
             box-shadow: 0 1px 3px rgba(202, 138, 4, 0.18);
         }
 
-        /* PHRASE DÉLAI DE RÉTRACTATION PLÉNITUDE : TEXTE ROUGE SUR CARREAU BLANC AVEC LÉGÈRE NUANCE ROSE */
-        .script-box-retractation-pink {
-            background-color: #fff5f7 !important;
-            border: 1.5px solid #fbcfe8 !important;
-            border-left: 4px solid #e11d48 !important;
+        /* PHRASE DÉLAI DE RÉTRACTATION PLÉNITUDE : ÉCRITE EN ROUGE SUR ARRIÈRE-PLAN BLANC AVEC LÉGÈRE NUANCE ROUGE */
+        .script-box-retractation-red {
+            background-color: #fff6f6 !important;
+            border: 1.5px solid #fecaca !important;
+            border-left: 4px solid #dc2626 !important;
             color: #dc2626 !important;
             font-weight: 700;
         }
@@ -3486,7 +3486,6 @@
                 // 1. LOGIQUE SPÉCIFIQUE AUX 3 SCRIPTS ENGIE
                 // =================================================================
                 if (isEngieScript) {
-                    // Détection des 5 grands blocs Engie
                     if (/^annonce de l[’']offre\s*:?$/i.test(cleanCheck) || cleanNorm.startsWith("annonce de l'offre")) {
                         currentBlockId = 'engie-offre';
                         currentBlockTheme = 'blue';
@@ -3544,7 +3543,6 @@
                         return;
                     }
 
-                    // Sous-titres dans Engie (Option Elec Vert+, Facturation, Rétractation, Reformulation)
                     const isSubElecVert = cleanNorm.startsWith("option elec vert");
                     const isSubFacturationMES = cleanNorm.startsWith("annonce facturation et frais de mes");
                     const isSubFacturationCHF = !isSubFacturationMES && (cleanNorm.startsWith("annonce facturation chf") || cleanNorm.startsWith("annonce facturation"));
@@ -3598,7 +3596,13 @@
                 // 2. LOGIQUE SPÉCIFIQUE AU SCRIPT PLÉNITUDE (5 BLOCS)
                 // =================================================================
                 if (isPlenitudeScript) {
-                    if (cleanNorm.includes("consentement acces aux donnees")) {
+                    const isTitleConsentement = cleanNorm.startsWith("consentement acces aux donnees");
+                    const isTitleVente = /^vente de l[’']offre\s*:?$/i.test(cleanCheck) || cleanNorm === "vente de l'offre" || cleanNorm === "vente de l'offre :";
+                    const isTitleRetractation = /^delai de retractation\s*:?$/i.test(cleanNorm);
+                    const isTitleClosing = /^closing souscription\s*:?$/i.test(cleanNorm);
+                    const isTitleAccompagnement = cleanNorm.startsWith("accompagnement du client a la souscription");
+
+                    if (isTitleConsentement) {
                         currentBlockId = 'plenitude-1';
                         currentBlockTheme = 'green';
                         scriptSectionsData.push({
@@ -3609,7 +3613,7 @@
                             category: 'all'
                         });
                         return;
-                    } else if (cleanNorm.includes("vente de l'offre") || cleanLower.includes("vente de l’offre")) {
+                    } else if (isTitleVente) {
                         currentBlockId = 'plenitude-2';
                         currentBlockTheme = 'amber';
                         scriptSectionsData.push({
@@ -3620,7 +3624,7 @@
                             category: 'all'
                         });
                         return;
-                    } else if (cleanNorm.includes("delai de retractation")) {
+                    } else if (isTitleRetractation) {
                         currentBlockId = 'plenitude-3';
                         currentBlockTheme = 'plenitude-soft';
                         scriptSectionsData.push({
@@ -3631,7 +3635,7 @@
                             category: 'all'
                         });
                         return;
-                    } else if (cleanNorm.includes("closing souscription")) {
+                    } else if (isTitleClosing) {
                         currentBlockId = 'plenitude-4';
                         currentBlockTheme = 'blue';
                         scriptSectionsData.push({
@@ -3642,7 +3646,7 @@
                             category: 'all'
                         });
                         return;
-                    } else if (cleanNorm.includes("accompagnement du client a la souscription")) {
+                    } else if (isTitleAccompagnement) {
                         currentBlockId = 'plenitude-5';
                         currentBlockTheme = 'indigo';
                         scriptSectionsData.push({
@@ -3675,8 +3679,12 @@
                         return;
                     }
 
-                    // Phrase délai de rétractation en rouge sur carreau blanc avec légère nuance rose
-                    const isRetractationRedPlenitude = cleanNorm.includes("sachez que vous disposez d'un delai de 14 jours pour exercer votre droit de retractation");
+                    // Phrase délai de rétractation : écrite en rouge sur arrière-plan blanc avec légère nuance rouge
+                    const isRetractationRedPlenitude = (
+                        currentBlockId === 'plenitude-3' ||
+                        cleanNorm.includes("14 jours pour exercer votre droit de retractation") ||
+                        cleanNorm.includes("delai de retractation de 14 jours")
+                    );
 
                     let formattedPlen = text;
                     formattedPlen = formattedPlen.replace(/\[(Obtenir le [^\]]+|Si oui du client)\]/gi, '<span class="tag-blue">[$1]</span>');
@@ -3822,7 +3830,6 @@
         scriptSectionsData.forEach(item => {
             if (catFilter !== 'all' && item.category !== catFilter) return;
 
-            // Rendu à l'intérieur d'un grand bloc (Script Général, Plénitude ou Engie)
             if (item.blockId) {
                 if (!currentMajorBlockEl || currentMajorBlockId !== item.blockId) {
                     currentMajorBlockId = item.blockId;
@@ -3852,7 +3859,7 @@
                 } else {
                     const pDiv = document.createElement('div');
                     let paraCls = `para-theme-${item.blockTheme || 'blue'}`;
-                    if (item.isRetractationRedPlenitude) paraCls = 'script-box-retractation-pink';
+                    if (item.isRetractationRedPlenitude) paraCls = 'script-box-retractation-red';
                     else if (item.isAlertRed) paraCls = 'text-alert-red';
 
                     pDiv.className = `script-paragraph ${paraCls}`;
@@ -3865,7 +3872,6 @@
                 currentMajorBlockId = '';
             }
 
-            // Rendu hors bloc (Accueil client du Script Général)
             if (item.isBlueTitle) {
                 const h = document.createElement('div');
                 h.className = 'script-section-blue-title';
